@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, device, port=None, baudrate=9600):
+    def __init__(self, device, port=None, baudrate=115200):
         # 目标芯片名字
         self.device = device
 
@@ -31,11 +31,13 @@ class rtt_to_serial():
             self.jlink = pylink.JLink()
         except:
             logger.error('Find jlink dll failed', exc_info=True)
+            raise
 
         try:
             self.serial = serial.Serial()
         except:
             logger.error('Creat serial object failed', exc_info=True)
+            raise
 
     def __del__(self):
         self.jlink.close()
@@ -58,10 +60,9 @@ class rtt_to_serial():
                     except pylink.errors.JLinkException:
                         logger.error('Connect target failed', exc_info=True)
                         pass
-                # 复位一下目标芯片，复位后不要停止芯片，保证后续操作的稳定性
-                self.jlink.reset(halt=False)
         except pylink.errors.JLinkException as errors:
             logger.error('Open jlink failed', exc_info=True)
+            raise
 
         try:
             if self.serial.isOpen() == False:
@@ -71,6 +72,7 @@ class rtt_to_serial():
                 self.serial.open()
         except:
             logger.error('Open serial failed', exc_info=True)
+            raise
 
         self.thread_switch = True
         self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
@@ -127,7 +129,7 @@ class rtt_to_serial():
 
 
 if __name__ == "__main__":
-    serial_name = input("请输入虚拟串口对中的串口名字：")
+    serial_name = input("请输入虚拟串口对中的串口名字，如COM26：")
 
     if '' == serial_name:
         serial_name = 'COM26'

@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file '.\rtt2uart.ui',
 # licensing of '.\rtt2uart.ui' applies.
 #
-# Created: Sat Sep 14 09:21:16 2019
+# Created: Sat Sep 28 18:02:06 2019
 #      by: pyside2-uic  running on PySide2 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -15,6 +15,8 @@ class Ui_dialog(object):
     def setupUi(self, dialog):
         dialog.setObjectName("dialog")
         dialog.resize(402, 300)
+        dialog.setMinimumSize(QtCore.QSize(0, 0))
+        dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         dialog.setSizeGripEnabled(False)
         self.pushButton_Start = QtWidgets.QPushButton(dialog)
         self.pushButton_Start.setGeometry(QtCore.QRect(160, 252, 81, 41))
@@ -59,8 +61,20 @@ class Ui_dialog(object):
         self.groupBox_UART.setGeometry(QtCore.QRect(10, 170, 381, 51))
         self.groupBox_UART.setObjectName("groupBox_UART")
         self.comboBox_Port = QtWidgets.QComboBox(self.groupBox_UART)
-        self.comboBox_Port.setGeometry(QtCore.QRect(10, 20, 101, 22))
+        self.comboBox_Port.setGeometry(QtCore.QRect(50, 20, 81, 22))
         self.comboBox_Port.setObjectName("comboBox_Port")
+        self.label = QtWidgets.QLabel(self.groupBox_UART)
+        self.label.setGeometry(QtCore.QRect(13, 20, 31, 20))
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.groupBox_UART)
+        self.label_2.setGeometry(QtCore.QRect(150, 20, 61, 21))
+        self.label_2.setObjectName("label_2")
+        self.comboBox_baudrate = QtWidgets.QComboBox(self.groupBox_UART)
+        self.comboBox_baudrate.setGeometry(QtCore.QRect(218, 20, 71, 22))
+        self.comboBox_baudrate.setObjectName("comboBox_baudrate")
+        self.pushButton_scan = QtWidgets.QPushButton(self.groupBox_UART)
+        self.pushButton_scan.setGeometry(QtCore.QRect(314, 20, 61, 23))
+        self.pushButton_scan.setObjectName("pushButton_scan")
 
         self.retranslateUi(dialog)
         QtCore.QMetaObject.connectSlotsByName(dialog)
@@ -78,3 +92,9 @@ class Ui_dialog(object):
             QtWidgets.QApplication.translate("dialog", "...", None, -1))
         self.groupBox_UART.setTitle(QtWidgets.QApplication.translate(
             "dialog", "UART Config", None, -1))
+        self.label.setText(QtWidgets.QApplication.translate(
+            "dialog", "Port:", None, -1))
+        self.label_2.setText(QtWidgets.QApplication.translate(
+            "dialog", "Baud rate:", None, -1))
+        self.pushButton_scan.setText(
+            QtWidgets.QApplication.translate("dialog", "Scan", None, -1))
