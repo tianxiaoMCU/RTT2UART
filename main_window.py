@@ -10,7 +10,6 @@ from ui_sel_device import Ui_Dialog
 import serial.tools.list_ports
 import serial
 import ctypes.util as ctypes_util
-import sys
 import xml.etree.ElementTree as ET
 import pylink
 from rtt2uart import rtt_to_serial
