@@ -8,6 +8,7 @@ from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
 
 import serial.tools.list_ports
+import serial
 import ctypes.util as ctypes_util
 import sys
 import xml.etree.ElementTree as ET
@@ -198,8 +199,13 @@ class MainWindow(QDialog):
                     msgBox.setText("Please selete the target device!")
                     msgBox.setWindowTitle('Error')
                     msgBox.exec_()
-            except:
+            except serial.SerialException:
                 logger.error('Start rtt2uart failed', exc_info=True)
+                msgBox = QMessageBox()
+                msgBox.setIcon(QMessageBox.Warning)
+                msgBox.setText("Open serial port failed!")
+                msgBox.setWindowTitle('Error')
+                msgBox.exec_()
                 pass
             else:
                 self.start_state = True
