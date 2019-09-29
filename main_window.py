@@ -169,7 +169,7 @@ class MainWindow(QDialog):
         self.port_scan()
 
         self.settings = {'device': [], 'device_index': 0, 'interface': 0,
-                         'speed': 0, 'buadrate': 0}
+                         'speed': 0, 'port': 0, 'buadrate': 0}
 
         # 检查是否存在上次配置，存在则加载
         if os.path.exists('settings') == True:
@@ -187,6 +187,7 @@ class MainWindow(QDialog):
             self.ui.comboBox_Interface.setCurrentIndex(
                 self.settings['interface'])
             self.ui.comboBox_Speed.setCurrentIndex(self.settings['speed'])
+            self.ui.comboBox_Port.setCurrentIndex(self.settings['port'])
             self.ui.comboBox_baudrate.setCurrentIndex(
                 self.settings['buadrate'])
 
@@ -201,6 +202,8 @@ class MainWindow(QDialog):
             self.interface_change_slot)
         self.ui.comboBox_Speed.currentIndexChanged.connect(
             self.speed_change_slot)
+        self.ui.comboBox_Port.currentIndexChanged.connect(
+            self.port_change_slot)
         self.ui.comboBox_baudrate.currentIndexChanged.connect(
             self.buadrate_change_slot)
 
@@ -208,7 +211,7 @@ class MainWindow(QDialog):
         # self.setFixedSize(self.width(), self.height())
 
     def __del__(self):
-        if self.rtt2uart is not None:
+        if self.rtt2uart is not None and self.start_state == True:
             self.rtt2uart.stop()
 
         # 保存当前配置
@@ -285,6 +288,9 @@ class MainWindow(QDialog):
 
     def speed_change_slot(self, index):
         self.settings['speed'] = index
+
+    def port_change_slot(self, index):
+        self.settings['port'] = index
 
     def buadrate_change_slot(self, index):
         self.settings['buadrate'] = index
