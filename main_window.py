@@ -179,7 +179,9 @@ class MainWindow(QDialog):
             f.close()
 
             # 应用上次配置
-            self.ui.comboBox_Device.addItems(self.settings['device'])
+            if len(self.settings['device']):
+                self.ui.comboBox_Device.addItems(self.settings['device'])
+                self.target_device = self.settings['device'][self.settings['device_index']]
             self.ui.comboBox_Device.setCurrentIndex(
                 self.settings['device_index'])
             self.ui.comboBox_Interface.setCurrentIndex(
@@ -187,8 +189,6 @@ class MainWindow(QDialog):
             self.ui.comboBox_Speed.setCurrentIndex(self.settings['speed'])
             self.ui.comboBox_baudrate.setCurrentIndex(
                 self.settings['buadrate'])
-
-            self.target_device = self.settings['device'][self.settings['device_index']]
 
         # 信号-槽
         self.ui.pushButton_Start.clicked.connect(self.start)
