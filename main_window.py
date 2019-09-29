@@ -15,6 +15,8 @@ import xml.etree.ElementTree as ET
 import pylink
 from rtt2uart import rtt_to_serial
 import logging
+import pickle
+import os
 
 logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
@@ -166,10 +168,41 @@ class MainWindow(QDialog):
 
         self.port_scan()
 
+        self.settings = {'device': [], 'device_index': 0, 'interface': 0,
+                         'speed': 0, 'buadrate': 0}
+
+        # 检查是否存在上次配置，存在则加载
+        if os.path.exists('settings') == True:
+            with open('settings', 'rb') as f:
+                self.settings = pickle.load(f)
+
+            f.close()
+
+            # 应用上次配置
+            self.ui.comboBox_Device.addItems(self.settings['device'])
+            self.ui.comboBox_Device.setCurrentIndex(
+                self.settings['device_index'])
+            self.ui.comboBox_Interface.setCurrentIndex(
+                self.settings['interface'])
+            self.ui.comboBox_Speed.setCurrentIndex(self.settings['speed'])
+            self.ui.comboBox_baudrate.setCurrentIndex(
+                self.settings['buadrate'])
+
+            self.target_device = self.settings['device'][self.settings['device_index']]
+
+        # 信号-槽
         self.ui.pushButton_Start.clicked.connect(self.start)
         self.ui.pushButton_scan.clicked.connect(self.port_scan)
         self.ui.pushButton_Selete_Device.clicked.connect(
             self.target_device_selete)
+        self.ui.comboBox_Device.currentIndexChanged.connect(
+            self.device_change_slot)
+        self.ui.comboBox_Interface.currentIndexChanged.connect(
+            self.interface_change_slot)
+        self.ui.comboBox_Speed.currentIndexChanged.connect(
+            self.speed_change_slot)
+        self.ui.comboBox_baudrate.currentIndexChanged.connect(
+            self.buadrate_change_slot)
 
         # 禁止调整窗口大小时点击关闭按钮没有反应
         # self.setFixedSize(self.width(), self.height())
@@ -177,6 +210,12 @@ class MainWindow(QDialog):
     def __del__(self):
         if self.rtt2uart is not None:
             self.rtt2uart.stop()
+
+        # 保存当前配置
+        with open('settings', 'wb') as f:
+            pickle.dump(self.settings, f)
+
+        f.close()
 
     def port_scan(self):
         # 检测所有串口，将信息存储在字典中
@@ -231,7 +270,24 @@ class MainWindow(QDialog):
         device_ui = DeviceSeleteDialog()
         device_ui.exec_()
         self.target_device = device_ui.get_target_device()
-        self.ui.comboBox_Device.addItem(self.target_device)
+
+        if self.target_device not in self.settings['device']:
+            self.settings['device'].append(self.target_device)
+            self.ui.comboBox_Device.addItem(self.target_device)
+            self.ui.comboBox_Device.setCurrentIndex(
+                len(self.settings['device']) - 1)
+
+    def device_change_slot(self, index):
+        self.settings['device_index'] = index
+
+    def interface_change_slot(self, index):
+        self.settings['interface'] = index
+
+    def speed_change_slot(self, index):
+        self.settings['speed'] = index
+
+    def buadrate_change_slot(self, index):
+        self.settings['buadrate'] = index
 
 
 if __name__ == "__main__":

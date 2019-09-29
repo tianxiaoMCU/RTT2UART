@@ -16,3 +16,4 @@ build/rtt2uart/warn-rtt2uart.txt
 build/rtt2uart/xref-rtt2uart.html
 dist/rtt2uart.exe
 __pycache__/ui_sel_device.cpython-37.pyc
+settings
