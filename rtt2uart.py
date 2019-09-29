@@ -10,9 +10,13 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, device, port=None, baudrate=115200):
+    def __init__(self, device, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000):
         # 目标芯片名字
         self.device = device
+        # 调试口
+        self._interface = interface
+        # 连接速率
+        self._speed = speed
 
         # segger rtt上下通道缓存大小
         self.upbuffer_size = 1024
@@ -48,18 +52,26 @@ class rtt_to_serial():
             if self.jlink.connected() == False:
                 # 加载jlinkARM.dll
                 self.jlink.open()
+
+                # 设置连接速率
+                if self.jlink.set_speed(self._speed) == False:
+                    logger.error('Set speed failed', exc_info=True)
+                    raise
+
                 # 设置连接接口为SWD
-                if self.jlink.set_tif(pylink.enums.JLinkInterfaces.SWD) == False:
+                if self.jlink.set_tif(self._interface) == False:
                     logger.error('Set interface failed', exc_info=True)
-                else:
-                    try:
-                        # 连接目标芯片
-                        self.jlink.connect(self.device)
-                        # 启动RTT，对于RTT的任何操作都需要在RTT启动后进行
-                        self.jlink.rtt_start()
-                    except pylink.errors.JLinkException:
-                        logger.error('Connect target failed', exc_info=True)
-                        pass
+                    raise
+
+                try:
+                    # 连接目标芯片
+                    self.jlink.connect(self.device)
+                    # 启动RTT，对于RTT的任何操作都需要在RTT启动后进行
+                    self.jlink.rtt_start()
+                except pylink.errors.JLinkException:
+                    logger.error('Connect target failed', exc_info=True)
+                    raise
+
         except pylink.errors.JLinkException as errors:
             logger.error('Open jlink failed', exc_info=True)
             raise

@@ -191,8 +191,19 @@ class MainWindow(QDialog):
         if self.start_state == False:
             try:
                 if self.target_device is not None:
+
+                    selete_interface = self.ui.comboBox_Interface.currentText()
+                    if (selete_interface == 'JTAG'):
+                        device_interface = pylink.enums.JLinkInterfaces.JTAG
+                    elif (selete_interface == 'SWD'):
+                        device_interface = pylink.enums.JLinkInterfaces.SWD
+                    elif (selete_interface == 'cJTAG'):
+                        device_interface = None
+                    elif (selete_interface == 'FINE'):
+                        device_interface = pylink.enums.JLinkInterfaces.FINE
+
                     self.rtt2uart = rtt_to_serial(self.target_device, self.ui.comboBox_Port.currentText(
-                    ), self.ui.comboBox_baudrate.currentText())
+                    ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()])
                     self.rtt2uart.start()
                 else:
                     raise Exception("Please selete the target device !")
