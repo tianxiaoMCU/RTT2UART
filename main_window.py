@@ -195,19 +195,14 @@ class MainWindow(QDialog):
                     ), self.ui.comboBox_baudrate.currentText())
                     self.rtt2uart.start()
                 else:
-                    msgBox = QMessageBox()
-                    msgBox.setIcon(QMessageBox.Warning)
-                    msgBox.setText("Please selete the target device!")
-                    msgBox.setWindowTitle('Error')
-                    msgBox.exec_()
-            except serial.SerialException:
-                logger.error('Start rtt2uart failed', exc_info=True)
+                    raise Exception("Please selete the target device !")
+
+            except Exception as errors:
                 msgBox = QMessageBox()
                 msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText("Open serial port failed!")
+                msgBox.setText(str(errors))
                 msgBox.setWindowTitle('Error')
                 msgBox.exec_()
-                pass
             else:
                 self.start_state = True
                 self.ui.pushButton_Start.setText("Stop")
