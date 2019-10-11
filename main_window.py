@@ -317,6 +317,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow()
+    window.setWindowTitle("RTT2UART Control Panel V1.0.0")
     window.show()
 
     sys.exit(app.exec_())
