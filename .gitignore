@@ -17,3 +17,13 @@ build/rtt2uart/xref-rtt2uart.html
 dist/rtt2uart.exe
 __pycache__/ui_sel_device.cpython-37.pyc
 settings
+*.pyc
+*.toc
+build/main_window/base_library.zip
+build/main_window/main_window.exe.manifest
+*.pkg
+*.pyz
+*.txt
+*.html
+dist/rtt2uart_v1.0.0.exe
+main_window.spec

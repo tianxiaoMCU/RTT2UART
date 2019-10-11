@@ -246,6 +246,15 @@ class MainWindow(QDialog):
                     self.rtt2uart = rtt_to_serial(self.target_device, self.ui.comboBox_Port.currentText(
                     ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()])
                     self.rtt2uart.start()
+
+                    # 启动后不能再进行配置
+                    self.ui.comboBox_Device.setEnabled(False)
+                    self.ui.pushButton_Selete_Device.setEnabled(False)
+                    self.ui.comboBox_Interface.setEnabled(False)
+                    self.ui.comboBox_Speed.setEnabled(False)
+                    self.ui.comboBox_Port.setEnabled(False)
+                    self.ui.comboBox_baudrate.setEnabled(False)
+                    self.ui.pushButton_scan.setEnabled(False)
                 else:
                     raise Exception("Please selete the target device !")
 
@@ -260,6 +269,15 @@ class MainWindow(QDialog):
                 self.ui.pushButton_Start.setText("Stop")
         else:
             try:
+                # 停止后才能再次配置
+                self.ui.comboBox_Device.setEnabled(True)
+                self.ui.pushButton_Selete_Device.setEnabled(True)
+                self.ui.comboBox_Interface.setEnabled(True)
+                self.ui.comboBox_Speed.setEnabled(True)
+                self.ui.comboBox_Port.setEnabled(True)
+                self.ui.comboBox_baudrate.setEnabled(True)
+                self.ui.pushButton_scan.setEnabled(True)
+
                 self.rtt2uart.stop()
 
                 self.start_state = False
