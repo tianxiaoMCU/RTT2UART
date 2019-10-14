@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file '.\sel_device.ui',
 # licensing of '.\sel_device.ui' applies.
 #
-# Created: Sat Sep 28 18:13:49 2019
+# Created: Mon Oct 14 14:27:36 2019
 #      by: pyside2-uic  running on PySide2 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -14,11 +14,11 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(400, 270)
+        Dialog.resize(779, 385)
         Dialog.setMinimumSize(QtCore.QSize(0, 0))
         Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(30, 240, 341, 32))
+        self.buttonBox.setGeometry(QtCore.QRect(430, 350, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(
             QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
@@ -31,8 +31,13 @@ class Ui_Dialog(object):
         self.label_sel_dev.setText("")
         self.label_sel_dev.setObjectName("label_sel_dev")
         self.tableView = QtWidgets.QTableView(Dialog)
-        self.tableView.setGeometry(QtCore.QRect(10, 30, 381, 201))
+        self.tableView.setGeometry(QtCore.QRect(10, 30, 761, 311))
         self.tableView.setObjectName("tableView")
+        self.line = QtWidgets.QFrame(Dialog)
+        self.line.setGeometry(QtCore.QRect(10, 340, 761, 16))
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
 
         self.retranslateUi(Dialog)
         QtCore.QObject.connect(

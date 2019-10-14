@@ -48,10 +48,7 @@ class DeviceTableModel(QtCore.QAbstractTableModel):
         elif role != QtCore.Qt.DisplayRole:
             return None
 
-        if 0 == index.column():
-            return self.mylist[index.row()]['Vendor']
-        if 1 == index.column():
-            return self.mylist[index.row()]['Name']
+        return self.mylist[index.row()][index.column()]
 
         return None
 
@@ -76,7 +73,8 @@ class DeviceSeleteDialog(QDialog):
         if len(self.devices_list):
 
             # 从headdata中取出数据，放入到模型中
-            headdata = ["Manufacturer", "Device"]
+            headdata = ["Manufacturer", "Device", "Core",
+                        "NumCores", "Flash Size", "RAM Size"]
 
             # 生成一个模型，用来给tableview
             model = DeviceTableModel(self.devices_list, headdata)
@@ -94,6 +92,7 @@ class DeviceSeleteDialog(QDialog):
             self.ui.tableView.clicked.connect(self.reflash_selete_device)
 
     def get_jlink_devices_list_file(self):
+        '''
         lib_jlink = pylink.Library()
 
         path = ctypes_util.find_library(lib_jlink._sdk)
@@ -116,8 +115,11 @@ class DeviceSeleteDialog(QDialog):
                 path = ''
         else:
             path = ''
-
-        return path
+        '''
+        if os.path.exists(r'JLinkDevicesBuildIn.xml') == True:
+            return os.path.abspath('JLinkDevicesBuildIn.xml')
+        else:
+            raise Exception("Can not find device database !")
 
     def parse_jlink_devices_list_file(self, path):
         parsefile = open(path, 'r')
@@ -126,10 +128,39 @@ class DeviceSeleteDialog(QDialog):
 
         jlink_devices_list = []
 
-        for tag in tree.findall('Device'):
-            for chipinfo in tag:
-                if 'Vendor' in chipinfo.attrib.keys():
-                    jlink_devices_list.append(chipinfo.attrib)
+        for VendorInfo in tree.findall('VendorInfo'):
+            for DeviceInfo in VendorInfo.findall('DeviceInfo'):
+                device_item = []
+
+                # get Manufacturer
+                device_item.append(VendorInfo.attrib['Name'])
+                # get Device
+                device_item.append(DeviceInfo.attrib['Name'])
+                # get Core
+                device_item.append(DeviceInfo.attrib['Core'])
+                # get NumCores
+                # now fix 1
+                device_item.append('1')
+                # get Flash Size
+                flash_size = 0
+                for FlashBankInfo in DeviceInfo.findall('FlashBankInfo'):
+                    flash_size += int(FlashBankInfo.attrib['Size'], 16)
+
+                flash_size = flash_size // 1024
+                if flash_size < 1024:
+                    device_item.append(str(flash_size)+' KB')
+                else:
+                    flash_size = flash_size // 1024
+                    device_item.append(str(flash_size)+' MB')
+                # get RAM Size
+                ram_size = 0
+                if 'WorkRAMSize' in DeviceInfo.attrib.keys():
+                    ram_size += int(DeviceInfo.attrib['WorkRAMSize'], 16)
+
+                device_item.append(str(ram_size//1024)+' KB')
+
+                # add item to list
+                jlink_devices_list.append(device_item)
 
         parsefile.close()
 
@@ -137,7 +168,7 @@ class DeviceSeleteDialog(QDialog):
 
     def reflash_selete_device(self):
         index = self.ui.tableView.currentIndex()
-        self._target = self.devices_list[index.row()]['Name']
+        self._target = self.devices_list[index.row()][1]
         self.ui.label_sel_dev.setText(self._target)
 
     def get_target_device(self):
@@ -317,7 +348,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow()
-    window.setWindowTitle("RTT2UART Control Panel V1.0.0")
+    window.setWindowTitle("RTT2UART Control Panel V1.1.0")
     window.show()
 
     sys.exit(app.exec_())
