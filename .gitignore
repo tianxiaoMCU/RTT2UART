@@ -27,3 +27,6 @@ build/main_window/main_window.exe.manifest
 *.html
 dist/rtt2uart_v1.0.0.exe
 main_window.spec
+dist/JLinkDevicesBuildIn.xml
+dist/rtt2uart_v1.1.0.exe
+dist/rtt2uart_v1.1.0.zip
