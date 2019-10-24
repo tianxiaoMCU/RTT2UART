@@ -330,6 +330,7 @@ class MainWindow(QDialog):
 
     def device_change_slot(self, index):
         self.settings['device_index'] = index
+        self.target_device = self.ui.comboBox_Device.currentText()
 
     def interface_change_slot(self, index):
         self.settings['interface'] = index
