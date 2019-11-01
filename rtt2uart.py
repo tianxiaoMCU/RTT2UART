@@ -10,13 +10,15 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, device, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000):
+    def __init__(self, device, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
         # 目标芯片名字
         self.device = device
         # 调试口
         self._interface = interface
         # 连接速率
         self._speed = speed
+        # 复位标志
+        self._reset = reset
 
         # segger rtt上下通道缓存大小
         self.upbuffer_size = 1024
@@ -68,6 +70,11 @@ class rtt_to_serial():
                     self.jlink.connect(self.device)
                     # 启动RTT，对于RTT的任何操作都需要在RTT启动后进行
                     self.jlink.rtt_start()
+
+                    if self._reset == True:
+                        # 复位一下目标芯片，复位后不要停止芯片，保证后续操作的稳定性
+                        self.jlink.reset(halt=False)
+
                 except pylink.errors.JLinkException:
                     logger.error('Connect target failed', exc_info=True)
                     raise
@@ -120,9 +127,16 @@ class rtt_to_serial():
 
     def rtt_to_uart(self):
         while self.thread_switch == True:
-            rtt_recv = self.jlink.rtt_read(0, self.upbuffer_size)
+            try:
+                rtt_recv = self.jlink.rtt_read(0, self.upbuffer_size)
+            except:
+                raise Exception("Jlink rtt read error")
+
             if len(rtt_recv):
-                self.serial.write(bytes(rtt_recv))
+                try:
+                    self.serial.write(bytes(rtt_recv))
+                except:
+                    raise Exception("Serial write error")
 
     def uart_to_rtt(self):
         while self.thread_switch == True:
@@ -131,12 +145,20 @@ class rtt_to_serial():
 
             # 有数据则将数据读取出来
             if num:
-                data = self.serial.read(num)
+                try:
+                    data = self.serial.read(num)
+                except:
+                    raise Exception("Serial read error")
+
                 # 将读出的数据写入到rtt
                 write_index = 0
                 while write_index < len(data):
-                    bytes_written = self.jlink.rtt_write(
-                        0, list(data[write_index:]))
+                    try:
+                        bytes_written = self.jlink.rtt_write(
+                            0, list(data[write_index:]))
+                    except:
+                        raise Exception("Jlink rtt write error")
+
                     write_index = write_index + bytes_written
 
 

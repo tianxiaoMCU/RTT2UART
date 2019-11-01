@@ -275,7 +275,8 @@ class MainWindow(QDialog):
                         device_interface = pylink.enums.JLinkInterfaces.FINE
 
                     self.rtt2uart = rtt_to_serial(self.target_device, self.ui.comboBox_Port.currentText(
-                    ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()])
+                    ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
+
                     self.rtt2uart.start()
 
                     # 启动后不能再进行配置

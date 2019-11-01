@@ -3,7 +3,7 @@
 # Form implementation generated from reading ui file '.\rtt2uart.ui',
 # licensing of '.\rtt2uart.ui' applies.
 #
-# Created: Sat Sep 28 18:02:06 2019
+# Created: Fri Nov  1 10:08:06 2019
 #      by: pyside2-uic  running on PySide2 5.13.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -33,12 +33,12 @@ class Ui_dialog(object):
         self.pushButton_Start.setObjectName("pushButton_Start")
         self.line = QtWidgets.QFrame(dialog)
         self.line.setEnabled(True)
-        self.line.setGeometry(QtCore.QRect(10, 150, 381, 20))
+        self.line.setGeometry(QtCore.QRect(10, 170, 381, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
         self.groupBox = QtWidgets.QGroupBox(dialog)
-        self.groupBox.setGeometry(QtCore.QRect(10, 90, 381, 51))
+        self.groupBox.setGeometry(QtCore.QRect(10, 80, 381, 51))
         self.groupBox.setObjectName("groupBox")
         self.comboBox_Interface = QtWidgets.QComboBox(self.groupBox)
         self.comboBox_Interface.setGeometry(QtCore.QRect(10, 20, 241, 22))
@@ -58,7 +58,7 @@ class Ui_dialog(object):
             QtCore.QRect(340, 20, 31, 23))
         self.pushButton_Selete_Device.setObjectName("pushButton_Selete_Device")
         self.groupBox_UART = QtWidgets.QGroupBox(dialog)
-        self.groupBox_UART.setGeometry(QtCore.QRect(10, 170, 381, 51))
+        self.groupBox_UART.setGeometry(QtCore.QRect(10, 190, 381, 51))
         self.groupBox_UART.setObjectName("groupBox_UART")
         self.comboBox_Port = QtWidgets.QComboBox(self.groupBox_UART)
         self.comboBox_Port.setGeometry(QtCore.QRect(50, 20, 81, 22))
@@ -75,6 +75,9 @@ class Ui_dialog(object):
         self.pushButton_scan = QtWidgets.QPushButton(self.groupBox_UART)
         self.pushButton_scan.setGeometry(QtCore.QRect(314, 20, 61, 23))
         self.pushButton_scan.setObjectName("pushButton_scan")
+        self.checkBox_resettarget = QtWidgets.QCheckBox(dialog)
+        self.checkBox_resettarget.setGeometry(QtCore.QRect(10, 150, 91, 16))
+        self.checkBox_resettarget.setObjectName("checkBox_resettarget")
 
         self.retranslateUi(dialog)
         QtCore.QMetaObject.connectSlotsByName(dialog)
@@ -98,3 +101,5 @@ class Ui_dialog(object):
             "dialog", "Baud rate:", None, -1))
         self.pushButton_scan.setText(
             QtWidgets.QApplication.translate("dialog", "Scan", None, -1))
+        self.checkBox_resettarget.setText(
+            QtWidgets.QApplication.translate("dialog", "Reset target", None, -1))
