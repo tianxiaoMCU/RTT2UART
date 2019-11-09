@@ -220,6 +220,13 @@ class MainWindow(QDialog):
             self.ui.comboBox_Port.setCurrentIndex(self.settings['port'])
             self.ui.comboBox_baudrate.setCurrentIndex(
                 self.settings['buadrate'])
+        else:
+            self.ui.comboBox_Interface.setCurrentIndex(1)
+            self.settings['interface'] = 1
+            self.ui.comboBox_Speed.setCurrentIndex(19)
+            self.settings['speed'] = 19
+            self.ui.comboBox_baudrate.setCurrentIndex(16)
+            self.settings['buadrate'] = 16
 
         # 信号-槽
         self.ui.pushButton_Start.clicked.connect(self.start)
