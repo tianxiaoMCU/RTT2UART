@@ -1,9 +1,9 @@
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox
+from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction, qApp
 from PySide2.QtCore import QFile, QAbstractTableModel
 from PySide2 import QtGui
 from PySide2 import QtCore
-from PySide2.QtGui import QFont
+from PySide2.QtGui import QFont, QIcon
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
 
@@ -181,6 +181,8 @@ class MainWindow(QDialog):
         self.ui = Ui_dialog()
         self.ui.setupUi(self)
 
+        self.setWindowIcon(QIcon(r'swap_horiz_16px.ico'))
+
         self.start_state = False
         self.target_device = None
         self.rtt2uart = None
@@ -350,11 +352,38 @@ class MainWindow(QDialog):
         self.settings['buadrate'] = index
 
 
+# class MyTray(QSystemTrayIcon):
+
+#     def __init__(self):
+#         super().__init__()
+#         self.setIcon(QIcon(r'swap_horiz_16px.ico'))  # 设置系统托盘图标
+#         self.setToolTip('RTT2UART')
+#         self.activated.connect(self.act)  # 设置托盘点击事件处理函数
+#         self.tray_menu = QMenu(QApplication.desktop())  # 创建菜单
+#         self.ShowAction = QAction('&show')  # 添加一级菜单动作选项(还原主窗口)
+#         self.QuitAction = QAction('&exit')  # 添加一级菜单动作选项(退出程序)
+#         self.ShowAction.triggered.connect(window.show)
+#         self.QuitAction.triggered.connect(qApp.quit)
+#         self.QuitAction.setToolTip('Exit the software')
+#         self.ShowAction.setToolTip('show the window')
+#         self.tray_menu.addAction(self.ShowAction)  # 为菜单添加动作
+#         self.tray_menu.addAction(self.QuitAction)
+#         self.setContextMenu(self.tray_menu)  # 设置系统托盘菜单
+
+#     def act(self, reason):
+#         if reason == QSystemTrayIcon.Trigger or reason == QSystemTrayIcon.DoubleClick:  # 单击或双击
+#             window.showNormal()
+
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow()
     window.setWindowTitle("RTT2UART Control Panel V1.1.0")
     window.show()
+
+    # window.hide()
+    # mytray = MyTray()
+    # mytray.show()
 
     sys.exit(app.exec_())
