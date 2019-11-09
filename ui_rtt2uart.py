@@ -3,8 +3,8 @@
 # Form implementation generated from reading ui file '.\rtt2uart.ui',
 # licensing of '.\rtt2uart.ui' applies.
 #
-# Created: Fri Nov  1 10:08:06 2019
-#      by: pyside2-uic  running on PySide2 5.13.1
+# Created: Sat Nov  9 10:28:37 2019
+#      by: pyside2-uic  running on PySide2 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -15,8 +15,8 @@ class Ui_dialog(object):
     def setupUi(self, dialog):
         dialog.setObjectName("dialog")
         dialog.resize(402, 300)
-        dialog.setMinimumSize(QtCore.QSize(0, 0))
-        dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        dialog.setMinimumSize(QtCore.QSize(402, 300))
+        dialog.setMaximumSize(QtCore.QSize(402, 300))
         dialog.setSizeGripEnabled(False)
         self.pushButton_Start = QtWidgets.QPushButton(dialog)
         self.pushButton_Start.setGeometry(QtCore.QRect(160, 252, 81, 41))

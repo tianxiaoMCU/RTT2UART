@@ -3,8 +3,8 @@
 # Form implementation generated from reading ui file '.\sel_device.ui',
 # licensing of '.\sel_device.ui' applies.
 #
-# Created: Mon Oct 14 14:27:36 2019
-#      by: pyside2-uic  running on PySide2 5.13.1
+# Created: Sat Nov  9 10:31:38 2019
+#      by: pyside2-uic  running on PySide2 5.13.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -15,8 +15,8 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(779, 385)
-        Dialog.setMinimumSize(QtCore.QSize(0, 0))
-        Dialog.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        Dialog.setMinimumSize(QtCore.QSize(779, 385))
+        Dialog.setMaximumSize(QtCore.QSize(779, 385))
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(430, 350, 341, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)

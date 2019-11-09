@@ -244,9 +244,6 @@ class MainWindow(QDialog):
         self.ui.comboBox_baudrate.currentIndexChanged.connect(
             self.buadrate_change_slot)
 
-        # 禁止调整窗口大小时点击关闭按钮没有反应
-        # self.setFixedSize(self.width(), self.height())
-
     def __del__(self):
         if self.rtt2uart is not None and self.start_state == True:
             self.rtt2uart.stop()
