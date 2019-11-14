@@ -29,6 +29,18 @@ baudrate_list = [50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
                  9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 576000, 921600]
 
 
+def resource_path(relative_path):
+    '''返回资源绝对路径'''
+    if hasattr(sys, '_MEIPASS'):
+        # PyInstaller会创建临时文件夹temp
+        # 并把路径存储在_MEIPASS中
+        base_path = sys._MEIPASS
+    else:
+        base_path = os.path.abspath('.')
+
+    return os.path.join(base_path, relative_path)
+
+
 class DeviceTableModel(QtCore.QAbstractTableModel):
     def __init__(self, deice_list, header):
         super(DeviceTableModel, self).__init__()
@@ -63,6 +75,8 @@ class DeviceSeleteDialog(QDialog):
         super(DeviceSeleteDialog, self).__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+
+        self.setWindowIcon(QIcon(resource_path(r'swap_horiz_16px.ico')))
 
         self._target = None
 
@@ -181,7 +195,9 @@ class MainWindow(QDialog):
         self.ui = Ui_dialog()
         self.ui.setupUi(self)
 
-        self.setWindowIcon(QIcon(r'swap_horiz_16px.ico'))
+        self.setWindowIcon(QIcon(resource_path(r'swap_horiz_16px.ico')))
+
+        self.setting_file_path = os.path.join(os.getcwd(), "settings")
 
         self.start_state = False
         self.target_device = None
@@ -204,8 +220,8 @@ class MainWindow(QDialog):
                          'speed': 0, 'port': 0, 'buadrate': 0}
 
         # 检查是否存在上次配置，存在则加载
-        if os.path.exists('settings') == True:
-            with open('settings', 'rb') as f:
+        if os.path.exists(self.setting_file_path) == True:
+            with open(self.setting_file_path, 'rb') as f:
                 self.settings = pickle.load(f)
 
             f.close()
@@ -223,6 +239,7 @@ class MainWindow(QDialog):
             self.ui.comboBox_baudrate.setCurrentIndex(
                 self.settings['buadrate'])
         else:
+            logger.info('Setting file not exist', exc_info=True)
             self.ui.comboBox_Interface.setCurrentIndex(1)
             self.settings['interface'] = 1
             self.ui.comboBox_Speed.setCurrentIndex(19)
@@ -246,15 +263,17 @@ class MainWindow(QDialog):
         self.ui.comboBox_baudrate.currentIndexChanged.connect(
             self.buadrate_change_slot)
 
-    def __del__(self):
+    def closeEvent(self, e):
         if self.rtt2uart is not None and self.start_state == True:
             self.rtt2uart.stop()
 
         # 保存当前配置
-        with open('settings', 'wb') as f:
+        with open(self.setting_file_path, 'wb') as f:
             pickle.dump(self.settings, f)
 
         f.close()
+
+        e.accept()
 
     def port_scan(self):
         # 检测所有串口，将信息存储在字典中
@@ -379,7 +398,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow()
-    window.setWindowTitle("RTT2UART Control Panel V1.1.0")
+    window.setWindowTitle("RTT2UART Control Panel V1.2.0")
     window.show()
 
     # window.hide()
