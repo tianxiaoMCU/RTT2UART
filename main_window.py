@@ -276,13 +276,16 @@ class MainWindow(QDialog):
         e.accept()
 
     def port_scan(self):
-        # 检测所有串口，将信息存储在字典中
-        self.com_dict = {}
         port_list = list(serial.tools.list_ports.comports())
         self.ui.comboBox_Port.clear()
+        port_list.sort()
         for port in port_list:
-            self.com_dict["%s" % port[0]] = "%s" % port[1]
-            self.ui.comboBox_Port.addItem(port[0])
+            try:
+                s = serial.Serial(port[0])
+                s.close()
+                self.ui.comboBox_Port.addItem(port[0])
+            except (OSError, serial.SerialException):
+                pass
 
     def start(self):
         if self.start_state == False:
