@@ -4,6 +4,7 @@ from PySide2.QtCore import QFile, QAbstractTableModel
 from PySide2 import QtGui
 from PySide2 import QtCore
 from PySide2.QtGui import QFont, QIcon
+from PySide2.QtNetwork import QLocalSocket, QLocalServer
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
 
@@ -319,11 +320,7 @@ class MainWindow(QDialog):
                     raise Exception("Please selete the target device !")
 
             except Exception as errors:
-                msgBox = QMessageBox()
-                msgBox.setIcon(QMessageBox.Warning)
-                msgBox.setText(str(errors))
-                msgBox.setWindowTitle('Error')
-                msgBox.exec_()
+                QMessageBox.critical(self, "Errors", str(errors))
             else:
                 self.start_state = True
                 self.ui.pushButton_Start.setText("Stop")
@@ -400,12 +397,26 @@ class MainWindow(QDialog):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
-    window = MainWindow()
-    window.setWindowTitle("RTT2UART Control Panel V1.2.0")
-    window.show()
+    serverName = 'myuniqueservername'
+    lsocket = QLocalSocket()
+    lsocket.connectToServer(serverName)
 
-    # window.hide()
-    # mytray = MyTray()
-    # mytray.show()
+    # 如果连接成功，表明server已经存在，当前已有实例在运行
+    if lsocket.waitForConnected(200) == False:
 
-    sys.exit(app.exec_())
+        # 没有实例运行，创建服务器
+        localServer = QLocalServer()
+        localServer.listen(serverName)
+
+        try:
+            window = MainWindow()
+            window.setWindowTitle("RTT2UART Control Panel V1.3.0")
+            window.show()
+
+            # window.hide()
+            # mytray = MyTray()
+            # mytray.show()
+
+            sys.exit(app.exec_())
+        finally:
+            localServer.close()

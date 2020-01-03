@@ -88,6 +88,8 @@ class rtt_to_serial():
                 # 设置串口参数并打开串口
                 self.serial.port = self.port
                 self.serial.baudrate = self.baudrate
+                self.serial.timeout = 0
+                self.serial.write_timeout = 0
                 self.serial.open()
         except:
             logger.error('Open serial failed', exc_info=True)
