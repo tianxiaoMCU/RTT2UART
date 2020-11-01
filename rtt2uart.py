@@ -104,23 +104,17 @@ class rtt_to_serial():
 
         self.thread_switch = True
         self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
-        self.rtt2uart.daemon = True
+        self.rtt2uart.setDaemon(True)
         self.rtt2uart.name = 'rtt->serial'
         self.rtt2uart.start()
 
         self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
-        self.uart2rtt.daemon = True
+        self.uart2rtt.setDaemon(True)
         self.uart2rtt.name = 'serial->rtt'
         self.uart2rtt.start()
 
     def stop(self):
         self.thread_switch = False
-        # 等待线程结束
-        if self.rtt2uart.is_alive():
-            self.rtt2uart.join()
-
-        if self.uart2rtt.is_alive():
-            self.uart2rtt.join()
 
         try:
             if self.jlink.connected() == True:
@@ -138,6 +132,8 @@ class rtt_to_serial():
         except:
             logger.error('Close serial failed', exc_info=True)
             pass
+
+        self.socket.close()
 
     def rtt_to_uart(self):
         while self.thread_switch == True:

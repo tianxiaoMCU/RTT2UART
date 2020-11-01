@@ -1,6 +1,6 @@
 from pickle import NONE
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction, qApp
+from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction
 from PySide2.QtCore import QFile, QAbstractTableModel
 from PySide2 import QtGui
 from PySide2 import QtCore
@@ -8,6 +8,7 @@ from PySide2.QtGui import QFont, QIcon
 from PySide2.QtNetwork import QLocalSocket, QLocalServer
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
+import rc_icons
 
 import serial.tools.list_ports
 import serial
@@ -30,18 +31,6 @@ speed_list = [5, 10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 750,
 
 baudrate_list = [50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
                  9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 576000, 921600]
-
-
-def resource_path(relative_path):
-    '''返回资源绝对路径'''
-    if hasattr(sys, '_MEIPASS'):
-        # PyInstaller会创建临时文件夹temp
-        # 并把路径存储在_MEIPASS中
-        base_path = sys._MEIPASS
-    else:
-        base_path = os.path.abspath('.')
-
-    return os.path.join(base_path, relative_path)
 
 
 class DeviceTableModel(QtCore.QAbstractTableModel):
@@ -79,7 +68,7 @@ class DeviceSeleteDialog(QDialog):
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
 
-        self.setWindowIcon(QIcon(resource_path(r'swap_horiz_16px.ico')))
+        self.setWindowIcon(QIcon(":/swap_horiz_16px.ico"))
 
         self._target = None
 
@@ -198,7 +187,7 @@ class MainWindow(QDialog):
         self.ui = Ui_dialog()
         self.ui.setupUi(self)
 
-        self.setWindowIcon(QIcon(resource_path(r'swap_horiz_16px.ico')))
+        self.setWindowIcon(QIcon(":/swap_horiz_16px.ico"))
 
         self.setting_file_path = os.path.join(os.getcwd(), "settings")
 
@@ -375,29 +364,6 @@ class MainWindow(QDialog):
         self.settings['buadrate'] = index
 
 
-# class MyTray(QSystemTrayIcon):
-
-#     def __init__(self):
-#         super().__init__()
-#         self.setIcon(QIcon(r'swap_horiz_16px.ico'))  # 设置系统托盘图标
-#         self.setToolTip('RTT2UART')
-#         self.activated.connect(self.act)  # 设置托盘点击事件处理函数
-#         self.tray_menu = QMenu(QApplication.desktop())  # 创建菜单
-#         self.ShowAction = QAction('&show')  # 添加一级菜单动作选项(还原主窗口)
-#         self.QuitAction = QAction('&exit')  # 添加一级菜单动作选项(退出程序)
-#         self.ShowAction.triggered.connect(window.show)
-#         self.QuitAction.triggered.connect(qApp.quit)
-#         self.QuitAction.setToolTip('Exit the software')
-#         self.ShowAction.setToolTip('show the window')
-#         self.tray_menu.addAction(self.ShowAction)  # 为菜单添加动作
-#         self.tray_menu.addAction(self.QuitAction)
-#         self.setContextMenu(self.tray_menu)  # 设置系统托盘菜单
-
-#     def act(self, reason):
-#         if reason == QSystemTrayIcon.Trigger or reason == QSystemTrayIcon.DoubleClick:  # 单击或双击
-#             window.showNormal()
-
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
@@ -414,12 +380,8 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.3.0")
+            window.setWindowTitle("RTT2UART Control Panel V1.4.0")
             window.show()
-
-            # window.hide()
-            # mytray = MyTray()
-            # mytray.show()
 
             sys.exit(app.exec_())
         finally:
