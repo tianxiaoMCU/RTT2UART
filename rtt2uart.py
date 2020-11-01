@@ -3,6 +3,7 @@ import pylink
 import time
 import serial
 import threading
+import socket
 
 logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
@@ -20,18 +21,12 @@ class rtt_to_serial():
         # 复位标志
         self._reset = reset
 
-        # segger rtt上下通道缓存大小
-        self.upbuffer_size = 1024
-        self.downbuffer_size = 512
-
         # 串口参数
         self.port = port
         self.baudrate = baudrate
 
         # 线程
-        self.rtt2uart = None
-        self.uart2rtt = None
-        self.thread_switch = False
+        self._write_lock = threading.Lock()
 
         try:
             self.jlink = pylink.JLink()
@@ -45,9 +40,10 @@ class rtt_to_serial():
             logger.error('Creat serial object failed', exc_info=True)
             raise
 
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
     def __del__(self):
-        self.jlink.close()
-        self.serial.close()
+        self.stop()
 
     def start(self):
         try:
@@ -58,26 +54,37 @@ class rtt_to_serial():
                 # 设置连接速率
                 if self.jlink.set_speed(self._speed) == False:
                     logger.error('Set speed failed', exc_info=True)
-                    raise
+                    raise Exception("Set jlink speed failed")
 
                 # 设置连接接口为SWD
                 if self.jlink.set_tif(self._interface) == False:
                     logger.error('Set interface failed', exc_info=True)
-                    raise
+                    raise Exception("Set jlink interface failed")
 
                 try:
-                    # 连接目标芯片
-                    self.jlink.connect(self.device)
-                    # 启动RTT，对于RTT的任何操作都需要在RTT启动后进行
-                    self.jlink.rtt_start()
-
                     if self._reset == True:
                         # 复位一下目标芯片，复位后不要停止芯片，保证后续操作的稳定性
                         self.jlink.reset(halt=False)
 
+                    # 连接目标芯片
+                    self.jlink.connect(self.device)
                 except pylink.errors.JLinkException:
                     logger.error('Connect target failed', exc_info=True)
                     raise
+
+                try:
+                    # 连接到RTT Telnet Server
+                    self.socket.connect(('localhost', 19021))
+
+                    # 配置RTT
+                    '''
+                    After establishing a connection via TELNET, the user has 100ms to send a SEGGER TELNET Config String from the host system (e.g. via J-Link RTT Client or putty).
+                    Sending a SEGGER TELNET config string after 100ms have passed since the TELNET connection was established has no effect and is treated the same as if it was RTT data sent from the host.
+                    Additionally, sending a SEGGER TELNET config string is optional, meaning that RTT will function correctly even without sending such a config string.
+                    '''
+                except socket.error as msg:
+                    logger.error(msg, exc_info=True)
+                    raise Exception("Connect or config RTT server failed")
 
         except pylink.errors.JLinkException as errors:
             logger.error('Open jlink failed', exc_info=True)
@@ -88,8 +95,8 @@ class rtt_to_serial():
                 # 设置串口参数并打开串口
                 self.serial.port = self.port
                 self.serial.baudrate = self.baudrate
-                self.serial.timeout = 0
-                self.serial.write_timeout = 0
+                self.serial.timeout = 3
+                self.serial.write_timeout = 3
                 self.serial.open()
         except:
             logger.error('Open serial failed', exc_info=True)
@@ -97,8 +104,13 @@ class rtt_to_serial():
 
         self.thread_switch = True
         self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
-        self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
+        self.rtt2uart.daemon = True
+        self.rtt2uart.name = 'rtt->serial'
         self.rtt2uart.start()
+
+        self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
+        self.uart2rtt.daemon = True
+        self.uart2rtt.name = 'serial->rtt'
         self.uart2rtt.start()
 
     def stop(self):
@@ -130,38 +142,29 @@ class rtt_to_serial():
     def rtt_to_uart(self):
         while self.thread_switch == True:
             try:
-                rtt_recv = self.jlink.rtt_read(0, self.upbuffer_size)
-            except:
+                rtt_recv = self.socket.recv(1024)
+            except socket.error as msg:
+                logger.error(msg, exc_info=True)
+                # probably got disconnected
                 raise Exception("Jlink rtt read error")
 
-            if len(rtt_recv):
-                try:
-                    self.serial.write(bytes(rtt_recv))
-                except:
-                    raise Exception("Serial write error")
+            try:
+                self.serial.write(rtt_recv)
+            except:
+                raise Exception("Serial write error")
 
     def uart_to_rtt(self):
         while self.thread_switch == True:
-            # 查看是否有串口数据
-            num = self.serial.inWaiting()
+            try:
+                data = self.serial.read(self.serial.in_waiting or 1)
 
-            # 有数据则将数据读取出来
-            if num:
-                try:
-                    data = self.serial.read(num)
-                except:
-                    raise Exception("Serial read error")
-
-                # 将读出的数据写入到rtt
-                write_index = 0
-                while write_index < len(data):
-                    try:
-                        bytes_written = self.jlink.rtt_write(
-                            0, list(data[write_index:]))
-                    except:
-                        raise Exception("Jlink rtt write error")
-
-                    write_index = write_index + bytes_written
+                if data:
+                    with self._write_lock:
+                        self.socket.sendall(data)
+            except socket.error as msg:
+                logger.error(msg, exc_info=True)
+                # probably got disconnected
+                raise Exception("Jlink rtt write error")
 
 
 if __name__ == "__main__":

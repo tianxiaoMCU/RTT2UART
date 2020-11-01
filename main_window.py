@@ -1,3 +1,4 @@
+from pickle import NONE
 import sys
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction, qApp
 from PySide2.QtCore import QFile, QAbstractTableModel
@@ -22,9 +23,10 @@ logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
 logger = logging.getLogger(__name__)
 
-# pylink支持的最大速率是12000kHz（Segger RTT Viewer额外可选 15000, 20000, 25000, 30000, 40000, 50000）
+# pylink支持的最大速率是12000kHz（Release v0.7.0开始支持15000及以上速率）
 speed_list = [5, 10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 750,
-              900, 1000, 1334, 1600, 2000, 2667, 3200, 4000, 4800, 5334, 6000, 8000, 9600, 12000]
+              900, 1000, 1334, 1600, 2000, 2667, 3200, 4000, 4800, 5334, 6000, 8000, 9600, 12000,
+              15000, 20000, 25000, 30000, 40000, 50000]
 
 baudrate_list = [50, 75, 110, 134, 150, 200, 300, 600, 1200, 1800, 2400, 4800,
                  9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 576000, 921600]
@@ -302,6 +304,8 @@ class MainWindow(QDialog):
                         device_interface = None
                     elif (selete_interface == 'FINE'):
                         device_interface = pylink.enums.JLinkInterfaces.FINE
+                    else:
+                        device_interface = pylink.enums.JLinkInterfaces.SWD
 
                     self.rtt2uart = rtt_to_serial(self.target_device, self.ui.comboBox_Port.currentText(
                     ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
