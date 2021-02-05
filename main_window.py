@@ -195,6 +195,15 @@ class MainWindow(QDialog):
         self.target_device = None
         self.rtt2uart = None
 
+        self.ui.radioButton_usb.setChecked(True)
+        self.ui.radioButton_tcpip.setChecked(False)
+        self.ui.radioButton_existing.setChecked(False)
+        self.ui.checkBox_serialno.setChecked(False)
+        self.ui.checkBox__auto.setChecked(False)
+        self.ui.lineEdit_serialno.setVisible(False)
+        self.ui.lineEdit_ip.setVisible(False)
+        self.ui.checkBox__auto.setVisible(False)
+
         self.ui.comboBox_Interface.addItem("JTAG")
         self.ui.comboBox_Interface.addItem("SWD")
         self.ui.comboBox_Interface.addItem("cJTAG")
@@ -254,6 +263,11 @@ class MainWindow(QDialog):
             self.port_change_slot)
         self.ui.comboBox_baudrate.currentIndexChanged.connect(
             self.buadrate_change_slot)
+        self.ui.checkBox_serialno.stateChanged.connect(
+            self.serial_no_change_slot)
+        self.ui.radioButton_usb.clicked.connect(self.usb_selete_slot)
+        self.ui.radioButton_existing.clicked.connect(
+            self.existing_session_selete_slot)
 
     def closeEvent(self, e):
         if self.rtt2uart is not None and self.start_state == True:
@@ -362,6 +376,27 @@ class MainWindow(QDialog):
 
     def buadrate_change_slot(self, index):
         self.settings['buadrate'] = index
+
+    def serial_no_change_slot(self):
+        if self.ui.checkBox_serialno.isChecked():
+            self.ui.lineEdit_serialno.setVisible(True)
+        else:
+            self.ui.lineEdit_serialno.setVisible(False)
+
+    def usb_selete_slot(self):
+        self.ui.checkBox__auto.setVisible(False)
+        self.ui.lineEdit_ip.setVisible(False)
+        self.ui.checkBox_serialno.setVisible(True)
+        if self.ui.checkBox_serialno.isChecked():
+            self.ui.lineEdit_serialno.setVisible(True)
+        else:
+            self.ui.lineEdit_serialno.setVisible(False)
+
+    def existing_session_selete_slot(self):
+        self.ui.checkBox_serialno.setVisible(False)
+        self.ui.lineEdit_serialno.setVisible(False)
+        self.ui.lineEdit_ip.setVisible(False)
+        self.ui.checkBox__auto.setVisible(True)
 
 
 if __name__ == "__main__":
