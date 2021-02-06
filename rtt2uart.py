@@ -11,7 +11,9 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, device, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
+    def __init__(self, connect_inf='usb', device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
+        # jlink接入方式
+        self._connect_inf = connect_inf
         # 目标芯片名字
         self.device = device
         # 调试口
@@ -28,11 +30,12 @@ class rtt_to_serial():
         # 线程
         self._write_lock = threading.Lock()
 
-        try:
-            self.jlink = pylink.JLink()
-        except:
-            logger.error('Find jlink dll failed', exc_info=True)
-            raise
+        if self._connect_inf == 'USB':
+            try:
+                self.jlink = pylink.JLink()
+            except:
+                logger.error('Find jlink dll failed', exc_info=True)
+                raise
 
         try:
             self.serial = serial.Serial()
@@ -47,7 +50,7 @@ class rtt_to_serial():
 
     def start(self):
         try:
-            if self.jlink.connected() == False:
+            if self._connect_inf != 'EXISTING' and self.jlink.connected() == False:
                 # 加载jlinkARM.dll
                 self.jlink.open()
 
@@ -71,24 +74,23 @@ class rtt_to_serial():
                 except pylink.errors.JLinkException:
                     logger.error('Connect target failed', exc_info=True)
                     raise
-
-                try:
-                    # 连接到RTT Telnet Server
-                    self.socket.connect(('localhost', 19021))
-
-                    # 配置RTT
-                    '''
-                    After establishing a connection via TELNET, the user has 100ms to send a SEGGER TELNET Config String from the host system (e.g. via J-Link RTT Client or putty).
-                    Sending a SEGGER TELNET config string after 100ms have passed since the TELNET connection was established has no effect and is treated the same as if it was RTT data sent from the host.
-                    Additionally, sending a SEGGER TELNET config string is optional, meaning that RTT will function correctly even without sending such a config string.
-                    '''
-                except socket.error as msg:
-                    logger.error(msg, exc_info=True)
-                    raise Exception("Connect or config RTT server failed")
-
         except pylink.errors.JLinkException as errors:
             logger.error('Open jlink failed', exc_info=True)
             raise
+
+        try:
+            # 连接到RTT Telnet Server
+            self.socket.connect(('localhost', 19021))
+
+            # 配置RTT
+            '''
+            After establishing a connection via TELNET, the user has 100ms to send a SEGGER TELNET Config String from the host system (e.g. via J-Link RTT Client or putty).
+            Sending a SEGGER TELNET config string after 100ms have passed since the TELNET connection was established has no effect and is treated the same as if it was RTT data sent from the host.
+            Additionally, sending a SEGGER TELNET config string is optional, meaning that RTT will function correctly even without sending such a config string.
+            '''
+        except socket.error as msg:
+            logger.error(msg, exc_info=True)
+            raise Exception("Connect or config RTT server failed")
 
         try:
             if self.serial.isOpen() == False:
@@ -116,15 +118,16 @@ class rtt_to_serial():
     def stop(self):
         self.thread_switch = False
 
-        try:
-            if self.jlink.connected() == True:
-                # 使用完后停止RTT
-                self.jlink.rtt_stop()
-                # 释放之前加载的jlinkARM.dll
-                self.jlink.close()
-        except pylink.errors.JLinkException:
-            logger.error('Disconnect target failed', exc_info=True)
-            pass
+        if self._connect_inf == 'usb':
+            try:
+                if self.jlink.connected() == True:
+                    # 使用完后停止RTT
+                    self.jlink.rtt_stop()
+                    # 释放之前加载的jlinkARM.dll
+                    self.jlink.close()
+            except pylink.errors.JLinkException:
+                logger.error('Disconnect target failed', exc_info=True)
+                pass
 
         try:
             if self.serial.isOpen() == True:
