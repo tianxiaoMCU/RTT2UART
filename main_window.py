@@ -195,15 +195,11 @@ class MainWindow(QDialog):
         self.target_device = None
         self.rtt2uart = None
         self.connect_type = None
-
+        # 默认Existing Session方式接入使能Auto reconnect
+        self.ui.checkBox__auto.setChecked(True)
+        # 默认选择'USB'方式接入
         self.ui.radioButton_usb.setChecked(True)
-        self.ui.radioButton_tcpip.setChecked(False)
-        self.ui.radioButton_existing.setChecked(False)
-        self.ui.checkBox_serialno.setChecked(False)
-        self.ui.checkBox__auto.setChecked(False)
-        self.ui.lineEdit_serialno.setVisible(False)
-        self.ui.lineEdit_ip.setVisible(False)
-        self.ui.checkBox__auto.setVisible(False)
+        self.usb_selete_slot()
 
         self.ui.comboBox_Interface.addItem("JTAG")
         self.ui.comboBox_Interface.addItem("SWD")
@@ -325,7 +321,17 @@ class MainWindow(QDialog):
                     else:
                         raise Exception("Please selete the target device !")
 
-                self.rtt2uart = rtt_to_serial(self.connect_type, self.target_device, self.ui.comboBox_Port.currentText(
+                # 获取接入方式的参数
+                if self.ui.radioButton_usb.isChecked() and self.ui.checkBox_serialno.isChecked():
+                    connect_para = self.ui.lineEdit_serialno.text()
+                elif self.ui.radioButton_tcpip.isChecked():
+                    connect_para = self.ui.lineEdit_ip.text()
+                elif self.ui.radioButton_existing.isChecked():
+                    connect_para = self.ui.checkBox__auto.isChecked()
+                else:
+                    connect_para = None
+
+                self.rtt2uart = rtt_to_serial(self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
                 ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
 
                 self.rtt2uart.start()
@@ -435,7 +441,7 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.4.0")
+            window.setWindowTitle("RTT2UART Control Panel V1.5.0")
             window.show()
 
             sys.exit(app.exec_())

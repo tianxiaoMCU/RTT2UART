@@ -11,9 +11,11 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, connect_inf='usb', device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
+    def __init__(self, connect_inf='USB', connect_para=None, device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
         # jlink接入方式
         self._connect_inf = connect_inf
+        # jlink接入参数
+        self._connect_para = connect_para
         # 目标芯片名字
         self.device = device
         # 调试口
@@ -43,7 +45,9 @@ class rtt_to_serial():
             logger.error('Creat serial object failed', exc_info=True)
             raise
 
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket = None
+
+        self.timer = threading.Timer(0.5, self.check_socket_status)
 
     def __del__(self):
         self.stop()
@@ -52,7 +56,10 @@ class rtt_to_serial():
         try:
             if self._connect_inf != 'EXISTING' and self.jlink.connected() == False:
                 # 加载jlinkARM.dll
-                self.jlink.open()
+                if self._connect_inf == 'USB':
+                    self.jlink.open(serial_no=self._connect_para)
+                else:
+                    self.jlink.open(ip_addr=self._connect_para)
 
                 # 设置连接速率
                 if self.jlink.set_speed(self._speed) == False:
@@ -79,20 +86,6 @@ class rtt_to_serial():
             raise
 
         try:
-            # 连接到RTT Telnet Server
-            self.socket.connect(('localhost', 19021))
-
-            # 配置RTT
-            '''
-            After establishing a connection via TELNET, the user has 100ms to send a SEGGER TELNET Config String from the host system (e.g. via J-Link RTT Client or putty).
-            Sending a SEGGER TELNET config string after 100ms have passed since the TELNET connection was established has no effect and is treated the same as if it was RTT data sent from the host.
-            Additionally, sending a SEGGER TELNET config string is optional, meaning that RTT will function correctly even without sending such a config string.
-            '''
-        except socket.error as msg:
-            logger.error(msg, exc_info=True)
-            raise Exception("Connect or config RTT server failed")
-
-        try:
             if self.serial.isOpen() == False:
                 # 设置串口参数并打开串口
                 self.serial.port = self.port
@@ -104,21 +97,28 @@ class rtt_to_serial():
             logger.error('Open serial failed', exc_info=True)
             raise
 
-        self.thread_switch = True
-        self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
-        self.rtt2uart.setDaemon(True)
-        self.rtt2uart.name = 'rtt->serial'
-        self.rtt2uart.start()
+        self.socket = self.doConnect('localhost', 19021)
+        if self.socket:
+            self.thread_switch = True
 
-        self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
-        self.uart2rtt.setDaemon(True)
-        self.uart2rtt.name = 'serial->rtt'
-        self.uart2rtt.start()
+            self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
+            self.rtt2uart.setDaemon(True)
+            self.rtt2uart.name = 'rtt->serial'
+            self.rtt2uart.start()
+
+            self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
+            self.uart2rtt.setDaemon(True)
+            self.uart2rtt.name = 'serial->rtt'
+            self.uart2rtt.start()
+        else:
+            raise Exception("Connect or config RTT server failed")
 
     def stop(self):
         self.thread_switch = False
+        self.rtt2uart.join(0.5)
+        self.uart2rtt.join(0.5)
 
-        if self._connect_inf == 'usb':
+        if self._connect_inf == 'USB':
             try:
                 if self.jlink.connected() == True:
                     # 使用完后停止RTT
@@ -142,13 +142,21 @@ class rtt_to_serial():
         while self.thread_switch == True:
             try:
                 rtt_recv = self.socket.recv(1024)
+
+                if self._connect_para == True and rtt_recv == b'':
+                    self.thread_switch = False
+                    self.socket.close()
+                    # telnet服务器已经关闭，开启定时查询服务器状态
+                    self.timer.start()
+
             except socket.error as msg:
                 logger.error(msg, exc_info=True)
                 # probably got disconnected
                 raise Exception("Jlink rtt read error")
 
             try:
-                self.serial.write(rtt_recv)
+                if rtt_recv:
+                    self.serial.write(rtt_recv)
             except:
                 raise Exception("Serial write error")
 
@@ -164,6 +172,40 @@ class rtt_to_serial():
                 logger.error(msg, exc_info=True)
                 # probably got disconnected
                 raise Exception("Jlink rtt write error")
+
+    def doConnect(self, host, port):
+        socketlocal = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        try:
+            socketlocal.connect((host, port))
+        except socket.error:
+            socketlocal.close()
+            socketlocal = None
+            pass
+        return socketlocal
+
+    def check_socket_status(self):
+        self.timer = threading.Timer(1, self.check_socket_status)
+
+        # 连接到RTT Telnet Server
+        self.socket = self.doConnect('localhost', 19021)
+        if self.socket:
+            # 连接成功，重建线程
+            self.thread_switch = True
+
+            self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
+            self.rtt2uart.setDaemon(True)
+            self.rtt2uart.name = 'rtt->serial'
+            self.rtt2uart.start()
+
+            self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
+            self.uart2rtt.setDaemon(True)
+            self.uart2rtt.name = 'serial->rtt'
+            self.uart2rtt.start()
+
+            self.timer.cancel()
+        else:
+            # 连接失败，继续尝试连接
+            self.timer.start()
 
 
 if __name__ == "__main__":
