@@ -194,6 +194,12 @@ class MainWindow(QDialog):
         self.start_state = False
         self.target_device = None
         self.rtt2uart = None
+        self.connect_type = None
+        # 默认Existing Session方式接入使能Auto reconnect
+        self.ui.checkBox__auto.setChecked(True)
+        # 默认选择'USB'方式接入
+        self.ui.radioButton_usb.setChecked(True)
+        self.usb_selete_slot()
 
         self.ui.comboBox_Interface.addItem("JTAG")
         self.ui.comboBox_Interface.addItem("SWD")
@@ -254,6 +260,11 @@ class MainWindow(QDialog):
             self.port_change_slot)
         self.ui.comboBox_baudrate.currentIndexChanged.connect(
             self.buadrate_change_slot)
+        self.ui.checkBox_serialno.stateChanged.connect(
+            self.serial_no_change_slot)
+        self.ui.radioButton_usb.clicked.connect(self.usb_selete_slot)
+        self.ui.radioButton_existing.clicked.connect(
+            self.existing_session_selete_slot)
 
     def closeEvent(self, e):
         if self.rtt2uart is not None and self.start_state == True:
@@ -281,36 +292,50 @@ class MainWindow(QDialog):
 
     def start(self):
         if self.start_state == False:
+            logger.debug('click start button')
             try:
-                if self.target_device is not None:
+                device_interface = None
+                # USB或者TCP/IP方式接入需要选择配置
+                if not self.ui.radioButton_existing.isChecked():
+                    if self.target_device is not None:
+                        selete_interface = self.ui.comboBox_Interface.currentText()
+                        if (selete_interface == 'JTAG'):
+                            device_interface = pylink.enums.JLinkInterfaces.JTAG
+                        elif (selete_interface == 'SWD'):
+                            device_interface = pylink.enums.JLinkInterfaces.SWD
+                        elif (selete_interface == 'cJTAG'):
+                            device_interface = None
+                        elif (selete_interface == 'FINE'):
+                            device_interface = pylink.enums.JLinkInterfaces.FINE
+                        else:
+                            device_interface = pylink.enums.JLinkInterfaces.SWD
 
-                    selete_interface = self.ui.comboBox_Interface.currentText()
-                    if (selete_interface == 'JTAG'):
-                        device_interface = pylink.enums.JLinkInterfaces.JTAG
-                    elif (selete_interface == 'SWD'):
-                        device_interface = pylink.enums.JLinkInterfaces.SWD
-                    elif (selete_interface == 'cJTAG'):
-                        device_interface = None
-                    elif (selete_interface == 'FINE'):
-                        device_interface = pylink.enums.JLinkInterfaces.FINE
+                        # 启动后不能再进行配置
+                        self.ui.comboBox_Device.setEnabled(False)
+                        self.ui.pushButton_Selete_Device.setEnabled(False)
+                        self.ui.comboBox_Interface.setEnabled(False)
+                        self.ui.comboBox_Speed.setEnabled(False)
+                        self.ui.comboBox_Port.setEnabled(False)
+                        self.ui.comboBox_baudrate.setEnabled(False)
+                        self.ui.pushButton_scan.setEnabled(False)
+
                     else:
-                        device_interface = pylink.enums.JLinkInterfaces.SWD
+                        raise Exception("Please selete the target device !")
 
-                    self.rtt2uart = rtt_to_serial(self.target_device, self.ui.comboBox_Port.currentText(
-                    ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
-
-                    self.rtt2uart.start()
-
-                    # 启动后不能再进行配置
-                    self.ui.comboBox_Device.setEnabled(False)
-                    self.ui.pushButton_Selete_Device.setEnabled(False)
-                    self.ui.comboBox_Interface.setEnabled(False)
-                    self.ui.comboBox_Speed.setEnabled(False)
-                    self.ui.comboBox_Port.setEnabled(False)
-                    self.ui.comboBox_baudrate.setEnabled(False)
-                    self.ui.pushButton_scan.setEnabled(False)
+                # 获取接入方式的参数
+                if self.ui.radioButton_usb.isChecked() and self.ui.checkBox_serialno.isChecked():
+                    connect_para = self.ui.lineEdit_serialno.text()
+                elif self.ui.radioButton_tcpip.isChecked():
+                    connect_para = self.ui.lineEdit_ip.text()
+                elif self.ui.radioButton_existing.isChecked():
+                    connect_para = self.ui.checkBox__auto.isChecked()
                 else:
-                    raise Exception("Please selete the target device !")
+                    connect_para = None
+
+                self.rtt2uart = rtt_to_serial(self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
+                ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
+
+                self.rtt2uart.start()
 
             except Exception as errors:
                 QMessageBox.critical(self, "Errors", str(errors))
@@ -318,15 +343,18 @@ class MainWindow(QDialog):
                 self.start_state = True
                 self.ui.pushButton_Start.setText("Stop")
         else:
+            logger.debug('click stop button')
             try:
-                # 停止后才能再次配置
-                self.ui.comboBox_Device.setEnabled(True)
-                self.ui.pushButton_Selete_Device.setEnabled(True)
-                self.ui.comboBox_Interface.setEnabled(True)
-                self.ui.comboBox_Speed.setEnabled(True)
-                self.ui.comboBox_Port.setEnabled(True)
-                self.ui.comboBox_baudrate.setEnabled(True)
-                self.ui.pushButton_scan.setEnabled(True)
+                # Existing方式不需要选择配置，继续禁用，不恢复
+                if self.ui.radioButton_existing.isChecked() == False:
+                    # 停止后才能再次配置
+                    self.ui.comboBox_Device.setEnabled(True)
+                    self.ui.pushButton_Selete_Device.setEnabled(True)
+                    self.ui.comboBox_Interface.setEnabled(True)
+                    self.ui.comboBox_Speed.setEnabled(True)
+                    self.ui.comboBox_Port.setEnabled(True)
+                    self.ui.comboBox_baudrate.setEnabled(True)
+                    self.ui.pushButton_scan.setEnabled(True)
 
                 self.rtt2uart.stop()
 
@@ -363,6 +391,41 @@ class MainWindow(QDialog):
     def buadrate_change_slot(self, index):
         self.settings['buadrate'] = index
 
+    def serial_no_change_slot(self):
+        if self.ui.checkBox_serialno.isChecked():
+            self.ui.lineEdit_serialno.setVisible(True)
+        else:
+            self.ui.lineEdit_serialno.setVisible(False)
+
+    def usb_selete_slot(self):
+        self.connect_type = 'USB'
+
+        self.ui.checkBox__auto.setVisible(False)
+        self.ui.lineEdit_ip.setVisible(False)
+        self.ui.checkBox_serialno.setVisible(True)
+        self.serial_no_change_slot()
+        # 通过usb方式接入，以下功能需要选择，恢复使用
+        self.ui.comboBox_Device.setEnabled(True)
+        self.ui.pushButton_Selete_Device.setEnabled(True)
+        self.ui.comboBox_Interface.setEnabled(True)
+        self.ui.comboBox_Speed.setEnabled(True)
+        self.ui.checkBox_resettarget.setEnabled(True)
+
+    def existing_session_selete_slot(self):
+        self.connect_type = 'EXISTING'
+
+        self.ui.checkBox_serialno.setVisible(False)
+        self.ui.lineEdit_serialno.setVisible(False)
+        self.ui.lineEdit_ip.setVisible(False)
+        self.ui.checkBox__auto.setVisible(True)
+        # 通过existing_session方式接入时，以下功能无效，禁止使用
+        self.ui.comboBox_Device.setEnabled(False)
+        self.ui.pushButton_Selete_Device.setEnabled(False)
+        self.ui.comboBox_Interface.setEnabled(False)
+        self.ui.comboBox_Speed.setEnabled(False)
+        self.ui.checkBox_resettarget.setEnabled(False)
+        self.ui.checkBox_resettarget.setChecked(False)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
@@ -380,7 +443,7 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.4.0")
+            window.setWindowTitle("RTT2UART Control Panel V1.5.0")
             window.show()
 
             sys.exit(app.exec_())
