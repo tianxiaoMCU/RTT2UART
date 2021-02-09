@@ -356,7 +356,7 @@ class MainWindow(QDialog):
                     self.ui.comboBox_baudrate.setEnabled(True)
                     self.ui.pushButton_scan.setEnabled(True)
 
-                    self.rtt2uart.stop()
+                self.rtt2uart.stop()
 
                 self.start_state = False
                 self.ui.pushButton_Start.setText("Start")
