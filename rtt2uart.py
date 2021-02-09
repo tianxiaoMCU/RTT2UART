@@ -46,13 +46,16 @@ class rtt_to_serial():
             raise
 
         self.socket = None
-
-        self.timer = threading.Timer(0.5, self.check_socket_status)
+        self.timer = None
+        self.rtt2uart = None
+        self.uart2rtt = None
 
     def __del__(self):
+        logger.debug('close app')
         self.stop()
 
     def start(self):
+        logger.debug('start rtt2uart')
         try:
             if self._connect_inf != 'EXISTING' and self.jlink.connected() == False:
                 # 加载jlinkARM.dll
@@ -114,9 +117,15 @@ class rtt_to_serial():
             raise Exception("Connect or config RTT server failed")
 
     def stop(self):
+        logger.debug('stop rtt2uart')
+        if self.timer:
+            self.timer.cancel()
+
         self.thread_switch = False
-        self.rtt2uart.join(0.5)
-        self.uart2rtt.join(0.5)
+        if self.rtt2uart:
+            self.rtt2uart.join(0.5)
+        if self.uart2rtt:
+            self.uart2rtt.join(0.5)
 
         if self._connect_inf == 'USB':
             try:
@@ -136,7 +145,8 @@ class rtt_to_serial():
             logger.error('Close serial failed', exc_info=True)
             pass
 
-        self.socket.close()
+        if self.socket:
+            self.socket.close()
 
     def rtt_to_uart(self):
         while self.thread_switch == True:
@@ -144,9 +154,11 @@ class rtt_to_serial():
                 rtt_recv = self.socket.recv(1024)
 
                 if self._connect_para == True and rtt_recv == b'':
+                    logger.debug('telnel server close')
                     self.thread_switch = False
                     self.socket.close()
                     # telnet服务器已经关闭，开启定时查询服务器状态
+                    self.timer = threading.Timer(0.5, self.check_socket_status)
                     self.timer.start()
 
             except socket.error as msg:
@@ -189,6 +201,9 @@ class rtt_to_serial():
         # 连接到RTT Telnet Server
         self.socket = self.doConnect('localhost', 19021)
         if self.socket:
+            logger.debug('reconnect success')
+            self.rtt2uart.join(0.5)
+            self.uart2rtt.join(0.5)
             # 连接成功，重建线程
             self.thread_switch = True
 
@@ -206,6 +221,7 @@ class rtt_to_serial():
         else:
             # 连接失败，继续尝试连接
             self.timer.start()
+            logger.debug("try to reconnect")
 
 
 if __name__ == "__main__":

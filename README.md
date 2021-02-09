@@ -21,3 +21,7 @@
 if can't find the device you want, follow the picture below and replace the ***JLinkDevicesBuildIn.xml*** file in the path of this tool.
 
 ![exportdevicelist.png](./picture/exportdevicelist.png)
+
+## Package the program with pyinstaller
+
+Open *cmd.exe* in the project path and input follow command `pyinstaller -F -w -i ./swap_horiz_16px.ico main_window.py`

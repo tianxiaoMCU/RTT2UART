@@ -292,6 +292,7 @@ class MainWindow(QDialog):
 
     def start(self):
         if self.start_state == False:
+            logger.debug('click start button')
             try:
                 device_interface = None
                 # USB或者TCP/IP方式接入需要选择配置
@@ -342,6 +343,7 @@ class MainWindow(QDialog):
                 self.start_state = True
                 self.ui.pushButton_Start.setText("Stop")
         else:
+            logger.debug('click stop button')
             try:
                 # Existing方式不需要选择配置，继续禁用，不恢复
                 if self.ui.radioButton_existing.isChecked() == False:
@@ -354,7 +356,7 @@ class MainWindow(QDialog):
                     self.ui.comboBox_baudrate.setEnabled(True)
                     self.ui.pushButton_scan.setEnabled(True)
 
-                self.rtt2uart.stop()
+                    self.rtt2uart.stop()
 
                 self.start_state = False
                 self.ui.pushButton_Start.setText("Start")
