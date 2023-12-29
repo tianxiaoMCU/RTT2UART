@@ -23,7 +23,6 @@ build/main_window/base_library.zip
 build/main_window/main_window.exe.manifest
 *.pkg
 *.pyz
-*.txt
 *.html
 dist/rtt2uart_v1.0.0.exe
 main_window.spec

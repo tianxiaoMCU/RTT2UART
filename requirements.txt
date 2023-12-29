@@ -1,0 +1,7 @@
+pylink_square==1.2.0
+pyserial==3.5
+PySide6==6.6.1
+PySide6==6.6.1
+PySide6_Addons==6.6.1
+PySide6_Essentials==6.6.1
+shiboken6==6.6.1

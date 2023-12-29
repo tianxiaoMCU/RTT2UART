@@ -25,3 +25,16 @@ if can't find the device you want, follow the picture below and replace the ***J
 ## Package the program with pyinstaller
 
 Open *cmd.exe* in the project path and input follow command `pyinstaller -F -w -i ./swap_horiz_16px.ico main_window.py`
+
+## 开发
+### 生成UI python class
+在终端中执行以下命令
+```
+pyside6-uic .\rtt2uart.ui -o .\ui_rtt2uart.py
+pyside6-uic .\sel_device.ui -o .\ui_sel_device.py
+```
+### 生成资源文件python class
+在终端中执行以下命令
+```
+pyside6-rcc .\icons.qrc -o .\rc_icons.py
+```

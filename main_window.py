@@ -1,11 +1,11 @@
 from pickle import NONE
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction
-from PySide2.QtCore import QFile, QAbstractTableModel
-from PySide2 import QtGui
-from PySide2 import QtCore
-from PySide2.QtGui import QFont, QIcon
-from PySide2.QtNetwork import QLocalSocket, QLocalServer
+from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu
+from PySide6.QtCore import QFile, QAbstractTableModel
+from PySide6 import QtGui
+from PySide6 import QtCore
+from PySide6.QtGui import QFont, QIcon, QAction
+from PySide6.QtNetwork import QLocalSocket, QLocalServer
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
 import rc_icons
@@ -366,7 +366,7 @@ class MainWindow(QDialog):
 
     def target_device_selete(self):
         device_ui = DeviceSeleteDialog()
-        device_ui.exec_()
+        device_ui.exec()
         self.target_device = device_ui.get_target_device()
 
         if self.target_device not in self.settings['device']:
@@ -443,9 +443,9 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.5.0")
+            window.setWindowTitle("RTT2UART Control Panel V1.6.0")
             window.show()
 
-            sys.exit(app.exec_())
+            sys.exit(app.exec())
         finally:
             localServer.close()
