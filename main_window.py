@@ -19,6 +19,7 @@ from rtt2uart import rtt_to_serial
 import logging
 import pickle
 import os
+import subprocess
 
 logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
@@ -98,30 +99,6 @@ class DeviceSeleteDialog(QDialog):
             self.ui.tableView.clicked.connect(self.reflash_selete_device)
 
     def get_jlink_devices_list_file(self):
-        '''
-        lib_jlink = pylink.Library()
-
-        path = ctypes_util.find_library(lib_jlink._sdk)
-
-        if path is None:
-            # Couldn't find it the standard way.  Fallback to the non-standard
-            # way of finding the J-Link library.  These methods are operating
-            # system specific.
-            if lib_jlink._windows or lib_jlink._cygwin:
-                path = next(lib_jlink.find_library_windows(), None)
-            elif sys.platform.startswith('linux'):
-                path = next(lib_jlink.find_library_linux(), None)
-            elif sys.platform.startswith('darwin'):
-                path = next(lib_jlink.find_library_darwin(), None)
-
-            if path is not None:
-                path = path.replace(
-                    lib_jlink.get_appropriate_windows_sdk_name()+".dll", "JLinkDevices.xml")
-            else:
-                path = ''
-        else:
-            path = ''
-        '''
         if os.path.exists(r'JLinkDevicesBuildIn.xml') == True:
             return os.path.abspath('JLinkDevicesBuildIn.xml')
         else:
@@ -266,6 +243,34 @@ class MainWindow(QDialog):
         self.ui.radioButton_existing.clicked.connect(
             self.existing_session_selete_slot)
 
+        try:
+            self.jlink = pylink.JLink()
+        except:
+            logger.error('Find jlink dll failed', exc_info=True)
+            raise Exception("Find jlink dll failed !")
+
+        try:
+            # 导出器件列表文件
+            if self.jlink._library._path is not None:
+                path_env = os.path.dirname(self.jlink._library._path)
+                env = os.environ
+
+                if self.jlink._library._windows or self.jlink._library._cygwin:
+                    jlink_env = {'PATH': path_env}
+                    cmd = 'JLink.exe -CommandFile JLinkCommandFile.jlink'
+                elif sys.platform.startswith('linux'):
+                    jlink_env = {}
+                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
+                elif sys.platform.startswith('darwin'):
+                    jlink_env = {}
+                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
+
+                env.update(jlink_env)
+
+                subprocess.run(cmd, check=True)
+        except Exception as e:
+            logging.error(f'can not export devices xml file, error info: {e}')
+
     def closeEvent(self, e):
         if self.rtt2uart is not None and self.start_state == True:
             self.rtt2uart.stop()
@@ -332,7 +337,7 @@ class MainWindow(QDialog):
                 else:
                     connect_para = None
 
-                self.rtt2uart = rtt_to_serial(self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
+                self.rtt2uart = rtt_to_serial(self.jlink, self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
                 ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
 
                 self.rtt2uart.start()
