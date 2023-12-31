@@ -29,6 +29,8 @@ class rtt_to_serial():
         self.port = port
         self.baudrate = baudrate
 
+        self.jlink = jlink
+
         # 线程
         self._write_lock = threading.Lock()
 

@@ -78,7 +78,6 @@ class DeviceSeleteDialog(QDialog):
             self.devices_list = self.parse_jlink_devices_list_file(filepath)
 
         if len(self.devices_list):
-
             # 从headdata中取出数据，放入到模型中
             headdata = ["Manufacturer", "Device", "Core",
                         "NumCores", "Flash Size", "RAM Size"]
@@ -91,8 +90,17 @@ class DeviceSeleteDialog(QDialog):
             # font = QFont("Courier New", 9)
             # self.ui.tableView.setFont(font)
             # set column width to fit contents (set font first!)
-            self.ui.tableView.resizeColumnsToContents()
-            self.ui.tableView.resizeRowsToContents()
+            # Disable auto-resizing
+            self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+            self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
+
+            # Set fixed column widths (adjust the values based on your needs)
+            self.ui.tableView.setColumnWidth(0, 100)  # Manufacturer
+            self.ui.tableView.setColumnWidth(1, 280)  # Device
+            self.ui.tableView.setColumnWidth(2, 140)  # Core
+            self.ui.tableView.setColumnWidth(3, 70)  # NumCores
+            self.ui.tableView.setColumnWidth(4, 70)  # Flash Size
+            self.ui.tableView.setColumnWidth(5, 70)  # RAM Size
             self.ui.tableView.setSelectionBehavior(
                 QAbstractItemView.SelectRows)
 
