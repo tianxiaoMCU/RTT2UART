@@ -17,6 +17,7 @@
 ![serialcomtool.png](./picture/serialcomtool.png)
 
 ## Update the device lists
+> Note: Starting with version v2.0.0, there is no need to update ***JLinkDevicesBuildIn.xml*** file manually!
 
 if can't find the device you want, follow the picture below and replace the ***JLinkDevicesBuildIn.xml*** file in the path of this tool.
 
@@ -24,17 +25,17 @@ if can't find the device you want, follow the picture below and replace the ***J
 
 ## Package the program with pyinstaller
 
-Open *cmd.exe* in the project path and input follow command `pyinstaller -F -w -i ./swap_horiz_16px.ico main_window.py`
+Open *cmd.exe* in the project path and input follow command `pyinstaller --onefile --name rtt2uart --noconsole -i .\swap_horiz_16px.ico .\main_window.py`
 
-## 开发
-### 生成UI python class
-在终端中执行以下命令
+## Develop
+### Creat UI python class
+execute the following command in a terminal
 ```
 pyside6-uic .\rtt2uart.ui -o .\ui_rtt2uart.py
 pyside6-uic .\sel_device.ui -o .\ui_sel_device.py
 ```
-### 生成资源文件python class
-在终端中执行以下命令
+### Creat source file python class
+execute the following command in a terminal
 ```
 pyside6-rcc .\icons.qrc -o .\rc_icons.py
 ```

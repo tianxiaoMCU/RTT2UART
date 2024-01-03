@@ -265,7 +265,15 @@ class MainWindow(QDialog):
 
                 if self.jlink._library._windows or self.jlink._library._cygwin:
                     jlink_env = {'PATH': path_env}
+                    env.update(jlink_env)
+
                     cmd = 'JLink.exe -CommandFile JLinkCommandFile.jlink'
+
+                    startupinfo = subprocess.STARTUPINFO()
+                    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                    startupinfo.wShowWindow = subprocess.SW_HIDE
+
+                    subprocess.run(cmd, check=True, startupinfo=startupinfo, creationflags=subprocess.CREATE_NEW_CONSOLE)
                 elif sys.platform.startswith('linux'):
                     jlink_env = {}
                     cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
@@ -273,9 +281,6 @@ class MainWindow(QDialog):
                     jlink_env = {}
                     cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
 
-                env.update(jlink_env)
-
-                subprocess.run(cmd, check=True)
         except Exception as e:
             logging.error(f'can not export devices xml file, error info: {e}')
 
@@ -456,7 +461,7 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.6.0")
+            window.setWindowTitle("RTT2UART Control Panel V2.0.0")
             window.show()
 
             sys.exit(app.exec())
