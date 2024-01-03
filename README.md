@@ -27,14 +27,14 @@ if can't find the device you want, follow the picture below and replace the ***J
 
 Open *cmd.exe* in the project path and input follow command `pyinstaller --onefile --name rtt2uart --noconsole -i .\swap_horiz_16px.ico .\main_window.py`
 
-## Develop
-### Creat UI python class
+## Development
+### Create UI python class
 execute the following command in a terminal
 ```
 pyside6-uic .\rtt2uart.ui -o .\ui_rtt2uart.py
 pyside6-uic .\sel_device.ui -o .\ui_sel_device.py
 ```
-### Creat source file python class
+### Create source file python class
 execute the following command in a terminal
 ```
 pyside6-rcc .\icons.qrc -o .\rc_icons.py
