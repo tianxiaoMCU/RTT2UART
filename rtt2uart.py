@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class rtt_to_serial():
-    def __init__(self, connect_inf='USB', connect_para=None, device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
+    def __init__(self, jlink, connect_inf='USB', connect_para=None, device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
         # jlink接入方式
         self._connect_inf = connect_inf
         # jlink接入参数
@@ -29,15 +29,10 @@ class rtt_to_serial():
         self.port = port
         self.baudrate = baudrate
 
+        self.jlink = jlink
+
         # 线程
         self._write_lock = threading.Lock()
-
-        if self._connect_inf == 'USB':
-            try:
-                self.jlink = pylink.JLink()
-            except:
-                logger.error('Find jlink dll failed', exc_info=True)
-                raise
 
         try:
             self.serial = serial.Serial()

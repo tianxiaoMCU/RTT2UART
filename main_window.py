@@ -1,11 +1,11 @@
 from pickle import NONE
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu, QAction
-from PySide2.QtCore import QFile, QAbstractTableModel
-from PySide2 import QtGui
-from PySide2 import QtCore
-from PySide2.QtGui import QFont, QIcon
-from PySide2.QtNetwork import QLocalSocket, QLocalServer
+from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu
+from PySide6.QtCore import QFile, QAbstractTableModel
+from PySide6 import QtGui
+from PySide6 import QtCore
+from PySide6.QtGui import QFont, QIcon, QAction
+from PySide6.QtNetwork import QLocalSocket, QLocalServer
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
 import rc_icons
@@ -19,6 +19,7 @@ from rtt2uart import rtt_to_serial
 import logging
 import pickle
 import os
+import subprocess
 
 logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
@@ -77,7 +78,6 @@ class DeviceSeleteDialog(QDialog):
             self.devices_list = self.parse_jlink_devices_list_file(filepath)
 
         if len(self.devices_list):
-
             # 从headdata中取出数据，放入到模型中
             headdata = ["Manufacturer", "Device", "Core",
                         "NumCores", "Flash Size", "RAM Size"]
@@ -90,38 +90,23 @@ class DeviceSeleteDialog(QDialog):
             # font = QFont("Courier New", 9)
             # self.ui.tableView.setFont(font)
             # set column width to fit contents (set font first!)
-            self.ui.tableView.resizeColumnsToContents()
-            self.ui.tableView.resizeRowsToContents()
+            # Disable auto-resizing
+            self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+            self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
+
+            # Set fixed column widths (adjust the values based on your needs)
+            self.ui.tableView.setColumnWidth(0, 100)  # Manufacturer
+            self.ui.tableView.setColumnWidth(1, 280)  # Device
+            self.ui.tableView.setColumnWidth(2, 140)  # Core
+            self.ui.tableView.setColumnWidth(3, 70)  # NumCores
+            self.ui.tableView.setColumnWidth(4, 70)  # Flash Size
+            self.ui.tableView.setColumnWidth(5, 70)  # RAM Size
             self.ui.tableView.setSelectionBehavior(
                 QAbstractItemView.SelectRows)
 
             self.ui.tableView.clicked.connect(self.reflash_selete_device)
 
     def get_jlink_devices_list_file(self):
-        '''
-        lib_jlink = pylink.Library()
-
-        path = ctypes_util.find_library(lib_jlink._sdk)
-
-        if path is None:
-            # Couldn't find it the standard way.  Fallback to the non-standard
-            # way of finding the J-Link library.  These methods are operating
-            # system specific.
-            if lib_jlink._windows or lib_jlink._cygwin:
-                path = next(lib_jlink.find_library_windows(), None)
-            elif sys.platform.startswith('linux'):
-                path = next(lib_jlink.find_library_linux(), None)
-            elif sys.platform.startswith('darwin'):
-                path = next(lib_jlink.find_library_darwin(), None)
-
-            if path is not None:
-                path = path.replace(
-                    lib_jlink.get_appropriate_windows_sdk_name()+".dll", "JLinkDevices.xml")
-            else:
-                path = ''
-        else:
-            path = ''
-        '''
         if os.path.exists(r'JLinkDevicesBuildIn.xml') == True:
             return os.path.abspath('JLinkDevicesBuildIn.xml')
         else:
@@ -266,6 +251,39 @@ class MainWindow(QDialog):
         self.ui.radioButton_existing.clicked.connect(
             self.existing_session_selete_slot)
 
+        try:
+            self.jlink = pylink.JLink()
+        except:
+            logger.error('Find jlink dll failed', exc_info=True)
+            raise Exception("Find jlink dll failed !")
+
+        try:
+            # 导出器件列表文件
+            if self.jlink._library._path is not None:
+                path_env = os.path.dirname(self.jlink._library._path)
+                env = os.environ
+
+                if self.jlink._library._windows or self.jlink._library._cygwin:
+                    jlink_env = {'PATH': path_env}
+                    env.update(jlink_env)
+
+                    cmd = 'JLink.exe -CommandFile JLinkCommandFile.jlink'
+
+                    startupinfo = subprocess.STARTUPINFO()
+                    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+                    startupinfo.wShowWindow = subprocess.SW_HIDE
+
+                    subprocess.run(cmd, check=True, startupinfo=startupinfo, creationflags=subprocess.CREATE_NEW_CONSOLE)
+                elif sys.platform.startswith('linux'):
+                    jlink_env = {}
+                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
+                elif sys.platform.startswith('darwin'):
+                    jlink_env = {}
+                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
+
+        except Exception as e:
+            logging.error(f'can not export devices xml file, error info: {e}')
+
     def closeEvent(self, e):
         if self.rtt2uart is not None and self.start_state == True:
             self.rtt2uart.stop()
@@ -332,7 +350,7 @@ class MainWindow(QDialog):
                 else:
                     connect_para = None
 
-                self.rtt2uart = rtt_to_serial(self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
+                self.rtt2uart = rtt_to_serial(self.jlink, self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
                 ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
 
                 self.rtt2uart.start()
@@ -366,7 +384,7 @@ class MainWindow(QDialog):
 
     def target_device_selete(self):
         device_ui = DeviceSeleteDialog()
-        device_ui.exec_()
+        device_ui.exec()
         self.target_device = device_ui.get_target_device()
 
         if self.target_device not in self.settings['device']:
@@ -443,9 +461,9 @@ if __name__ == "__main__":
 
         try:
             window = MainWindow()
-            window.setWindowTitle("RTT2UART Control Panel V1.5.0")
+            window.setWindowTitle("RTT2UART Control Panel V2.0.0")
             window.show()
 
-            sys.exit(app.exec_())
+            sys.exit(app.exec())
         finally:
             localServer.close()

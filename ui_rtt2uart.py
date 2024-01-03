@@ -1,17 +1,23 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-# Form generated from reading UI file 'rtt2uart.ui'
+## Form generated from reading UI file 'rtt2uart.ui'
 ##
-# Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 6.6.1
 ##
-# WARNING! All changes made in this file will be lost when recompiling UI file!
+## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
-from PySide2.QtWidgets import *
-
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QDialog,
+    QFrame, QGroupBox, QLabel, QLineEdit,
+    QPushButton, QRadioButton, QSizePolicy, QWidget)
 
 class Ui_dialog(object):
     def setupUi(self, dialog):
@@ -25,11 +31,10 @@ class Ui_dialog(object):
         self.pushButton_Start.setObjectName(u"pushButton_Start")
         self.pushButton_Start.setGeometry(QRect(160, 300, 81, 41))
         font = QFont()
-        font.setFamily(u"\u5fae\u8f6f\u96c5\u9ed1")
+        font.setFamilies([u"\u5fae\u8f6f\u96c5\u9ed1"])
         font.setPointSize(13)
         font.setBold(True)
         font.setUnderline(False)
-        font.setWeight(75)
         font.setStrikeOut(False)
         self.pushButton_Start.setFont(font)
         self.pushButton_Start.setCheckable(True)
@@ -56,8 +61,7 @@ class Ui_dialog(object):
         self.comboBox_Device.setObjectName(u"comboBox_Device")
         self.comboBox_Device.setGeometry(QRect(10, 20, 321, 22))
         self.pushButton_Selete_Device = QPushButton(self.groupBox_2)
-        self.pushButton_Selete_Device.setObjectName(
-            u"pushButton_Selete_Device")
+        self.pushButton_Selete_Device.setObjectName(u"pushButton_Selete_Device")
         self.pushButton_Selete_Device.setGeometry(QRect(340, 20, 31, 23))
         self.groupBox_UART = QGroupBox(dialog)
         self.groupBox_UART.setObjectName(u"groupBox_UART")
@@ -113,37 +117,22 @@ class Ui_dialog(object):
     # setupUi
 
     def retranslateUi(self, dialog):
-        dialog.setWindowTitle(QCoreApplication.translate(
-            "dialog", u"RTT2UART Control Panel", None))
-        self.pushButton_Start.setText(
-            QCoreApplication.translate("dialog", u"Start", None))
-        self.groupBox.setTitle(QCoreApplication.translate(
-            "dialog", u"Target Interface And Speed", None))
+        dialog.setWindowTitle(QCoreApplication.translate("dialog", u"RTT2UART Control Panel", None))
+        self.pushButton_Start.setText(QCoreApplication.translate("dialog", u"Start", None))
+        self.groupBox.setTitle(QCoreApplication.translate("dialog", u"Target Interface And Speed", None))
         self.comboBox_Speed.setCurrentText("")
-        self.groupBox_2.setTitle(QCoreApplication.translate(
-            "dialog", u"Specify Target Device", None))
-        self.pushButton_Selete_Device.setText(
-            QCoreApplication.translate("dialog", u"...", None))
-        self.groupBox_UART.setTitle(
-            QCoreApplication.translate("dialog", u"UART Config", None))
-        self.label.setText(QCoreApplication.translate(
-            "dialog", u"Port:", None))
-        self.label_2.setText(QCoreApplication.translate(
-            "dialog", u"Baud rate:", None))
-        self.pushButton_scan.setText(
-            QCoreApplication.translate("dialog", u"Scan", None))
-        self.checkBox_resettarget.setText(
-            QCoreApplication.translate("dialog", u"Reset target", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate(
-            "dialog", u"Connection to J-Link", None))
-        self.radioButton_usb.setText(
-            QCoreApplication.translate("dialog", u"USB", None))
-        self.radioButton_existing.setText(
-            QCoreApplication.translate("dialog", u"Existing Session", None))
-        self.radioButton_tcpip.setText(
-            QCoreApplication.translate("dialog", u"TCP/IP", None))
-        self.checkBox_serialno.setText(
-            QCoreApplication.translate("dialog", u"Serial NO", None))
-        self.checkBox__auto.setText(QCoreApplication.translate(
-            "dialog", u"Auto Reconnect", None))
+        self.groupBox_2.setTitle(QCoreApplication.translate("dialog", u"Specify Target Device", None))
+        self.pushButton_Selete_Device.setText(QCoreApplication.translate("dialog", u"...", None))
+        self.groupBox_UART.setTitle(QCoreApplication.translate("dialog", u"UART Config", None))
+        self.label.setText(QCoreApplication.translate("dialog", u"Port:", None))
+        self.label_2.setText(QCoreApplication.translate("dialog", u"Baud rate:", None))
+        self.pushButton_scan.setText(QCoreApplication.translate("dialog", u"Scan", None))
+        self.checkBox_resettarget.setText(QCoreApplication.translate("dialog", u"Reset target", None))
+        self.groupBox_3.setTitle(QCoreApplication.translate("dialog", u"Connection to J-Link", None))
+        self.radioButton_usb.setText(QCoreApplication.translate("dialog", u"USB", None))
+        self.radioButton_existing.setText(QCoreApplication.translate("dialog", u"Existing Session", None))
+        self.radioButton_tcpip.setText(QCoreApplication.translate("dialog", u"TCP/IP", None))
+        self.checkBox_serialno.setText(QCoreApplication.translate("dialog", u"Serial NO", None))
+        self.checkBox__auto.setText(QCoreApplication.translate("dialog", u"Auto Reconnect", None))
     # retranslateUi
+
