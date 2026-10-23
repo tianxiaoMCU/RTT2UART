@@ -1,41 +1,71 @@
 # RTT2UART
 
-***Note: Installed a virtual serial port tool like [com0com](http://com0com.sourceforge.net/) before use this tool !***
+RTT2UART is a desktop bridge between J-Link RTT and a host serial application.
+Use a virtual COM port pair to exchange target data with an existing serial
+terminal or serial-based tool through the target's debug connection.
 
-![VirtualSerialPort.png](./picture/VirtualSerialPort.png)
+```text
+Target firmware with RTT
+        | debug connection
+     J-Link
+        | local RTT TCP endpoint: localhost:19021
+     RTT2UART
+        | COM4 (example)
+Virtual COM port pair
+        | COM5 (example)
+Serial application
 
-## How to use
-
-* Step1: selete the device and click *OK*
-
-   ![RTT2UART.png](./picture/RTT2UART.png)![SeleteDevice.png](./picture/SeleteDevice.png)
-* Step2: config the target interface and speed
-* Step3: tick the *Reset target* option will reset the target once connected
-* Step4: scan then selete the ***virtual COM port*** like *com4* and baud rate
-* Step5: click start to connect the target
-* Step6: selete another com port of the com port pair like *com5*
-![serialcomtool.png](./picture/serialcomtool.png)
-
-## Update the device lists
-> Note: Starting with version v2.0.0, there is no need to update ***JLinkDevicesBuildIn.xml*** file manually!
-
-if can't find the device you want, follow the picture below and replace the ***JLinkDevicesBuildIn.xml*** file in the path of this tool.
-
-![exportdevicelist.png](./picture/exportdevicelist.png)
-
-## Package the program with pyinstaller
-
-Open *cmd.exe* in the project path and input follow command `pyinstaller --onefile --name rtt2uart --noconsole -i .\swap_horiz_16px.ico .\main_window.py`
-
-## Development
-### Create UI python class
-execute the following command in a terminal
+Data can flow in both directions.
 ```
-pyside6-uic .\rtt2uart.ui -o .\ui_rtt2uart.py
-pyside6-uic .\sel_device.ui -o .\ui_sel_device.py
-```
-### Create source file python class
-execute the following command in a terminal
-```
-pyside6-rcc .\icons.qrc -o .\rc_icons.py
-```
+
+The COM ports are on the host. The target communicates through RTT; this workflow
+does not require a target UART connection. Target firmware must already provide
+RTT output and, for sending data to the target, an RTT input handler.
+
+![RTT2UART control panel](./picture/RTT2UART.png)
+
+The repository screenshots illustrate the workflow; their layout may differ
+from the application version you run.
+
+## Start here
+
+1. Download and extract the Windows package from
+   [GitHub Releases](https://github.com/tianxiaoMCU/RTT2UART/releases).
+2. Install the J-Link software and a virtual serial port tool, then create a
+   virtual COM port pair.
+3. Follow [Getting started](./docs/getting-started.md) to connect over USB and
+   verify each direction of data transfer.
+
+Keep the extracted package together and launch it from its directory. The
+current source uses files in the working directory for the device database,
+J-Link command file, and saved settings. See the guide for prerequisites and
+package verification limits.
+
+## Documentation
+
+| Document | Use it to |
+| --- | --- |
+| [Getting started](./docs/getting-started.md) | Prepare Windows, make the first connection, use Existing Session, and troubleshoot common failures |
+| [Development](./docs/development.md) | Install source dependencies, regenerate the UI, package the program, and record validation |
+| [Architecture](./docs/architecture.md) | Understand connection ownership, byte forwarding, settings, and reconnect limits |
+| [Glossary](./GLOSSARY.md) | Use consistent terms for the target, RTT endpoint, and serial applications |
+
+## Connection modes and boundaries
+
+| Mode | Current source behavior |
+| --- | --- |
+| USB | Opens a J-Link probe, configures the target connection, and attaches to the local RTT endpoint |
+| Existing Session | Attaches to an RTT endpoint provided by another local J-Link session; offers limited socket reconnection |
+| TCP/IP | Disabled in the current GUI |
+
+Both enabled modes connect to `localhost:19021`. The application has no GUI
+setting for another RTT host, port, or channel. Existing Session still requires
+a discoverable J-Link runtime when the application starts.
+
+Windows is the documented workflow. Linux/macOS operation, target/probe
+compatibility, and throughput have not been established by this documentation
+review. An interface or device appearing in a list is not a compatibility test.
+
+## License
+
+RTT2UART is distributed under the [MIT License](./LICENSE).
