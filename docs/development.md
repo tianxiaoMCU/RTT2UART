@@ -156,10 +156,19 @@ pass for the recorded configuration.
 
 ## Validation checklist
 
-See [Lifecycle migration](./lifecycle-migration.md#reproducible-checks) for the
-automated behavioral and Qt test commands and their scope. No CI workflow is
-configured. Use a recorded manual check for behavior that needs real drivers,
-probe, target, or packaged application.
+After installing `requirements-dev.txt`, run the same hardware-free checks used
+by Windows CI:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/check.py
+```
+
+The first failure stops the run. Temporary logs are written under ignored
+`build/checks/`; CI retains them as artifacts for seven days. See
+[Lifecycle migration](./lifecycle-migration.md#reproducible-checks) for the check
+scope and [Windows CI](../.github/workflows/check.yml) for the workflow.
+Use a recorded manual check for behavior that needs real drivers, probe, Target,
+or the packaged application.
 
 | Layer | Check | Evidence to record |
 | --- | --- | --- |

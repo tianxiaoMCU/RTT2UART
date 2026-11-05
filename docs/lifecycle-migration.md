@@ -201,23 +201,34 @@ semantics remain their responsibility. Exactly-once delivery is not guaranteed.
 
 ## Reproducible checks
 
-From the repository root with the recorded CPython 3.12.13 environment:
+Use a Python 3.12 x64 environment. From the repository root in PowerShell:
 
 ```powershell
-py -V:Astral/CPython3.12.13 -m venv .venv
+py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-dev.txt
-.\.venv\Scripts\python.exe -m unittest tests.test_bridge -v
-.\.venv\Scripts\python.exe -m unittest tests.test_recovery -v
-.\.venv\Scripts\python.exe -m unittest tests.test_usb -v
-.\.venv\Scripts\python.exe -m mypy --strict rtt2uart.py usb_transport.py
-.\.venv\Scripts\python.exe -m compileall -q rtt2uart.py usb_transport.py main_window.py tests
-$env:QT_QPA_PLATFORM = 'offscreen'
-.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe scripts/check.py
 ```
 
-Unset `QT_QPA_PLATFORM` before an interactive launch. Strict typechecking covers
-the bridge and USB adapter; compilation and Qt integration cover GUI changes.
-The pre-existing GUI is not claimed to pass repository-wide strict checking.
+The [shared entry point](../scripts/check.py) runs dependency consistency,
+strict typechecking, Python compilation and the complete unittest suite in order.
+It uses the calling Python environment and the checkout root even when invoked
+from another directory. The first failed step returns its nonzero exit code,
+prints its captured output and prevents all subsequent checks from running.
+Strict types cover the bridge, USB adapter, packaging/check scripts and the two
+fixture Python tools. The legacy GUI is covered by compilation and Qt integration,
+not repository-wide strict typing.
+
+Each invocation saves separate step logs under ignored `build/checks/run-*/`.
+Success prints a short status and log location; failure also prints the failing
+step's output. Logs are temporary build output, not committed acceptance records.
+The runner selects offscreen Qt only in child processes; the calling shell is
+unchanged. Individual test modules can still be run directly during development.
+
+[Windows CI](../.github/workflows/check.yml) installs `requirements-dev.txt` on
+Windows Server 2022 / Python 3.12 x64 and invokes the same entry point for pushes,
+pull requests and manual runs. Check logs are uploaded as temporary artifacts
+with seven-day retention. No J-Link runtime, virtual COM driver, ARM compiler,
+firmware operation or package build is required by these controlled checks.
 
 Tests drive the confirmed public `start`/`stop`/`snapshot` seam. Controlled I/O
 induces failures, partial writes, blocked connections/reads/close, and cleanup
@@ -228,10 +239,11 @@ controlled external I/O and an inert J-Link library boundary. They demonstrate
 visible recovery/discards, new-only forwarding, locked controls, and Stop/window
 close during a delayed retry. No hardware is required for these checks.
 
-Automated results are separate from hardware/release acceptance. Real virtual
-COM pairs, probe/Target combinations, real USB direct RTT, and throughput remain
-pending. The partial package result is recorded separately in
-[Package smoke](./packaging-smoke.md). No device validation is claimed.
+Automated results remain separate from hardware/release acceptance. Passing this
+entry point is not a new probe/Target, transfer or packaged-GUI validation.
+Historical hardware results and their limits are in the
+[integrated acceptance record](./integration-acceptance.md); package checks are
+recorded separately in [Package smoke](./packaging-smoke.md).
 
 ### Recorded automated baseline — #8, 2026-10-24
 
