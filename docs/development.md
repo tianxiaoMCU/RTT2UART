@@ -3,7 +3,7 @@
 [Project overview](../README.md) | [Getting started](./getting-started.md) | [Architecture](./architecture.md) | [Glossary](../GLOSSARY.md)
 
 This guide covers the current Windows source workflow, UI generation, and a
-candidate packaging procedure. Hardware setup is covered in
+reproducible packaging procedure. Hardware setup is covered in
 [Getting started](./getting-started.md).
 
 ## Source layout
@@ -11,7 +11,9 @@ candidate packaging procedure. Hardware setup is covered in
 | Path | Purpose |
 | --- | --- |
 | [`main_window.py`](../main_window.py) | GUI entry point, device list, saved settings, and bridge lifecycle controls |
-| [`rtt2uart.py`](../rtt2uart.py) | J-Link/serial startup, TCP forwarding threads, and reconnect timer |
+| [`rtt2uart.py`](../rtt2uart.py) | Qt-independent lifecycle for both modes, recovery in both modes, and discard accounting |
+| [`usb_transport.py`](../usb_transport.py) | Owned USB direct RTT, probe identity, readiness, and pinned-dependency cleanup |
+| [`tests/`](../tests/) | Behavioral bridge tests and controlled Qt integration tests |
 | [`rtt2uart.ui`](../rtt2uart.ui) | Main control panel source for Qt Designer |
 | [`sel_device.ui`](../sel_device.ui) | Device selector source for Qt Designer |
 | [`ui_rtt2uart.py`](../ui_rtt2uart.py), [`ui_sel_device.py`](../ui_sel_device.py) | Generated Python UI modules |
@@ -65,9 +67,10 @@ The pinned runtime dependencies are:
 the existing dependency file; it does not change the dependency set. PyInstaller
 is a separate development tool and is not pinned there.
 
-Run the GUI entry point, `main_window.py`. The standalone block at the end of
-`rtt2uart.py` is not the supported GUI launch path; its positional constructor
-arguments do not match the current bridge signature.
+Run the GUI entry point, `main_window.py`.
+`rtt2uart.py` provides the common lifecycle; `usb_transport.py` provides the owned
+USB adapter. Neither is a separate GUI entry point. The legacy USB localhost
+backend has been removed.
 
 ### Working directory and settings
 
@@ -106,29 +109,22 @@ documentation-only change.
 
 ## Package for Windows
 
-The following is a candidate build procedure based on the existing README
-command and the current file access paths. It has not been validated by building
-or launching a packaged executable during this review.
-
-Install PyInstaller in the development environment:
+Install the runtime baseline and the separately pinned build tools, then run the
+recipe from the repository root:
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install pyinstaller
-.\.venv\Scripts\python.exe -m PyInstaller --version
+.\.venv\Scripts\python.exe -m pip install -r .\requirements-build.txt
+.\.venv\Scripts\python.exe .\scripts\package_windows.py
 ```
 
-Record the selected PyInstaller version with the Python, Qt, Windows, and J-Link
-versions used for a release. The repository has no tracked build specification
-or pinned PyInstaller version.
+The recipe creates `dist/windows/rtt2uart.exe`, copies the Commander script,
+XML catalog, and license, and writes `build-environment.json`. That record contains
+Python/Windows/tool versions, Git revision and dirty state, source hashes, and the
+EXE hash. Build from a stable checkout; do not edit the inputs during packaging.
+It does not certify a launch or hardware transfer. See the
+[package smoke procedure and recorded result](./packaging-smoke.md).
 
-Create the executable and copy its working-directory companions:
-
-```powershell
-.\.venv\Scripts\python.exe -m PyInstaller --onefile --name rtt2uart --noconsole --icon .\swap_horiz_16px.ico .\main_window.py
-Copy-Item -LiteralPath '.\JLinkCommandFile.jlink', '.\JLinkDevicesBuildIn.xml' -Destination '.\dist'
-```
-
-For a diagnostic build, omit `--noconsole` to keep logging visible. A one-file
+For a diagnostic build, remove `--noconsole` from the recipe to keep logging visible. A one-file
 executable does not make the entire deployment self-contained:
 
 - The J-Link runtime and Commander remain external prerequisites.
@@ -146,7 +142,7 @@ executable does not make the entire deployment self-contained:
 Launch the candidate from its distribution directory:
 
 ```powershell
-Push-Location .\dist
+Push-Location .\dist\windows
 try {
     .\rtt2uart.exe
 } finally {
@@ -160,8 +156,9 @@ pass for the recorded configuration.
 
 ## Validation checklist
 
-There are no tracked automated tests or CI workflows in the reviewed source
-snapshot. Use a recorded manual check for behavior that needs the GUI, drivers,
+See [Lifecycle migration](./lifecycle-migration.md#reproducible-checks) for the
+automated behavioral and Qt test commands and their scope. No CI workflow is
+configured. Use a recorded manual check for behavior that needs real drivers,
 probe, target, or packaged application.
 
 | Layer | Check | Evidence to record |
@@ -173,16 +170,16 @@ probe, target, or packaged application.
 | USB receive | Emit a known target RTT message and observe it through the paired COM endpoint | Probe/target/firmware, interface, speed, COM pair, and observed message |
 | USB send | Send a known firmware-supported RTT command and observe the expected target result | Command bytes/line endings and target response |
 | Existing Session | Repeat both directions through an externally owned local RTT endpoint | Owning application, endpoint, target, and transfer results |
-| Reconnect | With Auto Reconnect selected, deliberately close and restore the RTT endpoint after initial success | How the socket was closed, retry logs, recovery result, and any missing data |
+| Existing Session reconnect | With Auto Reconnect selected, deliberately close and restore the RTT endpoint after initial success | How the socket was closed, retry logs, recovery result, and any missing data |
+| USB reconnect | Enable Auto Reconnect, interrupt the original probe/Target/RTT path, attach another probe, then restore the original | Both probe identities, Target/interface/speed, retry results, discarded input, no repeated explicit reset, native connection reset/halt side effects, and Stop during recovery |
 | Stop and restart | Stop/close and restart the bridge; verify ports and the intended probe ownership | Resource availability and observed settings after restart |
 | Distribution | Run the executable with its companion files from the intended working directory on a separate setup | Asset name, contents, build-tool versions, and runtime results |
 
-Test reconnect behavior separately from serial-port loss or USB unplug: the
-implementation does not provide a general recovery mechanism. A passed receive
+Test USB probe loss, Target/RTT loss, and Existing Session endpoint loss
+separately. Serial-port loss remains terminal even with Auto Reconnect enabled. A passed receive
 test is not a passed send test. A successful package build is not a successful
 hardware test.
 
-During this documentation review, source and configuration were inspected.
-Dependency installation, UI regeneration, application launch, executable
-packaging, and hardware tests were not performed. Documentation check results
-should be reported separately from those unperformed runtime checks.
+Current automated and package results are recorded in
+[Lifecycle migration](./lifecycle-migration.md) and [Package smoke](./packaging-smoke.md).
+Hardware acceptance remains separate.

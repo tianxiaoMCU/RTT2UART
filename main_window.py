@@ -1,10 +1,7 @@
-from pickle import NONE
 import sys
-from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QHeaderView, QAbstractItemView, QMessageBox, QSystemTrayIcon, QMenu
-from PySide6.QtCore import QFile, QAbstractTableModel
-from PySide6 import QtGui
+from PySide6.QtWidgets import QApplication, QDialog, QHeaderView, QAbstractItemView, QLabel
 from PySide6 import QtCore
-from PySide6.QtGui import QFont, QIcon, QAction
+from PySide6.QtGui import QIcon
 from PySide6.QtNetwork import QLocalSocket, QLocalServer
 from ui_rtt2uart import Ui_dialog
 from ui_sel_device import Ui_Dialog
@@ -12,10 +9,9 @@ import rc_icons
 
 import serial.tools.list_ports
 import serial
-import ctypes.util as ctypes_util
 import xml.etree.ElementTree as ET
 import pylink
-from rtt2uart import rtt_to_serial
+from rtt2uart import Bridge, BridgeConfig, BridgeState, USBConfig
 import logging
 import pickle
 import os
@@ -25,7 +21,7 @@ logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
 logger = logging.getLogger(__name__)
 
-# pylink支持的最大速率是12000kHz（Release v0.7.0开始支持15000及以上速率）
+# pylink supports up to 12000 kHz (15000 kHz and above since release v0.7.0).
 speed_list = [5, 10, 20, 30, 50, 100, 200, 300, 400, 500, 600, 750,
               900, 1000, 1334, 1600, 2000, 2667, 3200, 4000, 4800, 5334, 6000, 8000, 9600, 12000,
               15000, 20000, 25000, 30000, 40000, 50000]
@@ -78,11 +74,11 @@ class DeviceSeleteDialog(QDialog):
             self.devices_list = self.parse_jlink_devices_list_file(filepath)
 
         if len(self.devices_list):
-            # 从headdata中取出数据，放入到模型中
+            # Pass the header data to the model.
             headdata = ["Manufacturer", "Device", "Core",
                         "NumCores", "Flash Size", "RAM Size"]
 
-            # 生成一个模型，用来给tableview
+            # Create a model for the table view.
             model = DeviceTableModel(self.devices_list, headdata)
 
             self.ui.tableView.setModel(model)
@@ -176,13 +172,20 @@ class MainWindow(QDialog):
 
         self.setting_file_path = os.path.join(os.getcwd(), "settings")
 
-        self.start_state = False
         self.target_device = None
-        self.rtt2uart = None
-        self.connect_type = None
-        # 默认Existing Session方式接入使能Auto reconnect
-        self.ui.checkBox__auto.setChecked(True)
-        # 默认选择'USB'方式接入
+        self._bridge = Bridge()
+        self._close_pending = False
+        self._last_snapshot = self._bridge.snapshot
+        self.setFixedSize(402, 445)
+        self.status_label = QLabel("Stopped", self)
+        self.status_label.setGeometry(10, 350, 382, 85)
+        self.status_label.setWordWrap(True)
+        self.status_label.setAlignment(QtCore.Qt.AlignTop | QtCore.Qt.AlignLeft)
+        self._status_timer = QtCore.QTimer(self)
+        self._status_timer.setInterval(20)
+        self._status_timer.timeout.connect(self._poll_bridge)
+        self._status_timer.start()
+        # Select USB by default.
         self.ui.radioButton_usb.setChecked(True)
         self.usb_selete_slot()
 
@@ -202,14 +205,14 @@ class MainWindow(QDialog):
         self.settings = {'device': [], 'device_index': 0, 'interface': 0,
                          'speed': 0, 'port': 0, 'buadrate': 0}
 
-        # 检查是否存在上次配置，存在则加载
+        # Load the previous configuration if it exists.
         if os.path.exists(self.setting_file_path) == True:
             with open(self.setting_file_path, 'rb') as f:
                 self.settings = pickle.load(f)
 
             f.close()
 
-            # 应用上次配置
+            # Apply the saved configuration.
             if len(self.settings['device']):
                 self.ui.comboBox_Device.addItems(self.settings['device'])
                 self.target_device = self.settings['device'][self.settings['device_index']]
@@ -230,7 +233,7 @@ class MainWindow(QDialog):
             self.ui.comboBox_baudrate.setCurrentIndex(16)
             self.settings['buadrate'] = 16
 
-        # 信号-槽
+        # Connect signals to slots.
         self.ui.pushButton_Start.clicked.connect(self.start)
         self.ui.pushButton_scan.clicked.connect(self.port_scan)
         self.ui.pushButton_Selete_Device.clicked.connect(
@@ -252,18 +255,18 @@ class MainWindow(QDialog):
             self.existing_session_selete_slot)
 
         try:
-            self.jlink = pylink.JLink()
+            catalog_link = pylink.JLink()
         except:
             logger.error('Find jlink dll failed', exc_info=True)
             raise Exception("Find jlink dll failed !")
 
         try:
-            # 导出器件列表文件
-            if self.jlink._library._path is not None:
-                path_env = os.path.dirname(self.jlink._library._path)
+            # Export the device catalog.
+            if catalog_link._library._path is not None:
+                path_env = os.path.dirname(catalog_link._library._path)
                 env = os.environ
 
-                if self.jlink._library._windows or self.jlink._library._cygwin:
+                if catalog_link._library._windows or catalog_link._library._cygwin:
                     jlink_env = {'PATH': path_env}
                     env.update(jlink_env)
 
@@ -284,11 +287,19 @@ class MainWindow(QDialog):
         except Exception as e:
             logging.error(f'can not export devices xml file, error info: {e}')
 
-    def closeEvent(self, e):
-        if self.rtt2uart is not None and self.start_state == True:
-            self.rtt2uart.stop()
+    def reject(self):
+        # QDialog's Escape key must obey the same cleanup contract as window close.
+        self.close()
 
-        # 保存当前配置
+    def closeEvent(self, e):
+        if not self._bridge.snapshot.can_start:
+            self._close_pending = True
+            self._bridge.stop()
+            self._render_bridge(self._bridge.snapshot)
+            e.ignore()
+            return
+
+        # Save the current configuration.
         with open(self.setting_file_path, 'wb') as f:
             pickle.dump(self.settings, f)
 
@@ -309,89 +320,81 @@ class MainWindow(QDialog):
                 pass
 
     def start(self):
-        if self.start_state == False:
-            logger.debug('click start button')
-            try:
-                device_interface = None
-                # USB或者TCP/IP方式接入需要选择配置
-                if not self.ui.radioButton_existing.isChecked():
-                    if self.target_device is not None:
-                        selete_interface = self.ui.comboBox_Interface.currentText()
-                        if (selete_interface == 'JTAG'):
-                            device_interface = pylink.enums.JLinkInterfaces.JTAG
-                        elif (selete_interface == 'SWD'):
-                            device_interface = pylink.enums.JLinkInterfaces.SWD
-                        elif (selete_interface == 'cJTAG'):
-                            device_interface = None
-                        elif (selete_interface == 'FINE'):
-                            device_interface = pylink.enums.JLinkInterfaces.FINE
-                        else:
-                            device_interface = pylink.enums.JLinkInterfaces.SWD
+        if not self._bridge.snapshot.can_start:
+            self._bridge.stop()
+            self._render_bridge(self._bridge.snapshot)
+            return
+        try:
+            usb = None
+            if self.ui.radioButton_usb.isChecked():
+                interfaces = {'JTAG': pylink.enums.JLinkInterfaces.JTAG,
+                              'SWD': pylink.enums.JLinkInterfaces.SWD,
+                              'FINE': pylink.enums.JLinkInterfaces.FINE}
+                selected = self.ui.comboBox_Interface.currentText()
+                if selected not in interfaces:
+                    raise ValueError(f'{selected} is not supported by pylink 1.2.0')
+                serial_number = (int(self.ui.lineEdit_serialno.text())
+                                 if self.ui.checkBox_serialno.isChecked() else None)
+                usb = USBConfig(target=self.target_device or '',
+                                interface=interfaces[selected],
+                                speed=speed_list[self.ui.comboBox_Speed.currentIndex()],
+                                serial_number=serial_number,
+                                startup_reset=self.ui.checkBox_resettarget.isChecked())
+            config = BridgeConfig(port=self.ui.comboBox_Port.currentText(),
+                                  baudrate=int(self.ui.comboBox_baudrate.currentText()),
+                                  auto_reconnect=self.ui.checkBox__auto.isChecked(), usb=usb)
+            self._render_bridge(self._bridge.start(config))
+        except (ValueError, RuntimeError) as error:
+            self.status_label.setText(str(error))
+            self.ui.pushButton_Start.setChecked(False)
 
-                        # 启动后不能再进行配置
-                        self.ui.comboBox_Device.setEnabled(False)
-                        self.ui.pushButton_Selete_Device.setEnabled(False)
-                        self.ui.comboBox_Interface.setEnabled(False)
-                        self.ui.comboBox_Speed.setEnabled(False)
-                        self.ui.comboBox_Port.setEnabled(False)
-                        self.ui.comboBox_baudrate.setEnabled(False)
-                        self.ui.pushButton_scan.setEnabled(False)
+    def _poll_bridge(self):
+        snapshot = self._bridge.snapshot
+        if snapshot != self._last_snapshot:
+            self._render_bridge(snapshot)
+        if self._close_pending and snapshot.can_start:
+            self.close()
 
-                    else:
-                        raise Exception("Please selete the target device !")
-
-                # 获取接入方式的参数
-                if self.ui.radioButton_usb.isChecked() and self.ui.checkBox_serialno.isChecked():
-                    connect_para = self.ui.lineEdit_serialno.text()
-                elif self.ui.radioButton_tcpip.isChecked():
-                    connect_para = self.ui.lineEdit_ip.text()
-                elif self.ui.radioButton_existing.isChecked():
-                    connect_para = self.ui.checkBox__auto.isChecked()
-                else:
-                    connect_para = None
-
-                self.rtt2uart = rtt_to_serial(self.jlink, self.connect_type, connect_para, self.target_device, self.ui.comboBox_Port.currentText(
-                ), self.ui.comboBox_baudrate.currentText(), device_interface, speed_list[self.ui.comboBox_Speed.currentIndex()], self.ui.checkBox_resettarget.isChecked())
-
-                self.rtt2uart.start()
-
-            except Exception as errors:
-                QMessageBox.critical(self, "Errors", str(errors))
-            else:
-                self.start_state = True
-                self.ui.pushButton_Start.setText("Stop")
-        else:
-            logger.debug('click stop button')
-            try:
-                # Existing方式不需要选择配置，继续禁用，不恢复
-                if self.ui.radioButton_existing.isChecked() == False:
-                    # 停止后才能再次配置
-                    self.ui.comboBox_Device.setEnabled(True)
-                    self.ui.pushButton_Selete_Device.setEnabled(True)
-                    self.ui.comboBox_Interface.setEnabled(True)
-                    self.ui.comboBox_Speed.setEnabled(True)
-                    self.ui.comboBox_Port.setEnabled(True)
-                    self.ui.comboBox_baudrate.setEnabled(True)
-                    self.ui.pushButton_scan.setEnabled(True)
-
-                self.rtt2uart.stop()
-
-                self.start_state = False
-                self.ui.pushButton_Start.setText("Start")
-            except:
-                logger.error('Stop rtt2uart failed', exc_info=True)
-                pass
+    def _render_bridge(self, snapshot):
+        # Called only by GUI slots/QTimer; no background code touches widgets.
+        self._last_snapshot = snapshot
+        active = not snapshot.can_start
+        self.status_label.setText("\n".join(filter(None, (
+            snapshot.state.value,
+            f"USB probe: {snapshot.probe_serial_number}" if snapshot.probe_serial_number else "",
+            snapshot.reason, snapshot.cleanup_error,
+            f"Observed discarded input: {snapshot.discarded_bytes} bytes"))))
+        self.status_label.setToolTip(self.status_label.text())
+        self.ui.pushButton_Start.setText("Stop" if active else "Start")
+        self.ui.pushButton_Start.setChecked(active)
+        self.ui.pushButton_Start.setEnabled(
+            snapshot.state not in (BridgeState.STOPPING, BridgeState.STOP_INCOMPLETE))
+        for control in (self.ui.radioButton_usb, self.ui.radioButton_existing,
+                        self.ui.checkBox_serialno,
+                        self.ui.lineEdit_serialno, self.ui.comboBox_Port,
+                        self.ui.comboBox_baudrate, self.ui.pushButton_scan):
+            control.setEnabled(not active)
+        self.ui.checkBox__auto.setEnabled(not active)
+        target_enabled = not active and self.ui.radioButton_usb.isChecked()
+        for control in (self.ui.comboBox_Device, self.ui.pushButton_Selete_Device,
+                        self.ui.comboBox_Interface, self.ui.comboBox_Speed,
+                        self.ui.checkBox_resettarget):
+            control.setEnabled(target_enabled)
 
     def target_device_selete(self):
         device_ui = DeviceSeleteDialog()
-        device_ui.exec()
-        self.target_device = device_ui.get_target_device()
+        if device_ui.exec() != QDialog.Accepted:
+            return
+        target = device_ui.get_target_device()
+        if not target:
+            return
+        self.target_device = target
 
         if self.target_device not in self.settings['device']:
             self.settings['device'].append(self.target_device)
             self.ui.comboBox_Device.addItem(self.target_device)
-            self.ui.comboBox_Device.setCurrentIndex(
-                len(self.settings['device']) - 1)
+        self.ui.comboBox_Device.setCurrentIndex(
+            self.settings['device'].index(self.target_device))
 
     def device_change_slot(self, index):
         self.settings['device_index'] = index
@@ -416,13 +419,15 @@ class MainWindow(QDialog):
             self.ui.lineEdit_serialno.setVisible(False)
 
     def usb_selete_slot(self):
-        self.connect_type = 'USB'
 
-        self.ui.checkBox__auto.setVisible(False)
+        self.ui.checkBox__auto.setVisible(True)
+        self.ui.checkBox__auto.setChecked(False)
+        self.ui.checkBox__auto.setEnabled(True)
+        self.ui.checkBox__auto.setToolTip("Reconnect only to the original USB probe without repeating startup reset")
         self.ui.lineEdit_ip.setVisible(False)
         self.ui.checkBox_serialno.setVisible(True)
         self.serial_no_change_slot()
-        # 通过usb方式接入，以下功能需要选择，恢复使用
+        # Re-enable Target controls for USB mode.
         self.ui.comboBox_Device.setEnabled(True)
         self.ui.pushButton_Selete_Device.setEnabled(True)
         self.ui.comboBox_Interface.setEnabled(True)
@@ -430,13 +435,15 @@ class MainWindow(QDialog):
         self.ui.checkBox_resettarget.setEnabled(True)
 
     def existing_session_selete_slot(self):
-        self.connect_type = 'EXISTING'
 
         self.ui.checkBox_serialno.setVisible(False)
         self.ui.lineEdit_serialno.setVisible(False)
         self.ui.lineEdit_ip.setVisible(False)
         self.ui.checkBox__auto.setVisible(True)
-        # 通过existing_session方式接入时，以下功能无效，禁止使用
+        self.ui.checkBox__auto.setChecked(True)
+        self.ui.checkBox__auto.setEnabled(True)
+        self.ui.checkBox__auto.setToolTip("")
+        # Disable Target controls that do not apply to Existing Session mode.
         self.ui.comboBox_Device.setEnabled(False)
         self.ui.pushButton_Selete_Device.setEnabled(False)
         self.ui.comboBox_Interface.setEnabled(False)
@@ -452,10 +459,10 @@ if __name__ == "__main__":
     lsocket = QLocalSocket()
     lsocket.connectToServer(serverName)
 
-    # 如果连接成功，表明server已经存在，当前已有实例在运行
+    # A successful connection means another application instance is already running.
     if lsocket.waitForConnected(200) == False:
 
-        # 没有实例运行，创建服务器
+        # No instance is running; create the local server.
         localServer = QLocalServer()
         localServer.listen(serverName)
 

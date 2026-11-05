@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "scope": "Current #13 retained evidence and common retention policy; issue12 excluded; manifest excludes itself. Acceptance/deployment entry documents are link-checked separately.",
+  "historical_source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "artifacts": [
+    {
+      "path": "docs/evidence/.gitattributes",
+      "bytes": 118,
+      "sha256": "df4b65cf94b6d4caa7f436625299be499bc054d07f50834b3252bd4d55f83b51"
+    },
+    {
+      "path": "docs/evidence/README.md",
+      "bytes": 4376,
+      "sha256": "09355ce9a956b90efa7d09d58732be3208c8331fc6d625793f64122fbc7d54cd"
+    },
+    {
+      "path": "docs/evidence/issue13-2026-10-31/README.md",
+      "bytes": 2173,
+      "sha256": "28694f89d79798d948c18e10200080c141feef852a2ac463940510bef77d12a4"
+    },
+    {
+      "path": "docs/evidence/issue13-2026-10-31/evidence.json",
+      "bytes": 45596,
+      "sha256": "1916eb089d2dc48ae50329c317b7d7d2bb57fd6ffc5964fc084f8384f104ecf8"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/README.md",
+      "bytes": 4078,
+      "sha256": "c469664c377c9ad16f2bf83453b4acd57ad0d6f59b43e234ba66ae072e384548"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/controlled-suite.txt",
+      "bytes": 11496,
+      "sha256": "30ef74fdf33dd9992568ae90b0b1809ef5b7f0d8ceb92d6344ec123a24cc29b4"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/evidence.json",
+      "bytes": 79458,
+      "sha256": "0bad885a23e85e11f3d7ea30b6f2a19937596560d3e803920efa44a5a26e5891"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/evidence/02-existing.png",
+      "bytes": 39844,
+      "sha256": "1e7b833e839426d2544d51986e76b75cd779987e7ac1be58abd008ede14762f7"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/evidence/04-reopened.png",
+      "bytes": 40532,
+      "sha256": "f58f32a228529ce770afdea0519b04eb1bb211e40815d4c0669cef7b18ad24a2"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/gate-qualification-proposal.md",
+      "bytes": 1788,
+      "sha256": "1af720c103fbaf72316b5923881fcd744500e864396a8bb8585e98907b05aaa1"
+    },
+    {
+      "path": "docs/evidence/issue13-deployment-2026-11-05/typecheck.txt",
+      "bytes": 44,
+      "sha256": "718df785efbbd4b57e63b5f64aff2c5b5592e433447681f759b307f97a3ec96a"
+    },
+    {
+      "path": "docs/evidence/issue13-gui-2026-11-02/README.md",
+      "bytes": 2035,
+      "sha256": "8f4ac5cec565c4a81ac73b8acb0b7f45a5aa25c7c928f21bd459381c176b9e71"
+    },
+    {
+      "path": "docs/evidence/issue13-gui-2026-11-02/evidence.json",
+      "bytes": 48001,
+      "sha256": "74c6addd707a353be8a66a154c332ee6e973ba5c6163b382ddd6c58d594b89db"
+    },
+    {
+      "path": "docs/evidence/issue13-gui-2026-11-02/existing-reconnecting.png",
+      "bytes": 14966,
+      "sha256": "a66bd26390f7e4f9cc9374f4439d7a2dd2e6d1a127278bbabd57b2ae2c844397"
+    },
+    {
+      "path": "docs/evidence/issue13-h05-2026-11-03/README.md",
+      "bytes": 2076,
+      "sha256": "ac98bca776c3ec5c164b4be9b354f400e753f4f18e9f7eb8f226e569e172d0f5"
+    },
+    {
+      "path": "docs/evidence/issue13-h05-2026-11-03/evidence.json",
+      "bytes": 94274,
+      "sha256": "79b45b1704b9d9af3dc9070877aafb0b838d78773f47092ab10cc2f52852cd6a"
+    },
+    {
+      "path": "docs/evidence/issue13-h07-2026-11-03/README.md",
+      "bytes": 1562,
+      "sha256": "bbb10bed723359ec84ff1d4d1febae728506803a267ddf61545c3b88f2437d5c"
+    },
+    {
+      "path": "docs/evidence/issue13-h07-2026-11-03/evidence.json",
+      "bytes": 8388,
+      "sha256": "7515edf4ed9b066cd3d1ed4625ed317dd0c64d16805112835d6ea87a117ee082"
+    },
+    {
+      "path": "docs/evidence/issue13-h08-2026-11-03/README.md",
+      "bytes": 2921,
+      "sha256": "746fafc7d31e97b5e75087f56772c69623463249f2b149e623fe6992967a90bd"
+    },
+    {
+      "path": "docs/evidence/issue13-h08-2026-11-03/evidence.json",
+      "bytes": 41599,
+      "sha256": "a9d559bbd81cd8a4534778a1c3c6d9989d4633bc9fd5f5102c1eb4dd4fcbede2"
+    },
+    {
+      "path": "docs/evidence/issue13-h09-2026-11-03/README.md",
+      "bytes": 1233,
+      "sha256": "2b346c56f425c6a86b849d24c3ea4c1db123ca038e2aecde9c731c7799687127"
+    },
+    {
+      "path": "docs/evidence/issue13-h09-2026-11-03/evidence.json",
+      "bytes": 8593,
+      "sha256": "dd7c4d58a2a39500b29a5a6444e883a7936ed9292263233bce76d1cd2864bfdc"
+    },
+    {
+      "path": "docs/evidence/issue13-h09-2026-11-04/README.md",
+      "bytes": 3943,
+      "sha256": "9304ba2fc895d0843b349651351b3e35f11cf2b9a66f6e3aa340818fd64c49e7"
+    },
+    {
+      "path": "docs/evidence/issue13-h09-2026-11-04/evidence.json",
+      "bytes": 57202,
+      "sha256": "fffbe796708a6c7e0e938f89eaa30933354c5d4473f2b4b45947c153c95d7f1e"
+    },
+    {
+      "path": "docs/evidence/issue13-h09-2026-11-04/gui-starting-stop-incomplete.png",
+      "bytes": 14880,
+      "sha256": "c74d1301cce30d5f267c99d1544aa28090ed43821c9e9481d002d1024f5292cc"
+    },
+    {
+      "path": "docs/evidence/issue13-independent-host-2026-11-03/03-reopened.png",
+      "bytes": 20619,
+      "sha256": "d76d23f7c27f379c6fbcd5575bf3179f65312aa0505409ff8c091c29e3671a36"
+    },
+    {
+      "path": "docs/evidence/issue13-independent-host-2026-11-03/README.md",
+      "bytes": 1755,
+      "sha256": "b23f3c938882d3cea14d76a71d00e106fd0fde9217825e4b4f51107eec2e66dd"
+    },
+    {
+      "path": "docs/evidence/issue13-independent-host-2026-11-03/acceptance-receipt.md",
+      "bytes": 2057,
+      "sha256": "b65470e524efd314e8100cf3a1134d1d1c6b4a265f82fe52c4d91e2d92c9a8fa"
+    },
+    {
+      "path": "docs/evidence/issue13-independent-host-2026-11-03/evidence.json",
+      "bytes": 1333,
+      "sha256": "8705f270a0d33d27e64a119cd14dd8784d1cbb60c100ea53d3db2fadcfce3d9f"
+    },
+    {
+      "path": "docs/evidence/issue13-rtt-cycle-2026-11-03/README.md",
+      "bytes": 2281,
+      "sha256": "dc3b703f1c5799129d0a71e78a74f1aa0b441cfd2001d0cb2c4f5f4377707ce1"
+    },
+    {
+      "path": "docs/evidence/issue13-rtt-cycle-2026-11-03/cycle-exe-recovered.png",
+      "bytes": 14076,
+      "sha256": "002b6a202bf67c55eff88e99f7703b97412e250e3bf17da51e03fe3ec348442c"
+    },
+    {
+      "path": "docs/evidence/issue13-rtt-cycle-2026-11-03/evidence.json",
+      "bytes": 56997,
+      "sha256": "24343517f9ece3de73c1835fe03c93dc4d586a33293a1e277fa3a51f19944888"
+    },
+    {
+      "path": "docs/evidence/issue13-two-probe-2026-11-03/README.md",
+      "bytes": 2168,
+      "sha256": "eb6d389f126efe76594f57d330c36802c82cda96998fb4411c31bab5a0a4ad63"
+    },
+    {
+      "path": "docs/evidence/issue13-two-probe-2026-11-03/evidence.json",
+      "bytes": 38813,
+      "sha256": "60ca1378520dc3ff7045705f770cc93433d08e8a2736870d50eec0a7d4f0762a"
+    },
+    {
+      "path": "docs/evidence/issue13-two-probe-2026-11-03/package-two-reconnecting.png",
+      "bytes": 15606,
+      "sha256": "bdc6e32dca4113595c55ffb534dc91de0e21e5ffb096e8919da91d9baa59bc01"
+    }
+  ]
+}

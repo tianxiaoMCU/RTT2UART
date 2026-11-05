@@ -1,0 +1,2741 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-h05-2026-11-03",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "target-source.json": {
+      "source_sha256": "45ea1e41468ee8cdffce8cc9ae7e678ad074192c1a8ff18ad6b7152d1444768f",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:00:30.409995+00:00",
+        "scope": "Source Bridge, actual J-Link/SRAM/COM; no fabricated API results",
+        "A": 601012352,
+        "B": 59400616,
+        "phase": "complete",
+        "events": [
+          {
+            "seconds": 1.202999999979511,
+            "phase": "target_auto_on_baseline",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 1.7820000000065193,
+            "phase": "target_auto_on_baseline",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 24.06300000002375,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_on",
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 24.07799999997951,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_on",
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 26.43800000002375,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_on",
+            "state": "Reconnecting",
+            "reason": "USB reconnect: Unspecified error.",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 74.75,
+            "phase": "Target_restored_down_RTT_absent",
+            "state": "Reconnecting",
+            "reason": "USB reconnect: RTT channel 0 readiness timed out: RTT channel 0 is unavailable",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 80.26600000000326,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 81.03200000000652,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "state": "Stopping",
+            "reason": "",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 81.09399999998277,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "state": "Stopped",
+            "reason": "",
+            "discarded_bytes": 21,
+            "serial": 601012352
+          },
+          {
+            "seconds": 81.10999999998603,
+            "phase": "target_auto_off_baseline",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 81.60999999998603,
+            "phase": "target_auto_off_baseline",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 103.93800000002375,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_off",
+            "state": "Stopping",
+            "reason": "USB RTT read: USB RTT read: Unspecified error.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 103.98499999998603,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_off",
+            "state": "Failed",
+            "reason": "USB RTT read: USB RTT read: Unspecified error.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 168.59399999998277,
+            "phase": "manual_restart_after_Target_restore",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 169.10999999998603,
+            "phase": "manual_restart_after_Target_restore",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 169.48499999998603,
+            "phase": "manual_restart_after_Target_restore",
+            "state": "Stopping",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 169.56300000002375,
+            "phase": "manual_restart_after_Target_restore",
+            "state": "Stopped",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          }
+        ],
+        "native": [
+          {
+            "seconds": 1.2349999999860302,
+            "phase": "target_auto_on_baseline",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 1.3599999999860302,
+            "phase": "target_auto_on_baseline",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 25.09399999998277,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_on",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 25.17200000002049,
+            "phase": "waiting_for_A_SWCLK_disconnect_auto_on",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 28.43800000002375,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 28.51600000000326,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 34.60999999998603,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 34.68800000002375,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 40.57799999997951,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 40.65700000000652,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 46.75,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 46.82799999997951,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 52.92200000002049,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 53.0,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 58.81300000002375,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 58.875,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 64.95299999997951,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 65.03200000000652,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "error": "JLinkException('Unspecified error.')"
+          },
+          {
+            "seconds": 71.20299999997951,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 71.26600000000326,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 79.76600000000326,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 79.82799999997951,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 81.14100000000326,
+            "phase": "target_auto_off_baseline",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 81.21899999998277,
+            "phase": "target_auto_off_baseline",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 168.625,
+            "phase": "manual_restart_after_Target_restore",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 168.7029999999795,
+            "phase": "manual_restart_after_Target_restore",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          }
+        ],
+        "mutations": [
+          {
+            "seconds": 71.70299999997951,
+            "phase": "waiting_for_A_SWCLK_restore_with_down_RTT_absent",
+            "thread": "bridge-recovery",
+            "address": "0x24000020",
+            "before": [
+              1,
+              1
+            ],
+            "after": [
+              1,
+              0
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 80.06300000002375,
+            "phase": "Target_and_both_RTT_directions_restored",
+            "thread": "bridge-recovery",
+            "address": "0x24000020",
+            "before": [
+              1,
+              0
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 170.59399999998277,
+            "phase": "complete",
+            "thread": "MainThread",
+            "address": "0x24000020",
+            "before": [
+              1,
+              1
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          }
+        ],
+        "result": "pass",
+        "script_sha256": "d31852b3749dce69c22a2a00a422abc381efd8065d729a1f00f19df63962f219",
+        "fault_method": "Operator disconnects only A SWCLK; SRAM down-count zero on partial restoration",
+        "candidate_source_hashes_match": true,
+        "A_before": {
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            2787,
+            2787,
+            593957522
+          ],
+          "target_voltage_mv": 3277,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "B_before": {
+          "uid": [
+            3342405,
+            809062660,
+            959461432
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            65536,
+            65536,
+            817188117
+          ],
+          "target_voltage_mv": 3241,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "baseline_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d424153454c494e4500ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d424153454c494e4500ff0d0a"
+        },
+        "outage_marker_hex": "4830352d5441524745542d4f555441474500ff0d0a",
+        "inventory_during_Target_loss": [
+          59400616,
+          601012352
+        ],
+        "restored_output_hex": "",
+        "recovered_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d5245434f564552454400ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d5245434f564552454400ff0d0a"
+        },
+        "auto_off_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d4155544f2d4f464600ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d4155544f2d4f464600ff0d0a"
+        },
+        "no_automatic_restart_after_Target_restore": true,
+        "manual_restart_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d4d414e55414c2d5245535441525400ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d5441524745542d4d414e55414c2d5245535441525400ff0d0a"
+        },
+        "A_after": {
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            3910,
+            3910,
+            648527037
+          ],
+          "target_voltage_mv": 3283,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "B_after": {
+          "uid": [
+            3342405,
+            809062660,
+            959461432
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            65536,
+            65536,
+            871783186
+          ],
+          "target_voltage_mv": 3235,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "owned_com_reacquired": true,
+        "final_rtt_counts": [
+          1,
+          1
+        ],
+        "final_probe_closed": true,
+        "peer_closed": true
+      }
+    },
+    "rtt-source.json": {
+      "source_sha256": "4ff5ec46eb55b1b9f62b311d2eb0493d6f0be66d398514ffef5a66aef1c7bb8a",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T00:56:19.507699+00:00",
+        "scope": "Source Bridge, actual J-Link/SRAM/COM; no fabricated API results",
+        "A": 601012352,
+        "B": 59400616,
+        "phase": "complete",
+        "events": [
+          {
+            "seconds": 1.1880000000237487,
+            "phase": "auto_on_baseline",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 1.7190000000409782,
+            "phase": "auto_on_baseline",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 2.1880000000237487,
+            "phase": "both_rtt_directions_absent",
+            "state": "Reconnecting",
+            "reason": "USB RTT read: J-Link DLL is not open.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 2.219000000040978,
+            "phase": "both_rtt_directions_absent",
+            "state": "Reconnecting",
+            "reason": "USB RTT read: J-Link DLL is not open.",
+            "discarded_bytes": 18,
+            "serial": 601012352
+          },
+          {
+            "seconds": 6.594000000040978,
+            "phase": "both_rtt_directions_absent",
+            "state": "Reconnecting",
+            "reason": "USB reconnect: RTT channel 0 readiness timed out: RTT channel 0 is unavailable",
+            "discarded_bytes": 18,
+            "serial": 601012352
+          },
+          {
+            "seconds": 26.07800000003772,
+            "phase": "full_rtt_restore",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 18,
+            "serial": 601012352
+          },
+          {
+            "seconds": 26.85899999999674,
+            "phase": "full_rtt_restore",
+            "state": "Stopping",
+            "reason": "",
+            "discarded_bytes": 18,
+            "serial": 601012352
+          },
+          {
+            "seconds": 26.92200000002049,
+            "phase": "full_rtt_restore",
+            "state": "Stopped",
+            "reason": "",
+            "discarded_bytes": 18,
+            "serial": 601012352
+          },
+          {
+            "seconds": 26.93800000002375,
+            "phase": "auto_off_baseline",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 27.48399999999674,
+            "phase": "auto_off_baseline",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 27.95300000003772,
+            "phase": "auto_off_rtt_loss",
+            "state": "Stopping",
+            "reason": "USB RTT read: USB RTT read: J-Link DLL is not open.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 27.969000000040978,
+            "phase": "auto_off_rtt_loss",
+            "state": "Failed",
+            "reason": "USB RTT read: USB RTT read: J-Link DLL is not open.",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 31.42200000002049,
+            "phase": "manual_restart_after_terminal_failure",
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": null
+          },
+          {
+            "seconds": 32.17200000002049,
+            "phase": "manual_restart_after_terminal_failure",
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 32.54700000002049,
+            "phase": "manual_restart_after_terminal_failure",
+            "state": "Stopping",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          },
+          {
+            "seconds": 32.625,
+            "phase": "manual_restart_after_terminal_failure",
+            "state": "Stopped",
+            "reason": "",
+            "discarded_bytes": 0,
+            "serial": 601012352
+          }
+        ],
+        "native": [
+          {
+            "seconds": 1.2190000000409782,
+            "phase": "auto_on_baseline",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 1.297000000020489,
+            "phase": "auto_on_baseline",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 3.219000000040978,
+            "phase": "both_rtt_directions_absent",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 3.297000000020489,
+            "phase": "both_rtt_directions_absent",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 8.625,
+            "phase": "up_only_partial_restore",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 8.703000000037719,
+            "phase": "up_only_partial_restore",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 17.04700000002049,
+            "phase": "down_only_partial_restore",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 17.14100000000326,
+            "phase": "down_only_partial_restore",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 25.54700000002049,
+            "phase": "full_rtt_restore",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 25.625,
+            "phase": "full_rtt_restore",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 26.98399999999674,
+            "phase": "auto_off_baseline",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 27.06300000002375,
+            "phase": "auto_off_baseline",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 28.01600000000326,
+            "phase": "auto_off_full_restore_no_restart",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 28.10899999999674,
+            "phase": "auto_off_full_restore_no_restart",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 31.56300000002375,
+            "phase": "manual_restart_after_terminal_failure",
+            "method": "open",
+            "requested_serial": 601012352,
+            "completed": true,
+            "observed_serial": 601012352
+          },
+          {
+            "seconds": 31.67200000002049,
+            "phase": "manual_restart_after_terminal_failure",
+            "method": "connect",
+            "completed": true,
+            "observed_serial": 601012352
+          }
+        ],
+        "mutations": [
+          {
+            "seconds": 2.1410000000032596,
+            "phase": "both_rtt_directions_absent",
+            "thread": "bridge-io",
+            "address": "0x24000020",
+            "before": [
+              1,
+              1
+            ],
+            "after": [
+              0,
+              0
+            ],
+            "target_connected": true,
+            "halted_at_sample": false,
+            "native_probe_session_explicitly_closed": true
+          },
+          {
+            "seconds": 8.938000000023749,
+            "phase": "up_only_partial_restore",
+            "thread": "bridge-recovery",
+            "address": "0x24000020",
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              1,
+              0
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 17.39100000000326,
+            "phase": "down_only_partial_restore",
+            "thread": "bridge-recovery",
+            "address": "0x24000020",
+            "before": [
+              1,
+              0
+            ],
+            "after": [
+              0,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 25.875,
+            "phase": "full_rtt_restore",
+            "thread": "bridge-recovery",
+            "address": "0x24000020",
+            "before": [
+              0,
+              1
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 27.89100000000326,
+            "phase": "auto_off_rtt_loss",
+            "thread": "bridge-io",
+            "address": "0x24000020",
+            "before": [
+              1,
+              1
+            ],
+            "after": [
+              0,
+              0
+            ],
+            "target_connected": true,
+            "halted_at_sample": false,
+            "native_probe_session_explicitly_closed": true
+          },
+          {
+            "seconds": 28.375,
+            "phase": "auto_off_full_restore_no_restart",
+            "thread": "MainThread",
+            "address": "0x24000020",
+            "before": [
+              0,
+              0
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          },
+          {
+            "seconds": 34.18800000002375,
+            "phase": "complete",
+            "thread": "MainThread",
+            "address": "0x24000020",
+            "before": [
+              1,
+              1
+            ],
+            "after": [
+              1,
+              1
+            ],
+            "target_connected": true,
+            "halted_at_sample": false
+          }
+        ],
+        "result": "pass",
+        "candidate_source_hashes_match": true,
+        "A_before": {
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            1136,
+            1136,
+            513279337
+          ],
+          "target_voltage_mv": 3315,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "B_before": {
+          "uid": [
+            3342405,
+            809062660,
+            959461432
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            65536,
+            65536,
+            736363275
+          ],
+          "target_voltage_mv": 3238,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "baseline_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d424153454c494e4500ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d424153454c494e4500ff0d0a"
+        },
+        "outage_marker_hex": "4830352d5254542d4f555441474500ff0d0a",
+        "restored_output_hex": "",
+        "recovered_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4155544f2d5245434f564552454400ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4155544f2d5245434f564552454400ff0d0a"
+        },
+        "auto_off_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4155544f2d4f464600ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4155544f2d4f464600ff0d0a"
+        },
+        "manual_restart_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4d414e55414c2d5245535441525400ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4d414e55414c2d5245535441525400ff0d0a"
+        },
+        "A_after": {
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            2236,
+            2236,
+            523732458
+          ],
+          "target_voltage_mv": 3309,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "B_after": {
+          "uid": [
+            3342405,
+            809062660,
+            959461432
+          ],
+          "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+          "stats": [
+            1213355092,
+            65536,
+            65536,
+            746958993
+          ],
+          "target_voltage_mv": 3240,
+          "halted_at_sample": false,
+          "connection_closed_on_return": true
+        },
+        "owned_com_reacquired": true,
+        "final_rtt_counts": [
+          1,
+          1
+        ],
+        "final_probe_closed": true,
+        "peer_closed": true
+      }
+    },
+    "native-metadata-diagnostic.json": {
+      "source_sha256": "05867021713653db1b895983f13e7e40b7065d41a78c2556526455def864a4ca",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "samples": [
+          {
+            "label": "baseline",
+            "ram_counts": [
+              1,
+              1
+            ],
+            "native_counts": [
+              1,
+              1
+            ],
+            "native_sizes": [
+              4096,
+              4096
+            ]
+          },
+          {
+            "label": "zero_metadata_existing_session",
+            "ram_counts": [
+              0,
+              0
+            ],
+            "native_counts": [
+              1,
+              1
+            ],
+            "native_sizes": [
+              4096,
+              4096
+            ]
+          },
+          {
+            "label": "native_session_stopped",
+            "ram_counts": [
+              0,
+              0
+            ],
+            "native_counts": [
+              1,
+              1
+            ],
+            "native_sizes": [
+              4096,
+              4096
+            ]
+          },
+          {
+            "label": "native_session_restarted_zero_metadata",
+            "ram_counts": [
+              0,
+              0
+            ],
+            "native_counts": [
+              1,
+              1
+            ],
+            "native_sizes": [
+              4096,
+              4096
+            ]
+          },
+          {
+            "label": "native_session_restarted_up_only",
+            "ram_counts": [
+              1,
+              0
+            ],
+            "native_counts": [
+              1,
+              1
+            ],
+            "native_sizes": [
+              4096,
+              4096
+            ]
+          }
+        ],
+        "result": "completed-diagnostic",
+        "final_counts": [
+          1,
+          1
+        ],
+        "probe_closed": true
+      }
+    },
+    "package-set-up-only.json": {
+      "source_sha256": "9669aefa40b156efd62b846f9048b76f2f1e51691d8b14e8ebe8215783b4d357",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:34.160815+00:00",
+        "serial": 601012352,
+        "result": "pass",
+        "writes": "Only SRAM 0x24000020..27",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "before": [
+          0,
+          0
+        ],
+        "native_write_return": 8,
+        "after": [
+          1,
+          0
+        ],
+        "target_connected": true,
+        "halted_at_sample": false,
+        "probe_closed": true
+      }
+    },
+    "package-set-down-only.json": {
+      "source_sha256": "db7589c316c197ba1f02a4fa0da43f28b92b5784519d1409339d07fcb3ce0a30",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:39.703358+00:00",
+        "serial": 601012352,
+        "result": "pass",
+        "writes": "Only SRAM 0x24000020..27",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "before": [
+          1,
+          0
+        ],
+        "native_write_return": 8,
+        "after": [
+          0,
+          1
+        ],
+        "target_connected": true,
+        "halted_at_sample": false,
+        "probe_closed": true
+      }
+    },
+    "package-set-none.json": {
+      "source_sha256": "0f04c21f216f3892b0430f759744bfd56b7869dbf6455b8ea506335da052a2a3",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:10.953398+00:00",
+        "serial": 601012352,
+        "result": "pass",
+        "writes": "Only SRAM 0x24000020..27",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "before": [
+          0,
+          0
+        ],
+        "native_write_return": 8,
+        "after": [
+          0,
+          0
+        ],
+        "target_connected": true,
+        "halted_at_sample": false,
+        "probe_closed": true
+      }
+    },
+    "package-h05-target-reconnecting.json": {
+      "source_sha256": "22a7a03ee93b595c4398da581f4b18257e56d589eb09d65c69e09e38389d7823",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:09:27.1090481Z",
+        "observations": {
+          "fault": "Only A SWCLK disconnected",
+          "auto_reconnect": "On",
+          "outage_marker_bytes": 25
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Stop",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": false,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Reconnecting\nUSB probe: 601012352\nUSB reconnect: Unspecified error.\nObserved discarded input: 25 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-target-recovered.json": {
+      "source_sha256": "3fde86f5082a6eff790e94c047e273e8e9c0d69dc46c225f2441eff599cf5411",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:10:02.9895231Z",
+        "observations": {
+          "observed_discarded_bytes": 25,
+          "operator": "A SWCLK restored",
+          "auto_reconnect": "On"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Stop",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": false,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Running\nUSB probe: 601012352\nObserved discarded input: 25 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-target-failed-off.json": {
+      "source_sha256": "7ac12b5e6aa7aed7575bdf5b1eca52e271e744d7ca6a44cb31387249ec81da32",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:10:42.0123292Z",
+        "observations": {
+          "expected": "Terminal Failed",
+          "auto_reconnect": "Off",
+          "fault": "Only A SWCLK disconnected"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": true,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB RTT read: USB RTT read: Unspecified error.\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-target-restored-still-failed.json": {
+      "source_sha256": "0bf10612f1b995716db17684df02552d893f27e27e51193a0fb544f75ad7e617",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:11:31.5991485Z",
+        "observations": {
+          "operator": "A SWCLK restored",
+          "auto_reconnect": "Off",
+          "observation_seconds": 3
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": true,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB RTT read: USB RTT read: Unspecified error.\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-rtt-up-only-failed.json": {
+      "source_sha256": "5fea5f261342205622f91571780ed685c8c780527f3836b12234219319a9b1c7",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:38.7461372Z",
+        "observations": {
+          "ram_up": 1,
+          "expected": "Initial readiness failure remains terminal even with recovery On",
+          "ram_down": 0,
+          "auto_reconnect": "On"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": true,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB connect/readiness: RTT channel 0 readiness timed out: RTT channel 0 is unavailable\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-rtt-down-only-failed.json": {
+      "source_sha256": "6c987c81e5d052462a2ab4aa1ef187f0dbe232bdd55947a6af02e33ab813c611",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:44.2289266Z",
+        "observations": {
+          "expected": "Missing either direction never starts Running",
+          "ram_down": 1,
+          "ram_up": 0,
+          "auto_reconnect": "On"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": true,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB connect/readiness: RTT channel 0 readiness timed out: RTT channel 0 is unavailable\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-h05-rtt-none-verified-failed.json": {
+      "source_sha256": "6feb0bcbf5cef339c110b8abb5266cb4e389a36e40463d13ef4d153a819bbaee",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:06:15.5853737Z",
+        "observations": {
+          "ram_up": 0,
+          "expected": "Initial readiness failure is terminal",
+          "auto_reconnect": "Off",
+          "ram_down": 0
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.lineEdit_serialno",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Edit",
+            "enabled": true,
+            "value": "601012352"
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB connect/readiness: RTT channel 0 readiness timed out: RTT channel 0 is unavailable\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "package-manual-restart-echo.json": {
+      "source_sha256": "6d0ac1d9c160ec7beaa7c8b031e1d923502047df64a6b179fe04b03656d8b725",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "outage": false,
+        "label": "H05-EXE-MANUAL-RESTART",
+        "output_before_send_hex": "",
+        "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4558452d4d414e55414c2d5245535441525400ff0d0a",
+        "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4558452d4d414e55414c2d5245535441525400ff0d0a",
+        "peer_closed": true
+      }
+    },
+    "package-recovered-echo.json": {
+      "source_sha256": "2282fced3dd9c611a5e599bc314c33e74f47f994e0c9e74fb3deeca3d1873d20",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "outage": false,
+        "label": "H05-EXE-RECOVERED",
+        "output_before_send_hex": "",
+        "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4558452d5245434f564552454400ff0d0a",
+        "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830352d4558452d5245434f564552454400ff0d0a",
+        "peer_closed": true
+      }
+    },
+    "package-outage-marker.json": {
+      "source_sha256": "54d8f9a678570a33bfc20370a1f972fb2836c8f5a9d2792aee58e023c0b224ac",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "outage": true,
+        "label": "outage",
+        "output_before_send_hex": "",
+        "sent_hex": "4830352d4558452d5441524745542d4f555441474500ff0d0a",
+        "peer_closed": true
+      }
+    },
+    "package-process-exit.json": {
+      "source_sha256": "c3d43022f93a893e70b3e59ae2d59f6d88d6b18233caf96881da91fc79556471",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "deployment": "D:\\codex\\RTT2UART\\build\\issue13-h05-2026-11-03\\deployment\\rtt2uart.exe",
+        "remaining_processes": 0,
+        "normal_close": "UIA WindowPattern.Close while Running; observed complete process exit"
+      }
+    },
+    "package-final.json": {
+      "source_sha256": "947558b1031dbe0a4fdf46184ba2121400543922aa5cefada2182d347a68d982",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T01:12:08.715894+00:00",
+        "targets": [
+          {
+            "serial": 601012352,
+            "uid": [
+              4063287,
+              808472845,
+              892547897
+            ],
+            "stats": [
+              1213355092,
+              4745,
+              4745,
+              818811386
+            ],
+            "rtt_counts": [
+              1,
+              1
+            ],
+            "halted_at_sample": false,
+            "native_version": "7.54d",
+            "hardware_version": "11.00",
+            "firmware_version": "J-Link V11 compiled Mar 15 2023 11:20:48",
+            "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "probe_closed": true
+          },
+          {
+            "serial": 59400616,
+            "uid": [
+              3342405,
+              809062660,
+              959461432
+            ],
+            "stats": [
+              1213355092,
+              65536,
+              65536,
+              1042149792
+            ],
+            "rtt_counts": [
+              1,
+              1
+            ],
+            "halted_at_sample": false,
+            "native_version": "7.54d",
+            "hardware_version": "9.40",
+            "firmware_version": "J-Link V9 compiled May  7 2021 16:26:12",
+            "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "probe_closed": true
+          }
+        ],
+        "ports": {
+          "COM1": {
+            "reacquired": true,
+            "closed": true
+          },
+          "COM2": {
+            "reacquired": true,
+            "closed": true
+          }
+        },
+        "result": "pass"
+      }
+    }
+  }
+}

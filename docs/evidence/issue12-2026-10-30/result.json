@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-30",
+  "source_revision": "25ac209",
+  "windows": "Windows-10-10.0.19045-SP0",
+  "exe_sha256": "93294b5ada72536623014bba23d1ad59f0906016c5c4a448cc10871751fc234d",
+  "method": "Windows UI Automation control patterns and state reads; targeted Win32 Home/Down/Enter messages to the UIA-discovered Qt popup commit combo choices; PrintWindow/GetWindowRect visual capture.",
+  "initial_legacy_settings": [
+    {
+      "id": "dialog.groupBox.comboBox_Interface",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "SWD"
+    },
+    {
+      "id": "dialog.groupBox.comboBox_Speed",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "600 kHz"
+    },
+    {
+      "id": "dialog.groupBox_2.comboBox_Device",
+      "name": "Specify Target Device",
+      "enabled": true,
+      "value": "STM32F103C8"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_Port",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "COM13"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_baudrate",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "9600"
+    },
+    {
+      "id": "dialog.checkBox_resettarget",
+      "name": "Reset target",
+      "enabled": true,
+      "value": "",
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_usb",
+      "name": "USB",
+      "enabled": true,
+      "value": "",
+      "selected": true,
+      "toggle": "On"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_existing",
+      "name": "Existing Session",
+      "enabled": true,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_tcpip",
+      "name": "TCP/IP",
+      "enabled": false,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.checkBox__auto",
+      "name": "Auto Reconnect",
+      "enabled": true,
+      "value": "",
+      "toggle": "Off"
+    }
+  ],
+  "before_normal_close": [
+    {
+      "id": "dialog.groupBox.comboBox_Interface",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "JTAG"
+    },
+    {
+      "id": "dialog.groupBox.comboBox_Speed",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "750 kHz"
+    },
+    {
+      "id": "dialog.groupBox_2.comboBox_Device",
+      "name": "Specify Target Device",
+      "enabled": true,
+      "value": "STM32F407VG"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_Port",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "COM13"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_baudrate",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "19200"
+    },
+    {
+      "id": "dialog.checkBox_resettarget",
+      "name": "Reset target",
+      "enabled": true,
+      "value": "",
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_usb",
+      "name": "USB",
+      "enabled": true,
+      "value": "",
+      "selected": true,
+      "toggle": "On"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_existing",
+      "name": "Existing Session",
+      "enabled": true,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_tcpip",
+      "name": "TCP/IP",
+      "enabled": false,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.checkBox__auto",
+      "name": "Auto Reconnect",
+      "enabled": true,
+      "value": "",
+      "toggle": "On"
+    }
+  ],
+  "after_reopen": [
+    {
+      "id": "dialog.groupBox.comboBox_Interface",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "JTAG"
+    },
+    {
+      "id": "dialog.groupBox.comboBox_Speed",
+      "name": "Target Interface And Speed",
+      "enabled": true,
+      "value": "750 kHz"
+    },
+    {
+      "id": "dialog.groupBox_2.comboBox_Device",
+      "name": "Specify Target Device",
+      "enabled": true,
+      "value": "STM32F407VG"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_Port",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "COM13"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_baudrate",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "19200"
+    },
+    {
+      "id": "dialog.checkBox_resettarget",
+      "name": "Reset target",
+      "enabled": true,
+      "value": "",
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_usb",
+      "name": "USB",
+      "enabled": true,
+      "value": "",
+      "selected": true,
+      "toggle": "On"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_existing",
+      "name": "Existing Session",
+      "enabled": true,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_tcpip",
+      "name": "TCP/IP",
+      "enabled": false,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.checkBox__auto",
+      "name": "Auto Reconnect",
+      "enabled": true,
+      "value": "",
+      "toggle": "Off"
+    }
+  ],
+  "existing_session": [
+    {
+      "id": "dialog.groupBox.comboBox_Interface",
+      "name": "Target Interface And Speed",
+      "enabled": false,
+      "value": "JTAG"
+    },
+    {
+      "id": "dialog.groupBox.comboBox_Speed",
+      "name": "Target Interface And Speed",
+      "enabled": false,
+      "value": "750 kHz"
+    },
+    {
+      "id": "dialog.groupBox_2.comboBox_Device",
+      "name": "Specify Target Device",
+      "enabled": false,
+      "value": "STM32F407VG"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_Port",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "COM13"
+    },
+    {
+      "id": "dialog.groupBox_UART.comboBox_baudrate",
+      "name": "UART Config",
+      "enabled": true,
+      "value": "19200"
+    },
+    {
+      "id": "dialog.checkBox_resettarget",
+      "name": "Reset target",
+      "enabled": false,
+      "value": "",
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_usb",
+      "name": "USB",
+      "enabled": true,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_existing",
+      "name": "Existing Session",
+      "enabled": true,
+      "value": "",
+      "selected": true,
+      "toggle": "On"
+    },
+    {
+      "id": "dialog.groupBox_3.radioButton_tcpip",
+      "name": "TCP/IP",
+      "enabled": false,
+      "value": "",
+      "selected": false,
+      "toggle": "Off"
+    },
+    {
+      "id": "dialog.groupBox_3.checkBox__auto",
+      "name": "Auto Reconnect",
+      "enabled": true,
+      "value": "",
+      "toggle": "On"
+    }
+  ],
+  "normal_close": [
+    {
+      "pid": 12308,
+      "exited": true,
+      "exit_code": null
+    },
+    {
+      "pid": 13040,
+      "exited": true,
+      "exit_code": null
+    }
+  ],
+  "saved_settings": {
+    "device": [
+      "STM32F407VG",
+      "STM32F103C8"
+    ],
+    "device_index": 0,
+    "interface": 0,
+    "speed": 11,
+    "port": 0,
+    "buadrate": 13
+  },
+  "single_instance": {
+    "second_pid": 13428,
+    "second_exited": true,
+    "second_exit_code": 0,
+    "original_pid": 12780
+  },
+  "passed": [
+    "visual main window and icon",
+    "catalog rendering",
+    "legacy settings load",
+    "USB/Existing Session idle mode switching and defaults",
+    "supported settings edit/save/normal close/reopen",
+    "catalog Cancel and empty OK preserve target",
+    "single instance",
+    "normal close from each idle mode",
+    "no smoke process left running"
+  ],
+  "not_tested": [
+    "bridge Start and live two-way COM/USB/RTT transfer",
+    "active-run native cleanup/recovery in the package",
+    "clean-host deployment",
+    "Windows.Graphics.Capture repair"
+  ]
+}

@@ -1,0 +1,1143 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-h08-2026-11-03",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "firmware-build.json": {
+      "source_sha256": "c64a13cd5c1a0250b06bf1759cc4e2ac9e0231a9d3ca9284e8d76d77b92bec06",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "compiler": "arm-none-eabi-gcc.exe (GNU Tools for STM32 10.3-2021.10.20211105-1100) 10.3.1 20210824 (release)",
+        "command": [
+          "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\\tools\\bin\\arm-none-eabi-gcc.exe",
+          "-mcpu=cortex-m7",
+          "-mthumb",
+          "-mfloat-abi=soft",
+          "-Os",
+          "-g3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-ffreestanding",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-nostartfiles",
+          "--specs=nano.specs",
+          "--specs=nosys.specs",
+          "-I",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt",
+          "-I",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750-core-observer\\segger-rtt-7.54d\\RTT",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\main.c",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750-core-observer\\segger-rtt-7.54d\\RTT\\SEGGER_RTT.c",
+          "-T",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\stm32h750.ld",
+          "-Wl,--gc-sections",
+          "-Wl,-Map=D:\\codex\\RTT2UART\\build\\issue13-h750-core-observer\\rtt-echo.map",
+          "-o",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750-core-observer\\rtt-echo.elf",
+          "-DRTT_FAULT_CYCLE",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\fault_cycle.c",
+          "-DCORE_OBSERVER",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\core_observer.c"
+        ],
+        "rtt_archive_sha256": "6b18a9d1dd47c2770ef65b977a2534471f13e35082d0597ab6ceb6364d75de73",
+        "source_sha256": {
+          "main.c": "91d04c21a2b561ee1452016175964095ca3c578c62702e2e9c0a29eb8d29fcdb",
+          "SEGGER_RTT_Conf.h": "54219a96365a22c1ca00fabad6dadc8ca69c8f651ab31914970aee1c3b71f982",
+          "stm32h750.ld": "534b48d5723354cdb046573784a04886efb3797cf8cbd2769ae022daa0f096b2",
+          "build.py": "851b6aa3c9b4e0019d151ebed866915c775fbe782c3eb68745b0b18e78565d86",
+          "fault_cycle.c": "fc2e82fc75a3d951b53299ab7197ccf910479eb3d3aeadd3e53d097cc407481b",
+          "core_observer.c": "d9607935688f9941dc6d333823d4e7f4e93c0123f8c2c1bac40466cc7020a61b"
+        },
+        "binary_bytes": 2144,
+        "binary_sha256": "63275bdda185a6da2e53192d8c96d7fd33b1519ae5a15ed960a142ccb4af9a00",
+        "elf_sha256": "9747a590fa0e1622dc03aa0ab730558ec25be31eabe1b6b482a7eb3bc971d0af",
+        "rtt_control_block": "0x24000010",
+        "test_stats": "0x24000000",
+        "self_check": "passed",
+        "fault_stats": "0x24002058",
+        "command_hex": "1b5b4830353a5254542d4f46465d0d0a",
+        "delay_ms": 3000,
+        "off_ms": 15000,
+        "core_observer": "0x24002090",
+        "observer_words": 534,
+        "capture_ticks": 2880000000,
+        "clock_hz": 64000000,
+        "threshold_ticks": 6400,
+        "observer_magic": "0x48303854",
+        "observer_counters": "TIM2 / debug-frozen TIM5"
+      }
+    },
+    "dual-calibration.json": {
+      "source_sha256": "6bf1d9c43eeeea9deaa2d76b934f4a759b575d6f79a519eedb0c4e1d6bbaccaf",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:20:41.027257+00:00",
+        "action": "calibrate",
+        "probe": 601012352,
+        "result": "pass",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "voltage_mv": 3349,
+        "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+        "baseline_arm": {
+          "magic": 1211119700,
+          "inverse_magic": 3083847595,
+          "boots": 1,
+          "inverse_boots": 4294967294,
+          "request": 300,
+          "acknowledged": 300,
+          "state": 1,
+          "start_boot": 1,
+          "elapsed_ticks": 156908,
+          "samples": 263,
+          "event_count": 1,
+          "dropped": 0,
+          "invalid_samples": 0,
+          "max_lag": 9,
+          "max_lead": 0,
+          "reset_flags": 21364736,
+          "config_mask": 0,
+          "duration_ticks": 2880000000,
+          "threshold_ticks": 6400,
+          "clock_hz": 64000000,
+          "sealed_boot": 0,
+          "sealed_reset_flags": 0,
+          "events": [
+            {
+              "kind": 0,
+              "boot": 1,
+              "ticks": 0,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            }
+          ]
+        },
+        "baseline": {
+          "magic": 1211119700,
+          "inverse_magic": 3083847595,
+          "boots": 1,
+          "inverse_boots": 4294967294,
+          "request": 2147483948,
+          "acknowledged": 2147483948,
+          "state": 2,
+          "start_boot": 1,
+          "elapsed_ticks": 36502668,
+          "samples": 57635,
+          "event_count": 1,
+          "dropped": 0,
+          "invalid_samples": 0,
+          "max_lag": 9,
+          "max_lead": 1,
+          "reset_flags": 21364736,
+          "config_mask": 0,
+          "duration_ticks": 2880000000,
+          "threshold_ticks": 6400,
+          "clock_hz": 64000000,
+          "sealed_boot": 1,
+          "sealed_reset_flags": 21364736,
+          "events": [
+            {
+              "kind": 0,
+              "boot": 1,
+              "ticks": 0,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            }
+          ]
+        },
+        "halt_controls": [
+          {
+            "requested_hold_seconds": 0.001,
+            "counter_first": [
+              352860853,
+              350313424
+            ],
+            "counter_second": [
+              353128860,
+              350313424
+            ],
+            "observer": {
+              "magic": 1211119700,
+              "inverse_magic": 3083847595,
+              "boots": 1,
+              "inverse_boots": 4294967294,
+              "request": 2147483949,
+              "acknowledged": 2147483949,
+              "state": 2,
+              "start_boot": 1,
+              "elapsed_ticks": 9421893,
+              "samples": 12208,
+              "event_count": 2,
+              "dropped": 0,
+              "invalid_samples": 0,
+              "max_lag": 1687849,
+              "max_lead": 1,
+              "reset_flags": 21364736,
+              "config_mask": 0,
+              "duration_ticks": 2880000000,
+              "threshold_ticks": 6400,
+              "clock_hz": 64000000,
+              "sealed_boot": 1,
+              "sealed_reset_flags": 21364736,
+              "events": [
+                {
+                  "kind": 0,
+                  "boot": 1,
+                  "ticks": 0,
+                  "timer_delta": 0,
+                  "running_delta": 0,
+                  "lag": 0,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                },
+                {
+                  "kind": 2,
+                  "boot": 1,
+                  "ticks": 6057654,
+                  "timer_delta": 1688519,
+                  "running_delta": 670,
+                  "lag": 1687849,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                }
+              ]
+            }
+          },
+          {
+            "requested_hold_seconds": 0.01,
+            "counter_first": [
+              366567942,
+              362411597
+            ],
+            "counter_second": [
+              367438966,
+              362411597
+            ],
+            "observer": {
+              "magic": 1211119700,
+              "inverse_magic": 3083847595,
+              "boots": 1,
+              "inverse_boots": 4294967294,
+              "request": 2147483950,
+              "acknowledged": 2147483950,
+              "state": 2,
+              "start_boot": 1,
+              "elapsed_ticks": 9916546,
+              "samples": 12146,
+              "event_count": 2,
+              "dropped": 0,
+              "invalid_samples": 0,
+              "max_lag": 2221902,
+              "max_lead": 11,
+              "reset_flags": 21364736,
+              "config_mask": 0,
+              "duration_ticks": 2880000000,
+              "threshold_ticks": 6400,
+              "clock_hz": 64000000,
+              "sealed_boot": 1,
+              "sealed_reset_flags": 21364736,
+              "events": [
+                {
+                  "kind": 0,
+                  "boot": 1,
+                  "ticks": 0,
+                  "timer_delta": 0,
+                  "running_delta": 0,
+                  "lag": 0,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                },
+                {
+                  "kind": 2,
+                  "boot": 1,
+                  "ticks": 6579592,
+                  "timer_delta": 2222588,
+                  "running_delta": 686,
+                  "lag": 2221902,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                }
+              ]
+            }
+          },
+          {
+            "requested_hold_seconds": 0.05,
+            "counter_first": [
+              380998209,
+              374614787
+            ],
+            "counter_second": [
+              384394491,
+              374614787
+            ],
+            "observer": {
+              "magic": 1211119700,
+              "inverse_magic": 3083847595,
+              "boots": 1,
+              "inverse_boots": 4294967294,
+              "request": 2147483951,
+              "acknowledged": 2147483951,
+              "state": 2,
+              "start_boot": 1,
+              "elapsed_ticks": 12508648,
+              "samples": 12227,
+              "event_count": 2,
+              "dropped": 0,
+              "invalid_samples": 0,
+              "max_lag": 4762548,
+              "max_lead": 1,
+              "reset_flags": 21364736,
+              "config_mask": 0,
+              "duration_ticks": 2880000000,
+              "threshold_ticks": 6400,
+              "clock_hz": 64000000,
+              "sealed_boot": 1,
+              "sealed_reset_flags": 21364736,
+              "events": [
+                {
+                  "kind": 0,
+                  "boot": 1,
+                  "ticks": 0,
+                  "timer_delta": 0,
+                  "running_delta": 0,
+                  "lag": 0,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                },
+                {
+                  "kind": 2,
+                  "boot": 1,
+                  "ticks": 9171669,
+                  "timer_delta": 4763207,
+                  "running_delta": 659,
+                  "lag": 4762548,
+                  "config_mask": 0,
+                  "reset_flags": 21364736
+                }
+              ]
+            }
+          }
+        ],
+        "reset_control": {
+          "magic": 1211119700,
+          "inverse_magic": 3083847595,
+          "boots": 2,
+          "inverse_boots": 4294967293,
+          "request": 2147483952,
+          "acknowledged": 2147483952,
+          "state": 2,
+          "start_boot": 1,
+          "elapsed_ticks": 10893839,
+          "samples": 17197,
+          "event_count": 2,
+          "dropped": 0,
+          "invalid_samples": 0,
+          "max_lag": 9,
+          "max_lead": 7,
+          "reset_flags": 21364736,
+          "config_mask": 0,
+          "duration_ticks": 2880000000,
+          "threshold_ticks": 6400,
+          "clock_hz": 64000000,
+          "sealed_boot": 2,
+          "sealed_reset_flags": 21364736,
+          "events": [
+            {
+              "kind": 0,
+              "boot": 1,
+              "ticks": 0,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 1,
+              "boot": 2,
+              "ticks": 4377128,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            }
+          ]
+        },
+        "reset_after_seal_control": {
+          "before": {
+            "magic": 1211119700,
+            "inverse_magic": 3083847595,
+            "boots": 2,
+            "inverse_boots": 4294967293,
+            "request": 2147483952,
+            "acknowledged": 2147483952,
+            "state": 2,
+            "start_boot": 1,
+            "elapsed_ticks": 10893839,
+            "samples": 17197,
+            "event_count": 2,
+            "dropped": 0,
+            "invalid_samples": 0,
+            "max_lag": 9,
+            "max_lead": 7,
+            "reset_flags": 21364736,
+            "config_mask": 0,
+            "duration_ticks": 2880000000,
+            "threshold_ticks": 6400,
+            "clock_hz": 64000000,
+            "sealed_boot": 2,
+            "sealed_reset_flags": 21364736,
+            "events": [
+              {
+                "kind": 0,
+                "boot": 1,
+                "ticks": 0,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 1,
+                "boot": 2,
+                "ticks": 4377128,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              }
+            ]
+          },
+          "after": {
+            "magic": 1211119700,
+            "inverse_magic": 3083847595,
+            "boots": 3,
+            "inverse_boots": 4294967292,
+            "request": 2147483952,
+            "acknowledged": 2147483952,
+            "state": 2,
+            "start_boot": 1,
+            "elapsed_ticks": 10893839,
+            "samples": 17197,
+            "event_count": 2,
+            "dropped": 0,
+            "invalid_samples": 0,
+            "max_lag": 9,
+            "max_lead": 7,
+            "reset_flags": 21364736,
+            "config_mask": 0,
+            "duration_ticks": 2880000000,
+            "threshold_ticks": 6400,
+            "clock_hz": 64000000,
+            "sealed_boot": 2,
+            "sealed_reset_flags": 21364736,
+            "events": [
+              {
+                "kind": 0,
+                "boot": 1,
+                "ticks": 0,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 1,
+                "boot": 2,
+                "ticks": 4377128,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              }
+            ]
+          }
+        },
+        "probe_closed": true
+      }
+    },
+    "source.json": {
+      "source_sha256": "36a051250af1144718c40e2c3f92d04187579577ca6765e9e7e5240165e2d8b9",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:20:57.351933+00:00",
+        "result": "pass",
+        "startup_reset": true,
+        "auto_reconnect": true,
+        "events": [
+          {
+            "seconds": 4.670999999972992,
+            "state": "Starting",
+            "reason": "",
+            "discarded_bytes": 0,
+            "probe": null
+          },
+          {
+            "seconds": 5.295999999972992,
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 0,
+            "probe": 601012352
+          },
+          {
+            "seconds": 8.811999999976251,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "discarded_bytes": 0,
+            "probe": 601012352
+          },
+          {
+            "seconds": 8.827999999979511,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "discarded_bytes": 24,
+            "probe": 601012352
+          },
+          {
+            "seconds": 13.295999999972992,
+            "state": "Reconnecting",
+            "reason": "USB reconnect: RTT channel 0 readiness timed out: The RTT Control Block has not yet been found (wait?)",
+            "discarded_bytes": 24,
+            "probe": 601012352
+          },
+          {
+            "seconds": 24.31199999997625,
+            "state": "Running",
+            "reason": "",
+            "discarded_bytes": 24,
+            "probe": 601012352
+          },
+          {
+            "seconds": 52.73399999999674,
+            "state": "Stopping",
+            "reason": "",
+            "discarded_bytes": 24,
+            "probe": 601012352
+          }
+        ],
+        "native_api_trace": [
+          {
+            "seconds": 4.702999999979511,
+            "method": "open",
+            "thread": "bridge-io",
+            "args": "()",
+            "kwargs": "{'serial_no': 601012352}",
+            "returned_seconds": 4.7810000000172295
+          },
+          {
+            "seconds": 4.7810000000172295,
+            "method": "connect",
+            "thread": "bridge-io",
+            "args": "('STM32H750VB',)",
+            "kwargs": "{'speed': 1000}",
+            "returned_seconds": 5.01500000001397
+          },
+          {
+            "seconds": 5.01500000001397,
+            "method": "reset",
+            "thread": "bridge-io",
+            "args": "()",
+            "kwargs": "{'halt': False}",
+            "returned_seconds": 5.125
+          },
+          {
+            "seconds": 9.84299999999348,
+            "method": "open",
+            "thread": "bridge-recovery",
+            "args": "()",
+            "kwargs": "{'serial_no': 601012352}",
+            "returned_seconds": 9.90600000001723
+          },
+          {
+            "seconds": 9.90600000001723,
+            "method": "connect",
+            "thread": "bridge-recovery",
+            "args": "('STM32H750VB',)",
+            "kwargs": "{'speed': 1000}",
+            "returned_seconds": 10.14000000001397
+          },
+          {
+            "seconds": 15.311999999976251,
+            "method": "open",
+            "thread": "bridge-recovery",
+            "args": "()",
+            "kwargs": "{'serial_no': 601012352}",
+            "returned_seconds": 15.375
+          },
+          {
+            "seconds": 15.375,
+            "method": "connect",
+            "thread": "bridge-recovery",
+            "args": "('STM32H750VB',)",
+            "kwargs": "{'speed': 1000}",
+            "returned_seconds": 15.60899999999674
+          },
+          {
+            "seconds": 23.76500000001397,
+            "method": "open",
+            "thread": "bridge-recovery",
+            "args": "()",
+            "kwargs": "{'serial_no': 601012352}",
+            "returned_seconds": 23.84299999999348
+          },
+          {
+            "seconds": 23.84299999999348,
+            "method": "connect",
+            "thread": "bridge-recovery",
+            "args": "('STM32H750VB',)",
+            "kwargs": "{'speed': 1000}",
+            "returned_seconds": 24.07799999997951
+          }
+        ],
+        "arming": {
+          "recorded_at_utc": "2026-11-03T07:20:57.510936+00:00",
+          "action": "arm",
+          "probe": 601012352,
+          "result": "pass",
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "voltage_mv": 3354,
+          "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+          "armed": {
+            "magic": 1211119700,
+            "inverse_magic": 3083847595,
+            "boots": 3,
+            "inverse_boots": 4294967292,
+            "request": 200001,
+            "acknowledged": 200001,
+            "state": 1,
+            "start_boot": 3,
+            "elapsed_ticks": 154318,
+            "samples": 255,
+            "event_count": 1,
+            "dropped": 0,
+            "invalid_samples": 0,
+            "max_lag": 9,
+            "max_lead": 0,
+            "reset_flags": 21364736,
+            "config_mask": 0,
+            "duration_ticks": 2880000000,
+            "threshold_ticks": 6400,
+            "clock_hz": 64000000,
+            "sealed_boot": 0,
+            "sealed_reset_flags": 0,
+            "events": [
+              {
+                "kind": 0,
+                "boot": 3,
+                "ticks": 0,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              }
+            ]
+          },
+          "probe_closed": true
+        },
+        "initial_output_hex": "52545432554152542d483735302d4641554c542f310d0a",
+        "before_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d4245464f524500ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d4245464f524500ff0d0a"
+        },
+        "ack_seconds": 5.811999999976251,
+        "resumed_hex": "48303520524553554d45440d0a",
+        "after_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d414654455200ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d414654455200ff0d0a"
+        },
+        "discarded_bytes": 24,
+        "sealed_record": {
+          "recorded_at_utc": "2026-11-03T07:21:50.299483+00:00",
+          "action": "read",
+          "probe": 601012352,
+          "result": "pass",
+          "uid": [
+            4063287,
+            808472845,
+            892547897
+          ],
+          "voltage_mv": 3346,
+          "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+          "observer": {
+            "magic": 1211119700,
+            "inverse_magic": 3083847595,
+            "boots": 4,
+            "inverse_boots": 4294967291,
+            "request": 200001,
+            "acknowledged": 200001,
+            "state": 2,
+            "start_boot": 3,
+            "elapsed_ticks": 2880000000,
+            "samples": 5092291,
+            "event_count": 6,
+            "dropped": 0,
+            "invalid_samples": 0,
+            "max_lag": 1510086,
+            "max_lead": 16,
+            "reset_flags": 21364736,
+            "config_mask": 0,
+            "duration_ticks": 2880000000,
+            "threshold_ticks": 6400,
+            "clock_hz": 64000000,
+            "sealed_boot": 4,
+            "sealed_reset_flags": 21364736,
+            "events": [
+              {
+                "kind": 0,
+                "boot": 3,
+                "ticks": 0,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 2,
+                "boot": 3,
+                "ticks": 19738218,
+                "timer_delta": 1459825,
+                "running_delta": 672,
+                "lag": 1459153,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 1,
+                "boot": 4,
+                "ticks": 30456363,
+                "timer_delta": 0,
+                "running_delta": 0,
+                "lag": 0,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 2,
+                "boot": 4,
+                "ticks": 342097438,
+                "timer_delta": 1499009,
+                "running_delta": 489,
+                "lag": 1498520,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 2,
+                "boot": 4,
+                "ticks": 692907292,
+                "timer_delta": 1470783,
+                "running_delta": 498,
+                "lag": 1470285,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              },
+              {
+                "kind": 2,
+                "boot": 4,
+                "ticks": 1235445423,
+                "timer_delta": 1510758,
+                "running_delta": 672,
+                "lag": 1510086,
+                "config_mask": 0,
+                "reset_flags": 21364736
+              }
+            ]
+          },
+          "probe_closed": true
+        },
+        "host_seconds_from_before_arm_to_read_return": 57.45299999997951,
+        "owned_port_reacquired": true
+      }
+    },
+    "source-observer.json": {
+      "source_sha256": "6c87a544e352022a7f87812dfd06205e1a2fd264687ba7159aa92a40795e1f48",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:21:50.299483+00:00",
+        "action": "read",
+        "probe": 601012352,
+        "result": "pass",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "voltage_mv": 3346,
+        "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+        "observer": {
+          "magic": 1211119700,
+          "inverse_magic": 3083847595,
+          "boots": 4,
+          "inverse_boots": 4294967291,
+          "request": 200001,
+          "acknowledged": 200001,
+          "state": 2,
+          "start_boot": 3,
+          "elapsed_ticks": 2880000000,
+          "samples": 5092291,
+          "event_count": 6,
+          "dropped": 0,
+          "invalid_samples": 0,
+          "max_lag": 1510086,
+          "max_lead": 16,
+          "reset_flags": 21364736,
+          "config_mask": 0,
+          "duration_ticks": 2880000000,
+          "threshold_ticks": 6400,
+          "clock_hz": 64000000,
+          "sealed_boot": 4,
+          "sealed_reset_flags": 21364736,
+          "events": [
+            {
+              "kind": 0,
+              "boot": 3,
+              "ticks": 0,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 3,
+              "ticks": 19738218,
+              "timer_delta": 1459825,
+              "running_delta": 672,
+              "lag": 1459153,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 1,
+              "boot": 4,
+              "ticks": 30456363,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 4,
+              "ticks": 342097438,
+              "timer_delta": 1499009,
+              "running_delta": 489,
+              "lag": 1498520,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 4,
+              "ticks": 692907292,
+              "timer_delta": 1470783,
+              "running_delta": 498,
+              "lag": 1470285,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 4,
+              "ticks": 1235445423,
+              "timer_delta": 1510758,
+              "running_delta": 672,
+              "lag": 1510086,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            }
+          ]
+        },
+        "probe_closed": true
+      }
+    },
+    "gui.json": {
+      "source_sha256": "d652e9594dd683e86625c03bb0b985d6750945b68f40c4a60070c47da369b93b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "recorded_at_utc": "2026-11-03T07:33:19.4581321Z",
+        "startup_reset": true,
+        "auto_reconnect": true,
+        "request": 686418881,
+        "host_seconds_before_arm_through_read": 60.952497599999994,
+        "normal_close": true,
+        "peer_result": "pass",
+        "observed_discarded_bytes": 32,
+        "in_window_boot_delta": 1,
+        "observer": "gui-observer.json"
+      }
+    },
+    "gui-peer.json": {
+      "source_sha256": "06a3864657c69c9093754c1d3b7b61de6d33f98a9e7e130045fa3fd3d5234e82",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:32:25.185819+00:00",
+        "auto_reconnect": "on",
+        "result": "pass",
+        "phase": "complete",
+        "initial_output_hex": "",
+        "before_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4558452d4359434c452d4245464f524500ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4558452d4359434c452d4245464f524500ff0d0a"
+        },
+        "ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "ack_at_utc": "2026-11-03T07:32:25.722849+00:00",
+        "marker_hex": "4558452d4649524d574152452d4f4e4c592d5254542d4f555441474500ff0d0a",
+        "marker_sent_seconds_after_ack": 4.26600000000326,
+        "output_during_cycle_hex": "48303520524553554d45440d0a",
+        "after_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4558452d4359434c452d414654455200ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4558452d4359434c452d414654455200ff0d0a"
+        },
+        "completed_seconds_after_ack": 20.40600000001723,
+        "peer_closed": true
+      }
+    },
+    "gui-observer.json": {
+      "source_sha256": "99e552c2885fbbadde96ff52ab0be0f33e4e9099083a0567d3d19ee51a202253",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:33:14.926605+00:00",
+        "action": "read",
+        "probe": 601012352,
+        "result": "pass",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "voltage_mv": 3294,
+        "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+        "observer": {
+          "magic": 1211119700,
+          "inverse_magic": 3083847595,
+          "boots": 6,
+          "inverse_boots": 4294967289,
+          "request": 686418881,
+          "acknowledged": 686418881,
+          "state": 2,
+          "start_boot": 5,
+          "elapsed_ticks": 2880000000,
+          "samples": 5092181,
+          "event_count": 6,
+          "dropped": 0,
+          "invalid_samples": 0,
+          "max_lag": 1555759,
+          "max_lead": 16,
+          "reset_flags": 21364736,
+          "config_mask": 0,
+          "duration_ticks": 2880000000,
+          "threshold_ticks": 6400,
+          "clock_hz": 64000000,
+          "sealed_boot": 6,
+          "sealed_reset_flags": 21364736,
+          "events": [
+            {
+              "kind": 0,
+              "boot": 5,
+              "ticks": 0,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 5,
+              "ticks": 38540091,
+              "timer_delta": 1482834,
+              "running_delta": 643,
+              "lag": 1482191,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 1,
+              "boot": 6,
+              "ticks": 49370948,
+              "timer_delta": 0,
+              "running_delta": 0,
+              "lag": 0,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 6,
+              "ticks": 432897224,
+              "timer_delta": 1489269,
+              "running_delta": 483,
+              "lag": 1488786,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 6,
+              "ticks": 782433111,
+              "timer_delta": 1449512,
+              "running_delta": 481,
+              "lag": 1449031,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            },
+            {
+              "kind": 2,
+              "boot": 6,
+              "ticks": 1325161080,
+              "timer_delta": 1556410,
+              "running_delta": 651,
+              "lag": 1555759,
+              "config_mask": 0,
+              "reset_flags": 21364736
+            }
+          ]
+        },
+        "probe_closed": true
+      }
+    },
+    "restore-A.json": {
+      "source_sha256": "2c7e4b00bc5e6009b73a9768c11624d1dc8f305721f2a2a9aa0b0e6541c4c91d",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:35:25.534663+00:00",
+        "action": "restore",
+        "probe": 601012352,
+        "result": "pass",
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "voltage_mv": 3340,
+        "before_flash_sha256": "07ca240cf7bdd8732293ae8e61ef0a92a9320446f579ded46671bc17f1615a0a",
+        "restored_full_flash_sha256": "ff0be13233a1521526a6088f9f5a24b5a1b7dd3375a400b3e640c42953f80984",
+        "tim5_freeze_returned_to_reset_default": {
+          "before": 8,
+          "after": 0,
+          "limit": "Original pre-test debug-freeze baseline was not recorded; no exact restoration claim"
+        },
+        "observer_timer_clock_bits_after_reset": 0,
+        "restored_banner_hex": "52545432554152542d483735302d4543484f2f310d0a",
+        "restored_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d524553544f52454400ff0d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830382d524553544f52454400ff0d0a"
+        },
+        "probe_closed": true
+      }
+    },
+    "package-final.json": {
+      "source_sha256": "a88d5d0e5a012872e93e230c88114a5980020d3427e9577a1330c3bd793bd570",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T07:36:13.839427+00:00",
+        "targets": [
+          {
+            "serial": 601012352,
+            "uid": [
+              4063287,
+              808472845,
+              892547897
+            ],
+            "stats": [
+              1213355092,
+              272,
+              272,
+              13358159
+            ],
+            "rtt_counts": [
+              1,
+              1
+            ],
+            "halted_at_sample": false,
+            "native_version": "7.54d",
+            "hardware_version": "11.00",
+            "firmware_version": "J-Link V11 compiled Mar 15 2023 11:20:48",
+            "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "probe_closed": true
+          },
+          {
+            "serial": 59400616,
+            "uid": [
+              3342405,
+              809062660,
+              959461432
+            ],
+            "stats": [
+              1213355092,
+              65536,
+              65536,
+              4173864141
+            ],
+            "rtt_counts": [
+              1,
+              1
+            ],
+            "halted_at_sample": false,
+            "native_version": "7.54d",
+            "hardware_version": "9.40",
+            "firmware_version": "J-Link V9 compiled May  7 2021 16:26:12",
+            "firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "probe_closed": true
+          }
+        ],
+        "ports": {
+          "COM1": {
+            "reacquired": true,
+            "closed": true
+          },
+          "COM2": {
+            "reacquired": true,
+            "closed": true
+          }
+        },
+        "result": "pass"
+      }
+    }
+  }
+}

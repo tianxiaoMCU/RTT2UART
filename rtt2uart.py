@@ -1,229 +1,384 @@
-import logging
-import pylink
-import time
-import serial
-import threading
+"""Qt-independent lifecycle owner for USB and Existing Session RTT bridges."""
+from dataclasses import dataclass, replace
+from enum import Enum
 import socket
+import threading
+import time
+from typing import Callable, Protocol
 
-logging.basicConfig(level=logging.NOTSET,
-                    format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
-logger = logging.getLogger(__name__)
+from usb_transport import USBChannel, USBConfig
 
 
-class rtt_to_serial():
-    def __init__(self, jlink, connect_inf='USB', connect_para=None, device=None, port=None, baudrate=115200, interface=pylink.enums.JLinkInterfaces.SWD, speed=12000, reset=False):
-        # jlink接入方式
-        self._connect_inf = connect_inf
-        # jlink接入参数
-        self._connect_para = connect_para
-        # 目标芯片名字
-        self.device = device
-        # 调试口
-        self._interface = interface
-        # 连接速率
-        self._speed = speed
-        # 复位标志
-        self._reset = reset
+class BridgeState(Enum):
+    STOPPED = "Stopped"
+    STARTING = "Starting"
+    ENDPOINT_CONNECTED = "Endpoint connected — Target state unverified"
+    RUNNING = "Running"
+    RECONNECTING = "Reconnecting"
+    STOPPING = "Stopping"
+    STOP_INCOMPLETE = "Stop incomplete"
+    FAILED = "Failed"
 
-        # 串口参数
-        self.port = port
-        self.baudrate = baudrate
 
-        self.jlink = jlink
+@dataclass(frozen=True)
+class BridgeConfig:
+    port: str
+    baudrate: int = 115200
+    endpoint_host: str = "localhost"
+    endpoint_port: int = 19021
+    auto_reconnect: bool | None = None
+    usb: USBConfig | None = None
 
-        # 线程
-        self._write_lock = threading.Lock()
+    def __post_init__(self) -> None:
+        if self.auto_reconnect is None:
+            object.__setattr__(self, "auto_reconnect", self.usb is None)
 
+
+@dataclass(frozen=True)
+class BridgeSnapshot:
+    state: BridgeState = BridgeState.STOPPED
+    reason: str = ""
+    cleanup_error: str = ""
+    discarded_bytes: int = 0
+    probe_serial_number: int | None = None
+
+    @property
+    def can_start(self) -> bool:
+        return self.state in (BridgeState.STOPPED, BridgeState.FAILED)
+
+
+class _Channel(Protocol):
+    """Owned I/O boundary. None is idle; endpoint b'' is EOF."""
+    def open(self) -> None: ...
+    def read(self) -> bytes | None: ...
+    def write(self, data: bytes) -> int: ...
+    def close(self) -> None: ...
+
+
+class _SerialChannel:
+    def __init__(self, config: BridgeConfig):
+        import serial
+        self._serial = serial.Serial(port=None, baudrate=config.baudrate,
+                                     timeout=0.01, write_timeout=1.0)
+        self._serial.port = config.port
+
+    def open(self) -> None:
+        self._serial.open()
+
+    def read(self) -> bytes:
+        return self._serial.read(min(self._serial.in_waiting, 1024) or 1)
+
+    def write(self, data: bytes) -> int:
+        written = self._serial.write(data)
+        return written if written is not None else 0
+
+    def close(self) -> None:
+        self._serial.close()
+
+
+class _EndpointChannel:
+    def __init__(self, config: BridgeConfig):
+        self._address = (config.endpoint_host, config.endpoint_port)
+        self._socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+    def open(self) -> None:
+        self._socket.settimeout(3.0)
+        self._socket.connect(self._address)
+        self._socket.settimeout(0.01)
+
+    def read(self) -> bytes | None:
         try:
-            self.serial = serial.Serial()
-        except:
-            logger.error('Creat serial object failed', exc_info=True)
-            raise
+            return self._socket.recv(1024)
+        except socket.timeout:
+            return None
 
-        self.socket = None
-        self.timer = None
-        self.rtt2uart = None
-        self.uart2rtt = None
+    def write(self, data: bytes) -> int:
+        return self._socket.send(data)
 
-    def __del__(self):
-        logger.debug('close app')
-        self.stop()
+    def close(self) -> None:
+        self._socket.close()
 
-    def start(self):
-        logger.debug('start rtt2uart')
+
+class Bridge:
+    """Start/stop are nonblocking; snapshot is safe to read on the GUI loop.
+
+    Factories create unopened, owned resources. Even failed open() calls are
+    followed by close(). One worker owns forwarding and serial I/O. A temporary
+    transport worker opens or retires recovery endpoints while that worker
+    drains serial input; it is joined before transport ownership transfers.
+    """
+    def __init__(self, *, serial_factory: Callable[[BridgeConfig], _Channel] = _SerialChannel,
+                 transport_factory: Callable[[BridgeConfig], _Channel] | None = None,
+                 cleanup_timeout: float = 4.0,
+                 clock: Callable[[], float] = time.monotonic):
+        self._serial_factory = serial_factory
+        self._transport_factory = transport_factory
+        self._cleanup_timeout = cleanup_timeout
+        self._clock = clock
+        self._lock = threading.RLock()
+        self._snapshot = BridgeSnapshot()
+        self._cancel = threading.Event()
+        self._cleanup_wakeup = threading.Event()
+        self._user_stop = False
+
+    @property
+    def snapshot(self) -> BridgeSnapshot:
+        with self._lock:
+            return self._snapshot
+
+    def start(self, config: BridgeConfig) -> BridgeSnapshot:
+        with self._lock:
+            if not self._snapshot.can_start:
+                raise RuntimeError("Previous run has not finished cleanup")
+            if not config.port or config.baudrate <= 0:
+                raise ValueError("Select a serial port and a positive baud rate")
+            self._cancel = threading.Event()
+            self._cleanup_wakeup = threading.Event()
+            self._user_stop = False
+            self._snapshot = starting = BridgeSnapshot(BridgeState.STARTING)
+            try:
+                # Establish the observer before any I/O can acquire resources.
+                threading.Thread(target=self._supervise, args=(config,),
+                                 name="bridge-cleanup").start()
+            except Exception as error:
+                self._snapshot = BridgeSnapshot(BridgeState.FAILED,
+                                                f"Lifecycle startup: {error}")
+                return self._snapshot
+            return starting
+
+    def stop(self) -> None:
+        with self._lock:
+            if self._snapshot.can_start:
+                return
+            self._user_stop = True
+            self._cancel.set()
+            self._cleanup_wakeup.set()
+            if self._snapshot.state != BridgeState.STOP_INCOMPLETE:
+                self._snapshot = replace(self._snapshot, state=BridgeState.STOPPING)
+
+    def _fail(self, error: Exception) -> None:
+        with self._lock:
+            if not self._cancel.is_set():
+                self._snapshot = replace(self._snapshot, state=BridgeState.STOPPING,
+                                         reason=str(error))
+            self._cancel.set()
+
+    def _supervise(self, config: BridgeConfig) -> None:
         try:
-            if self._connect_inf != 'EXISTING' and self.jlink.connected() == False:
-                # 加载jlinkARM.dll
-                if self._connect_inf == 'USB':
-                    self.jlink.open(serial_no=self._connect_para)
-                else:
-                    self.jlink.open(ip_addr=self._connect_para)
+            worker = threading.Thread(target=self._run, args=(config,), name="bridge-io")
+            worker.start()
+        except Exception as error:
+            self._fail(RuntimeError(f"I/O worker startup: {error}"))
+            self._complete()
+            return
+        self._cancel.wait()
+        worker.join(self._cleanup_timeout)
+        if worker.is_alive():
+            with self._lock:
+                self._snapshot = replace(
+                    self._snapshot, state=BridgeState.STOP_INCOMPLETE,
+                    cleanup_error=self._snapshot.cleanup_error or
+                    "Cleanup is still pending; waiting for the owned operation to return")
+        worker.join()
+        self._complete()
 
-                # 设置连接速率
-                if self.jlink.set_speed(self._speed) == False:
-                    logger.error('Set speed failed', exc_info=True)
-                    raise Exception("Set jlink speed failed")
+    def _complete(self) -> None:
+        with self._lock:
+            state = BridgeState.STOPPED if self._user_stop else BridgeState.FAILED
+            self._snapshot = replace(self._snapshot, state=state, cleanup_error="")
 
-                # 设置连接接口为SWD
-                if self.jlink.set_tif(self._interface) == False:
-                    logger.error('Set interface failed', exc_info=True)
-                    raise Exception("Set jlink interface failed")
-
+    def _run(self, config: BridgeConfig) -> None:
+        resources: list[_Channel] = []
+        stage = "Serial open"
+        try:
+            serial_channel = self._serial_factory(config)
+            resources.append(serial_channel)
+            serial_channel.open()
+            if self._cancel.is_set():
+                return
+            stage = "USB connect/readiness" if config.usb else "Endpoint connect"
+            endpoint = self._make_transport(config)
+            resources.append(endpoint)
+            try:
+                endpoint.open()
+            finally:
+                if isinstance(endpoint, USBChannel):
+                    with self._lock:
+                        self._snapshot = replace(self._snapshot,
+                                                 probe_serial_number=endpoint.serial_number)
+            with self._lock:
+                if self._cancel.is_set():
+                    return
+                self._snapshot = replace(self._snapshot, state=(
+                    BridgeState.RUNNING if config.usb else BridgeState.ENDPOINT_CONNECTED))
+            while not self._cancel.is_set():
+                stage = "USB RTT read" if config.usb else "Endpoint read"
                 try:
-                    if self._reset == True:
-                        # 复位一下目标芯片，复位后不要停止芯片，保证后续操作的稳定性
-                        self.jlink.reset(halt=False)
+                    received = endpoint.read()
+                    if received == b"":
+                        raise ConnectionError("Endpoint closed the connection")
+                except Exception as error:
+                    endpoint = self._recover(config, serial_channel, endpoint,
+                                             resources, f"{stage}: {error}")
+                    continue
+                stage = "Serial write (delivery may be partial)"
+                if received:
+                    self._write(serial_channel, received)
+                if self._cancel.is_set():
+                    break
+                stage = "Serial read"
+                received = serial_channel.read()
+                stage = (("USB RTT write" if config.usb else "Endpoint write")
+                         + " (delivery may be partial)")
+                if received:
+                    try:
+                        self._write(endpoint, received)
+                    except Exception as error:
+                        # Never carry a partially accepted or uncertain tail to
+                        # the next connection. It is not a definite discard.
+                        endpoint = self._recover(config, serial_channel, endpoint,
+                                                 resources, f"{stage}: {error}")
+        except Exception as error:
+            self._fail(RuntimeError(f"{stage}: {error}"))
+        finally:
+            self._close_resources(list(reversed(resources)))
 
-                    # 连接目标芯片
-                    self.jlink.connect(self.device)
-                except pylink.errors.JLinkException:
-                    logger.error('Connect target failed', exc_info=True)
-                    raise
-        except pylink.errors.JLinkException as errors:
-            logger.error('Open jlink failed', exc_info=True)
-            raise
+    def _make_transport(self, config: BridgeConfig) -> _Channel:
+        if self._transport_factory is not None:
+            return self._transport_factory(config)
+        if config.usb is not None:
+            return USBChannel(config.usb, self._cancel, self._clock)
+        return _EndpointChannel(config)
 
+    def _close_resources(self, pending: list[_Channel]) -> None:
+        while pending:
+            for resource in pending[:]:
+                try:
+                    resource.close()
+                except Exception as error:
+                    with self._lock:
+                        self._snapshot = replace(
+                            self._snapshot, state=BridgeState.STOP_INCOMPLETE,
+                            cleanup_error=f"Resource close failed: {error}")
+                else:
+                    pending.remove(resource)
+            if pending:
+                self._cleanup_wakeup.wait(0.25)
+                self._cleanup_wakeup.clear()
+
+    def _discard(self, serial_channel: _Channel) -> bool:
+        """Read on the serial owner; count only bytes definitely not forwarded."""
         try:
-            if self.serial.isOpen() == False:
-                # 设置串口参数并打开串口
-                self.serial.port = self.port
-                self.serial.baudrate = self.baudrate
-                self.serial.timeout = 3
-                self.serial.write_timeout = 3
-                self.serial.open()
-        except:
-            logger.error('Open serial failed', exc_info=True)
+            data = serial_channel.read()
+        except Exception as error:
+            self._fail(RuntimeError(f"Serial read during recovery: {error}"))
             raise
+        if data:
+            with self._lock:
+                self._snapshot = replace(
+                    self._snapshot,
+                    discarded_bytes=self._snapshot.discarded_bytes + len(data))
+        return bool(data)
 
-        self.socket = self.doConnect('localhost', 19021)
-        if self.socket:
-            self.thread_switch = True
+    def _discard_during(self, serial_channel: _Channel,
+                        operation: Callable[[], None]) -> Exception | None:
+        """Lend exclusive transport ownership while the serial owner drains."""
+        errors: list[Exception] = []
+        done = threading.Event()
 
-            self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
-            self.rtt2uart.setDaemon(True)
-            self.rtt2uart.name = 'rtt->serial'
-            self.rtt2uart.start()
-
-            self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
-            self.uart2rtt.setDaemon(True)
-            self.uart2rtt.name = 'serial->rtt'
-            self.uart2rtt.start()
-        else:
-            raise Exception("Connect or config RTT server failed")
-
-    def stop(self):
-        logger.debug('stop rtt2uart')
-        if self.timer:
-            self.timer.cancel()
-
-        self.thread_switch = False
-        if self.rtt2uart:
-            self.rtt2uart.join(0.5)
-        if self.uart2rtt:
-            self.uart2rtt.join(0.5)
-
-        if self._connect_inf == 'USB':
+        def execute() -> None:
             try:
-                if self.jlink.connected() == True:
-                    # 使用完后停止RTT
-                    self.jlink.rtt_stop()
-                    # 释放之前加载的jlinkARM.dll
-                    self.jlink.close()
-            except pylink.errors.JLinkException:
-                logger.error('Disconnect target failed', exc_info=True)
+                operation()
+            except Exception as error:
+                errors.append(error)
+            finally:
+                done.set()
+
+        connector = threading.Thread(target=execute, name="bridge-recovery")
+        connector.start()
+        try:
+            while not done.is_set() and not self._cancel.is_set():
+                if not self._discard(serial_channel):
+                    self._cancel.wait(0.005)
+        finally:
+            # Stop invalidates immediately; native calls cannot be interrupted
+            # by concurrent close/reset. The observer bounds cleanup waiting.
+            connector.join()
+        return errors[0] if errors else None
+
+    def _retire_transport(self, serial_channel: _Channel, endpoint: _Channel,
+                          resources: list[_Channel]) -> None:
+        error = self._discard_during(serial_channel, endpoint.close)
+        if error is not None:
+            raise error
+        resources.remove(endpoint)
+
+    def _recover(self, config: BridgeConfig, serial_channel: _Channel,
+                 endpoint: _Channel, resources: list[_Channel], reason: str) -> _Channel:
+        if not config.auto_reconnect:
+            raise ConnectionError(reason)
+        if config.usb is not None:
+            identity = self.snapshot.probe_serial_number
+            if identity is None:
+                raise ConnectionError("Cannot recover USB without the original probe identity")
+            # Recovery retains the run settings, but can never select another
+            # probe or repeat the user's explicit initial reset.
+            config = replace(config, usb=replace(config.usb, serial_number=identity,
+                                                 startup_reset=False))
+        with self._lock:
+            if self._cancel.is_set():
+                return endpoint
+            deadline = self._clock() + 1.0
+            self._snapshot = replace(self._snapshot, state=BridgeState.RECONNECTING,
+                                     reason=reason)
+        # No forwarding worker or queued read survives this boundary: the same
+        # serial owner enters recovery only after its current I/O has returned.
+        self._retire_transport(serial_channel, endpoint, resources)
+        attempt = 0
+        while not self._cancel.is_set():
+            while self._clock() < deadline and not self._cancel.is_set():
+                if not self._discard(serial_channel):
+                    self._cancel.wait(0.005)
+            if self._cancel.is_set():
+                break
+            endpoint = self._make_transport(config)
+            resources.append(endpoint)
+            error = self._discard_during(serial_channel, endpoint.open)
+            if self._cancel.is_set():
+                break
+            if error is not None:
+                self._retire_transport(serial_channel, endpoint, resources)
+                attempt += 1
+                deadline = self._clock() + (1.0, 2.0, 5.0)[min(attempt, 2)]
+                with self._lock:
+                    self._snapshot = replace(self._snapshot,
+                                             reason=f"{'USB' if config.usb else 'Endpoint'} reconnect: {error}")
+                continue
+            # Drain through idle after connect completes, including any read
+            # already in flight. There is no application queue to replay.
+            while not self._cancel.is_set() and self._discard(serial_channel):
                 pass
+            with self._lock:
+                if not self._cancel.is_set():
+                    self._snapshot = replace(self._snapshot,
+                                             state=(BridgeState.RUNNING if config.usb
+                                                    else BridgeState.ENDPOINT_CONNECTED),
+                                             reason="")
+            return endpoint
+        return endpoint
 
-        try:
-            if self.serial.isOpen() == True:
-                self.serial.close()
-        except:
-            logger.error('Close serial failed', exc_info=True)
-            pass
-
-        if self.socket:
-            self.socket.close()
-
-    def rtt_to_uart(self):
-        while self.thread_switch == True:
-            try:
-                rtt_recv = self.socket.recv(1024)
-
-                if self._connect_para == True and rtt_recv == b'':
-                    logger.debug('telnel server close')
-                    self.thread_switch = False
-                    self.socket.close()
-                    # telnet服务器已经关闭，开启定时查询服务器状态
-                    self.timer = threading.Timer(0.5, self.check_socket_status)
-                    self.timer.start()
-
-            except socket.error as msg:
-                logger.error(msg, exc_info=True)
-                # probably got disconnected
-                raise Exception("Jlink rtt read error")
-
-            try:
-                if rtt_recv:
-                    self.serial.write(rtt_recv)
-            except:
-                raise Exception("Serial write error")
-
-    def uart_to_rtt(self):
-        while self.thread_switch == True:
-            try:
-                data = self.serial.read(self.serial.in_waiting or 1)
-
-                if data:
-                    with self._write_lock:
-                        self.socket.sendall(data)
-            except socket.error as msg:
-                logger.error(msg, exc_info=True)
-                # probably got disconnected
-                raise Exception("Jlink rtt write error")
-
-    def doConnect(self, host, port):
-        socketlocal = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        try:
-            socketlocal.connect((host, port))
-        except socket.error:
-            socketlocal.close()
-            socketlocal = None
-            pass
-        return socketlocal
-
-    def check_socket_status(self):
-        self.timer = threading.Timer(1, self.check_socket_status)
-
-        # 连接到RTT Telnet Server
-        self.socket = self.doConnect('localhost', 19021)
-        if self.socket:
-            logger.debug('reconnect success')
-            self.rtt2uart.join(0.5)
-            self.uart2rtt.join(0.5)
-            # 连接成功，重建线程
-            self.thread_switch = True
-
-            self.rtt2uart = threading.Thread(target=self.rtt_to_uart)
-            self.rtt2uart.setDaemon(True)
-            self.rtt2uart.name = 'rtt->serial'
-            self.rtt2uart.start()
-
-            self.uart2rtt = threading.Thread(target=self.uart_to_rtt)
-            self.uart2rtt.setDaemon(True)
-            self.uart2rtt.name = 'serial->rtt'
-            self.uart2rtt.start()
-
-            self.timer.cancel()
-        else:
-            # 连接失败，继续尝试连接
-            self.timer.start()
-            logger.debug("try to reconnect")
-
-
-if __name__ == "__main__":
-    serial_name = input("请输入虚拟串口对中的串口名字，如COM26：")
-
-    if '' == serial_name:
-        serial_name = 'COM26'
-
-    test = rtt_to_serial('AMAPH1KK-KBR', serial_name, 115200)
-    test.start()
+    def _write(self, channel: _Channel, data: bytes) -> None:
+        offset = 0
+        stalled = 0
+        while offset < len(data) and not self._cancel.is_set():
+            written = channel.write(data[offset:])
+            if written < 0 or written > len(data) - offset:
+                raise OSError("Write made no valid progress; delivery may be partial")
+            if written == 0:
+                stalled += 1
+                if stalled >= 3:
+                    raise OSError("Write made no valid progress; delivery may be partial")
+                self._cancel.wait(0.01)
+                continue
+            stalled = 0
+            offset += written

@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-h09-2026-11-03",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "existing-starting.json": {
+      "source_sha256": "1345c601cc7ef870835426548106b61471cc18ac5e7804aae8b7a8c7ef3ac461",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T11:00:49.103245+00:00",
+        "phase": "starting",
+        "mode": "Existing Session",
+        "auto_reconnect": true,
+        "result": "pass",
+        "scope": "actual Windows loopback socket backlog and HHD COM pair; no Target/probe owner",
+        "events": [
+          {
+            "seconds": 0.21799999999348074,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.46799999999348074,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.7339999999967404,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": true
+          }
+        ],
+        "connect_calls": [
+          {
+            "entered": 0.21799999999348074,
+            "address": [
+              "127.0.0.1",
+              8544
+            ],
+            "thread": "bridge-io",
+            "delegate_started": 0.21799999999348074,
+            "outcome": "connected",
+            "delegate_returned": 0.7179999999934807,
+            "returned": 0.7179999999934807
+          }
+        ],
+        "endpoint": [
+          "127.0.0.1",
+          8544
+        ],
+        "backlog_fill_result": "TimeoutError('timed out')",
+        "held_queue_clients": 1,
+        "selected_connect_index": 0,
+        "stop_seconds": 0.46799999999348074,
+        "restart_rejected_during_cleanup": "Previous run has not finished cleanup",
+        "cleanup_seconds_after_stop": 0.26600000000325963,
+        "late_success_fenced": true,
+        "late_socket_closed_without_forwarding": true,
+        "serial_reacquired": true,
+        "test_listener_remains_open": true,
+        "bridge_cleanup_complete": true
+      }
+    },
+    "existing-retry-wait.json": {
+      "source_sha256": "9c452a8761629765c45b17eb887edf826a946bec4eb86a607be4605dd1a4d977",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T11:00:59.262076+00:00",
+        "phase": "retry-wait",
+        "mode": "Existing Session",
+        "auto_reconnect": true,
+        "result": "pass",
+        "scope": "actual Windows loopback socket backlog and HHD COM pair; no Target/probe owner",
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.01600000000325963,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.26600000000325963,
+            "state": "Reconnecting",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.26600000000325963,
+            "state": "Stopping",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.28100000001722947,
+            "state": "Stopped",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": true
+          }
+        ],
+        "connect_calls": [
+          {
+            "entered": 0.0,
+            "address": [
+              "127.0.0.1",
+              8555
+            ],
+            "thread": "bridge-io",
+            "delegate_started": 0.0,
+            "outcome": "connected",
+            "delegate_returned": 0.0,
+            "returned": 0.0
+          }
+        ],
+        "endpoint": [
+          "127.0.0.1",
+          8555
+        ],
+        "baseline_exact_hex": "4830392d5245414c2d434f4d2d54435000ff0d0a",
+        "backlog_fill_result": "TimeoutError('timed out')",
+        "held_queue_clients": 1,
+        "stop_during_retry_wait": true,
+        "stop_seconds": 0.26600000000325963,
+        "cleanup_seconds_after_stop": 0.015000000013969839,
+        "serial_reacquired": true,
+        "test_listener_remains_open": true,
+        "bridge_cleanup_complete": true
+      }
+    },
+    "existing-retry-connect.json": {
+      "source_sha256": "00a905727245c65799dc0f5214aa7f9e953bc60fb9b18810dfde0b0e98122cdb",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T11:01:02.122317+00:00",
+        "phase": "retry-connect",
+        "mode": "Existing Session",
+        "auto_reconnect": true,
+        "result": "pass",
+        "scope": "actual Windows loopback socket backlog and HHD COM pair; no Target/probe owner",
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.01600000000325963,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 0.28200000000651926,
+            "state": "Reconnecting",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 1.5320000000065193,
+            "state": "Stopping",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": false
+          },
+          {
+            "seconds": 1.797000000020489,
+            "state": "Stopped",
+            "reason": "Endpoint read: Endpoint closed the connection",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "can_start": true
+          }
+        ],
+        "connect_calls": [
+          {
+            "entered": 0.0,
+            "address": [
+              "127.0.0.1",
+              8560
+            ],
+            "thread": "bridge-io",
+            "delegate_started": 0.0,
+            "outcome": "connected",
+            "delegate_returned": 0.0,
+            "returned": 0.0
+          },
+          {
+            "entered": 1.2820000000065193,
+            "address": [
+              "127.0.0.1",
+              8560
+            ],
+            "thread": "bridge-recovery",
+            "delegate_started": 1.2820000000065193,
+            "outcome": "connected",
+            "delegate_returned": 1.797000000020489,
+            "returned": 1.797000000020489
+          }
+        ],
+        "endpoint": [
+          "127.0.0.1",
+          8560
+        ],
+        "baseline_exact_hex": "4830392d5245414c2d434f4d2d54435000ff0d0a",
+        "backlog_fill_result": "TimeoutError('timed out')",
+        "held_queue_clients": 1,
+        "selected_connect_index": 1,
+        "stop_seconds": 1.5320000000065193,
+        "restart_rejected_during_cleanup": "Previous run has not finished cleanup",
+        "cleanup_seconds_after_stop": 0.26500000001396984,
+        "late_success_fenced": true,
+        "late_socket_closed_without_forwarding": true,
+        "serial_reacquired": true,
+        "test_listener_remains_open": true,
+        "bridge_cleanup_complete": true
+      }
+    }
+  }
+}

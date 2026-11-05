@@ -1,0 +1,1100 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-2026-10-31",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "build-environment.json": {
+      "source_sha256": "c8a0cc19256bd338f57e7fa4f168e0c2767f4c9e93df2ca054f4ea891347cbe3",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "revision": "15a0b5398fd4f4e3ba9569b86ddc4aaf5b3603b3",
+        "working_tree_changes": "",
+        "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+        "windows": "Windows-10-10.0.19045-SP0",
+        "architecture": "AMD64",
+        "packages": {
+          "pylink-square": "1.2.0",
+          "pyserial": "3.5",
+          "PySide6": "6.6.1",
+          "PySide6-Addons": "6.6.1",
+          "PySide6-Essentials": "6.6.1",
+          "shiboken6": "6.6.1",
+          "PyInstaller": "6.22.3",
+          "pyinstaller-hooks-contrib": "2026.9",
+          "altgraph": "0.17.5",
+          "packaging": "26.3",
+          "pefile": "2024.8.26",
+          "pywin32-ctypes": "0.2.3",
+          "setuptools": "84.2.1"
+        },
+        "source_sha256": {
+          "main_window.py": "4a9fb70119c5f84c55a77b66f17b1479b9130b29375504d8092c69f89f0aed2f",
+          "rtt2uart.py": "c9b27c03a4e5de01b6a50d71fd3bb8c248ce98747dff2a0b65017d2ae50c87ea",
+          "usb_transport.py": "5946537cd873d288a04391b49b21d0f01d43bc7daf4452bac6020eeef0d609b1",
+          "ui_rtt2uart.py": "bd71a4a5cbc10b6da45f647595e9fdfe43977a5cf5bf767517a89de63d0c7a8a",
+          "ui_sel_device.py": "7a8a682d079aadbc24c6d1c3a8a2325cbe060a85fbc817aa7e2676ac59f054a0",
+          "rc_icons.py": "36a44fd2f084b7fc7247725691388b557eafa2043dee7bf2fe456d4f53b52b90",
+          "rtt2uart.ui": "706545b670774472cbba465a60739ba0257b76c6734c8e59ff1e2b5ac7d168a6",
+          "sel_device.ui": "5d71351a11701ee182ef08d11fecae423cc1bc3390db408943212986eb74859a",
+          "icons.qrc": "a9ef58a8a03851a55fa6857e02c5b85e6458297a07d60c7020df57d0858d7adb",
+          "swap_horiz_16px.ico": "3e6cd43b4d56bc308c5c0ca65094d9ac9575b2aac8749540a12a7a991e21fc01",
+          "requirements.txt": "97069e369e65e8eb6e8fa2080dc8af30c7f07538a0eb9ab3ea935fc4c25a251d",
+          "requirements-build.txt": "1d3eb3a308db816570b793a0f621399c1d32ab9b72dc0701bddc2563680f072f",
+          "scripts/package_windows.py": "7baad818050ecd2159e545d29f81ac9a3a6cf4db5910dc2db1ee50cb57e5ec0c",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153"
+        },
+        "exe_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d",
+        "external_prerequisites": [
+          "J-Link runtime and Commander",
+          "Virtual COM port pair for transfer"
+        ],
+        "smoke_result": "Not established by building; record the manual checklist separately."
+      }
+    },
+    "environment.json": {
+      "source_sha256": "1ea5e634c1a3f653ee2be6e9060abea2794b8ad085a2b4e96e1acb891a367b2d",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at": "2026-10-30T16:56:45.803052+00:00",
+        "source_revision": "15a0b5398fd4f4e3ba9569b86ddc4aaf5b3603b3",
+        "source_status": "",
+        "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+        "platform": "Windows-10-10.0.19045-SP0",
+        "machine": "AMD64",
+        "packages": {
+          "altgraph": "0.17.5",
+          "ast_serialize": "0.13.1",
+          "librt": "0.16.0",
+          "mypy": "2.4.0",
+          "mypy_extensions": "1.1.0",
+          "packaging": "26.3",
+          "pathspec": "1.1.1",
+          "pefile": "2024.8.26",
+          "pip": "25.0.1",
+          "psutil": "7.2.2",
+          "pyinstaller": "6.22.3",
+          "pyinstaller-hooks-contrib": "2026.9",
+          "pylink-square": "1.2.0",
+          "pyserial": "3.5",
+          "PySide6": "6.6.1",
+          "PySide6-Addons": "6.6.1",
+          "PySide6-Essentials": "6.6.1",
+          "pywin32-ctypes": "0.2.3",
+          "setuptools": "84.2.1",
+          "shiboken6": "6.6.1",
+          "six": "1.17.0",
+          "types-pyserial": "3.5.0.20260712",
+          "typing_extensions": "4.16.0"
+        },
+        "jlink_dll": {
+          "path": "C:\\Program Files\\SEGGER\\JLink\\JLink_x64.dll",
+          "sha256": "82ad22e5642867d14884eaf4bfe09fbebc1a7cc8de30c15981083f48b903aa43",
+          "native_version": 75404
+        },
+        "hardware_status": "Pending operator topology and safe-traffic details; no probe open or Target operation performed.",
+        "probe_model_firmware_serial": null,
+        "target_model_firmware": null,
+        "debug_interface_speed": null,
+        "virtual_port_driver_pair": null
+      }
+    },
+    "check-exits.json": {
+      "source_sha256": "4cef0d4853241867cc262f98a42603e9f6338e19a6cf8546f4ca02f521de83ab",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "qt_exit": 0,
+        "mypy_exit": 0,
+        "compile_exit": 0,
+        "full_suite_exit": 0,
+        "build_exit": 0,
+        "command_working_directory": "D:/codex/RTT2UART/build/issue13-source",
+        "parent_qt_qpa_platform": null,
+        "gui_fixture_qt_qpa_platform": "offscreen",
+        "recorded_at_utc": "2026-10-30T16:58:59.2488421Z"
+      }
+    },
+    "firmware-build.json": {
+      "source_sha256": "a03438b6af5e8979e2854d931eb9073d780ac4778bd85b5978af3b60359edb77",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "compiler": "arm-none-eabi-gcc.exe (GNU Tools for STM32 10.3-2021.10.20211105-1100) 10.3.1 20210824 (release)",
+        "command": [
+          "C:\\ST\\STM32CubeIDE_1.9.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\\tools\\bin\\arm-none-eabi-gcc.exe",
+          "-mcpu=cortex-m7",
+          "-mthumb",
+          "-mfloat-abi=soft",
+          "-Os",
+          "-g3",
+          "-Wall",
+          "-Wextra",
+          "-Werror",
+          "-ffreestanding",
+          "-ffunction-sections",
+          "-fdata-sections",
+          "-nostartfiles",
+          "--specs=nano.specs",
+          "--specs=nosys.specs",
+          "-I",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt",
+          "-I",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750\\segger-rtt-7.54d\\RTT",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\main.c",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750\\segger-rtt-7.54d\\RTT\\SEGGER_RTT.c",
+          "-T",
+          "D:\\codex\\RTT2UART\\tests\\fixtures\\stm32h750_rtt\\stm32h750.ld",
+          "-Wl,--gc-sections",
+          "-Wl,-Map=D:\\codex\\RTT2UART\\build\\issue13-h750\\rtt-echo.map",
+          "-o",
+          "D:\\codex\\RTT2UART\\build\\issue13-h750\\rtt-echo.elf"
+        ],
+        "rtt_archive_sha256": "6b18a9d1dd47c2770ef65b977a2534471f13e35082d0597ab6ceb6364d75de73",
+        "source_sha256": {
+          "main.c": "707ae6c051d52f959ce4fbb64d5f42d55fbc3f0218e7a11e876f832d0ec61e96",
+          "SEGGER_RTT_Conf.h": "54219a96365a22c1ca00fabad6dadc8ca69c8f651ab31914970aee1c3b71f982",
+          "stm32h750.ld": "664a84ff11c82788d33eb14584cfac9ce5b9a14c26b773bce25e7cd010908a42",
+          "build.py": "a091fc8ab9be68af4d57c860bf798086bb764de1e5c35582c11d66ebe18f8bf7"
+        },
+        "binary_bytes": 888,
+        "binary_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "elf_sha256": "8ed4f7852574416fb069e43f5ec8fea667f944b3d039c19d33e251105856a479",
+        "rtt_control_block": "0x24000010",
+        "test_stats": "0x24000000",
+        "self_check": "passed"
+      }
+    },
+    "firmware-flash-and-direct-rtt.json": {
+      "source_sha256": "97871af5554b23af5d66fc7b23a7ded19eaec37901cb481c711e6bb432ebc751",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:11:37.712399+00:00",
+        "probe_serial": 601012352,
+        "target": "STM32H750VB",
+        "interface": "SWD",
+        "speed_khz": 1000,
+        "binary_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "flash_write_return": 0,
+        "verified_image_bytes": 888,
+        "banner_hex": "52545432554152542d483735302d4543484f2f310d0a",
+        "payload_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff00ff52545432554152542d736166652d6563686f0d0a",
+        "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff00ff52545432554152542d736166652d6563686f0d0a",
+        "payload_bytes_each_direction": 278,
+        "round_trip_seconds": 0.031993099997635,
+        "stats": [
+          1213355092,
+          278,
+          278,
+          111569
+        ],
+        "registers": {
+          "rcc_cr": "0x4025",
+          "rcc_cfgr": "0x0",
+          "scb_ccr": "0x40200"
+        },
+        "result": "pass: direct RTT only; no COM pair or RTT2UART GUI used",
+        "explicit_post_flash_reset": true,
+        "jlink_log": [
+          "Device \"STM32H750VB\" selected.",
+          "ConfigTargetSettings() start",
+          "ConfigTargetSettings() end",
+          "Found SW-DP with ID 0x6BA02477",
+          "Found SW-DP with ID 0x6BA02477",
+          "DPIDR: 0x6BA02477",
+          "Scanning AP map to find all available APs",
+          "AP[3]: Stopped AP scan as end of AP map has been reached",
+          "AP[0]: AHB-AP (IDR: 0x84770001)",
+          "AP[1]: AHB-AP (IDR: 0x84770001)",
+          "AP[2]: APB-AP (IDR: 0x54770002)",
+          "Iterating through AP map to find AHB-AP to use",
+          "AP[0]: Core found",
+          "AP[0]: AHB-AP ROM base: 0xE00FE000",
+          "CPUID register: 0x411FC271. Implementer code: 0x41 (ARM)",
+          "Found Cortex-M7 r1p1, Little endian.",
+          "FPUnit: 8 code (BP) slots and 0 literal slots",
+          "CoreSight components:",
+          "ROMTbl[0] @ E00FE000",
+          "[0][0]: E00FF000 CID B105100D PID 000BB4C7 ROM Table",
+          "ROMTbl[1] @ E00FF000",
+          "[1][0]: E000E000 CID B105E00D PID 000BB00C SCS-M7",
+          "[1][1]: E0001000 CID B105E00D PID 000BB002 DWT",
+          "[1][2]: E0002000 CID B105E00D PID 000BB00E FPB-M7",
+          "[1][3]: E0000000 CID B105E00D PID 000BB001 ITM",
+          "[0][1]: E0041000 CID B105900D PID 001BB975 ETM-M7",
+          "[0][2]: E0043000 CID B105900D PID 004BB906 CTI",
+          "Cache: Separate I- and D-cache.\n",
+          "I-Cache L1: 16 KB, 256 Sets, 32 Bytes/Line, 2-Way",
+          "D-Cache L1: 16 KB, 128 Sets, 32 Bytes/Line, 4-Way",
+          "J-Link: Flash download: Bank 0 @ 0x08000000: 1 range affected (131072 bytes)",
+          "J-Link: Flash download: Total: 1.024s (Prepare: 0.624s, Compare: 0.135s, Erase: 0.000s, Program & Verify: 0.067s, Restore: 0.196s)",
+          "J-Link: Flash download: Program & Verify speed: 1910 KB/s",
+          "Reset: Halt core after reset via DEMCR.VC_CORERESET.",
+          "Reset: Reset device via AIRCR.SYSRESETREQ."
+        ]
+      }
+    },
+    "direct-rtt-load.json": {
+      "source_sha256": "5585163c923fa4c1b796dc65ca054996f010ea951265260ac4c5eaeb5906c4f2",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:13:41.198467+00:00",
+        "scope": "native USB adapter only; no virtual COM or GUI",
+        "probe_serial": 601012352,
+        "interface": "SWD",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "pattern": "bytes(range(256)) repeated 256 times",
+        "result": "pass",
+        "bytes_each_direction": 65536,
+        "elapsed_seconds": 6.1962146000005305,
+        "observed_bytes_per_second_each_direction": 10576.780216746269,
+        "expected_sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+        "received_sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+        "write_attempts": 64,
+        "zero_write_results": 0,
+        "short_write_results": 0,
+        "stats_before": [
+          1213355092,
+          559,
+          559,
+          40079779
+        ],
+        "stats_after": [
+          1213355092,
+          66095,
+          66095,
+          42070150
+        ],
+        "core_halted_after_test": false,
+        "cleanup_completed": true
+      }
+    },
+    "usb-real-com-bridge.json": {
+      "source_sha256": "e8c66527df02e5d2a6fa1339a96228a7eebb731e754e7ce4ea63d1a4fd35d8d8",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:36:07.614832+00:00",
+        "scope": "production Bridge + native USB + actual HHD COM1/COM2 + STM32H750VB",
+        "bridge_port": "COM1",
+        "peer_port": "COM2",
+        "baudrate": 115200,
+        "interface": "SWD",
+        "speed_khz": 1000,
+        "probe_serial": 601012352,
+        "startup_reset": false,
+        "events": [
+          {
+            "at_seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": null
+          },
+          {
+            "at_seconds": 0.5320000000028813,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          },
+          {
+            "at_seconds": 6.75,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          },
+          {
+            "at_seconds": 6.797000000002299,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          },
+          {
+            "at_seconds": 6.797000000002299,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": null
+          },
+          {
+            "at_seconds": 7.3290000000015425,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          },
+          {
+            "at_seconds": 7.407000000002881,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          },
+          {
+            "at_seconds": 7.4540000000015425,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "probe_serial": 601012352
+          }
+        ],
+        "verified_firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "usb_auto_reconnect_default": false,
+        "start_return_seconds": 0.00030170000172802247,
+        "initial_output_hex": "",
+        "binary_echo": {
+          "bytes_each_direction": 275,
+          "elapsed_seconds": 0.08151120000184164,
+          "sha256": "26e1a9b0070d0a21386d18a01bde62c3049d741ba0e08b9709d7aff9a4af9036",
+          "payload_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff5553422d66756c6c2d62726964676500ff0d0a"
+        },
+        "load_echo": {
+          "bytes_each_direction": 65536,
+          "elapsed_seconds": 6.089998600000399,
+          "sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+          "payload_hex": null
+        },
+        "stop_seconds": 0.05485500000213506,
+        "owned_com_reacquired": true,
+        "manual_restart_echo": {
+          "bytes_each_direction": 20,
+          "elapsed_seconds": 0.03929730000163545,
+          "sha256": "d0c3e77ea52a1388259d4193d7784130c7320573a4fbcc149bf3e3c0c8df8604",
+          "payload_hex": "5553422d726573746172742d7361666500ff0d0a"
+        },
+        "restart_stop_seconds": 0.043541900002310285,
+        "owned_probe_reacquired": true,
+        "result": "pass",
+        "peer_closed": true
+      }
+    },
+    "existing-real-com-bridge-paced.json": {
+      "source_sha256": "6be773bac2113dc8d67cd9a2d1943bb5b30bfac22b96057f4d3bdd024db8a5cb",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:41:45.905813+00:00",
+        "scope": "production Existing Session Bridge + real COM1/COM2 + native GDBServer/Target",
+        "owner_pid": 13972,
+        "owner_args": [
+          "C:/Program Files/SEGGER/JLink/JLinkGDBServerCL.exe",
+          "-select",
+          "USB=601012352",
+          "-device",
+          "STM32H750VB",
+          "-if",
+          "SWD",
+          "-speed",
+          "1000",
+          "-noir",
+          "-nohalt",
+          "-nogui",
+          "-port",
+          "2331",
+          "-swoport",
+          "2332",
+          "-telnetport",
+          "2333",
+          "-RTTTelnetPort",
+          "19021",
+          "-timeout",
+          "5000"
+        ],
+        "bridge_port": "COM1",
+        "peer_port": "COM2",
+        "baudrate": 115200,
+        "pacing": "wait for complete echo of each 256-byte chunk",
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 0.01599999999962165,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 12.84400000000096,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 12.859000000000378,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 13.09400000000096,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 13.109000000000378,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 13.34400000000096,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 13.359000000000378,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          }
+        ],
+        "auto_reconnect_default": true,
+        "start_return_seconds": 0.00039110000216169283,
+        "ready_text": "Endpoint connected — Target state unverified",
+        "owner_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a",
+        "binary_echo": {
+          "bytes_each_direction": 280,
+          "elapsed_seconds": 0.11200099999769009,
+          "sha256": "9fd830ef814f1c929d483dbef4768613b0b549c4e5bb3fd222a826f4acf130d0",
+          "payload_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4578697374696e672d66756c6c2d62726964676500ff0d0a"
+        },
+        "paced_load_echo": {
+          "bytes_each_direction": 65536,
+          "elapsed_seconds": 12.561137799999415,
+          "sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+          "payload_hex": null
+        },
+        "stop_seconds": 0.021901700001762947,
+        "owned_com_reacquired": true,
+        "owner_alive_after_stop": true,
+        "post_stop_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a",
+        "external_owner_after_stop_echo_hex": "65787465726e616c2d6f776e65722d61667465722d73746f7000ff0d0a",
+        "restart_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a",
+        "manual_restart_echo": {
+          "bytes_each_direction": 25,
+          "elapsed_seconds": 0.0635141000020667,
+          "sha256": "d3ea5c2e3b8e80e54458d988bc3363f6f12c0561e54fc02c6a2387e9b8ef52c4",
+          "payload_hex": "4578697374696e672d726573746172742d7361666500ff0d0a"
+        },
+        "restart_stop_seconds": 0.01092120000248542,
+        "owner_alive_after_restart_stop": true,
+        "result": "pass",
+        "peer_closed": true
+      }
+    },
+    "existing-real-com-bridge.json": {
+      "source_sha256": "609c4fedacce1abf86aab0fbf32cf3d1eb0c4ceb70759eea239e15758ed59f19",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:38:12.645933+00:00",
+        "scope": "production Existing Session Bridge + real HHD COM1/COM2 + actual GDBServer/STM32H750 RTT",
+        "owner_pid": 13972,
+        "owner_args": [
+          "C:/Program Files/SEGGER/JLink/JLinkGDBServerCL.exe",
+          "-select",
+          "USB=601012352",
+          "-device",
+          "STM32H750VB",
+          "-if",
+          "SWD",
+          "-speed",
+          "1000",
+          "-noir",
+          "-nohalt",
+          "-nogui",
+          "-port",
+          "2331",
+          "-swoport",
+          "2332",
+          "-telnetport",
+          "2333",
+          "-RTTTelnetPort",
+          "19021",
+          "-timeout",
+          "5000"
+        ],
+        "bridge_port": "COM1",
+        "peer_port": "COM2",
+        "baudrate": 115200,
+        "endpoint": "localhost:19021",
+        "events": [
+          {
+            "at_seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "at_seconds": 0.0,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "at_seconds": 30.14099999999962,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "at_seconds": 30.17199999999866,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          }
+        ],
+        "existing_auto_reconnect_default": true,
+        "start_return_seconds": 0.00040380000064033084,
+        "ready_text": "Endpoint connected — Target state unverified",
+        "external_owner_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a",
+        "binary_echo": {
+          "bytes_each_direction": 280,
+          "elapsed_seconds": 0.0482808999986446,
+          "sha256": "9fd830ef814f1c929d483dbef4768613b0b549c4e5bb3fd222a826f4acf130d0",
+          "payload_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4578697374696e672d66756c6c2d62726964676500ff0d0a"
+        },
+        "result": "fail",
+        "error": "AssertionError((65536, 37880, 65536))",
+        "final_cleanup_seconds": 0.021616199999698438,
+        "peer_closed": true
+      }
+    },
+    "existing-native-flow-control.json": {
+      "source_sha256": "ca14a32f9395637d09f71872d6d724a1c8ee0cf8f0dc4ecaa1b067d18ea0211f",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:39:34.625088+00:00",
+        "scope": "raw socket directly to actual J-Link GDB Server RTT port; no RTT2UART or virtual COM",
+        "endpoint": "127.0.0.1:19021",
+        "tests": [
+          {
+            "pacing": "one 65536-byte sendall burst",
+            "sent_bytes": 65536,
+            "received_bytes": 32760,
+            "elapsed_seconds": 5.010846600001969,
+            "expected_sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+            "received_sha256": "d4da8ba199b136fb21a21da3beb0d10dfb8149084527a37638ff733808846149",
+            "exact_match": false,
+            "initial_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a"
+          },
+          {
+            "pacing": "wait for each 256-byte echo",
+            "sent_bytes": 65536,
+            "received_bytes": 65536,
+            "elapsed_seconds": 8.035081199999695,
+            "expected_sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+            "received_sha256": "7daca2095d0438260fa849183dfc67faa459fdf4936e1bc91eec6b281b27e4c2",
+            "exact_match": true,
+            "initial_greeting_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a"
+          }
+        ]
+      }
+    },
+    "existing-real-recovery.json": {
+      "source_sha256": "76733fd06eb71a33ce60ec267a852d43b2b1c3437fe00a038dd8e3061fb0d641",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:43:28.700159+00:00",
+        "scope": "actual COM pair, production Existing Session Bridge, native external GDB Server/Target",
+        "fault_method": "terminate only this test GDB Server process, verified executable and arguments; restart with identical arguments",
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 0.014999999999417923,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 0.48400000000037835,
+            "state": "Reconnecting",
+            "reason": "Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 0.48400000000037835,
+            "state": "Reconnecting",
+            "reason": "Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 29
+          },
+          {
+            "seconds": 2.047000000002299,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 29
+          },
+          {
+            "seconds": 2.7340000000003783,
+            "state": "Reconnecting",
+            "reason": "Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 29
+          },
+          {
+            "seconds": 2.7340000000003783,
+            "state": "Stopping",
+            "reason": "Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 29
+          },
+          {
+            "seconds": 2.75,
+            "state": "Stopped",
+            "reason": "Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 29
+          },
+          {
+            "seconds": 4.25,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 6.264999999999418,
+            "state": "Failed",
+            "reason": "Endpoint connect: [WinError 10061] 由于目标计算机积极拒绝，无法连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.281000000002678,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.281000000002678,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.687000000001717,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.703000000001339,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.703000000001339,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 9.71900000000096,
+            "state": "Endpoint connected — Target state unverified",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          },
+          {
+            "seconds": 10.109000000000378,
+            "state": "Failed",
+            "reason": "Endpoint read: Endpoint read: [WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+            "cleanup_error": "",
+            "discarded_bytes": 0
+          }
+        ],
+        "owner_processes": [
+          13972,
+          32388,
+          27956
+        ],
+        "initial_echo_hex": "6265666f72652d656e64706f696e742d6c6f737300ff0d0a",
+        "outage_marker_hex": "4f55544147452d697373756531332d32303236313033312d4100ff0d0a",
+        "observed_discard_delta": 29,
+        "recovered_owner_output_hex": "534547474552204a2d4c696e6b2056372e353464202d205265616c2074696d65207465726d696e616c206f75747075740d0a4a2d4c696e6b2056313120636f6d70696c6564204d617220313520323032332031313a32303a3438205631312e302c20534e3d3630313031323335320d0a50726f636573733a204a4c696e6b474442536572766572434c2e6578650d0a",
+        "post_recovery_echo_hex": "61667465722d656e64706f696e742d7265636f7665727900ff0d0a",
+        "discard_count_after_recovery": 29,
+        "stop_during_retry_no_late_restart": true,
+        "initial_failure_terminal_with_auto_on": true,
+        "manual_retry_echo_hex": "6d616e75616c2d72657472792d61667465722d6f776e65722d726573746f72650d0a",
+        "runtime_loss_terminal_with_auto_off": true,
+        "serial_released_after_terminal_failure": true,
+        "external_owner_left_running": false,
+        "result": "pass",
+        "peer_closed": true
+      }
+    },
+    "usb-physical-recovery-2026-11-02.json": {
+      "source_sha256": "82175030cee1ed2eb9122ed963228df7c24aa1398d5d309e8e0a62e0fdd8b635",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T00:28:31.983771+00:00",
+        "scope": "production Bridge, actual COM1/COM2, actual single USB probe/Target; operator USB unplug/restore",
+        "probe_serial": 601012352,
+        "startup_reset": true,
+        "events": [
+          {
+            "seconds": 0.4370000000053551,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": null
+          },
+          {
+            "seconds": 1.0780000000086147,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 16.796000000002095,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 16.796000000002095,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 20.328000000008615,
+            "state": "Reconnecting",
+            "reason": "USB reconnect: Target debug connection is unavailable",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 22.375,
+            "state": "Reconnecting",
+            "reason": "USB reconnect: No emulator with serial number 601012352 found.",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 43.078000000008615,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 67.56200000000536,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 67.56200000000536,
+            "state": "Stopping",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 67.625,
+            "state": "Stopped",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 24,
+            "observed_probe": 601012352
+          }
+        ],
+        "native_api_trace": [
+          {
+            "seconds": 0.48399999999674037,
+            "method": "open",
+            "phase": "preflight",
+            "thread": "bridge-io",
+            "requested_serial": null
+          },
+          {
+            "seconds": 0.7809999999881256,
+            "method": "reset",
+            "phase": "preflight",
+            "thread": "bridge-io",
+            "args": [],
+            "kwargs": {
+              "halt": false
+            }
+          },
+          {
+            "seconds": 17.828000000008615,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 22.34299999999348,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 27.421000000002095,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 32.46799999999348,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 37.546000000002095,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 42.578000000008615,
+            "method": "open",
+            "phase": "waiting_for_restore_1",
+            "thread": "bridge-recovery",
+            "requested_serial": 601012352
+          },
+          {
+            "seconds": 69.20300000000861,
+            "method": "open",
+            "phase": "waiting_for_restore_2_after_stop",
+            "thread": "MainThread",
+            "requested_serial": 601012352
+          }
+        ],
+        "result": "fail",
+        "phase": "cleanup_after_incomplete_test",
+        "second_probe_present": false,
+        "verified_firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "initial_output_hex": "52545432554152542d483735302d4543484f2f310d0a",
+        "before_outage_echo_hex": "5553422d6265666f72652d706879736963616c2d6f757461676500ff0d0a",
+        "outage_marker_hex": "5553422d4f55544147452d697373756531332d4100ff0d0a",
+        "observed_discard_delta": 24,
+        "recovered_output_hex": "",
+        "post_recovery_echo_hex": "5553422d61667465722d706879736963616c2d7265636f7665727900ff0d0a",
+        "explicit_reset_calls_after_recovery": 1,
+        "discard_count_after_recovery": 24,
+        "stop_during_retry_seconds": 0.06920490000629798,
+        "owned_com_reacquired_after_stop": true,
+        "error": "JLinkException('No emulator with serial number 601012352 found.')",
+        "peer_closed": true
+      }
+    },
+    "usb-stop-retry-2026-11-02.json": {
+      "source_sha256": "6095d4a1610519320bc9d81a229322d9af1c9ca275ce4ef5d14c674071bec92e",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T00:30:19.911853+00:00",
+        "scope": "production Bridge, actual COM1/COM2, actual single USB probe/Target; operator USB unplug/restore",
+        "probe_serial": 601012352,
+        "startup_reset": false,
+        "events": [
+          {
+            "seconds": 0.40700000000651926,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": null
+          },
+          {
+            "seconds": 0.9070000000065193,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 23.125,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 23.14100000000326,
+            "state": "Stopping",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          },
+          {
+            "seconds": 23.15700000000652,
+            "state": "Stopped",
+            "reason": "USB RTT read: Unspecified error.",
+            "cleanup_error": "",
+            "discarded_bytes": 0,
+            "observed_probe": 601012352
+          }
+        ],
+        "native_api_trace": [
+          {
+            "seconds": 0.4379999999946449,
+            "method": "open",
+            "phase": "preflight",
+            "thread": "bridge-io",
+            "requested_serial": null
+          },
+          {
+            "seconds": 47.187999999994645,
+            "method": "open",
+            "phase": "waiting_for_restore_2_after_stop",
+            "thread": "MainThread",
+            "requested_serial": 601012352
+          }
+        ],
+        "result": "pass",
+        "phase": "complete",
+        "second_probe_present": false,
+        "verified_firmware_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+        "initial_output_hex": "",
+        "before_outage_echo_hex": "5553422d6265666f72652d706879736963616c2d6f757461676500ff0d0a",
+        "stop_during_retry_seconds": 0.026286899985279888,
+        "operator_restore_acknowledged": true,
+        "owned_com_reacquired_after_stop": true,
+        "owned_probe_reacquired_after_stop": true,
+        "no_late_restart_after_restore": true,
+        "explicit_reset_calls": 0,
+        "native_reset_halt_or_power_cycle_independently_measured": false,
+        "peer_closed": true
+      }
+    },
+    "virtual-com-pair.json": {
+      "source_sha256": "aa843196b489960c9355ad91198f3ea7e8d930d2a7c1268323b76c6c5f024db3",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-10-30T17:33:27.422342+00:00",
+        "result": "pass",
+        "baudrate": 115200,
+        "serial": "8N1, no flow control",
+        "ports": {
+          "COM1": {
+            "description": "HHD Software Bridged Serial Port (COM1)",
+            "hardware_id": "ROOT\\PORTS\\0000"
+          },
+          "COM2": {
+            "description": "HHD Software Bridged Serial Port (COM2)",
+            "hardware_id": "ROOT\\PORTS\\0001"
+          }
+        },
+        "com1_to_com2_hex": "434f4d312d746f2d434f4d3200ff0d0a",
+        "com2_to_com1_hex": "434f4d322d746f2d434f4d31ff000a",
+        "both_handles_closed": true
+      }
+    },
+    "hhd-working-pair-driver.json": {
+      "source_sha256": "6e72c71ef5f8484056876d2cefd6540ef4bea86db517143e34bed356f5b873f1",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": [
+        {
+          "DeviceName": "HHD Software Bridged Serial Port",
+          "DriverVersion": "6.2.0.1318",
+          "InfName": "oem2.inf",
+          "DeviceID": "ROOT\\PORTS\\0001"
+        },
+        {
+          "DeviceName": "HHD Software Bridged Serial Port",
+          "DriverVersion": "6.2.0.1318",
+          "InfName": "oem2.inf",
+          "DeviceID": "ROOT\\PORTS\\0000"
+        }
+      ]
+    }
+  }
+}

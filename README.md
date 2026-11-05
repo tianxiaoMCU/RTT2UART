@@ -8,7 +8,7 @@ terminal or serial-based tool through the target's debug connection.
 Target firmware with RTT
         | debug connection
      J-Link
-        | local RTT TCP endpoint: localhost:19021
+        | USB direct RTT / Existing Session TCP
      RTT2UART
         | COM4 (example)
 Virtual COM port pair
@@ -54,13 +54,19 @@ package verification limits.
 
 | Mode | Current source behavior |
 | --- | --- |
-| USB | Opens a J-Link probe, configures the target connection, and attaches to the local RTT endpoint |
-| Existing Session | Attaches to an RTT endpoint provided by another local J-Link session; offers limited socket reconnection |
+| USB | Owns a J-Link connection and exchanges channel-0 data through direct RTT; exposes actual probe identity; optional pinned-probe Auto Reconnect, off by default |
+| Existing Session | Attaches to an external RTT endpoint; optionally recovers while discarding host input, with Target state unverified |
 | TCP/IP | Disabled in the current GUI |
 
-Both enabled modes connect to `localhost:19021`. The application has no GUI
-setting for another RTT host, port, or channel. Existing Session still requires
+Only Existing Session connects to `localhost:19021`. USB never falls back to that
+listener. The application has no GUI setting for another RTT host, port, or channel. Existing Session still requires
 a discoverable J-Link runtime when the application starts.
+
+The [lifecycle migration](./docs/lifecycle-migration.md) records current source
+behavior and automated evidence; published packages may predate it. The
+[Windows package checklist](./docs/packaging-smoke.md) records the successful
+build and completed GUI compatibility smoke checks. Real USB Target
+compatibility and the final hardware/release gate remain pending.
 
 Windows is the documented workflow. Linux/macOS operation, target/probe
 compatibility, and throughput have not been established by this documentation

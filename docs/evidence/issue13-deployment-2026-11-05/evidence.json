@@ -1,0 +1,1978 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-deployment-2026-11-05",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "baseline.json": {
+      "source_sha256": "87d789c05d24400888806137affea087c5425fb3bd9248b79eeacfbf32bc939b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "os": {
+          "Caption": "Microsoft Windows 11 专业版",
+          "Version": "10.0.26200",
+          "BuildNumber": "26200",
+          "OSArchitecture": "64 位"
+        },
+        "powershell": "5.1.26100.8115",
+        "session_id": 0,
+        "processes": [
+          {
+            "Id": 4980,
+            "SessionId": 2
+          },
+          {
+            "Id": 11976,
+            "SessionId": 3
+          },
+          {
+            "Id": 26640,
+            "SessionId": 4
+          },
+          {
+            "Id": 36276,
+            "SessionId": 6
+          },
+          {
+            "Id": 38492,
+            "SessionId": 5
+          }
+        ],
+        "commands": [
+          {
+            "Name": "python.exe",
+            "Source": "<USERPROFILE>\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+          },
+          {
+            "Name": "python3.exe",
+            "Source": "<USERPROFILE>\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe"
+          }
+        ],
+        "installed": [
+          {
+            "DisplayName": "Windows 驱动程序包 - SEGGER (JLinkCDC) Ports  (06/06/2019 1.34.0.44950)",
+            "DisplayVersion": "06/06/2019 1.34.0.44950",
+            "Publisher": "SEGGER"
+          },
+          {
+            "DisplayName": "Windows 驱动程序包 - Segger (jlink) USB  (08/02/2018 2.70.08.0)",
+            "DisplayVersion": "08/02/2018 2.70.08.0",
+            "Publisher": "Segger"
+          },
+          {
+            "DisplayName": "Windows 驱动程序包 - SEGGER Microcontroller GmbH (WinUSB) USBDevice  (06/14/2019 3.00.00.000)",
+            "DisplayVersion": "06/14/2019 3.00.00.000",
+            "Publisher": "SEGGER Microcontroller GmbH"
+          },
+          {
+            "DisplayName": "NI Python Interface (64-bit)",
+            "DisplayVersion": "20.00.49154",
+            "Publisher": "National Instruments"
+          },
+          {
+            "DisplayName": "STMicroelectronics STM32CubeIDE 1.9.0",
+            "DisplayVersion": "1.9.0",
+            "Publisher": "STMicroelectronics"
+          },
+          {
+            "DisplayName": "NI Python Interface",
+            "DisplayVersion": "20.00.49154",
+            "Publisher": "National Instruments"
+          }
+        ],
+        "path": "C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Program Files (x86)\\IVI Foundation\\VISA\\WinNT\\Bin\\;C:\\Program Files\\IVI Foundation\\VISA\\Win64\\Bin\\;C:\\Program Files (x86)\\IVI Foundation\\VISA\\WinNT\\Bin;<USERPROFILE>\\AppData\\Local\\Microsoft\\WindowsApps;",
+        "program_directories": []
+      }
+    },
+    "package-transfer.json": {
+      "source_sha256": "11214f69069908001f52f44c0e62d03de6c16e82ca2431361b54e7bb990f3dd5",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "root": "<USERPROFILE>\\AppData\\Local\\RTT2UART-issue13-20261105",
+        "zip_sha256": "f9ab7cf7d64f5788db1cd346cb8bb03df2fec73d7e0d39e6d696aaf0d778e237",
+        "exe_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d"
+      }
+    },
+    "runtime-download.json": {
+      "source_sha256": "4f127a54254f656ee00d1f22e9c98df3cab6d35bb81742b6200e8474cdce7f9b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "url": "https://www.segger.com/downloads/jlink/JLink_Windows_V754d_x86_64.exe",
+        "bytes": 53372496,
+        "sha256": "3401dc5a3cb6113535d42d4c49033c93a3703cb8505c2c6a6d778d62784d230b",
+        "signature": "Valid",
+        "signer": "CN=SEGGER Microcontroller GmbH, O=SEGGER Microcontroller GmbH, L=Monheim am Rhein, S=Nordrhein-Westfalen, C=DE",
+        "path": "<USERPROFILE>\\AppData\\Local\\RTT2UART-issue13-20261105\\JLink_Windows_V754d_x86_64.exe"
+      }
+    },
+    "runtime-final-selection.json": {
+      "source_sha256": "fc96ddd439677b3ab8c582882d6d3493ab2ff62f2d46b230087191924e67a4d8",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "installer_exit": 0,
+        "runtime_directory": "<USERPROFILE>\\SEGGER\\JLink_V754d",
+        "dll_version": "7.54d",
+        "dll_sha256": "82ad22e5642867d14884eaf4bfe09fbebc1a7cc8de30c15981083f48b903aa43",
+        "commander_exists": true,
+        "scope": "Operator latest instruction: test separate7.54d first",
+        "app_processes": []
+      }
+    },
+    "evidence/gui-result.json": {
+      "source_sha256": "777da667ae766e20fb2b0408e38dfad5dec128a0067d9974605180ebdb840e24",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T09:22:35.3081223Z",
+        "result": "pass",
+        "session_id": 6,
+        "runtime": "<USERPROFILE>\\SEGGER\\JLink_V754d",
+        "checks": {
+          "Interactive Windows session": "pass",
+          "No existing application before launch": "pass",
+          "Exact accepted candidate EXE": "pass",
+          "Initial Target/history fixture": "pass",
+          "Initial SWD": "pass",
+          "Initial1000kHz": "pass",
+          "Initial115200": "pass",
+          "Initial USB selected": "pass",
+          "USB reconnect defaults off": "pass",
+          "TCP/IP disabled": "pass",
+          "Bundled Python DLL present: initial": "pass",
+          "Python extracted from onefile bundle: initial": "pass",
+          "Bundled Qt Core verified: initial": "pass",
+          "No CubeIDE native module loaded: initial": "pass",
+          "Existing Session control disabled: dialog.groupBox_2.comboBox_Device": "pass",
+          "Existing Session control disabled: dialog.groupBox.comboBox_Interface": "pass",
+          "Existing Session control disabled: dialog.groupBox.comboBox_Speed": "pass",
+          "Existing Session control disabled: dialog.checkBox_resettarget": "pass",
+          "TCP/IP remains disabled": "pass",
+          "Normal exit0: edited USB": "pass",
+          "Reopened value: STM32F407VG": "pass",
+          "Reopened value: JTAG": "pass",
+          "Reopened value: 750 kHz": "pass",
+          "Reopened value: 19200": "pass",
+          "Port retained with stable enumeration": "pass",
+          "Reopened USB reconnect off": "pass",
+          "Bundled Python DLL present: selector": "pass",
+          "Python extracted from onefile bundle: selector": "pass",
+          "Bundled Qt Core verified: selector": "pass",
+          "No CubeIDE native module loaded: selector": "pass",
+          "Selector Cancel preserves Target": "pass",
+          "Empty selector has no committed Target": "pass",
+          "Empty selector OK preserves Target": "pass",
+          "ARM7 cell located by UIA": "pass",
+          "ARM7 added to history": "pass",
+          "Second instance exits by itself": "pass",
+          "Second instance exit0": "pass",
+          "Original window remains after second instance": "pass",
+          "Normal exit0: restored USB": "pass",
+          "Final restored Target retained": "pass",
+          "Final restored SWD retained": "pass",
+          "Final restored speed retained": "pass",
+          "Final restored baud retained": "pass",
+          "New history retained after restart": "pass",
+          "Normal exit0: Existing Session idle": "pass",
+          "All candidate processes exited": "pass"
+        },
+        "exits": [
+          {
+            "exit_code": 0,
+            "case": "edited USB"
+          },
+          {
+            "exit_code": 0,
+            "case": "restored USB"
+          },
+          {
+            "exit_code": 0,
+            "case": "Existing Session idle"
+          }
+        ],
+        "scope": "Idle packaged GUI; no Start or Target connection",
+        "removed_environment": [],
+        "launch_path": "C:\\Windows\\System32;C:\\Windows;<USERPROFILE>\\SEGGER\\JLink_V754d",
+        "initial_ports": [
+          {
+            "DeviceID": "COM37",
+            "Name": "JLink CDC UART Port (COM37)"
+          }
+        ],
+        "saved_port": "COM37",
+        "final_settings_sha256": "23c345418489de527695fecc98d2484eaf588627695b9eed244f9b8c894f0868",
+        "final_processes": [],
+        "finished_at_utc": "2026-11-05T09:23:05.2941845Z"
+      }
+    },
+    "evidence/initial-modules.json": {
+      "source_sha256": "e0c4f0869416f28c71b3573a1606c7d52746f73f999f5b8a5ff59740ab5e8472",
+      "selection": [
+        "attach only the 32 independently extracted candidate payload hashes used by this snapshot; omit unused payload baselines"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T09:22:39.4559175Z",
+        "session_id": 6,
+        "bundle": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042",
+        "verified": [
+          {
+            "sha256": "3239227d27667ba20d10a880751924e5719de0078f9fce232d149d383f7681f6",
+            "relative": "ucrtbase.dll"
+          },
+          {
+            "sha256": "64a1dad031e97f13b1a0bac26c689d8e14a18d7dd1eab06e17f70e22373f4eec",
+            "relative": "python312.dll"
+          },
+          {
+            "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+            "relative": "vcruntime140.dll"
+          },
+          {
+            "sha256": "2d2330ce33d1443c67b1804bbf1a561653499dd4dcf8918048747cc17d1a63c4",
+            "relative": "python3.dll"
+          },
+          {
+            "sha256": "7b1298bb2f3bc2703893c6be4423d656c273516637349c75c8aceb3402c43d9c",
+            "relative": "_ctypes.pyd"
+          },
+          {
+            "sha256": "78f1922e71ca52ef2497774951673cdc9497bd50fcbd7fe46060cc2d028db89c",
+            "relative": "libffi-8.dll"
+          },
+          {
+            "sha256": "2046a236f6ec1858e514cbf1ceae05ad8b62797e3b9080ed833f71cb19d6131b",
+            "relative": "_bz2.pyd"
+          },
+          {
+            "sha256": "cb930cd57d32c28e456b78d77a6f4d7ccbc3255d89a8928bc5169d1eabd7655f",
+            "relative": "_lzma.pyd"
+          },
+          {
+            "sha256": "12d0ea493c9b42e5e6d73f84f0ef84ebab0452556ad7b703d3e5277119c899f7",
+            "relative": "shiboken6/shiboken.pyd"
+          },
+          {
+            "sha256": "245e27b420be76ea559e7dc222dc5ef37ada1dea8cd8c2d15587d0878e69208a",
+            "relative": "shiboken6/shiboken6.abi3.dll"
+          },
+          {
+            "sha256": "8e23d99065d9991340cc3f5bf6a5e2b597303754677d9104ace0725c10933756",
+            "relative": "shiboken6/vcruntime140_1.dll"
+          },
+          {
+            "sha256": "3b2cd0741cfe2472a6d08daa7af3132705e7c20c3efd414095a747aee42db7cf",
+            "relative": "shiboken6/msvcp140.dll"
+          },
+          {
+            "sha256": "1a6f50e7d71edcd37d8749f65294ba347c9e6bcd0ed95c022a4cd9add2c2d9e3",
+            "relative": "pyside6/qtcore.pyd"
+          },
+          {
+            "sha256": "5557771c996bd7410cdbe87a5178626c786e44585cecf432748093c0ab7e964b",
+            "relative": "pyside6/pyside6.abi3.dll"
+          },
+          {
+            "sha256": "6f56a489239bf5fdf8e52d2e899350cbc0cd68d6df99afa2feb04382a687057e",
+            "relative": "pyside6/qt6core.dll"
+          },
+          {
+            "sha256": "53f9e8ccbd96ca332e8500062459d15b3b90187edf708c3679506241b0c6864f",
+            "relative": "pyside6/msvcp140_1.dll"
+          },
+          {
+            "sha256": "6849140481cac4ab6e081db9094410ab9ab654a7391cfd84f0865ff510ea01bc",
+            "relative": "pyside6/qtwidgets.pyd"
+          },
+          {
+            "sha256": "ada44eb04fac5daf342075ba3b6e88ffffbacb986a98b96c15dc4fc319fc2481",
+            "relative": "pyside6/qt6widgets.dll"
+          },
+          {
+            "sha256": "540d1e956a13ec53a996c17ac69949c628858def2bf12a1405e51b4a241d45b7",
+            "relative": "pyside6/qt6gui.dll"
+          },
+          {
+            "sha256": "487f0ec4c14f85594ed92996953107e5b5f74606b764231047f654252c2fd798",
+            "relative": "pyside6/msvcp140_2.dll"
+          },
+          {
+            "sha256": "58f93f294794c14d611723ecbfbe26f99c8217d4539957d765dc7614efc1bb78",
+            "relative": "pyside6/qtgui.pyd"
+          },
+          {
+            "sha256": "956d1c9996e3ec2de026616558c6eed1e029450855039e4e4c005f5167b9af59",
+            "relative": "pyside6/qtnetwork.pyd"
+          },
+          {
+            "sha256": "ab266d83cd97d9a6f446467fb915f070a5d34c4453f1a1162aca7ef6ee40468d",
+            "relative": "pyside6/qt6network.dll"
+          },
+          {
+            "sha256": "6d8501e130b2b879e983b3b9d8be031acc879b844802606f1539a0a3c5ed2584",
+            "relative": "_elementtree.pyd"
+          },
+          {
+            "sha256": "fac87cbfe7a8f310008b934c7a458bf499b94d470be3b6f1b14e5f3db55af85c",
+            "relative": "pyexpat.pyd"
+          },
+          {
+            "sha256": "14be9a6c4d573f58cb8cf77763aba6fb453d607364a859fbf4d6bed26d6e3e1f",
+            "relative": "_wmi.pyd"
+          },
+          {
+            "sha256": "cbc5e8c2a9e58c101b10b7719f9fe6deb80d9977e3de48003e641f56eedbab4f",
+            "relative": "_socket.pyd"
+          },
+          {
+            "sha256": "0682b3d44fe431ecfea0792f1b5a314a9d87462752740a3073e505c638695cb8",
+            "relative": "select.pyd"
+          },
+          {
+            "sha256": "0035450801bd7d938e9e146c5ec28e619cb5a5f4a18cdc53ac7e9734c7f94f78",
+            "relative": "psutil/_psutil_windows.pyd"
+          },
+          {
+            "sha256": "f405a1ce3d8283711c5bbcbdaebf4f5f42d0e09ecd91d15b9c8d8b0a71c862be",
+            "relative": "pyside6/plugins/platforms/qwindows.dll"
+          },
+          {
+            "sha256": "94163e50d426920fd56603b4ded458efc20b1f266b29e9a1b40a65c1eeb55ab5",
+            "relative": "pyside6/plugins/styles/qwindowsvistastyle.dll"
+          },
+          {
+            "sha256": "ae3cab6928669d5c8a8276cbc244dc211542ac51e3a45d65060ea7915281a66e",
+            "relative": "pyside6/plugins/imageformats/qico.dll"
+          }
+        ],
+        "modules": [
+          {
+            "name": "rtt2uart.exe",
+            "path": "<USERPROFILE>\\AppData\\Local\\RTT2UART-issue13-20261105\\RTT2UART-issue13\\rtt2uart.exe",
+            "version": null
+          },
+          {
+            "name": "ntdll.dll",
+            "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "KERNEL32.DLL",
+            "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "KERNELBASE.dll",
+            "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "USER32.dll",
+            "path": "C:\\Windows\\System32\\USER32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "win32u.dll",
+            "path": "C:\\Windows\\System32\\win32u.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "winahframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winahframe64.dll",
+            "version": "4, 85, 419, 0"
+          },
+          {
+            "name": "GDI32.dll",
+            "path": "C:\\Windows\\System32\\GDI32.dll",
+            "version": "10.0.26100.8036 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "tsafedoc64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\tsafedoc64.dll",
+            "version": "4.85.431.0"
+          },
+          {
+            "name": "gdi32full.dll",
+            "path": "C:\\Windows\\System32\\gdi32full.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "msvcp_win.dll",
+            "path": "C:\\Windows\\System32\\msvcp_win.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ADVAPI32.dll",
+            "path": "C:\\Windows\\System32\\ADVAPI32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ucrtbase.dll",
+            "path": "C:\\Windows\\System32\\ucrtbase.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "msvcrt.dll",
+            "path": "C:\\Windows\\System32\\msvcrt.dll",
+            "version": "7.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WS2_32.dll",
+            "path": "C:\\Windows\\System32\\WS2_32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "RPCRT4.dll",
+            "path": "C:\\Windows\\System32\\RPCRT4.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "sechost.dll",
+            "path": "C:\\Windows\\System32\\sechost.dll",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "SHELL32.dll",
+            "path": "C:\\Windows\\System32\\SHELL32.dll",
+            "version": "10.0.26100.8457 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ole32.dll",
+            "path": "C:\\Windows\\System32\\ole32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "COMCTL32.dll",
+            "path": "C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.8115_none_3e075c82e3354f9c\\COMCTL32.dll",
+            "version": "5.82 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "combase.dll",
+            "path": "C:\\Windows\\System32\\combase.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "wintypes.dll",
+            "path": "C:\\Windows\\System32\\wintypes.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OLEAUT32.dll",
+            "path": "C:\\Windows\\System32\\OLEAUT32.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "VERSION.dll",
+            "path": "C:\\Windows\\SYSTEM32\\VERSION.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINSPOOL.DRV",
+            "path": "C:\\Windows\\SYSTEM32\\WINSPOOL.DRV",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MPR.dll",
+            "path": "C:\\Windows\\SYSTEM32\\MPR.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "shcore.dll",
+            "path": "C:\\Windows\\System32\\shcore.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "cfgmgr32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\cfgmgr32.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "IMM32.DLL",
+            "path": "C:\\Windows\\System32\\IMM32.DLL",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "winahdcore64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winahdcore64.dll",
+            "version": "4, 85, 419, 0"
+          },
+          {
+            "name": "SHLWAPI.dll",
+            "path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.Storage.dll",
+            "path": "C:\\Windows\\System32\\Windows.Storage.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OLEACC.dll",
+            "path": "C:\\Windows\\SYSTEM32\\OLEACC.dll",
+            "version": "7.2.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINMM.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WINMM.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "bcryptPrimitives.dll",
+            "path": "C:\\Windows\\System32\\bcryptPrimitives.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dtframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dtframe64.dll",
+            "version": "1.14.816.0"
+          },
+          {
+            "name": "TIjtDrvd64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\TIjtDrvd64.dll",
+            "version": "1, 15, 626, 0"
+          },
+          {
+            "name": "dtsframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dtsframe64.dll",
+            "version": "1, 14, 816, 0"
+          },
+          {
+            "name": "mswsock.dll",
+            "path": "C:\\Windows\\SYSTEM32\\mswsock.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "psapi.dll",
+            "path": "C:\\Windows\\System32\\psapi.dll",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "comdlg32.dll",
+            "path": "C:\\Windows\\System32\\comdlg32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WinUsb.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WinUsb.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "mf.dll",
+            "path": "C:\\Windows\\SYSTEM32\\mf.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MFCORE.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\MFCORE.DLL",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "setupapi.dll",
+            "path": "C:\\Windows\\System32\\setupapi.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "TMailHook64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\TMailHook64.dll",
+            "version": "4, 85, 414, 0"
+          },
+          {
+            "name": "winncap364.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winncap364.dll",
+            "version": "4,85,404,0"
+          },
+          {
+            "name": "hlink.dll",
+            "path": "C:\\Windows\\SYSTEM32\\hlink.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "iertutil.dll",
+            "path": "C:\\Windows\\SYSTEM32\\iertutil.dll",
+            "version": "11.00.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "srvcli.dll",
+            "path": "C:\\Windows\\SYSTEM32\\srvcli.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "netutils.dll",
+            "path": "C:\\Windows\\SYSTEM32\\netutils.dll",
+            "version": "10.0.26100.1882 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "thooksv364.dll",
+            "path": "C:\\Windows\\system32\\thooksv364.dll",
+            "version": "4, 85, 411, 0"
+          },
+          {
+            "name": "ucrtbase.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\ucrtbase.dll",
+            "version": "10.0.26100.4654 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "secur32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\secur32.dll",
+            "version": "10.0.26100.7705 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "python312.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\python312.dll",
+            "version": "3.12.13"
+          },
+          {
+            "name": "bcrypt.dll",
+            "path": "C:\\Windows\\SYSTEM32\\bcrypt.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "VCRUNTIME140.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\VCRUNTIME140.dll",
+            "version": "14.44.35211.0"
+          },
+          {
+            "name": "SSPICLI.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\SSPICLI.DLL",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "python3.DLL",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\python3.DLL",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_ctypes.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_ctypes.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "libffi-8.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\libffi-8.dll",
+            "version": null
+          },
+          {
+            "name": "_bz2.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_bz2.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_lzma.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_lzma.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "Shiboken.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\shiboken6\\Shiboken.pyd",
+            "version": null
+          },
+          {
+            "name": "shiboken6.abi3.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\shiboken6\\shiboken6.abi3.dll",
+            "version": null
+          },
+          {
+            "name": "VCRUNTIME140_1.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\shiboken6\\VCRUNTIME140_1.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "MSVCP140.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\shiboken6\\MSVCP140.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "QtCore.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\QtCore.pyd",
+            "version": null
+          },
+          {
+            "name": "pyside6.abi3.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\pyside6.abi3.dll",
+            "version": null
+          },
+          {
+            "name": "Qt6Core.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\Qt6Core.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "USERENV.dll",
+            "path": "C:\\Windows\\SYSTEM32\\USERENV.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "AUTHZ.dll",
+            "path": "C:\\Windows\\SYSTEM32\\AUTHZ.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "NETAPI32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\NETAPI32.dll",
+            "version": "10.0.26100.7019 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSVCP140_1.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\MSVCP140_1.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "CRYPTBASE.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "QtWidgets.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\QtWidgets.pyd",
+            "version": null
+          },
+          {
+            "name": "Qt6Widgets.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\Qt6Widgets.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "Qt6Gui.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\Qt6Gui.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "dwmapi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dwmapi.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "UxTheme.dll",
+            "path": "C:\\Windows\\SYSTEM32\\UxTheme.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "d3d11.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d11.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dxgi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dxgi.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "d3d12.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d12.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "DWrite.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DWrite.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSVCP140_2.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\MSVCP140_2.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "powrprof.dll",
+            "path": "C:\\Windows\\SYSTEM32\\powrprof.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "UMPDC.dll",
+            "path": "C:\\Windows\\SYSTEM32\\UMPDC.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "QtGui.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\QtGui.pyd",
+            "version": null
+          },
+          {
+            "name": "QtNetwork.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\QtNetwork.pyd",
+            "version": null
+          },
+          {
+            "name": "Qt6Network.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\Qt6Network.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "DNSAPI.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DNSAPI.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "IPHLPAPI.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\IPHLPAPI.DLL",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINHTTP.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WINHTTP.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "NSI.dll",
+            "path": "C:\\Windows\\System32\\NSI.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "_elementtree.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_elementtree.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "pyexpat.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\pyexpat.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_wmi.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_wmi.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "PROPSYS.dll",
+            "path": "C:\\Windows\\SYSTEM32\\PROPSYS.dll",
+            "version": "7.0.26100.8457 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "_socket.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\_socket.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "select.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\select.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_psutil_windows.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\psutil\\_psutil_windows.pyd",
+            "version": null
+          },
+          {
+            "name": "pdh.dll",
+            "path": "C:\\Windows\\SYSTEM32\\pdh.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "wtsapi32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\wtsapi32.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CRYPT32.dll",
+            "path": "C:\\Windows\\System32\\CRYPT32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "profapi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\profapi.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "qwindows.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\plugins\\platforms\\qwindows.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "d3d9.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d9.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dxcore.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dxcore.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "kernel.appcore.dll",
+            "path": "C:\\Windows\\SYSTEM32\\kernel.appcore.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSCTF.dll",
+            "path": "C:\\Windows\\System32\\MSCTF.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "DEVOBJ.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DEVOBJ.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "clbcatq.dll",
+            "path": "C:\\Windows\\System32\\clbcatq.dll",
+            "version": "2001.12.10941.16384 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.UI.dll",
+            "path": "C:\\Windows\\System32\\Windows.UI.dll",
+            "version": "10.0.26100.7840 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.UI.Immersive.dll",
+            "path": "C:\\Windows\\System32\\Windows.UI.Immersive.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "qwindowsvistastyle.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\plugins\\styles\\qwindowsvistastyle.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "qico.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00003f042\\PySide6\\plugins\\imageformats\\qico.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "WINTRUST.dll",
+            "path": "C:\\Windows\\System32\\WINTRUST.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSASN1.dll",
+            "path": "C:\\Windows\\SYSTEM32\\MSASN1.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dataexchange.dll",
+            "path": "C:\\Windows\\system32\\dataexchange.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "twinapi.appcore.dll",
+            "path": "C:\\Windows\\system32\\twinapi.appcore.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "textinputframework.dll",
+            "path": "C:\\Windows\\SYSTEM32\\textinputframework.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CoreMessaging.dll",
+            "path": "C:\\Windows\\SYSTEM32\\CoreMessaging.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CoreUIComponents.dll",
+            "path": "C:\\Windows\\SYSTEM32\\CoreUIComponents.dll",
+            "version": "10.0.26100.8246"
+          },
+          {
+            "name": "UIAutomationCore.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\UIAutomationCore.DLL",
+            "version": "7.2.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OneCoreCommonProxyStub.dll",
+            "path": "C:\\Windows\\System32\\OneCoreCommonProxyStub.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          }
+        ],
+        "candidate_payload_sha256": {
+          "ucrtbase.dll": "3239227d27667ba20d10a880751924e5719de0078f9fce232d149d383f7681f6",
+          "python312.dll": "64a1dad031e97f13b1a0bac26c689d8e14a18d7dd1eab06e17f70e22373f4eec",
+          "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+          "python3.dll": "2d2330ce33d1443c67b1804bbf1a561653499dd4dcf8918048747cc17d1a63c4",
+          "_ctypes.pyd": "7b1298bb2f3bc2703893c6be4423d656c273516637349c75c8aceb3402c43d9c",
+          "libffi-8.dll": "78f1922e71ca52ef2497774951673cdc9497bd50fcbd7fe46060cc2d028db89c",
+          "_bz2.pyd": "2046a236f6ec1858e514cbf1ceae05ad8b62797e3b9080ed833f71cb19d6131b",
+          "_lzma.pyd": "cb930cd57d32c28e456b78d77a6f4d7ccbc3255d89a8928bc5169d1eabd7655f",
+          "shiboken6/shiboken.pyd": "12d0ea493c9b42e5e6d73f84f0ef84ebab0452556ad7b703d3e5277119c899f7",
+          "shiboken6/shiboken6.abi3.dll": "245e27b420be76ea559e7dc222dc5ef37ada1dea8cd8c2d15587d0878e69208a",
+          "shiboken6/vcruntime140_1.dll": "8e23d99065d9991340cc3f5bf6a5e2b597303754677d9104ace0725c10933756",
+          "shiboken6/msvcp140.dll": "3b2cd0741cfe2472a6d08daa7af3132705e7c20c3efd414095a747aee42db7cf",
+          "pyside6/qtcore.pyd": "1a6f50e7d71edcd37d8749f65294ba347c9e6bcd0ed95c022a4cd9add2c2d9e3",
+          "pyside6/pyside6.abi3.dll": "5557771c996bd7410cdbe87a5178626c786e44585cecf432748093c0ab7e964b",
+          "pyside6/qt6core.dll": "6f56a489239bf5fdf8e52d2e899350cbc0cd68d6df99afa2feb04382a687057e",
+          "pyside6/msvcp140_1.dll": "53f9e8ccbd96ca332e8500062459d15b3b90187edf708c3679506241b0c6864f",
+          "pyside6/qtwidgets.pyd": "6849140481cac4ab6e081db9094410ab9ab654a7391cfd84f0865ff510ea01bc",
+          "pyside6/qt6widgets.dll": "ada44eb04fac5daf342075ba3b6e88ffffbacb986a98b96c15dc4fc319fc2481",
+          "pyside6/qt6gui.dll": "540d1e956a13ec53a996c17ac69949c628858def2bf12a1405e51b4a241d45b7",
+          "pyside6/msvcp140_2.dll": "487f0ec4c14f85594ed92996953107e5b5f74606b764231047f654252c2fd798",
+          "pyside6/qtgui.pyd": "58f93f294794c14d611723ecbfbe26f99c8217d4539957d765dc7614efc1bb78",
+          "pyside6/qtnetwork.pyd": "956d1c9996e3ec2de026616558c6eed1e029450855039e4e4c005f5167b9af59",
+          "pyside6/qt6network.dll": "ab266d83cd97d9a6f446467fb915f070a5d34c4453f1a1162aca7ef6ee40468d",
+          "_elementtree.pyd": "6d8501e130b2b879e983b3b9d8be031acc879b844802606f1539a0a3c5ed2584",
+          "pyexpat.pyd": "fac87cbfe7a8f310008b934c7a458bf499b94d470be3b6f1b14e5f3db55af85c",
+          "_wmi.pyd": "14be9a6c4d573f58cb8cf77763aba6fb453d607364a859fbf4d6bed26d6e3e1f",
+          "_socket.pyd": "cbc5e8c2a9e58c101b10b7719f9fe6deb80d9977e3de48003e641f56eedbab4f",
+          "select.pyd": "0682b3d44fe431ecfea0792f1b5a314a9d87462752740a3073e505c638695cb8",
+          "psutil/_psutil_windows.pyd": "0035450801bd7d938e9e146c5ec28e619cb5a5f4a18cdc53ac7e9734c7f94f78",
+          "pyside6/plugins/platforms/qwindows.dll": "f405a1ce3d8283711c5bbcbdaebf4f5f42d0e09ecd91d15b9c8d8b0a71c862be",
+          "pyside6/plugins/styles/qwindowsvistastyle.dll": "94163e50d426920fd56603b4ded458efc20b1f266b29e9a1b40a65c1eeb55ab5",
+          "pyside6/plugins/imageformats/qico.dll": "ae3cab6928669d5c8a8276cbc244dc211542ac51e3a45d65060ea7915281a66e"
+        }
+      }
+    },
+    "evidence/selector-modules.json": {
+      "source_sha256": "9f3ef7c969c8cf71093fdc3ceac6741db4e33558146bf4e1793c5ebca012ee2d",
+      "selection": [
+        "attach only the 32 independently extracted candidate payload hashes used by this snapshot; omit unused payload baselines"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T09:22:51.2365678Z",
+        "session_id": 6,
+        "bundle": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42",
+        "verified": [
+          {
+            "sha256": "3239227d27667ba20d10a880751924e5719de0078f9fce232d149d383f7681f6",
+            "relative": "ucrtbase.dll"
+          },
+          {
+            "sha256": "64a1dad031e97f13b1a0bac26c689d8e14a18d7dd1eab06e17f70e22373f4eec",
+            "relative": "python312.dll"
+          },
+          {
+            "sha256": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+            "relative": "vcruntime140.dll"
+          },
+          {
+            "sha256": "2d2330ce33d1443c67b1804bbf1a561653499dd4dcf8918048747cc17d1a63c4",
+            "relative": "python3.dll"
+          },
+          {
+            "sha256": "7b1298bb2f3bc2703893c6be4423d656c273516637349c75c8aceb3402c43d9c",
+            "relative": "_ctypes.pyd"
+          },
+          {
+            "sha256": "78f1922e71ca52ef2497774951673cdc9497bd50fcbd7fe46060cc2d028db89c",
+            "relative": "libffi-8.dll"
+          },
+          {
+            "sha256": "2046a236f6ec1858e514cbf1ceae05ad8b62797e3b9080ed833f71cb19d6131b",
+            "relative": "_bz2.pyd"
+          },
+          {
+            "sha256": "cb930cd57d32c28e456b78d77a6f4d7ccbc3255d89a8928bc5169d1eabd7655f",
+            "relative": "_lzma.pyd"
+          },
+          {
+            "sha256": "12d0ea493c9b42e5e6d73f84f0ef84ebab0452556ad7b703d3e5277119c899f7",
+            "relative": "shiboken6/shiboken.pyd"
+          },
+          {
+            "sha256": "245e27b420be76ea559e7dc222dc5ef37ada1dea8cd8c2d15587d0878e69208a",
+            "relative": "shiboken6/shiboken6.abi3.dll"
+          },
+          {
+            "sha256": "8e23d99065d9991340cc3f5bf6a5e2b597303754677d9104ace0725c10933756",
+            "relative": "shiboken6/vcruntime140_1.dll"
+          },
+          {
+            "sha256": "3b2cd0741cfe2472a6d08daa7af3132705e7c20c3efd414095a747aee42db7cf",
+            "relative": "shiboken6/msvcp140.dll"
+          },
+          {
+            "sha256": "1a6f50e7d71edcd37d8749f65294ba347c9e6bcd0ed95c022a4cd9add2c2d9e3",
+            "relative": "pyside6/qtcore.pyd"
+          },
+          {
+            "sha256": "5557771c996bd7410cdbe87a5178626c786e44585cecf432748093c0ab7e964b",
+            "relative": "pyside6/pyside6.abi3.dll"
+          },
+          {
+            "sha256": "6f56a489239bf5fdf8e52d2e899350cbc0cd68d6df99afa2feb04382a687057e",
+            "relative": "pyside6/qt6core.dll"
+          },
+          {
+            "sha256": "53f9e8ccbd96ca332e8500062459d15b3b90187edf708c3679506241b0c6864f",
+            "relative": "pyside6/msvcp140_1.dll"
+          },
+          {
+            "sha256": "6849140481cac4ab6e081db9094410ab9ab654a7391cfd84f0865ff510ea01bc",
+            "relative": "pyside6/qtwidgets.pyd"
+          },
+          {
+            "sha256": "ada44eb04fac5daf342075ba3b6e88ffffbacb986a98b96c15dc4fc319fc2481",
+            "relative": "pyside6/qt6widgets.dll"
+          },
+          {
+            "sha256": "540d1e956a13ec53a996c17ac69949c628858def2bf12a1405e51b4a241d45b7",
+            "relative": "pyside6/qt6gui.dll"
+          },
+          {
+            "sha256": "487f0ec4c14f85594ed92996953107e5b5f74606b764231047f654252c2fd798",
+            "relative": "pyside6/msvcp140_2.dll"
+          },
+          {
+            "sha256": "58f93f294794c14d611723ecbfbe26f99c8217d4539957d765dc7614efc1bb78",
+            "relative": "pyside6/qtgui.pyd"
+          },
+          {
+            "sha256": "956d1c9996e3ec2de026616558c6eed1e029450855039e4e4c005f5167b9af59",
+            "relative": "pyside6/qtnetwork.pyd"
+          },
+          {
+            "sha256": "ab266d83cd97d9a6f446467fb915f070a5d34c4453f1a1162aca7ef6ee40468d",
+            "relative": "pyside6/qt6network.dll"
+          },
+          {
+            "sha256": "6d8501e130b2b879e983b3b9d8be031acc879b844802606f1539a0a3c5ed2584",
+            "relative": "_elementtree.pyd"
+          },
+          {
+            "sha256": "fac87cbfe7a8f310008b934c7a458bf499b94d470be3b6f1b14e5f3db55af85c",
+            "relative": "pyexpat.pyd"
+          },
+          {
+            "sha256": "14be9a6c4d573f58cb8cf77763aba6fb453d607364a859fbf4d6bed26d6e3e1f",
+            "relative": "_wmi.pyd"
+          },
+          {
+            "sha256": "cbc5e8c2a9e58c101b10b7719f9fe6deb80d9977e3de48003e641f56eedbab4f",
+            "relative": "_socket.pyd"
+          },
+          {
+            "sha256": "0682b3d44fe431ecfea0792f1b5a314a9d87462752740a3073e505c638695cb8",
+            "relative": "select.pyd"
+          },
+          {
+            "sha256": "0035450801bd7d938e9e146c5ec28e619cb5a5f4a18cdc53ac7e9734c7f94f78",
+            "relative": "psutil/_psutil_windows.pyd"
+          },
+          {
+            "sha256": "f405a1ce3d8283711c5bbcbdaebf4f5f42d0e09ecd91d15b9c8d8b0a71c862be",
+            "relative": "pyside6/plugins/platforms/qwindows.dll"
+          },
+          {
+            "sha256": "94163e50d426920fd56603b4ded458efc20b1f266b29e9a1b40a65c1eeb55ab5",
+            "relative": "pyside6/plugins/styles/qwindowsvistastyle.dll"
+          },
+          {
+            "sha256": "ae3cab6928669d5c8a8276cbc244dc211542ac51e3a45d65060ea7915281a66e",
+            "relative": "pyside6/plugins/imageformats/qico.dll"
+          }
+        ],
+        "modules": [
+          {
+            "name": "rtt2uart.exe",
+            "path": "<USERPROFILE>\\AppData\\Local\\RTT2UART-issue13-20261105\\RTT2UART-issue13\\rtt2uart.exe",
+            "version": null
+          },
+          {
+            "name": "ntdll.dll",
+            "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "KERNEL32.DLL",
+            "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "KERNELBASE.dll",
+            "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+            "version": "10.0.26100.8162 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "USER32.dll",
+            "path": "C:\\Windows\\System32\\USER32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "win32u.dll",
+            "path": "C:\\Windows\\System32\\win32u.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "GDI32.dll",
+            "path": "C:\\Windows\\System32\\GDI32.dll",
+            "version": "10.0.26100.8036 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "winahframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winahframe64.dll",
+            "version": "4, 85, 419, 0"
+          },
+          {
+            "name": "tsafedoc64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\tsafedoc64.dll",
+            "version": "4.85.431.0"
+          },
+          {
+            "name": "gdi32full.dll",
+            "path": "C:\\Windows\\System32\\gdi32full.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "msvcp_win.dll",
+            "path": "C:\\Windows\\System32\\msvcp_win.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ucrtbase.dll",
+            "path": "C:\\Windows\\System32\\ucrtbase.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ADVAPI32.dll",
+            "path": "C:\\Windows\\System32\\ADVAPI32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "msvcrt.dll",
+            "path": "C:\\Windows\\System32\\msvcrt.dll",
+            "version": "7.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "sechost.dll",
+            "path": "C:\\Windows\\System32\\sechost.dll",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "COMCTL32.dll",
+            "path": "C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.26100.8115_none_3e075c82e3354f9c\\COMCTL32.dll",
+            "version": "5.82 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "RPCRT4.dll",
+            "path": "C:\\Windows\\System32\\RPCRT4.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "ole32.dll",
+            "path": "C:\\Windows\\System32\\ole32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "combase.dll",
+            "path": "C:\\Windows\\System32\\combase.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "VERSION.dll",
+            "path": "C:\\Windows\\SYSTEM32\\VERSION.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WS2_32.dll",
+            "path": "C:\\Windows\\System32\\WS2_32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "SHELL32.dll",
+            "path": "C:\\Windows\\System32\\SHELL32.dll",
+            "version": "10.0.26100.8457 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "wintypes.dll",
+            "path": "C:\\Windows\\System32\\wintypes.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OLEAUT32.dll",
+            "path": "C:\\Windows\\System32\\OLEAUT32.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINSPOOL.DRV",
+            "path": "C:\\Windows\\SYSTEM32\\WINSPOOL.DRV",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MPR.dll",
+            "path": "C:\\Windows\\SYSTEM32\\MPR.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "shcore.dll",
+            "path": "C:\\Windows\\System32\\shcore.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "cfgmgr32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\cfgmgr32.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "IMM32.DLL",
+            "path": "C:\\Windows\\System32\\IMM32.DLL",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "winahdcore64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winahdcore64.dll",
+            "version": "4, 85, 419, 0"
+          },
+          {
+            "name": "SHLWAPI.dll",
+            "path": "C:\\Windows\\System32\\SHLWAPI.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.Storage.dll",
+            "path": "C:\\Windows\\System32\\Windows.Storage.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OLEACC.dll",
+            "path": "C:\\Windows\\SYSTEM32\\OLEACC.dll",
+            "version": "7.2.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINMM.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WINMM.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "bcryptPrimitives.dll",
+            "path": "C:\\Windows\\System32\\bcryptPrimitives.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dtframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dtframe64.dll",
+            "version": "1.14.816.0"
+          },
+          {
+            "name": "TIjtDrvd64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\TIjtDrvd64.dll",
+            "version": "1, 15, 626, 0"
+          },
+          {
+            "name": "dtsframe64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dtsframe64.dll",
+            "version": "1, 14, 816, 0"
+          },
+          {
+            "name": "mswsock.dll",
+            "path": "C:\\Windows\\SYSTEM32\\mswsock.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "psapi.dll",
+            "path": "C:\\Windows\\System32\\psapi.dll",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "comdlg32.dll",
+            "path": "C:\\Windows\\System32\\comdlg32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WinUsb.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WinUsb.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "mf.dll",
+            "path": "C:\\Windows\\SYSTEM32\\mf.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MFCORE.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\MFCORE.DLL",
+            "version": "10.0.26100.1 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "setupapi.dll",
+            "path": "C:\\Windows\\System32\\setupapi.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "TMailHook64.dll",
+            "path": "C:\\Windows\\SYSTEM32\\TMailHook64.dll",
+            "version": "4, 85, 414, 0"
+          },
+          {
+            "name": "winncap364.dll",
+            "path": "C:\\Windows\\SYSTEM32\\winncap364.dll",
+            "version": "4,85,404,0"
+          },
+          {
+            "name": "hlink.dll",
+            "path": "C:\\Windows\\SYSTEM32\\hlink.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "iertutil.dll",
+            "path": "C:\\Windows\\SYSTEM32\\iertutil.dll",
+            "version": "11.00.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "srvcli.dll",
+            "path": "C:\\Windows\\SYSTEM32\\srvcli.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "netutils.dll",
+            "path": "C:\\Windows\\SYSTEM32\\netutils.dll",
+            "version": "10.0.26100.1882 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "thooksv364.dll",
+            "path": "C:\\Windows\\system32\\thooksv364.dll",
+            "version": "4, 85, 411, 0"
+          },
+          {
+            "name": "ucrtbase.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\ucrtbase.dll",
+            "version": "10.0.26100.4654 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "secur32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\secur32.dll",
+            "version": "10.0.26100.7705 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "SSPICLI.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\SSPICLI.DLL",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "python312.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\python312.dll",
+            "version": "3.12.13"
+          },
+          {
+            "name": "bcrypt.dll",
+            "path": "C:\\Windows\\SYSTEM32\\bcrypt.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "VCRUNTIME140.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\VCRUNTIME140.dll",
+            "version": "14.44.35211.0"
+          },
+          {
+            "name": "python3.DLL",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\python3.DLL",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_ctypes.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_ctypes.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "libffi-8.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\libffi-8.dll",
+            "version": null
+          },
+          {
+            "name": "_bz2.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_bz2.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_lzma.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_lzma.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "Shiboken.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\shiboken6\\Shiboken.pyd",
+            "version": null
+          },
+          {
+            "name": "shiboken6.abi3.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\shiboken6\\shiboken6.abi3.dll",
+            "version": null
+          },
+          {
+            "name": "VCRUNTIME140_1.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\shiboken6\\VCRUNTIME140_1.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "MSVCP140.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\shiboken6\\MSVCP140.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "QtCore.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\QtCore.pyd",
+            "version": null
+          },
+          {
+            "name": "pyside6.abi3.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\pyside6.abi3.dll",
+            "version": null
+          },
+          {
+            "name": "Qt6Core.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\Qt6Core.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "USERENV.dll",
+            "path": "C:\\Windows\\SYSTEM32\\USERENV.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "AUTHZ.dll",
+            "path": "C:\\Windows\\SYSTEM32\\AUTHZ.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "NETAPI32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\NETAPI32.dll",
+            "version": "10.0.26100.7019 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSVCP140_1.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\MSVCP140_1.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "CRYPTBASE.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "QtWidgets.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\QtWidgets.pyd",
+            "version": null
+          },
+          {
+            "name": "Qt6Widgets.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\Qt6Widgets.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "Qt6Gui.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\Qt6Gui.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "dwmapi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dwmapi.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "UxTheme.dll",
+            "path": "C:\\Windows\\SYSTEM32\\UxTheme.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "d3d11.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d11.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dxgi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dxgi.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "d3d12.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d12.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "DWrite.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DWrite.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSVCP140_2.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\MSVCP140_2.dll",
+            "version": "14.29.30151.0 built by: cloudtest"
+          },
+          {
+            "name": "powrprof.dll",
+            "path": "C:\\Windows\\SYSTEM32\\powrprof.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "UMPDC.dll",
+            "path": "C:\\Windows\\SYSTEM32\\UMPDC.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "QtGui.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\QtGui.pyd",
+            "version": null
+          },
+          {
+            "name": "QtNetwork.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\QtNetwork.pyd",
+            "version": null
+          },
+          {
+            "name": "Qt6Network.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\Qt6Network.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "DNSAPI.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DNSAPI.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "IPHLPAPI.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\IPHLPAPI.DLL",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "WINHTTP.dll",
+            "path": "C:\\Windows\\SYSTEM32\\WINHTTP.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "NSI.dll",
+            "path": "C:\\Windows\\System32\\NSI.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "_elementtree.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_elementtree.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "pyexpat.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\pyexpat.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_wmi.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_wmi.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "PROPSYS.dll",
+            "path": "C:\\Windows\\SYSTEM32\\PROPSYS.dll",
+            "version": "7.0.26100.8457 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "_socket.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\_socket.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "select.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\select.pyd",
+            "version": "3.12.13"
+          },
+          {
+            "name": "_psutil_windows.pyd",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\psutil\\_psutil_windows.pyd",
+            "version": null
+          },
+          {
+            "name": "pdh.dll",
+            "path": "C:\\Windows\\SYSTEM32\\pdh.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "wtsapi32.dll",
+            "path": "C:\\Windows\\SYSTEM32\\wtsapi32.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CRYPT32.dll",
+            "path": "C:\\Windows\\System32\\CRYPT32.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "profapi.dll",
+            "path": "C:\\Windows\\SYSTEM32\\profapi.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "qwindows.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\plugins\\platforms\\qwindows.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "d3d9.dll",
+            "path": "C:\\Windows\\SYSTEM32\\d3d9.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dxcore.dll",
+            "path": "C:\\Windows\\SYSTEM32\\dxcore.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "kernel.appcore.dll",
+            "path": "C:\\Windows\\SYSTEM32\\kernel.appcore.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSCTF.dll",
+            "path": "C:\\Windows\\System32\\MSCTF.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "DEVOBJ.dll",
+            "path": "C:\\Windows\\SYSTEM32\\DEVOBJ.dll",
+            "version": "10.0.26100.1150 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "clbcatq.dll",
+            "path": "C:\\Windows\\System32\\clbcatq.dll",
+            "version": "2001.12.10941.16384 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.UI.dll",
+            "path": "C:\\Windows\\System32\\Windows.UI.dll",
+            "version": "10.0.26100.7840 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "Windows.UI.Immersive.dll",
+            "path": "C:\\Windows\\System32\\Windows.UI.Immersive.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "qwindowsvistastyle.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\plugins\\styles\\qwindowsvistastyle.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "qico.dll",
+            "path": "<USERPROFILE>\\AppData\\Local\\Temp\\_MEI00004ac42\\PySide6\\plugins\\imageformats\\qico.dll",
+            "version": "6.6.1.0"
+          },
+          {
+            "name": "WINTRUST.dll",
+            "path": "C:\\Windows\\System32\\WINTRUST.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "MSASN1.dll",
+            "path": "C:\\Windows\\SYSTEM32\\MSASN1.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "dataexchange.dll",
+            "path": "C:\\Windows\\system32\\dataexchange.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "twinapi.appcore.dll",
+            "path": "C:\\Windows\\system32\\twinapi.appcore.dll",
+            "version": "10.0.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "textinputframework.dll",
+            "path": "C:\\Windows\\SYSTEM32\\textinputframework.dll",
+            "version": "10.0.26100.8115 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CoreMessaging.dll",
+            "path": "C:\\Windows\\SYSTEM32\\CoreMessaging.dll",
+            "version": "10.0.26100.8246 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "CoreUIComponents.dll",
+            "path": "C:\\Windows\\SYSTEM32\\CoreUIComponents.dll",
+            "version": "10.0.26100.8246"
+          },
+          {
+            "name": "UIAutomationCore.DLL",
+            "path": "C:\\Windows\\SYSTEM32\\UIAutomationCore.DLL",
+            "version": "7.2.26100.8875 (WinBuild.160101.0800)"
+          },
+          {
+            "name": "OneCoreCommonProxyStub.dll",
+            "path": "C:\\Windows\\System32\\OneCoreCommonProxyStub.dll",
+            "version": "10.0.26100.7920 (WinBuild.160101.0800)"
+          }
+        ],
+        "candidate_payload_sha256": {
+          "ucrtbase.dll": "3239227d27667ba20d10a880751924e5719de0078f9fce232d149d383f7681f6",
+          "python312.dll": "64a1dad031e97f13b1a0bac26c689d8e14a18d7dd1eab06e17f70e22373f4eec",
+          "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+          "python3.dll": "2d2330ce33d1443c67b1804bbf1a561653499dd4dcf8918048747cc17d1a63c4",
+          "_ctypes.pyd": "7b1298bb2f3bc2703893c6be4423d656c273516637349c75c8aceb3402c43d9c",
+          "libffi-8.dll": "78f1922e71ca52ef2497774951673cdc9497bd50fcbd7fe46060cc2d028db89c",
+          "_bz2.pyd": "2046a236f6ec1858e514cbf1ceae05ad8b62797e3b9080ed833f71cb19d6131b",
+          "_lzma.pyd": "cb930cd57d32c28e456b78d77a6f4d7ccbc3255d89a8928bc5169d1eabd7655f",
+          "shiboken6/shiboken.pyd": "12d0ea493c9b42e5e6d73f84f0ef84ebab0452556ad7b703d3e5277119c899f7",
+          "shiboken6/shiboken6.abi3.dll": "245e27b420be76ea559e7dc222dc5ef37ada1dea8cd8c2d15587d0878e69208a",
+          "shiboken6/vcruntime140_1.dll": "8e23d99065d9991340cc3f5bf6a5e2b597303754677d9104ace0725c10933756",
+          "shiboken6/msvcp140.dll": "3b2cd0741cfe2472a6d08daa7af3132705e7c20c3efd414095a747aee42db7cf",
+          "pyside6/qtcore.pyd": "1a6f50e7d71edcd37d8749f65294ba347c9e6bcd0ed95c022a4cd9add2c2d9e3",
+          "pyside6/pyside6.abi3.dll": "5557771c996bd7410cdbe87a5178626c786e44585cecf432748093c0ab7e964b",
+          "pyside6/qt6core.dll": "6f56a489239bf5fdf8e52d2e899350cbc0cd68d6df99afa2feb04382a687057e",
+          "pyside6/msvcp140_1.dll": "53f9e8ccbd96ca332e8500062459d15b3b90187edf708c3679506241b0c6864f",
+          "pyside6/qtwidgets.pyd": "6849140481cac4ab6e081db9094410ab9ab654a7391cfd84f0865ff510ea01bc",
+          "pyside6/qt6widgets.dll": "ada44eb04fac5daf342075ba3b6e88ffffbacb986a98b96c15dc4fc319fc2481",
+          "pyside6/qt6gui.dll": "540d1e956a13ec53a996c17ac69949c628858def2bf12a1405e51b4a241d45b7",
+          "pyside6/msvcp140_2.dll": "487f0ec4c14f85594ed92996953107e5b5f74606b764231047f654252c2fd798",
+          "pyside6/qtgui.pyd": "58f93f294794c14d611723ecbfbe26f99c8217d4539957d765dc7614efc1bb78",
+          "pyside6/qtnetwork.pyd": "956d1c9996e3ec2de026616558c6eed1e029450855039e4e4c005f5167b9af59",
+          "pyside6/qt6network.dll": "ab266d83cd97d9a6f446467fb915f070a5d34c4453f1a1162aca7ef6ee40468d",
+          "_elementtree.pyd": "6d8501e130b2b879e983b3b9d8be031acc879b844802606f1539a0a3c5ed2584",
+          "pyexpat.pyd": "fac87cbfe7a8f310008b934c7a458bf499b94d470be3b6f1b14e5f3db55af85c",
+          "_wmi.pyd": "14be9a6c4d573f58cb8cf77763aba6fb453d607364a859fbf4d6bed26d6e3e1f",
+          "_socket.pyd": "cbc5e8c2a9e58c101b10b7719f9fe6deb80d9977e3de48003e641f56eedbab4f",
+          "select.pyd": "0682b3d44fe431ecfea0792f1b5a314a9d87462752740a3073e505c638695cb8",
+          "psutil/_psutil_windows.pyd": "0035450801bd7d938e9e146c5ec28e619cb5a5f4a18cdc53ac7e9734c7f94f78",
+          "pyside6/plugins/platforms/qwindows.dll": "f405a1ce3d8283711c5bbcbdaebf4f5f42d0e09ecd91d15b9c8d8b0a71c862be",
+          "pyside6/plugins/styles/qwindowsvistastyle.dll": "94163e50d426920fd56603b4ded458efc20b1f266b29e9a1b40a65c1eeb55ab5",
+          "pyside6/plugins/imageformats/qico.dll": "ae3cab6928669d5c8a8276cbc244dc211542ac51e3a45d65060ea7915281a66e"
+        }
+      }
+    },
+    "evidence/final-inventory.json": {
+      "source_sha256": "49aeb0c8a9d945119e6e9373b99398b8346cd23667059ae798ea63d5da925904",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T09:25:23.4420338Z",
+        "os": {
+          "Caption": "Microsoft Windows 11 专业版",
+          "Version": "10.0.26200",
+          "BuildNumber": "26200",
+          "OSArchitecture": "64 位"
+        },
+        "runtime_directory": "<USERPROFILE>\\SEGGER\\JLink_V754d",
+        "runtime_version": "7.54d",
+        "runtime_sha256": "82ad22e5642867d14884eaf4bfe09fbebc1a7cc8de30c15981083f48b903aa43",
+        "python_aliases": [
+          {
+            "Name": "python.exe",
+            "Length": 0,
+            "Attributes": 1056
+          },
+          {
+            "Name": "python3.exe",
+            "Length": 0,
+            "Attributes": 1056
+          }
+        ],
+        "cubeide_still_present": true,
+        "candidate_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d",
+        "settings_sha256": "23c345418489de527695fecc98d2484eaf588627695b9eed244f9b8c894f0868",
+        "catalog_sha256": "8735b564af7f0ff59b461268d9aba4cc81a2da62b5fca13bd99cc60ea45b2fca",
+        "app_processes": [],
+        "native_verified_count": 32
+      }
+    },
+    "evidence/cleanup.json": {
+      "source_sha256": "ded4be8928ae5fe0e7f526c31ea842a84e906f731408c580c0fac536c455c76c",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "removed": true,
+        "task": "RTT2UART-Issue13-20261105",
+        "gui_session": 6,
+        "remaining_candidate_processes": []
+      }
+    },
+    "checks.json": {
+      "source_sha256": "486c62d9017228704cbf61d973e57d1a3ee483c7592f6db2c67275c5b052f543",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "scope": "Provided Windows11/J-Link7.54d with isolated developer variables/PATH; no absence-of-IDE claim",
+        "gui_assertions": 46,
+        "main_normal_exit_codes": [
+          0,
+          0,
+          0
+        ],
+        "second_instance_exit_code": 0,
+        "modules": {
+          "initial-modules.json": {
+            "native_verified": 32,
+            "all_modules": 125,
+            "outside_bundle_windows_candidate": 0
+          },
+          "selector-modules.json": {
+            "native_verified": 32,
+            "all_modules": 125,
+            "outside_bundle_windows_candidate": 0
+          }
+        },
+        "returned_settings": {
+          "device": [
+            "STM32H750VB",
+            "STM32F407VG",
+            "ARM7"
+          ],
+          "device_index": 0,
+          "interface": 1,
+          "speed": 13,
+          "port": 0,
+          "buadrate": 16
+        },
+        "task_removed": true,
+        "remaining_app_processes": 0,
+        "strict_bare_OS_without_IDE": "not exercised; outside approved closure claim",
+        "post_run_remote_source_rehash": "not returned; see source-transfer.json",
+        "remote_python_or_Qt_install_performed": false,
+        "candidate_exe_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d",
+        "production_application_changed": false,
+        "controlled_suite": {
+          "tests": 61,
+          "seconds": 9.511,
+          "log": "controlled-suite.txt"
+        },
+        "strict_types_modules": 5,
+        "png_decode_count": 11,
+        "json_ps_syntax_links_privacy": "pass",
+        "release_gate": "pass_under_explicit_operator_qualification",
+        "tested_helpers_match_uploaded_payloads": true,
+        "tested_controller": "evidence/run-gui-used.ps1",
+        "replay_cleanup_ownership_guard": "replay-guard-controls.json",
+        "review": {
+          "standards_remaining_findings": 0,
+          "independent_spec": "unavailable: usage limit",
+          "primary_agent_spec_check": "completed; strict clean-host subcase remains pending",
+          "record": "review.md"
+        },
+        "gate_approval": "gate-approval.json",
+        "issue13_closure": "tracker-readback.json",
+        "parent7": "body/state unchanged, open"
+      }
+    },
+    "gate-approval.json": {
+      "source_sha256": "376b9d8829ac6ed9935c89f1e7fe88f4de2e6f38458c203f52b59c0c9d4b18fe",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T10:06:32.488Z",
+        "status": "approved",
+        "operator_reply": "接受提案，按记录范围关闭 #13",
+        "approved_scope": "Operator-supplied Windows11 x64/build26200, standalone J-Link7.54d, isolated developer variables/PATH and recorded GUI/native-payload/settings/cleanup evidence",
+        "bare_OS_without_development_software": "not exercised; not claimed",
+        "authorizes_issue13_closure": true,
+        "parent_issue7_change_authorized": false,
+        "proposal": "gate-qualification-proposal.md"
+      }
+    },
+    "tracker-readback.json": {
+      "source_sha256": "9f1722833b1cb48e62ce177985d94712584262e5b1b9bc80eee478e2d942ae5f",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-05T10:09:56.362Z",
+        "issue_url": "https://github.com/tianxiaoMCU/RTT2UART/issues/13",
+        "state": "closed",
+        "state_reason": "completed",
+        "exact_body_readback": true,
+        "all_acceptance_checkboxes_checked": true,
+        "deployment_qualification_approved": true,
+        "approval_receipt": "gate-approval.json",
+        "strict_bare_OS": "not exercised; outside approved closure claim",
+        "parent7_body_and_state_unchanged": true,
+        "parent7_state": "open",
+        "production_exe_unchanged": true,
+        "independent_spec_review": "unavailable_usage_limit; primary-agent check disclosed",
+        "approval_commit": "defe530",
+        "body_length": 62241,
+        "body_compaction": "Only the newly authored2026-11-05 progress section replaced by final decision; prior other execution sections preserved"
+      }
+    }
+  }
+}

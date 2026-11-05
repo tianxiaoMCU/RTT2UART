@@ -2,141 +2,113 @@
 
 [Project overview](../README.md) | [Getting started](./getting-started.md) | [Development](./development.md) | [Glossary](../GLOSSARY.md)
 
-This document explains the current source behavior reviewed at commit `99df508`.
-It describes implementation and its limits, rather than a proposed redesign or
-a hardware compatibility claim.
+Both USB and Existing Session use the Qt-independent lifecycle in `rtt2uart.py`.
+See [Lifecycle migration](./lifecycle-migration.md) for ownership, deadlines,
+public interfaces, and automated evidence.
 
 ## Components and data flow
 
 ```mermaid
 flowchart LR
-    Target["Target firmware with RTT"] <--> Probe["J-Link probe and owning session"]
-    Probe <--> Endpoint["Local RTT endpoint: localhost:19021"]
-    Endpoint <--> Bridge["RTT2UART forwarding threads"]
+    Target["Target firmware with RTT"] <--> Probe["J-Link probe"]
+    Probe <-->|"USB: owned direct RTT, channel 0"| Bridge["RTT2UART Bridge"]
+    Probe <--> Session["External J-Link session"]
+    Session <-->|"Existing Session: localhost:19021"| Bridge
     Bridge <--> PortA["COM4: bridge endpoint"]
     PortA <--> PortB["COM5: paired endpoint"]
     PortB <--> Peer["Serial application"]
 ```
 
-COM4 and COM5 are example names for one virtual COM port pair. The probe/session
-exposes the RTT endpoint, and RTT2UART acts as its TCP client. RTT2UART does not
-implement the endpoint's server or the target's RTT firmware.
+The two probe paths represent alternative modes. A USB run consumes no TCP RTT
+data. COM4 and COM5 are example names for one virtual COM port pair. RTT2UART
+implements neither the external endpoint server nor the Target firmware.
 
 | Component | Responsibility | Source |
 | --- | --- | --- |
-| `MainWindow` | Collect configuration, create the J-Link object, start/stop a bridge, and save selection history | [`main_window.py`](../main_window.py) |
-| `DeviceSeleteDialog` / `DeviceTableModel` | Load the XML device list and expose target selection | [`main_window.py`](../main_window.py) |
-| `rtt_to_serial` | Own the serial handle, TCP socket, forwarding threads, and reconnect timer; manage the probe in USB mode | [`rtt2uart.py`](../rtt2uart.py) |
-| Generated UI/resource modules | Construct the Qt widgets and provide the compiled icon | [`ui_rtt2uart.py`](../ui_rtt2uart.py), [`ui_sel_device.py`](../ui_sel_device.py), [`rc_icons.py`](../rc_icons.py) |
-| J-Link Commander script | Export `JLinkDevicesBuildIn.xml` into the working directory | [`JLinkCommandFile.jlink`](../JLinkCommandFile.jlink) |
+| `MainWindow` | Freeze run configuration, request start/stop, render snapshots, save selection history | [`main_window.py`](../main_window.py) |
+| `DeviceSeleteDialog` / `DeviceTableModel` | Load the XML device list and expose Target selection | [`main_window.py`](../main_window.py) |
+| `Bridge` | Own startup, forwarding, recovery in both modes, serial draining, cancellation, and cleanup | [`rtt2uart.py`](../rtt2uart.py) |
+| `USBChannel` / `USBConfig` | Own a fresh probe session, enforce identity, prepare Target/RTT, serialize native I/O and release | [`usb_transport.py`](../usb_transport.py) |
+| Generated UI/resource modules | Construct widgets and provide the icon | [`ui_rtt2uart.py`](../ui_rtt2uart.py), [`ui_sel_device.py`](../ui_sel_device.py), [`rc_icons.py`](../rc_icons.py) |
+| Commander script | Export the device database | [`JLinkCommandFile.jlink`](../JLinkCommandFile.jlink) |
 
 ## Connection ownership
 
 | Concern | USB | Existing Session |
 | --- | --- | --- |
-| Probe connection | RTT2UART opens the probe when the J-Link object is not already connected | Owned by an external J-Link application |
-| Target/interface/speed | Selected in RTT2UART and passed to J-Link during connection | Selected in the owning application; corresponding GUI controls are disabled |
-| Reset | Optional `reset(halt=False)` request in the USB connection path | Disabled and unchecked |
-| RTT TCP endpoint | RTT2UART connects to `localhost:19021` after target/serial setup | Same address, supplied by the existing session |
-| Reconnect option | Hidden | Visible; limited socket recovery |
-| Probe cleanup | Attempts `rtt_stop()` and `close()` if connected | Does not close the external probe session |
+| Probe | Fresh owned J-Link object per attempt; capture initial actual serial number and pin every recovery reopen | Owned externally; never opened/reset/stopped/closed by the bridge |
+| Target/interface/speed | Selected in RTT2UART; speed passed explicitly to `connect()` | Controlled by the external application |
+| Explicit reset | Only on initial startup when selected, after Target connection, using `reset(halt=False)`; never repeated in recovery | Unavailable |
+| Data transport | Owned `rtt_read(0, ...)` / `rtt_write(0, ...)` | TCP `localhost:19021` |
+| Ready state | Running after serial, identity, Target debug and both RTT descriptors are ready | Endpoint connected — Target state unverified |
+| Auto Reconnect | Off by default; optional, frozen per run | On by default; optional, frozen per run |
+| Cleanup | Stop owned RTT processing and release probe and serial | Release owned TCP/serial resources only |
 
-Both modes still instantiate `pylink.JLink()` when the GUI starts. Existing
-Session bypasses probe setup in the bridge, but it does not bypass this startup
-dependency on a discoverable J-Link library.
+The GUI still constructs a separate J-Link library object for device-catalog
+export at startup; it does not supply this object to the bridge. Existing Session
+therefore still needs a discoverable J-Link library at GUI startup. The generated
+UI keeps remote-probe TCP/IP disabled. cJTAG is explicitly rejected because the
+pinned pylink interface enum does not provide it.
 
-The generated UI disables the TCP/IP radio button and address input. Backend
-code that can pass an IP address to J-Link does not make remote-probe connection
-an enabled GUI feature.
+## Startup and readiness
 
-## Startup sequence
+The GUI entry point uses a local Qt server as a single-instance guard. Start
+freezes `BridgeConfig`, returns Starting promptly, and starts background work.
+One worker opens the serial port, then the selected transport. Any partial
+failure rolls back; there is no automatic retry of initial startup.
 
-The GUI entry point creates a local Qt server as a single-instance guard, then
-constructs `MainWindow`. Initialization populates controls, scans serial ports,
-loads saved selections if present, creates a J-Link object, and attempts the
-Windows device-list export.
+For USB the worker creates and opens the J-Link, captures `serial_number`, rejects
+missing/conflicting identity, selects the interface, and connects the Target with
+the selected speed. The optional explicit reset is separate from connection
+preparation. After `rtt_start()`, the bridge allows up to 3 seconds for channel-0
+up/down discovery. Both descriptors must have the correct index/direction and a
+buffer size of at least two bytes. Native calls themselves can outlast this
+observation deadline. Only a complete chain produces Running. This describes
+transport readiness, not firmware command execution.
 
-When Start is clicked, `MainWindow.start()` gathers parameters and calls
-`rtt_to_serial.start()`:
+For Existing Session, serial and TCP open permit forwarding with Target state
+unverified. No Target handshake is injected. All GUI lifecycle state comes from
+`Bridge.snapshot`; there is no second running flag or legacy USB backend.
 
-1. For a non-Existing connection whose J-Link object is not already connected,
-   open the probe. The USB path optionally passes its serial number.
-2. Set the debug speed and interface. If reset is selected, call
-   `reset(halt=False)`, then call `connect(device)`.
-3. Assign the selected serial port and baud rate, set read and write timeouts
-   to 3 seconds, and open the serial port.
-4. Open an IPv4 TCP socket to `localhost:19021`.
-5. If the socket connects, set the worker flag and start two daemon threads.
-   Otherwise, raise `Connect or config RTT server failed`.
+## Byte forwarding and recovery
 
-The backend contains no explicit `rtt_start()` call, RTT control-block search,
-or channel selection. The source alone therefore does not establish how every
-J-Link runtime/firmware combination initializes RTT or maps buffers to the TCP
-endpoint. A working endpoint for the intended target is a prerequisite to
-successful forwarding.
+One worker owns serial and normal transport I/O. USB checks Target/RTT availability
+and exchanges channel-0 bytes directly. Empty RTT reads mean idle, while TCP EOF
+means endpoint loss. Healthy short writes complete in order; three consecutive
+zero-progress writes fail with cancellable waits. No framing, encoding conversion,
+line endings, handshake, heartbeat, or cross-run replay queue is added.
 
-After initial success, the GUI sets its own `start_state` and changes the button
-text to Stop. A worker failure does not automatically clear that state or
-report through a GUI signal. A startup exception displays a dialog, but the
-error path does not consistently restore disabled controls or explicitly roll
-back all partially opened resources.
+Both modes can recover eligible transport loss when Auto Reconnect is enabled,
+after prior readiness: wait 1, 2, 5, 5, ... seconds until success or Stop. A temporary
+connector opens the replacement transport while the serial owner drains input.
+USB reopens only the initially observed probe serial number, preserves Target,
+interface and speed, suppresses the explicit startup reset, and repeats full
+Target/RTT readiness checks. Another probe never substitutes for the original.
+The connector is joined and pending input drained before forwarding resumes.
+No uncertain write tail survives to the next connection. Serial failure always
+ends the run; no port substitution occurs.
 
-## Byte forwarding
+Observed discarded input counts only bytes read and definitely discarded during
+recovery, not all losses or firmware execution. Application framing, protocol
+resynchronization, and external retries remain the peer/firmware responsibility.
 
-| Direction | Worker | Operation |
-| --- | --- | --- |
-| RTT endpoint to serial | `rtt_to_uart()` | Read up to 1024 bytes from the socket and pass received bytes to `serial.write()` |
-| Serial to RTT endpoint | `uart_to_rtt()` | Read waiting serial bytes, or wait for one byte, and pass them to `socket.sendall()` under a write lock |
-
-The bridge does not decode text, add line endings, parse commands, define packet
-boundaries, or select RTT channels. TCP read boundaries are not application
-message boundaries. Encoding, framing, and target command handling belong to
-the serial application, the external RTT path, and the firmware.
-
-The selected serial baud rate is independent of the debug-interface speed.
-The GUI's first-run defaults are SWD, 4000 kHz, and 115200 baud when no settings
-file exists. The backend constructor independently defaults to 12000 kHz; the
-GUI passes its selected speed explicitly. Other serial format and flow-control
-settings are inherited from `serial.Serial()` defaults.
-
-Raw forwarding in these workers does not establish end-to-end binary
-transparency, lossless delivery, latency, or throughput for the external RTT
-server and virtual-port driver. Those properties require separate tests.
-
-## Reconnect behavior
-
-In Existing Session, the Auto Reconnect checkbox supplies a Boolean as the
-connection parameter. Recovery starts only when an established socket's
-`recv()` returns `b''` and that parameter equals `True`.
-
-1. Clear the worker flag, close the socket, and schedule a callback after
-   0.5 seconds.
-2. The callback attempts a new connection to `localhost:19021`.
-3. On success, join the previous threads for up to 0.5 seconds each, set the
-   flag, and create new forwarding threads.
-4. On failure, schedule the next callback after 1 second.
-
-These values are timer delays; socket connection time is additional. No socket
-connect timeout is explicitly configured by this code.
-
-The retry path keeps the existing serial handle and does not reinitialize the
-probe or target. It does not run after a failed initial connection. Socket
-exceptions and serial failures generally raise within workers rather than
-entering this loop. With reconnect disabled, a clean socket closure also has
-no explicit user-facing recovery transition. This is limited endpoint recovery,
-with no guarantee that data survives an interruption.
+Serial baud rate is independent of debug speed. First-run GUI defaults remain
+SWD, 4000 kHz, and 115200 baud. Other serial-format and flow-control settings use
+pyserial defaults. Actual throughput and external-driver behavior require tests.
 
 ## Stop and close
 
-`stop()` cancels the current retry timer, clears the worker flag, and joins each
-worker for up to 0.5 seconds. It then attempts probe cleanup in USB mode, closes
-the serial port, and closes the socket. These bounded joins do not prove that
-all blocking worker operations have finished before cleanup continues.
+Stop invalidates forwarding without blocking the GUI. The worker finishes its
+current operation and cleans up; the supervisor joins it before publishing
+Stopped or clean Failed. After 4 seconds, or on a failed close, Stop incomplete
+keeps restart disabled. Repeated Stop is safe. Window close and Escape defer
+closure/settings save until owned operations finish.
 
-Closing the window calls stop when the GUI considers the bridge started, then
-saves selections. Existing Session leaves probe ownership with the external
-application. Stop the bridge before changing connection mode; the current GUI
-is not a complete session-state or transport-health monitor.
+USB calls on each object remain serialized across ownership handoffs. There is no concurrent native close/reset
+or forced thread termination. Late startup results cannot reset or forward after
+cancellation. A localized pinned-version cleanup adaptation covers pylink 1.2.0
+partial-open/failed-close refcounts and explicit probe-lock release; see the
+[dependency contract](./lifecycle-migration.md#pinned-usb-dependency-contract).
 
 ## Settings and startup files
 
@@ -149,7 +121,8 @@ is not a complete session-state or transport-health monitor.
 Saved settings include target history, target index, interface index, speed
 index, serial-port index, and baud-rate index. They do not save connection mode,
 probe serial number, reset selection, or the Auto Reconnect selection. USB is
-selected and Auto Reconnect is checked during initialization. Because the COM
+selected with Auto Reconnect off during initialization. Selecting Existing Session
+sets Auto Reconnect on. Because the COM
 selection is an index, a changed port list can change the port selected after a
 restart; verify it before starting.
 
@@ -164,8 +137,11 @@ it. Their presence does not demonstrate a working cross-platform startup path.
 
 ## Verification boundary
 
-The descriptions above are based on source and configuration inspection. No
-GUI launch, dependency installation, package execution, probe connection, target
-traffic, or reconnect fault test was performed for this documentation change.
-Use the [validation checklist](./development.md#validation-checklist) to record
-results for a specific source revision or release asset and hardware setup.
+Automated checks exercise the common lifecycle, controlled native USB failures,
+the real GUI/event loop, and production loopback TCP. See the
+[recorded lifecycle results](./lifecycle-migration.md#reproducible-checks).
+Real probe/Target hardware, virtual COM drivers, native connection side effects,
+and throughput remain pending. The [package smoke record](./packaging-smoke.md)
+records the successful build, packaged GUI, settings round-trip, mode-default,
+and single-instance checks. Record hardware results separately using the
+[validation checklist](./development.md#validation-checklist).

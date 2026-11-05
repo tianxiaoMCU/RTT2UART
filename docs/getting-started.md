@@ -22,10 +22,11 @@ Prepare the following:
 
 RTT2UART does not install target firmware or configure its RTT buffers. Confirm
 the firmware's RTT setup using your normal J-Link workflow before using the
-bridge. The program expects a working local RTT TCP endpoint at
-`localhost:19021`; it has no control for selecting an RTT channel or control
-block address. The mapping between that endpoint and the target's RTT buffers
-belongs to the J-Link session and firmware configuration.
+bridge. USB uses direct RTT channel 0 on its owned probe. Existing Session needs
+a working local RTT TCP endpoint at `localhost:19021`. There is no control for
+selecting another RTT channel or control-block address. Current-source USB
+behavior is covered by automated tests; real Target and package validation
+remain pending, and older release packages may behave differently.
 
 ## 1. Prepare the application directory
 
@@ -80,12 +81,29 @@ closes enumerated serial ports and lists only those it can open.
    These are application defaults, not a recommendation for every target.
 5. Choose whether to enable **Reset target**. Enable it only when resetting the
    target is appropriate for the session; the USB startup path requests a reset
-   with `halt=False` before its target `connect()` call.
+   with `halt=False` after its Target connection, only during initial startup.
+6. Optionally select **Auto Reconnect** (off by default for USB). After a ready
+   run loses its probe, Target debug connection, or RTT channels, the bridge
+   retries only the original probe. Returning to USB mode while idle restores
+   the off default; Existing Session defaults to on. The choice is frozen at Start.
+
+USB recovery preserves Target, interface, and speed and never repeats the explicit
+startup reset. **Running** requires the original probe and the complete
+Target/RTT/serial chain to be ready. Another attached probe is never substituted.
+Native J-Link connection sequences can still reset/halt particular Targets;
+verify those effects on the actual hardware.
+
+Recovery waits 1, 2, then 5 seconds, continuing at 5 seconds until success or Stop.
+The serial port stays open and incoming bytes are discarded and counted, including
+during a slow native connection. Pending stale input and uncertain write tails
+are never replayed. **Stop** cancels waiting and invalidates a late connection;
+a blocked native call may leave **Stop incomplete** until it returns and cleanup
+finishes. Initial startup and serial-port failures remain terminal.
 
 ![Device selection example](../picture/SeleteDevice.png)
 
-The interface list includes JTAG, SWD, cJTAG, and FINE, but the current cJTAG
-branch passes no concrete interface value. The list does not establish that
+The interface list includes JTAG, SWD, cJTAG, and FINE, but the current
+cJTAG selection is rejected as unsupported by the pinned pylink 1.2.0 interface enum. The list does not establish that
 every interface is usable with your probe and target.
 
 ## 4. Select the serial endpoint and start
@@ -94,16 +112,21 @@ every interface is usable with your probe and target.
 2. Choose a baud rate. The first-run GUI default is **115200**. Configure the
    peer serial application consistently with the virtual port driver's
    requirements; use 115200 for this example.
-3. Click **Start**. The button changes to **Stop** if initial startup succeeds.
+3. Click **Start**. The status shows **Starting** while configuration is locked,
+   then **Running** with the actual USB probe serial number after readiness.
 4. Open **COM5**, the other endpoint, in the serial application.
 
 The serial baud rate is a host serial-port setting. It does not set the RTT data
 rate or the J-Link debug-interface speed. RTT2UART leaves the other serial
 format and flow-control properties at the serial library's defaults.
 
-The **Stop** label shows that initial startup returned successfully. Confirm
-actual traffic in the next step; worker-thread failures do not automatically
-update the button.
+**Running** requires an open serial port, verified probe identity, a Target debug
+connection, and usable RTT channel-0 up/down buffers. It does not prove that
+firmware has consumed a command. With Auto Reconnect off, runtime USB loss
+cleans up and shows **Failed**; retry manually. With it on, eligible USB loss
+shows **Reconnecting**. A serial failure always ends the run. **Stop incomplete** keeps restart and window closure
+pending while a native call or cleanup is outstanding. Confirm actual traffic
+in the next step.
 
 ![Serial application on the other COM endpoint](../picture/serialcomtool.png)
 
@@ -145,23 +168,38 @@ probe connection and provides the RTT endpoint.
 3. Select **Existing Session**. The target device, debug interface, debug
    speed, and reset controls are disabled; the external session owns those
    choices.
-4. Select the bridge's COM endpoint and baud rate. Choose **Auto Reconnect** if
-   you want the limited reconnection behavior described below.
+4. Select the bridge's COM endpoint and baud rate. **Auto Reconnect** is checked
+   by default; uncheck it if an endpoint loss should end the run.
 5. Click **Start**, open the paired endpoint in the serial application, and
    verify both directions as above.
 
-Auto Reconnect is selected by default but applies to Existing Session. After
-an established socket reports a clean end of stream, the bridge schedules a
-reconnection attempt after 0.5 seconds. Failed retries are scheduled again
-after 1 second; connection time adds to these delays. A failed initial
-connection still reports an error instead of starting this retry loop.
+After **Starting**, the status reports **Endpoint connected — Target state
+unverified**. This permits forwarding but does not prove that firmware is ready
+or has executed a command. Settings are locked for the active run.
 
-This mechanism reconnects the local TCP socket and starts forwarding threads.
-It does not reopen a lost serial port, reconnect the probe, or guarantee
-recovery from socket exceptions or USB removal. Data continuity during an
-interruption is not guaranteed. See [Reconnect behavior](./architecture.md#reconnect-behavior)
-for the implementation boundary. Stopping Existing Session closes the bridge's
-resources without closing the externally owned probe session.
+With Auto Reconnect enabled, loss of an established endpoint (EOF or socket
+read/write failure) shows **Reconnecting**. Attempts wait 1, 2, then 5 seconds,
+remaining at 5 seconds until success or Stop. Connection time is additional.
+A failed first startup rolls back and requires manual retry. Serial-port failure
+ends the run; the bridge never substitutes another serial port.
+
+During recovery the original serial port stays open. Input is continuously
+discarded, including during a slow connection attempt. **Observed discarded
+input** counts bytes the bridge read and definitely discarded; it is not total
+end-to-end loss or evidence of firmware execution. Pending stale local input is
+drained before forwarding resumes. Uncertain or partially sent commands are
+never replayed; a write error does not prove that a command failed to execute.
+The count remains visible after recovery and resets on a new Start.
+
+The bridge forwards raw bytes without framing, handshake, or heartbeat commands.
+The serial application and firmware remain responsible for protocol boundaries,
+resynchronization after interruption, and any application retries.
+
+**Stop** cancels recovery. Closing the window requests the same shutdown; a late
+connection result is cleaned up. **Stop incomplete** keeps restart disabled and
+window closure pending until owned operations and cleanup finish. Existing
+Session leaves the externally owned J-Link session untouched. See
+[Lifecycle migration](./lifecycle-migration.md) for deadlines and validation scope.
 
 ## Refresh the target device list
 
@@ -198,12 +236,14 @@ every successful startup.
 | --- | --- |
 | `Find jlink dll failed !` | Install or repair the J-Link runtime and check its discoverability and architecture compatibility with the program. Existing Session has the same startup requirement. |
 | `Can not find device database !` | Check the working directory and `JLinkDevicesBuildIn.xml`; follow the refresh steps above. |
-| `Please selete the target device !` | Select an actual device row and confirm it before starting USB mode. The spelling shown here matches the current error text. |
+| `Select a Target device` | Select an actual device row and confirm it before starting USB mode. |
 | Expected COM port is missing from Scan | Confirm that the driver created the port and that another program has not opened that endpoint. Retry Scan while stopped. |
 | Serial port cannot be opened | Check the selected endpoint, permissions, and other programs using it. RTT2UART and the serial application must use different endpoints of the pair. |
-| `Connect or config RTT server failed` | Confirm that the intended local J-Link session exposes RTT on `localhost:19021`. For an externally owned session, use Existing Session. Changing the serial baud rate does not repair this TCP connection. |
-| Start fails and controls remain disabled | Close and reopen RTT2UART before retrying. The current startup error path does not consistently restore controls or roll back partial resources. |
-| Button shows Stop but data has stopped | Check target execution, the RTT session, and both COM endpoints. Worker failures do not reliably reach the GUI. Stop and restart the bridge, or close and reopen it if needed. |
+| USB identity mismatch or unavailable | Check the requested serial number and physical probe. The bridge fails safely without selecting another probe. |
+| RTT channel 0 readiness timed out | Verify Target power/debug connection and initialized channel-0 up/down buffers in the firmware. USB does not use a localhost listener. |
+| Endpoint connect failure | For Existing Session, check the intended external session at `localhost:19021`. |
+| Stop incomplete | Wait for the outstanding operation/cleanup to complete. Restart stays disabled; the GUI remains responsive. |
+| Failed after previously Running | With USB Auto Reconnect off, correct the visible failure and restart after cleanup. When enabled, eligible USB loss shows Reconnecting; serial failure is always terminal. |
 | Output is received but target ignores sent data | Verify the firmware's RTT input handler, the session's buffer mapping, and the command's encoding and line endings. |
 | Settings appear to change after moving the program | Settings are read from the current working directory; launch consistently and recheck the selected ports. |
 | No new window appears | Check for an already running RTT2UART process; the GUI entry point uses a single-instance guard. |

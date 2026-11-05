@@ -1,0 +1,4 @@
+issue13-*/** -text whitespace=cr-at-eol
+issue13-artifacts.json -text
+README.md text eol=lf
+.gitattributes text eol=lf

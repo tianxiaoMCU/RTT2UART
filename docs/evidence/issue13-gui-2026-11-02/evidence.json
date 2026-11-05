@@ -1,0 +1,1452 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-gui-2026-11-02",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "result.json": {
+      "source_sha256": "e27aa37cab3fb6755eac38f4c0d4c3cdcab8b6f36ee2a546af6030766c59689b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:17:20.349632+00:00",
+        "scope": "Actual unchanged frozen candidate on this Windows development host; native UIA and PrintWindow",
+        "candidate_source_revision": "15a0b5398fd4f4e3ba9569b86ddc4aaf5b3603b3",
+        "exe_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d",
+        "production_source_hashes_match": true,
+        "deployment": "D:\\codex\\RTT2UART\\build\\uia-smoke-2026-11-02\\deployment",
+        "automation": "System.Windows.Automation Current properties, Invoke/Toggle/Window patterns; committed popup keys; UIA-bound selector cell mouse message; PrintWindow+GetWindowRect",
+        "gui_results": {
+          "main_window_icon_labels": "pass, screenshots visually inspected",
+          "legacy_six_key_settings": "pass",
+          "usb_existing_defaults_and_locked_controls": "pass",
+          "saved_edits_and_reopen": "pass",
+          "new_and_existing_target_history": "pass",
+          "selector_cancel_and_empty_OK": "pass",
+          "single_instance": "pass, second exit0 and original processes unchanged",
+          "first_endpoint_start_failure": "pass, terminal with recovery enabled",
+          "USB_start_stop_under_traffic": "pass, source of timings in linked snapshot",
+          "Existing_recovery_discard_state": "pass, native UIA and screenshot agree at26bytes",
+          "Existing_active_normal_close": "pass, COM release and external owner retained",
+          "stripped_development_environment": "pass on same host; not clean-host certification",
+          "packaged_USB_physical_recovery": "pass, one original probe, UIA/PrintWindow Reconnecting27 discarded, restored Running27 and exact fresh echo; no observed marker replay",
+          "packaged_USB_recovery_off_loss": "pass, terminal Failed; after operator restore remained Failed, manual restart and active normal close passed",
+          "active_USB_normal_close": "pass, UIA normal exit and COM1/COM2/probe independently reacquired"
+        },
+        "usb_load": {
+          "recorded_at_utc": "2026-11-02T01:01:48.728883+00:00",
+          "measurement": "COM1 peer to actual frozen USB bridge COM2; 256-byte chunks, wait exact echo",
+          "sent": 50432,
+          "received": 50177,
+          "exact_completed_chunks": 196,
+          "result": "completed-await-GUI-stop-correlation",
+          "initial_bytes_hex": "",
+          "stopped_during_chunk": {
+            "received_prefix_length": 1,
+            "expected_after_gui_stop": true
+          },
+          "seconds": 17.172425199998543,
+          "peer_closed": true
+        },
+        "uia_stop_to_observed_stopped_seconds": 0.3008882,
+        "final_saved_fixture": {
+          "device": [
+            "STM32H750VB",
+            "STM32F407VG",
+            "ARM7"
+          ],
+          "device_index": 0,
+          "interface": 1,
+          "speed": 13,
+          "port": 1,
+          "buadrate": 16
+        },
+        "final_test_package_and_owner_processes_exited": true,
+        "pending": {
+          "native_blocked_call_Stop_incomplete": "No reproducible real native stall fixture supplied; controlled source tests do not pass this row",
+          "separate_Windows_deployment": "Operator cannot provide remote access; no J-Link Runtime installed. Verified manual ZIP/guide/unexecuted receipt prepared; awaiting operator execution and returned evidence."
+        },
+        "qualifications": [
+          "Original cJTAG/SWD discrepancy was not reproduced in committed JTAG/cJTAG/SWD close/reopen checks; original cause remains unknown, no code fix claimed",
+          "First automatic combo attempt used visible-item position and selected300kHz instead of750kHz; rejected and retained as harness diagnostic, corrected to observe actual highlighted text before Enter",
+          "Full catalog tree query was canceled; no app process was killed; selector checks use bounded named controls",
+          "Stop intentionally interrupted final traffic chunk; partial prefix is reported separately and is not a full-echo pass",
+          "No application code, runtime dependency, security setting or Windows feature changed",
+          "Physical USB new marker is27 bytes; an initial assertion reused26 from the Existing marker. Corrected against raw marker length, actual discard27 verified; not an app failure."
+        ]
+      }
+    },
+    "saved-settings.json": {
+      "source_sha256": "c20456ba0bc77c3507a0511902a43cdd75abcdd3833ff77ac5f589e26cea3c65",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T00:54:42.507282+00:00",
+        "settings": {
+          "device": [
+            "STM32H750VB",
+            "STM32F407VG"
+          ],
+          "device_index": 1,
+          "interface": 0,
+          "speed": 11,
+          "port": 1,
+          "buadrate": 13
+        },
+        "exact_legacy_keys": true,
+        "normal_close_process_exit": true
+      }
+    },
+    "history-saved.json": {
+      "source_sha256": "a23b04463c1f4da0c4d1a1516a85762d3cbb7d7b1f291f87d419a25c20a2d2f7",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:00:37.170460+00:00",
+        "settings": {
+          "device": [
+            "STM32H750VB",
+            "STM32F407VG",
+            "ARM7"
+          ],
+          "device_index": 0,
+          "interface": 1,
+          "speed": 13,
+          "port": 1,
+          "buadrate": 16
+        },
+        "normal_close_exit": true
+      }
+    },
+    "single-instance.json": {
+      "source_sha256": "2e16bd1b0ddfc7cd4360d97240906d4802c796765c34752d66f63a2e4e093df8",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:01:00.197205+00:00",
+        "second_bootstrap_pid": 20604,
+        "second_exit_code": 0,
+        "original_package_pids": [
+          30996,
+          34948
+        ],
+        "remaining_pids": [
+          30996,
+          34948
+        ],
+        "pass": true
+      }
+    },
+    "existing-fault-bytes.json": {
+      "source_sha256": "074367bb21584e760e2e5e82cab7d4d4f282ae5acfc0666517fbdb3721ed1820",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:04:21.925136+00:00",
+        "owner_args": [
+          "C:/Program Files/SEGGER/JLink/JLinkGDBServerCL.exe",
+          "-select",
+          "USB=601012352",
+          "-device",
+          "STM32H750VB",
+          "-if",
+          "SWD",
+          "-speed",
+          "1000",
+          "-noir",
+          "-nohalt",
+          "-nogui",
+          "-port",
+          "2331",
+          "-swoport",
+          "2332",
+          "-telnetport",
+          "2333",
+          "-RTTTelnetPort",
+          "19021",
+          "-timeout",
+          "5000"
+        ],
+        "terminated_owner_pid": 34964,
+        "initial_greeting_hex": "",
+        "before_echo_sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff5549412d4558495354494e472d4245464f524500ff0d0a",
+        "before_echo_received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff5549412d4558495354494e472d4245464f524500ff0d0a",
+        "outage_marker_hex": "5041434b4147452d4f55544147452d6973737565313300ff0d0a",
+        "outage_marker_length": 26,
+        "during_outage_received_hex": "",
+        "peer_closed": true,
+        "recovered_bytes_hex": "",
+        "after_echo_sent_hex": "5549412d4558495354494e472d41465445522d5245434f5645525900ff0d0a",
+        "after_echo_received_hex": "5549412d4558495354494e472d41465445522d5245434f5645525900ff0d0a",
+        "result": "pass"
+      }
+    },
+    "existing-normal-close.json": {
+      "source_sha256": "369c9ec294b928e260b6c2c03db1c006526b2eb8783bc524aaf376db2de15a98",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:05:01.281560+00:00",
+        "normal_package_exit": true,
+        "same_owner_pid_alive": 13664,
+        "COM1_reacquired": true,
+        "COM2_reacquired": true,
+        "external_echo_hex": "5549412d4f574e45522d52455441494e454400ff0d0a",
+        "external_owner_usable": true,
+        "test_owner_stopped_after_check": true
+      }
+    },
+    "usb-physical-bytes.json": {
+      "source_sha256": "efdbefd54e144d3f32b5cddb3ca7c204b7e4820e277d4f3d73d84cb81b67b06b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:08:27.075285+00:00",
+        "operator_action": "Unplugged J-Link USB only, before restore",
+        "outage_marker_hex": "5549412d5553422d4f55544147452d323032363131303200ff0d0a",
+        "sent": 27,
+        "during_outage_received_hex": "",
+        "peer_closed": true,
+        "restored_bytes_hex": "",
+        "fresh_sent_hex": "5549412d5553422d41465445522d5245434f5645525900ff0d0a",
+        "fresh_received_hex": "5549412d5553422d41465445522d5245434f5645525900ff0d0a",
+        "result": "pass",
+        "scope": "One-probe actual EXE, recovery on, reset off; no independent native reset/halt measurement"
+      }
+    },
+    "usb-physical-final-close.json": {
+      "source_sha256": "5e67cf4e54ea99895b619f384e960e5347735bc6c450c78418d8a0b86d040237",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:10:07.731047+00:00",
+        "method": "UIA WindowPattern.Close on active USB manual restart",
+        "normal_package_exit": true,
+        "COM1_reacquired": true,
+        "COM2_reacquired": true,
+        "probe_reacquired": true
+      }
+    },
+    "usb-stop-release.json": {
+      "source_sha256": "e073b46d5604c21994ea3e160dd425961d8b40be9998bcdd02fb2d2146e42e87",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:02:40.705709+00:00",
+        "owned_com_reacquired": true,
+        "owned_probe_reacquired": true
+      }
+    },
+    "usb-physical-recovered.json": {
+      "source_sha256": "560e793e5acbf1a7d67798f0bce3bd3a644a8aa389449c484ddb5dbca69cf21d",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:09:12.6719285Z",
+        "observations": {
+          "observed_discarded_bytes": 27,
+          "probe": 601012352,
+          "operator_action": "Same probe USB restored"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Stop",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Running\nUSB probe: 601012352\nObserved discarded input: 27 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "usb-recovery-off-failed.json": {
+      "source_sha256": "df63b12130998408aef0d4c3fd30024b6286755a4f686123fd9d4490575282ed",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:09:35.0435791Z",
+        "observations": {
+          "operator_action": "USB unplugged with recovery off",
+          "expected": "Terminal Failed with Start restored"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB RTT read: USB RTT read: Unspecified error.\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "usb-off-restored-stays-failed.json": {
+      "source_sha256": "f221aa6b8d40964989ab1a9695fbb8667a5376d3a6153990f8a7b230c9a7e5ee",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:10:05.3092931Z",
+        "observations": {
+          "additional_observation_seconds": 2,
+          "operator_action": "USB restored",
+          "automatic_restart": false
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Failed\nUSB probe: 601012352\nUSB RTT read: USB RTT read: Unspecified error.\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "usb-manual-restart.json": {
+      "source_sha256": "62a8c7350e94addae07cf31cc3cda083cb54a71472dc351fd3a55b2b7ee1f127",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:10:06.4159800Z",
+        "observations": {
+          "auto_reconnect": "off",
+          "manual_retry": "pass"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Stop",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "On",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": false,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": false,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Running\nUSB probe: 601012352\nObserved discarded input: 0 bytes",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "cjtag-reopened.json": {
+      "source_sha256": "4efc3beb95935206785602651f6d021c39f5be4cffe42351bdcb20f5ce41f012",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:03:14.2205686Z",
+        "observations": {
+          "hardware_start": false,
+          "persisted_index": 2
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "cJTAG"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Stopped",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    },
+    "swd-reopened.json": {
+      "source_sha256": "b862d0c7eb5d6d9ac68597ab9d471ce0cd973e75946682efc6bd05cd611d24c1",
+      "selection": [
+        "UIA: retain control identity/type/value/text/toggle/enabled; omit pattern and visibility metadata"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-02T01:03:18.3811726Z",
+        "observations": {
+          "persisted_index": 1,
+          "note": "Both SWD and cJTAG committed selections survived close/reopen; earlier discrepancy not reproduced"
+        },
+        "tree": [
+          {
+            "id": "TitleBar",
+            "name": "RTT2UART Control Panel V2.0.0",
+            "type": "ControlType.TitleBar",
+            "enabled": true
+          },
+          {
+            "id": "SystemMenuBar",
+            "name": "系统菜单栏",
+            "type": "ControlType.MenuBar",
+            "enabled": true
+          },
+          {
+            "id": "Item 1",
+            "name": "系统",
+            "type": "ControlType.MenuItem",
+            "enabled": true
+          },
+          {
+            "id": "Close",
+            "name": "关闭",
+            "type": "ControlType.Button",
+            "enabled": true
+          },
+          {
+            "id": "dialog.pushButton_Start",
+            "name": "Start",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.line",
+            "name": "",
+            "type": "ControlType.Custom",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Interface",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "SWD"
+          },
+          {
+            "id": "dialog.groupBox.comboBox_Speed",
+            "name": "Target Interface And Speed",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "1000 kHz"
+          },
+          {
+            "id": "dialog.groupBox_2",
+            "name": "Specify Target Device",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_2.comboBox_Device",
+            "name": "Specify Target Device",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "STM32H750VB"
+          },
+          {
+            "id": "dialog.groupBox_2.pushButton_Selete_Device",
+            "name": "...",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART",
+            "name": "UART Config",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_Port",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "COM2"
+          },
+          {
+            "id": "dialog.groupBox_UART.label",
+            "name": "Port:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.label_2",
+            "name": "Baud rate:",
+            "type": "ControlType.Text",
+            "enabled": true
+          },
+          {
+            "id": "dialog.groupBox_UART.comboBox_baudrate",
+            "name": "UART Config",
+            "type": "ControlType.ComboBox",
+            "enabled": true,
+            "value": "115200"
+          },
+          {
+            "id": "dialog.groupBox_UART.pushButton_scan",
+            "name": "Scan",
+            "type": "ControlType.Button",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.checkBox_resettarget",
+            "name": "Reset target",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3",
+            "name": "Connection to J-Link",
+            "type": "ControlType.Group",
+            "enabled": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_usb",
+            "name": "USB",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "On",
+            "selected": true,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_existing",
+            "name": "Existing Session",
+            "type": "ControlType.RadioButton",
+            "enabled": true,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.radioButton_tcpip",
+            "name": "TCP/IP",
+            "type": "ControlType.RadioButton",
+            "enabled": false,
+            "toggle": "Off",
+            "selected": false,
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox_serialno",
+            "name": "Serial NO",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "dialog.groupBox_3.checkBox__auto",
+            "name": "Auto Reconnect",
+            "type": "ControlType.CheckBox",
+            "enabled": true,
+            "toggle": "Off",
+            "value": ""
+          },
+          {
+            "id": "",
+            "name": "Stopped",
+            "type": "ControlType.Text",
+            "enabled": true
+          }
+        ]
+      }
+    }
+  }
+}

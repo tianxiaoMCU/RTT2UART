@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-h07-2026-11-03",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "gate-qualification.json": {
+      "source_sha256": "6cebd4a7271f56eb19dd028e295ee79ba85417f4d4be58070a57109ca85ed83e",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T06:39:35.105036+00:00",
+        "approved_by": "operator in chat",
+        "approval": "Accept the proposed H07 gate adjustment",
+        "mandatory": "Serial API errors terminate after owned cleanup; no automatic serial-port switch or reopen; USB and Existing Session; forwarding and recovery",
+        "blocked_cleanup": "Existing Stopping/Stop incomplete and H09 requirements unchanged",
+        "required_controlled_coverage": "pass",
+        "conditional_real_driver_fault": "unexercised_non_blocking_for_recorded_HHD_6.2.0.1318_COM1_COM2",
+        "hardware_pass_claimed": false,
+        "future_scope": "Reassess when driver/version changes or a reproducible supported injection method becomes available",
+        "other_required_gates": "unchanged; issue13 stays open",
+        "parent7_modified": false,
+        "full_suite": {
+          "passed": 61,
+          "seconds": 9.184,
+          "log": "gate-qualification-tests.txt"
+        },
+        "new_hardware_operations": false
+      }
+    },
+    "cleanup-controlled-checks.json": {
+      "source_sha256": "d2804305214a8a50cc6243cf920f736069416ffa1773557eed314c824f779a66",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "scope": "controlled real-finally-block execution; no serial/driver/UI/hardware calls",
+        "result": "pass",
+        "cases": [
+          {
+            "failing_close_index": null,
+            "restoration_failure": false,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          },
+          {
+            "failing_close_index": null,
+            "restoration_failure": true,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          },
+          {
+            "failing_close_index": 0,
+            "restoration_failure": false,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          },
+          {
+            "failing_close_index": 0,
+            "restoration_failure": true,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          },
+          {
+            "failing_close_index": 1,
+            "restoration_failure": false,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          },
+          {
+            "failing_close_index": 1,
+            "restoration_failure": true,
+            "both_close_attempted": true,
+            "restoration_attempted": true,
+            "evidence_saved": true,
+            "result": "pass"
+          }
+        ]
+      }
+    },
+    "final-checks.json": {
+      "source_sha256": "17396d8479cba1ac32339ebd894af0c28a6574fe9d4c0868dba99ebfe00cdcb3",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-03T06:30:24.831820+00:00",
+        "result": "pass",
+        "prerequisite_result": "no_real_serial_error_produced",
+        "H07": "pending_current_gate_unchanged",
+        "fresh_pair_checks": [
+          {
+            "sender": "COM1",
+            "receiver": "COM2",
+            "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830372d46494e414c2d5041495200ff0d0a",
+            "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830372d46494e414c2d5041495200ff0d0a"
+          },
+          {
+            "sender": "COM2",
+            "receiver": "COM1",
+            "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830372d46494e414c2d5041495200ff0d0a",
+            "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff4830372d46494e414c2d5041495200ff0d0a"
+          }
+        ],
+        "ports_closed": true,
+        "pnp": [
+          {
+            "Status": "OK",
+            "FriendlyName": "JLink CDC UART Port (COM13)",
+            "InstanceId": "USB\\VID_1366&PID_0105&MI_00\\7&2FAED60D&1&0000"
+          },
+          {
+            "Status": "OK",
+            "FriendlyName": "HHD Software Bridged Serial Port (COM2)",
+            "InstanceId": "ROOT\\PORTS\\0000"
+          },
+          {
+            "Status": "OK",
+            "FriendlyName": "HHD Software Bridged Serial Port (COM1)",
+            "InstanceId": "ROOT\\PORTS\\0001"
+          }
+        ],
+        "drivers": [
+          {
+            "DeviceName": "HHD Software Bridged Serial Port",
+            "DriverVersion": "6.2.0.1318",
+            "InfName": "oem2.inf",
+            "DeviceID": "ROOT\\PORTS\\0000"
+          },
+          {
+            "DeviceName": "HHD Software Bridged Serial Port",
+            "DriverVersion": "6.2.0.1318",
+            "InfName": "oem2.inf",
+            "DeviceID": "ROOT\\PORTS\\0001"
+          }
+        ],
+        "restored_pair_lifetime": "non-permanent; recreate after Windows restart",
+        "helper_sha256": {
+          "hhd.ps1": "1894611588349e127f703c411d6f9024b757a83e173c250fb4a7943a9679137d",
+          "prepare.py": "26ce0823d3cdd3e0b51bc6c912e4a2ee17417720fedbf06a47b15674233eef42",
+          "check_cleanup.py": "5b1d543a760114d22393fc74e8673b028586c00af17a56e5b79fa06b464861fb"
+        },
+        "full_suite": {
+          "tests": 61,
+          "seconds": 9.218,
+          "result": "pass",
+          "log": "full-tests.txt"
+        },
+        "syntax_json_local_links": "pass",
+        "post_review_cleanup_checks": {
+          "verified_at_utc": "2026-11-03T06:33:35.412491+00:00",
+          "cases": 6,
+          "result": "pass",
+          "hardware_executed": false
+        }
+      }
+    }
+  }
+}

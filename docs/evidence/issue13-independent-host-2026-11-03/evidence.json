@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-independent-host-2026-11-03",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "checks.json": {
+      "source_sha256": "41ba25d0d492bf8efebed14b9671e206228972ccd864a9684c314150c8286db6",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "result": "pass",
+        "attachments": 6,
+        "byte_for_byte_matches": 6,
+        "sha256_matches": 6,
+        "committed_attachment_blob_sha256_matches": 6,
+        "png_decode_and_dimensions": 4,
+        "returned_exit_code": 0,
+        "local_markdown_links": "pass",
+        "remote_host_operations_performed": false,
+        "hardware_rerun": false,
+        "production_test_rerun": false,
+        "reason": "Only receipt/archive/documentation changed; earlier controlled suite remains separate.",
+        "scope": "operator-reported independent-host idle GUI pass; clean-host and H09 remain pending",
+        "issue13_update_readback": "exact body match; open; H09 checkbox unchanged"
+      }
+    }
+  }
+}

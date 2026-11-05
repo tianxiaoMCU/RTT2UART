@@ -1,0 +1,1602 @@
+{
+  "schema_version": 1,
+  "source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
+  "source_directory": "docs/evidence/issue13-h09-2026-11-04",
+  "path_semantics": "Record keys and paths within captured data are historical at source_revision, not live dependencies. Current links, scope and artifacts are in README.md and ../issue13-artifacts.json.",
+  "records": {
+    "source-starting-final.json": {
+      "source_sha256": "0b224e8f1e8be54825dfcc0dc738aa8a81dc70eaa26166ca80b03b0db72030ca",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:48.620626+00:00",
+        "result": "pass",
+        "phase": "starting",
+        "speed_khz": 10,
+        "startup_reset": false,
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 4.5310000000172295,
+            "state": "Stopping",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 8.547000000020489,
+            "state": "Stop incomplete",
+            "reason": "",
+            "cleanup_error": "Cleanup is still pending; waiting for the owned operation to return",
+            "can_start": false
+          },
+          {
+            "seconds": 17.98399999999674,
+            "state": "Stopped",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": true
+          }
+        ],
+        "native_calls": [
+          {
+            "name": "JLINKARM_OpenEx",
+            "thread": "bridge-io",
+            "entered": 0.031000000017229468,
+            "delegate_started": 0.031000000017229468,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0779999999795109
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.10899999999674037,
+            "delegate_started": 0.10899999999674037,
+            "delegate_returned": 0.10899999999674037,
+            "returned": 0.10899999999674037,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_ExecCommand",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_SetSpeed",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_Connect",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 4.172000000020489,
+            "returned": 4.172000000020489,
+            "seconds": 4.047000000020489
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.172000000020489,
+            "delegate_started": 4.172000000020489,
+            "delegate_returned": 4.172000000020489,
+            "returned": 4.172000000020489,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 4.172000000020489,
+            "delegate_started": 4.172000000020489,
+            "delegate_returned": 4.172000000020489,
+            "returned": 4.172000000020489,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsHalted",
+            "thread": "bridge-io",
+            "entered": 4.172000000020489,
+            "delegate_started": 4.172000000020489,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0779999999795109
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINK_RTTERMINAL_Control",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "command": 0,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINK_RTTERMINAL_Control",
+            "thread": "bridge-io",
+            "entered": 4.25,
+            "command": 3,
+            "delegate_started": 4.25,
+            "delegate_returned": 4.25,
+            "returned": 4.25,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINK_RTTERMINAL_Control",
+            "thread": "bridge-io",
+            "entered": 4.26500000001397,
+            "command": 3,
+            "delegate_started": 4.26500000001397,
+            "delegate_returned": 4.26500000001397,
+            "returned": 4.26500000001397,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINK_RTTERMINAL_Control",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "command": 3,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 4.2810000000172295,
+            "returned": 4.2810000000172295,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 4.2810000000172295,
+            "delegate_started": 4.2810000000172295,
+            "delegate_returned": 17.42200000002049,
+            "returned": 17.42200000002049,
+            "seconds": 13.14100000000326
+          },
+          {
+            "name": "JLINKARM_IsConnected",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.60899999999674,
+            "returned": 17.60899999999674,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.60899999999674,
+            "returned": 17.60899999999674,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.60899999999674,
+            "returned": 17.60899999999674,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.60899999999674,
+            "returned": 17.60899999999674,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.60899999999674,
+            "returned": 17.60899999999674,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINK_RTTERMINAL_Control",
+            "thread": "bridge-io",
+            "entered": 17.60899999999674,
+            "command": 1,
+            "delegate_started": 17.60899999999674,
+            "delegate_returned": 17.79700000002049,
+            "returned": 17.79700000002049,
+            "seconds": 0.18800000002374873
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.79700000002049,
+            "delegate_started": 17.79700000002049,
+            "delegate_returned": 17.79700000002049,
+            "returned": 17.79700000002049,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_Close",
+            "thread": "bridge-io",
+            "entered": 17.79700000002049,
+            "delegate_started": 17.79700000002049,
+            "delegate_returned": 17.95300000003772,
+            "returned": 17.95300000003772,
+            "seconds": 0.15600000001722947
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.95300000003772,
+            "delegate_started": 17.95300000003772,
+            "delegate_returned": 17.95300000003772,
+            "returned": 17.95300000003772,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.95300000003772,
+            "delegate_started": 17.95300000003772,
+            "delegate_returned": 17.95300000003772,
+            "returned": 17.95300000003772,
+            "seconds": 0.0
+          },
+          {
+            "name": "JLINKARM_IsOpen",
+            "thread": "bridge-io",
+            "entered": 17.95300000003772,
+            "delegate_started": 17.95300000003772,
+            "delegate_returned": 17.95300000003772,
+            "returned": 17.95300000003772,
+            "seconds": 0.0
+          }
+        ],
+        "stop_request_seconds": 4.5310000000172295,
+        "selected_native_call_index": 45,
+        "stop_incomplete_seconds_after_stop": 4.01600000000326,
+        "restart_rejected": "Previous run has not finished cleanup",
+        "serial_still_owned_while_incomplete": "SerialException(\"could not open port 'COM1': PermissionError(13, '拒绝访问。', None, 5)\")",
+        "cleanup_seconds_after_stop": 13.452999999979511,
+        "no_late_native_restart": true,
+        "serial_reacquired_after_cleanup": true,
+        "cleanup_complete": true
+      }
+    },
+    "source-usb-retry-wait-2.json": {
+      "source_sha256": "ba0f2758b625acfeaedf0b6828bdf6a2dfe81b9e240b10ca06c73aa1dc870940",
+      "selection": [
+        "native_calls: retain all lifecycle calls and the selected pending call with original indices; replace repeated status/RTT polls by exact name counts"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:17:52.951173+00:00",
+        "result": "pass",
+        "phase": "retry-wait",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 0.5470000000204891,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 3.672000000020489,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 3.719000000040978,
+            "state": "Stopping",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 3.719000000040978,
+            "state": "Stopped",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": true
+          }
+        ],
+        "baseline_received_hex": "4830392d5553422d4241534500ff0d0a",
+        "baseline_exact_hex": "4830392d5553422d4241534500ff0d0a",
+        "firmware_ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "retired_before_stop": true,
+        "stop_request_seconds": 3.719000000040978,
+        "cleanup_seconds_after_stop": 0.01600000000325963,
+        "no_late_native_restart": true,
+        "serial_reacquired_after_cleanup": true,
+        "cleanup_complete": true,
+        "native_call_excerpt": [
+          {
+            "original_index": 0,
+            "name": "JLINKARM_OpenEx",
+            "thread": "bridge-io",
+            "entered": 0.03200000000651926,
+            "delegate_started": 0.03200000000651926,
+            "delegate_returned": 0.11000000004423782,
+            "returned": 0.11000000004423782,
+            "seconds": 0.07800000003771856
+          },
+          {
+            "original_index": 9,
+            "name": "JLINKARM_ExecCommand",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 12,
+            "name": "JLINKARM_SetSpeed",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 15,
+            "name": "JLINKARM_Connect",
+            "thread": "bridge-io",
+            "entered": 0.125,
+            "delegate_started": 0.125,
+            "delegate_returned": 0.3600000000442378,
+            "returned": 0.3600000000442378,
+            "seconds": 0.23500000004423782
+          },
+          {
+            "original_index": 18,
+            "name": "JLINKARM_IsHalted",
+            "thread": "bridge-io",
+            "entered": 0.3600000000442378,
+            "delegate_started": 0.3600000000442378,
+            "delegate_returned": 0.3600000000442378,
+            "returned": 0.3600000000442378,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 2474,
+            "name": "JLINKARM_Close",
+            "thread": "bridge-recovery",
+            "entered": 3.6570000000065193,
+            "delegate_started": 3.6570000000065193,
+            "delegate_returned": 3.7040000000270084,
+            "returned": 3.7040000000270084,
+            "seconds": 0.0470000000204891
+          }
+        ],
+        "native_call_counts": {
+          "JLINKARM_OpenEx": 1,
+          "JLINKARM_IsOpen": 1958,
+          "JLINKARM_ExecCommand": 1,
+          "JLINKARM_SetSpeed": 1,
+          "JLINKARM_IsConnected": 106,
+          "JLINKARM_Connect": 1,
+          "JLINKARM_IsHalted": 1,
+          "JLINK_RTTERMINAL_Control": 408,
+          "JLINKARM_Close": 1
+        }
+      }
+    },
+    "source-usb-retry-connect-3.json": {
+      "source_sha256": "cf56635942bfccee17bce7999b1f9c36179f023e83e43bd78740382712f6af7a",
+      "selection": [
+        "native_calls: retain all lifecycle calls and the selected pending call with original indices; replace repeated status/RTT polls by exact name counts"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:23:07.936230+00:00",
+        "result": "pass",
+        "phase": "retry-connect",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "events": [
+          {
+            "seconds": 0.0,
+            "state": "Starting",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 0.5629999999655411,
+            "state": "Running",
+            "reason": "",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 3.7189999999827705,
+            "state": "Reconnecting",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 4.76600000000326,
+            "state": "Stopping",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": false
+          },
+          {
+            "seconds": 4.8439999999827705,
+            "state": "Stopped",
+            "reason": "USB RTT read: RTT channel 0 descriptor is unusable",
+            "cleanup_error": "",
+            "can_start": true
+          }
+        ],
+        "baseline_received_hex": "4830392d5553422d4241534500ff0d0a",
+        "baseline_exact_hex": "4830392d5553422d4241534500ff0d0a",
+        "firmware_ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "stop_request_seconds": 4.76600000000326,
+        "selected_native_call_index": 2502,
+        "cleanup_seconds_after_stop": 0.0779999999795109,
+        "no_late_native_restart": true,
+        "serial_reacquired_after_cleanup": true,
+        "cleanup_complete": true,
+        "native_call_excerpt": [
+          {
+            "original_index": 0,
+            "name": "JLINKARM_OpenEx",
+            "thread": "bridge-io",
+            "entered": 0.030999999959021807,
+            "delegate_started": 0.030999999959021807,
+            "delegate_returned": 0.125,
+            "returned": 0.125,
+            "seconds": 0.0940000000409782
+          },
+          {
+            "original_index": 9,
+            "name": "JLINKARM_ExecCommand",
+            "thread": "bridge-io",
+            "entered": 0.14100000000325963,
+            "delegate_started": 0.14100000000325963,
+            "delegate_returned": 0.14100000000325963,
+            "returned": 0.14100000000325963,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 12,
+            "name": "JLINKARM_SetSpeed",
+            "thread": "bridge-io",
+            "entered": 0.14100000000325963,
+            "delegate_started": 0.14100000000325963,
+            "delegate_returned": 0.14100000000325963,
+            "returned": 0.14100000000325963,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 15,
+            "name": "JLINKARM_Connect",
+            "thread": "bridge-io",
+            "entered": 0.14100000000325963,
+            "delegate_started": 0.14100000000325963,
+            "delegate_returned": 0.35999999998603016,
+            "returned": 0.35999999998603016,
+            "seconds": 0.21899999998277053
+          },
+          {
+            "original_index": 18,
+            "name": "JLINKARM_IsHalted",
+            "thread": "bridge-io",
+            "entered": 0.35999999998603016,
+            "delegate_started": 0.35999999998603016,
+            "delegate_returned": 0.35999999998603016,
+            "returned": 0.35999999998603016,
+            "seconds": 0.0
+          },
+          {
+            "original_index": 2498,
+            "name": "JLINKARM_Close",
+            "thread": "bridge-recovery",
+            "entered": 3.702999999979511,
+            "delegate_started": 3.702999999979511,
+            "delegate_returned": 3.75,
+            "returned": 3.75,
+            "seconds": 0.0470000000204891
+          },
+          {
+            "original_index": 2502,
+            "name": "JLINKARM_OpenEx",
+            "thread": "bridge-recovery",
+            "entered": 4.73499999998603,
+            "delegate_started": 4.73499999998603,
+            "delegate_returned": 4.812999999965541,
+            "returned": 4.812999999965541,
+            "seconds": 0.0779999999795109
+          },
+          {
+            "original_index": 2504,
+            "name": "JLINKARM_Close",
+            "thread": "bridge-io",
+            "entered": 4.812999999965541,
+            "delegate_started": 4.812999999965541,
+            "delegate_returned": 4.827999999979511,
+            "returned": 4.827999999979511,
+            "seconds": 0.015000000013969839
+          }
+        ],
+        "native_call_counts": {
+          "JLINKARM_OpenEx": 2,
+          "JLINKARM_IsOpen": 1979,
+          "JLINKARM_ExecCommand": 1,
+          "JLINKARM_SetSpeed": 1,
+          "JLINKARM_IsConnected": 107,
+          "JLINKARM_Connect": 1,
+          "JLINKARM_IsHalted": 1,
+          "JLINK_RTTERMINAL_Control": 412,
+          "JLINKARM_Close": 2
+        }
+      }
+    },
+    "gui-starting-stop.json": {
+      "source_sha256": "d24b27b2978d342827ab5d85a1705810ebdecda45bce0d4876293eaa738fa169",
+      "selection": [
+        "observations: retain first/last sample of every distinct UI state/control plateau, with original indices"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:11:20.0778651Z",
+        "action": "stop",
+        "mode": "USB",
+        "speed_khz": 10,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds": 6.827461,
+        "stopping_seconds_after_request": 0.26846380000000014,
+        "incomplete_seconds_after_request": 4.2393293,
+        "restart_disabled": true,
+        "serial_owned_while_incomplete": true,
+        "cleanup_seconds_after_request": 11.3682352,
+        "no_late_restart": true,
+        "exit_code": 0,
+        "serial_reacquired_after_exit": true,
+        "elapsed_seconds": 22.015855,
+        "observation_excerpt": [
+          {
+            "original_index": 0,
+            "seconds": 0.3439047,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 27,
+            "seconds": 6.0414897,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 28,
+            "seconds": 6.9262615,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 29,
+            "seconds": 7.080888799999999,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 50,
+            "seconds": 10.872225,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 51,
+            "seconds": 11.0437502,
+            "text": "Stop incomplete\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 90,
+            "seconds": 17.7086316,
+            "text": "Stop incomplete\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 91,
+            "seconds": 17.8681225,
+            "text": "Stop incomplete\nUSB probe: 601012352\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 92,
+            "seconds": 18.0213839,
+            "text": "Stop incomplete\nUSB probe: 601012352\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 93,
+            "seconds": 18.1807536,
+            "text": "Stopped\nUSB probe: 601012352\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 94,
+            "seconds": 20.8942592,
+            "text": "Stopped\nUSB probe: 601012352\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          }
+        ],
+        "original_observation_count": 95
+      }
+    },
+    "gui-starting-close.json": {
+      "source_sha256": "4dd44fbb5ac8860ce677e4246872c5aabb9f6ec993712216e6ee5ca96f0e738b",
+      "selection": [
+        "observations: retain first/last sample of every distinct UI state/control plateau, with original indices"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:12:00.7537036Z",
+        "action": "close",
+        "mode": "USB",
+        "speed_khz": 10,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds": 6.8261287,
+        "stopping_seconds_after_request": 0.12999660000000013,
+        "incomplete_seconds_after_request": 4.121677199999999,
+        "restart_disabled": true,
+        "serial_owned_while_incomplete": true,
+        "exit_seconds_after_request": 11.820139499999998,
+        "exit_code": 0,
+        "serial_reacquired_after_exit": true,
+        "elapsed_seconds": 18.6519188,
+        "observation_excerpt": [
+          {
+            "original_index": 0,
+            "seconds": 0.383451,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 26,
+            "seconds": 6.0520966,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 27,
+            "seconds": 6.932844299999999,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 48,
+            "seconds": 10.7569082,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 49,
+            "seconds": 10.9353141,
+            "text": "Stop incomplete\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          }
+        ],
+        "original_observation_count": 50
+      }
+    },
+    "gui-starting-escape.json": {
+      "source_sha256": "8030a7f0a89964031131a0ac7106cb0e92164cd3f96b12d98b4139f41f99805f",
+      "selection": [
+        "observations: retain first/last sample of every distinct UI state/control plateau, with original indices"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:12:44.6524042Z",
+        "action": "escape",
+        "mode": "USB",
+        "speed_khz": 10,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds": 6.6257928999999995,
+        "stopping_seconds_after_request": 0.11730520000000055,
+        "incomplete_seconds_after_request": 4.068817999999999,
+        "restart_disabled": true,
+        "serial_owned_while_incomplete": true,
+        "exit_seconds_after_request": 12.036154999999997,
+        "exit_code": 0,
+        "serial_reacquired_after_exit": true,
+        "elapsed_seconds": 18.6675997,
+        "observation_excerpt": [
+          {
+            "original_index": 0,
+            "seconds": 0.34873709999999997,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 25,
+            "seconds": 5.8834425,
+            "text": "Starting\nObserved discarded input: 0 bytes",
+            "start_enabled": true
+          },
+          {
+            "original_index": 26,
+            "seconds": 6.7289517,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 47,
+            "seconds": 10.5311495,
+            "text": "Stopping\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          },
+          {
+            "original_index": 48,
+            "seconds": 10.679437199999999,
+            "text": "Stop incomplete\nCleanup is still pending; waiting for the owned operation to return\nObserved discarded input: 0 bytes",
+            "start_enabled": false
+          }
+        ],
+        "original_observation_count": 49
+      }
+    },
+    "gui-usb-recovery-stop.json": {
+      "source_sha256": "9787b9fe4790677f8c59fcc55ff8dd01ae326305b618cc5f58c9d39cddecaf13",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:19:30.9897400Z",
+        "action": "stop",
+        "mode": "USB",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds_after_reconnecting": 1.5251580999999999,
+        "stopped_seconds_after_request": 0.2586843000000001,
+        "no_late_restart_through_firmware_restore": true,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-usb-recovery-close.json": {
+      "source_sha256": "47132be2ae06cdc61aeab63027111aa6622f489599e28aa8dd72cc14a90f5fdf",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:20:53.2060787Z",
+        "action": "close",
+        "mode": "USB",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds_after_reconnecting": 1.5287868999999998,
+        "exit_seconds_after_request": 0.7881167,
+        "no_late_restart_through_firmware_restore": true,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-usb-recovery-escape.json": {
+      "source_sha256": "58902605628609bb1e6de401d800a58a1b5bc20a9abcdeac1b5db0b1af9f479a",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:22:24.2625175Z",
+        "action": "escape",
+        "mode": "USB",
+        "speed_khz": 1000,
+        "startup_reset": false,
+        "probe": 601012352,
+        "result": "pass",
+        "request_seconds_after_reconnecting": 1.5294184,
+        "exit_seconds_after_request": 0.7855376000000001,
+        "no_late_restart_through_firmware_restore": true,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-usb-recovery-stop-peer.json": {
+      "source_sha256": "22e77e1554ee75a2dd2f7159621576affac133afa1676747ecc1e448dddeff31",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:19:35.104910+00:00",
+        "result": "pass",
+        "initial_output_hex": "48303520524553554d45440d0a",
+        "baseline_exact_hex": "4830392d4755492d55534200ff0d0a",
+        "ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "host_seconds_after_command": 22.0,
+        "remaining_peer_output_hex": ""
+      }
+    },
+    "gui-usb-recovery-close-peer.json": {
+      "source_sha256": "ab161a09ec74b8a0f46baaa1c6dadd3a9cb521a1effd8ad5cd3a1abd9cf0177a",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:20:55.323048+00:00",
+        "result": "pass",
+        "initial_output_hex": "48303520524553554d45440d0a",
+        "baseline_exact_hex": "4830392d4755492d55534200ff0d0a",
+        "ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "host_seconds_after_command": 22.01600000000326,
+        "remaining_peer_output_hex": ""
+      }
+    },
+    "gui-usb-recovery-escape-peer.json": {
+      "source_sha256": "186c20001de106d0209c54db8e07f02c957fb012fb052fdba0fd7354f03411b0",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:22:26.402727+00:00",
+        "result": "pass",
+        "initial_output_hex": "48303520524553554d45440d0a",
+        "baseline_exact_hex": "4830392d4755492d55534200ff0d0a",
+        "ack_hex": "4830352041434b2064656c61793d333030306d73206f66663d31353030306d730d0a",
+        "host_seconds_after_command": 22.04699999996228,
+        "remaining_peer_output_hex": ""
+      }
+    },
+    "gui-existing-starting-close.json": {
+      "source_sha256": "1549a11fa6fc97d6aff16ed747311e9a70e1bb34975cf881166e7eb325057ea2",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:22.9930633Z",
+        "phase": "starting",
+        "action": "close",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "actual_pending_connect": [
+          {
+            "OwningProcess": 21792,
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 9781,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 19021,
+            "State": 3
+          }
+        ],
+        "stopping_seconds_after_request": 0.089878,
+        "exit_seconds_after_request": 1.6337461,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-starting-escape.json": {
+      "source_sha256": "e18efe2215c4b443d4a49c0831dcfd5396626ce09885d7eb366948d81809c4bf",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:42.1289799Z",
+        "phase": "starting",
+        "action": "escape",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "actual_pending_connect": [
+          {
+            "OwningProcess": 11460,
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 9788,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 19021,
+            "State": 3
+          }
+        ],
+        "stopping_seconds_after_request": 0.20531539999999998,
+        "exit_seconds_after_request": 1.707848,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-retry-connect-stop.json": {
+      "source_sha256": "dad460f54cec8136b515944a42203249e2ddf664ba3eb2d4d7c3b60d11191eed",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:48.8965758Z",
+        "phase": "retry-connect",
+        "action": "stop",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "actual_pending_connect": [
+          {
+            "OwningProcess": 43884,
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 9794,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 19021,
+            "State": 3
+          }
+        ],
+        "stopping_seconds_after_request": 0.2232562,
+        "cleanup_seconds_after_request": 1.2974269,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-retry-connect-close.json": {
+      "source_sha256": "f533d00f0e37a0830ec15c37a8042b1c77d5f5d1d9d186ab905dafe3601eef6b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:00.2280169Z",
+        "phase": "retry-connect",
+        "action": "close",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "actual_pending_connect": [
+          {
+            "OwningProcess": 48628,
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 9802,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 19021,
+            "State": 3
+          }
+        ],
+        "stopping_seconds_after_request": 0.1077895,
+        "exit_seconds_after_request": 1.8033858999999999,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-retry-connect-escape.json": {
+      "source_sha256": "445044b567e284a219e6d15caae1df04e3f91b3f4817227fc9ffaae7af1dc50d",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:08.8034390Z",
+        "phase": "retry-connect",
+        "action": "escape",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "actual_pending_connect": [
+          {
+            "OwningProcess": 35032,
+            "LocalAddress": "127.0.0.1",
+            "LocalPort": 9811,
+            "RemoteAddress": "127.0.0.1",
+            "RemotePort": 19021,
+            "State": 3
+          }
+        ],
+        "stopping_seconds_after_request": 0.1924746,
+        "exit_seconds_after_request": 1.7426779,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-retry-wait-stop.json": {
+      "source_sha256": "f1684cbe2447084ddc8ad5b1164b412352a8e892da8f5101d1843e43d8330787",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:17.2675252Z",
+        "phase": "retry-wait",
+        "action": "stop",
+        "mode": "Existing Session",
+        "result": "pass",
+        "target_state": "unverified",
+        "no_active_connect_at_request": true,
+        "cleanup_seconds_after_request": 0.2591903,
+        "exit_code": 0,
+        "serial_ports_reacquired": true
+      }
+    },
+    "gui-existing-starting-close-peer.json": {
+      "source_sha256": "7f5b3358f03f081edfccecbce54d0ff40b5822ae00d5a6dec0bcba8fe239ed65",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:26.297088+00:00",
+        "phase": "starting",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "late_connect_succeeded_then_closed_without_forwarding": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "gui-existing-starting-escape-peer.json": {
+      "source_sha256": "c93d4f23982dc04c56abe6d6725dc6c55c68c46ff8be3995b77dcac09792c6b0",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:45.530770+00:00",
+        "phase": "starting",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "late_connect_succeeded_then_closed_without_forwarding": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "gui-existing-retry-connect-stop-peer.json": {
+      "source_sha256": "cd01fbf759cb3073e8e94fc7b960af531b3be31ffd39fa47cc33910db9bb21f2",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:24:52.254774+00:00",
+        "phase": "retry-connect",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "baseline_exact_hex": "4830392d4755492d54435000ff0d0a",
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "late_connect_succeeded_then_closed_without_forwarding": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "gui-existing-retry-connect-close-peer.json": {
+      "source_sha256": "e02873297bc2ee11bc63b1306d7325e7a6a64423fb73b5dfea399b60444b69d2",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:03.685781+00:00",
+        "phase": "retry-connect",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "baseline_exact_hex": "4830392d4755492d54435000ff0d0a",
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "late_connect_succeeded_then_closed_without_forwarding": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "gui-existing-retry-connect-escape-peer.json": {
+      "source_sha256": "992d639f41a0a2f1f970d32369b17ba04b5493038a455d3d27d32a1d2c5a8d29",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:12.174065+00:00",
+        "phase": "retry-connect",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "baseline_exact_hex": "4830392d4755492d54435000ff0d0a",
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "late_connect_succeeded_then_closed_without_forwarding": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "gui-existing-retry-wait-stop-peer.json": {
+      "source_sha256": "de974d660a7c8095d3f28fc432b6cc186455be4935d4d815e14e19ce4cd2cf0d",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:25:20.512974+00:00",
+        "phase": "retry-wait",
+        "result": "pass",
+        "endpoint": [
+          "127.0.0.1",
+          19021
+        ],
+        "baseline_exact_hex": "4830392d4755492d54435000ff0d0a",
+        "queue_pressure_error": "TimeoutError('timed out')",
+        "queued_clients": 1,
+        "no_late_retry_connection": true,
+        "external_tcp_fixture_usable_after_bridge_cleanup": true
+      }
+    },
+    "restore-A.json": {
+      "source_sha256": "0a7b988816293b2f3776efaa94a441d4e0cc7b218e3dbf04a52c263d267e283f",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:26:18.730226+00:00",
+        "action": "restore",
+        "probe": 601012352,
+        "result": "pass",
+        "phases": [],
+        "native_errors": [],
+        "uid": [
+          4063287,
+          808472845,
+          892547897
+        ],
+        "target_voltage_mv": 3294,
+        "native_version": "7.54d",
+        "before_flash_sha256": "b1e181559cbc8b949910d4bb531f6e7cdf50148f2fd77bb712406529ed6a7a74",
+        "restored_full_flash_sha256": "ff0be13233a1521526a6088f9f5a24b5a1b7dd3375a400b3e640c42953f80984",
+        "clock_registers": {
+          "rcc_cr": "0x4025",
+          "rcc_cfgr": "0x0",
+          "d1cfgr": "0x0"
+        },
+        "initial_output_hex": "52545432554152542d483735302d4543484f2f310d0a",
+        "baseline_echo": {
+          "sent_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff46414c53452d5052454649581b5b4830580d0a",
+          "received_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff46414c53452d5052454649581b5b4830580d0a"
+        },
+        "probe_closed": true
+      }
+    },
+    "post-cleanup.json": {
+      "source_sha256": "21072ff1430306e0e4f5faad5e908cf082da643db6d4aff5db38b04b9237820b",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:27:01.801378+00:00",
+        "result": "pass",
+        "probes": [
+          {
+            "serial": 601012352,
+            "uid": [
+              4063287,
+              808472845,
+              892547897
+            ],
+            "normal_image_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "test_stats": [
+              1213355092,
+              275,
+              275,
+              11634545
+            ],
+            "halted": false,
+            "full_flash_sha256": "ff0be13233a1521526a6088f9f5a24b5a1b7dd3375a400b3e640c42953f80984",
+            "probe_closed": true
+          },
+          {
+            "serial": 59400616,
+            "uid": [
+              3342405,
+              809062660,
+              959461432
+            ],
+            "normal_image_sha256": "822bbeabbaba6f200c7da0fcfa3ee59b09a38a102675e726d0b5c8b46196b1fa",
+            "test_stats": [
+              1213355092,
+              65536,
+              65536,
+              2246801851
+            ],
+            "halted": false,
+            "probe_closed": true
+          }
+        ],
+        "manual_restart_exact_hex": "4830392d46494e414c2d5245535441525400ff0d0a",
+        "manual_restart_stopped": true,
+        "ports_reacquired": [
+          "COM1",
+          "COM2"
+        ],
+        "exe_sha256": "54ba4201db67641607d272ddee062a31aa53ec882f5953dc24e2ea1f8a0bd02d"
+      }
+    },
+    "final-checks.json": {
+      "source_sha256": "8d29074190840a99ae899f482c0bb691583fd8c5e74411a2a201dc386615dab0",
+      "selection": [
+        "complete original JSON values; formatting normalized"
+      ],
+      "data": {
+        "recorded_at_utc": "2026-11-04T00:30:29.025509+00:00",
+        "result": "pass",
+        "H09": "pass_for_recorded_setup",
+        "source_usb_cases": [
+          "source-starting-final.json",
+          "source-usb-retry-wait-2.json",
+          "source-usb-retry-connect-3.json"
+        ],
+        "source_existing_cases": "three accepted corrected-marker records from2026-11-03",
+        "gui_cases": [
+          "gui-starting-stop.json",
+          "gui-starting-close.json",
+          "gui-starting-escape.json",
+          "gui-usb-recovery-stop.json",
+          "gui-usb-recovery-close.json",
+          "gui-usb-recovery-escape.json",
+          "gui-existing-starting-close.json",
+          "gui-existing-starting-escape.json",
+          "gui-existing-retry-connect-stop.json",
+          "gui-existing-retry-connect-close.json",
+          "gui-existing-retry-connect-escape.json",
+          "gui-existing-retry-wait-stop.json"
+        ],
+        "gui_pass_count": 12,
+        "png_decode_count": 42,
+        "local_links_json_python_syntax": "pass",
+        "production_inputs_match_candidate": true,
+        "full_suite": {
+          "tests": 61,
+          "seconds": 9.057,
+          "exit_code": 0
+        },
+        "strict_types_modules": 5,
+        "versions": {
+          "pylink-square": "1.2.0",
+          "pyserial": "3.5",
+          "PySide6": "6.6.1"
+        },
+        "rollback_and_resources": "post-cleanup.json",
+        "clean_host_deployment": "pending",
+        "native_force_kill_or_synthetic_native_wait": false,
+        "powershell_syntax": "pass",
+        "post_measurement_replay_guards": "replay-guard-controls.json",
+        "windows_inventory": "windows-inventory.json",
+        "runtime": "runtime.json",
+        "final_review": {
+          "record": "review.md",
+          "reviewed_tip": "893a971",
+          "standards_remaining": 0,
+          "spec_actionable": 0
+        },
+        "tracker_readback": "tracker-readback.json",
+        "closeout_hardware_or_test_rerun": false
+      }
+    }
+  }
+}
