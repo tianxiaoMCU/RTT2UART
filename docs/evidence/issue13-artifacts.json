@@ -197,6 +197,21 @@
       "path": "docs/evidence/issue13-two-probe-2026-11-03/package-two-reconnecting.png",
       "bytes": 15606,
       "sha256": "bdc6e32dca4113595c55ffb534dc91de0e21e5ffb096e8919da91d9baa59bc01"
+    },
+    {
+      "path": "docs/evidence/issue14-2026-11-06/evidence.json",
+      "bytes": 8811,
+      "sha256": "33f01578158c34268e8d433458c981658bffad4c29933e966b5cb6941f3a3889"
+    },
+    {
+      "path": "docs/evidence/issue14-2026-11-06/selector-loading.png",
+      "bytes": 9010,
+      "sha256": "a8bb4b0fcfec99926c6a65f2629a3eadf5ff641070baeaad0685360e8cf7ed48"
+    },
+    {
+      "path": "docs/evidence/issue14-2026-11-06/selector-ready.png",
+      "bytes": 20195,
+      "sha256": "8ac9dafdf3703e27ffcf856ab160859842b142eaa6f409a4f4a5931777b3887f"
     }
   ]
 }

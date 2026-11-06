@@ -1,0 +1,209 @@
+{
+  "date": "2026-11-06 Asia/Shanghai",
+  "issue": 14,
+  "candidate": {
+    "source_revision": "edad0a6260965a5129b3947e11c4264feb0d97e3",
+    "exe_sha256": "ced4cdbf9ec00fbfc12421b4a58831f5dc804ac325b5c12793073557816c025a",
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "windows": "Windows-10-10.0.19045-SP0",
+    "packages": {
+      "pylink-square": "1.2.0",
+      "pyserial": "3.5",
+      "PySide6": "6.6.1",
+      "PySide6-Addons": "6.6.1",
+      "PySide6-Essentials": "6.6.1",
+      "shiboken6": "6.6.1",
+      "PyInstaller": "6.22.3",
+      "pyinstaller-hooks-contrib": "2026.9",
+      "altgraph": "0.17.5",
+      "packaging": "26.3",
+      "pefile": "2024.8.26",
+      "pywin32-ctypes": "0.2.3",
+      "setuptools": "84.2.1"
+    },
+    "source_sha256": {
+      "main_window.py": "363d16c1a9f3aa40281699b1e11214896c85d65356fa91fa329a0c964501acb6",
+      "rtt2uart.py": "c9b27c03a4e5de01b6a50d71fd3bb8c248ce98747dff2a0b65017d2ae50c87ea",
+      "usb_transport.py": "5946537cd873d288a04391b49b21d0f01d43bc7daf4452bac6020eeef0d609b1",
+      "device_catalog.py": "071437be4f9a8c04bf3602ad885fdd1cc621aabfeb272e2c3780a2f42e7412eb",
+      "ui_rtt2uart.py": "bd71a4a5cbc10b6da45f647595e9fdfe43977a5cf5bf767517a89de63d0c7a8a",
+      "ui_sel_device.py": "2b5ca0f37c32b9b4d23dedb1a84ce2099fddcd4b90d08d21712c4e641855773a",
+      "rc_icons.py": "36a44fd2f084b7fc7247725691388b557eafa2043dee7bf2fe456d4f53b52b90",
+      "rtt2uart.ui": "706545b670774472cbba465a60739ba0257b76c6734c8e59ff1e2b5ac7d168a6",
+      "sel_device.ui": "98227a81bc1672774eafa6426ab65fe1aa6ed286fc7dff586cc891f581768b86",
+      "icons.qrc": "a9ef58a8a03851a55fa6857e02c5b85e6458297a07d60c7020df57d0858d7adb",
+      "swap_horiz_16px.ico": "3e6cd43b4d56bc308c5c0ca65094d9ac9575b2aac8749540a12a7a991e21fc01",
+      "requirements.txt": "97069e369e65e8eb6e8fa2080dc8af30c7f07538a0eb9ab3ea935fc4c25a251d",
+      "requirements-build.txt": "1d3eb3a308db816570b793a0f621399c1d32ab9b72dc0701bddc2563680f072f",
+      "scripts/package_windows.py": "f792fdabb963745caee9b23bfa8f6f7cf5bc767755d8bc20d24492d307d5cbdb",
+      "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+      "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+      "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153"
+    },
+    "build_untracked_file_excluded": "docs/harness-engineering-assessment-2026-10-31.md"
+  },
+  "controlled": {
+    "command": ".venv\\Scripts\\python.exe scripts/check.py",
+    "result": "passed",
+    "tests": 91,
+    "test_seconds": 21.452,
+    "dependencies": "passed",
+    "evidence": "passed",
+    "strict_mypy": "passed",
+    "compile": "passed",
+    "review": "Standards and Spec findings fixed and rechecked at edad0a6"
+  },
+  "real_commander": {
+    "source": {
+      "script_sha256": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+      "commander_path": "c:\\program files\\segger\\jlink\\jlink.exe",
+      "commander_sha256": "f371800c81ec158c3beb8240bf894e08c1570c8907e67ff384993302f69a870b",
+      "library_path": "c:\\program files\\segger\\jlink\\jlink_x64.dll",
+      "library_sha256": "82ad22e5642867d14884eaf4bfe09fbebc1a7cc8de30c15981083f48b903aa43"
+    },
+    "preparations": [
+      {
+        "state": "fresh",
+        "records": 8788,
+        "fingerprint": "2892d9bd32efb0a1915ba75be232fe7087a899b7bff9a9583308e2abc476cbf1",
+        "reason": "",
+        "seconds": 0.641,
+        "exports": 1
+      },
+      {
+        "state": "cached",
+        "records": 8788,
+        "fingerprint": "2892d9bd32efb0a1915ba75be232fe7087a899b7bff9a9583308e2abc476cbf1",
+        "reason": "",
+        "seconds": 0.14,
+        "exports": 1
+      },
+      {
+        "state": "cached",
+        "records": 8788,
+        "fingerprint": "2892d9bd32efb0a1915ba75be232fe7087a899b7bff9a9583308e2abc476cbf1",
+        "reason": "",
+        "seconds": 0.141,
+        "exports": 1
+      }
+    ],
+    "source_gui": {
+      "loading": "Loading Target device list...",
+      "same_dialog_rows": 8788,
+      "heartbeat_polls": 85,
+      "normal_close": true
+    },
+    "readonly_source_gui": {
+      "loading": "Loading Target device list...",
+      "same_dialog_rows": 8788,
+      "heartbeat_polls": 91,
+      "normal_close": true
+    },
+    "controlled_script_whitespace_change": {
+      "state": "fresh",
+      "records": 8788,
+      "fingerprint": "4e7f5813d712f50128d4fdca9d17aa30b00f08ea3015c2c979343758686a1011"
+    },
+    "restored_script": {
+      "state": "fresh",
+      "records": 8788,
+      "fingerprint": "2892d9bd32efb0a1915ba75be232fe7087a899b7bff9a9583308e2abc476cbf1"
+    }
+  },
+  "package": {
+    "automation": "agent-desktop 1.2.0, headless semantic UIA actions and application-window screenshots",
+    "deployment": "explicit current-user write-deny ACL on copied EXE/resource directory; separate writable launch/settings and LOCALAPPDATA locations; invalid CWD XML decoy",
+    "first_export": {
+      "run": "first",
+      "exe_sha256": "ced4cdbf9ec00fbfc12421b4a58831f5dc804ac325b5c12793073557816c025a",
+      "cache_before": null,
+      "shipped_before": {
+        "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+        "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464"
+      },
+      "pid": 8548,
+      "exit_code": 0,
+      "cache_after": 1793925223184215500,
+      "shipped_after": {
+        "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+        "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464"
+      },
+      "settings_after": {
+        "device": [
+          "STM32F407VG",
+          "STM32F103C8"
+        ],
+        "device_index": 1,
+        "interface": 1,
+        "speed": 13,
+        "port": 0,
+        "buadrate": 16
+      }
+    },
+    "final_restart": {
+      "run": "agentdesktop-final",
+      "exe_sha256": "ced4cdbf9ec00fbfc12421b4a58831f5dc804ac325b5c12793073557816c025a",
+      "cache_before": 1793926866683913000,
+      "shipped_before": {
+        "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+        "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464"
+      },
+      "pid": 5576,
+      "exit_code": 0,
+      "cache_after": 1793926866683913000,
+      "shipped_after": {
+        "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+        "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464"
+      },
+      "settings_after": {
+        "device": [
+          "STM32F407VG",
+          "STM32F103C8"
+        ],
+        "device_index": 1,
+        "interface": 1,
+        "speed": 13,
+        "port": 0,
+        "buadrate": 16
+      }
+    },
+    "native_checks": {
+      "main_window_resources_and_text": "passed",
+      "saved_target": "STM32F103C8",
+      "selector_ready_visual": "passed",
+      "cancel_preserves_target": "passed",
+      "empty_confirmation_preserves_target": "passed",
+      "retry_loading_then_same_dialog_ready": "passed; same native window w-5506278",
+      "retry_cache_mtime_before_ns": 1793925223184215500,
+      "retry_cache_mtime_after_ns": 1793926866683913000,
+      "catalog_record_count": 8788,
+      "existing_session_controls_and_auto_default": "passed",
+      "tcpip_remains_disabled": "passed",
+      "normal_close": "graceful process exit verified by agent-desktop; final launcher exit 0",
+      "shipped_companions_unchanged": "passed",
+      "legacy_six_key_history_roundtrip": "passed"
+    },
+    "controlled_only": [
+      "Historical Target reselection through selector",
+      "Export timeout/failure, fallback and error presentation",
+      "Cancellation and obsolete-source publication rejection"
+    ],
+    "tool_limits": [
+      "Large ready selector snapshot exceeded agent-desktop 1 MB RefMap limit; scoped find and screenshots were used",
+      "Main-window dropdown option selection was not confirmed by semantic adapter; no physical fallback used"
+    ],
+    "excluded_attempt": "Earlier 300-second acceptance-driver wait expired; its exit code is not a normal-close pass. Repeated final restart with 1800-second driver window exited 0."
+  },
+  "cleanup": {
+    "test_app": "closed",
+    "resource_acls": "restored",
+    "production_runtime_and_settings": "unchanged",
+    "bridge_hardware_operations": "none"
+  },
+  "limits": [
+    "No actual J-Link installation upgrade",
+    "No new hardware/throughput acceptance",
+    "No clean second-host claim",
+    "Known-input fingerprint excludes unspecified external Commander databases/configuration"
+  ]
+}

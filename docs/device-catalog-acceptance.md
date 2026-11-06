@@ -18,7 +18,12 @@ passed 31 tests. Strict mypy passed for the new module and changed check/build s
 Independent Standards review found no hard rule violations or actionable smells;
 it found stale resource/PATH documentation, now corrected. Spec review found one
 P2 diagnostic gap (cache-read cause lost when discovery also fails), fixed with a
-failing-then-passing regression test. Full shared checks remain to be recorded.
+failing-then-passing regression test. Both reviewers confirmed closure at `edad0a6`.
+
+Final `.venv\Scripts\python.exe scripts/check.py` passed: dependency consistency,
+evidence integrity, strict mypy, compilation and **91 tests** (21.452 seconds).
+No product code changed after that run. The [compact evidence record](./evidence/issue14-2026-11-06/evidence.json)
+retains the tested candidate identity, build inputs, results and limits.
 
 ## Real installed Commander and source GUI
 
@@ -57,13 +62,50 @@ Temporary drivers, JSON results and diagnostic captures are under ignored
 
 ## Windows package
 
-Build and native Windows GUI checks pending.
+Built with `.venv\Scripts\python.exe scripts/package_windows.py` at source revision
+`edad0a6260965a5129b3947e11c4264feb0d97e3`, with pinned runtime/build dependencies.
+Only the pre-existing untracked Harness assessment was outside the clean tracked
+checkout. Candidate EXE SHA-256:
+`ced4cdbf9ec00fbfc12421b4a58831f5dc804ac325b5c12793073557816c025a`.
+
+Native GUI acceptance used **agent-desktop 1.2.0**, headless semantic UIA operations
+and window screenshots, on the same Windows/J-Link setup. A copied EXE/resources
+directory carried an explicit current-user write-deny ACL. Launch CWD, settings and
+private LOCALAPPDATA were separate writable directories; an invalid decoy XML in
+CWD was ignored. No physical mouse/keyboard fallback was used.
+
+- The main window, icon, labels and saved STM32F103C8/SWD/1000 kHz/115200 settings
+  were readable. The source-matched selector displayed its expected columns/data.
+- Cancel and OK without a selected row retained STM32F103C8 and its two-entry history.
+- Retry showed [Loading with selection disabled](./evidence/issue14-2026-11-06/selector-loading.png),
+  then [ready data in the same native dialog](./evidence/issue14-2026-11-06/selector-ready.png).
+  The cache modification time changed from `1793925223184215500` to
+  `1793926866683913000` ns and contained 8,788 validated records. Refresh did not
+  change the current Target.
+- A subsequent application launch retained that cache modification time, history
+  and settings. Existing Session disabled Target/interface/speed controls and
+  checked Auto Reconnect; TCP/IP remained disabled.
+- Final normal close was verified as graceful process exit by agent-desktop and
+  exit code **0** by the launch driver. Companion script/XML hashes were unchanged.
+  The original resource-directory ACL was restored and no test app was left running.
+
+The first agent-desktop run outlasted its driver's 300-second wait; that attempt's
+exit code is excluded. The final repeat used a longer observation window and
+completed normally. A large ready-selector accessibility dump exceeded the tool's
+1 MB RefMap limit; scoped `find` and screenshots supplied the relevant observations.
+Semantic selection of a main-window dropdown option could not be confirmed by the
+adapter. Historical Target reselection remains covered by the passing controlled
+GUI regression, with no additional native selection claim. Failed-export/fallback,
+timeout and cancellation cases are also controlled acceptance, not real failure
+injection into the installed J-Link pack.
 
 ## Limits
 
 Binary/script change, export failure, timeout, cancellation, publication failure
 and missing-tool isolation are controlled tests. No actual J-Link installation
-upgrade was performed. Known-input matching does not detect every external
+upgrade was performed. A controlled whitespace-only change to the exact export
+script, executed by real Commander, produced a new validated fingerprint;
+restoring the original script refreshed it back. Known-input matching does not detect every external
 Commander database/configuration. Catalog readiness proves neither Target support
 nor probe/firmware/RTT readiness. New hardware acceptance and a clean second Windows
 host are outside this catalog change; existing lifecycle regressions remain in scope.
