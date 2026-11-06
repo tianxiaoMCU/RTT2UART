@@ -16,7 +16,7 @@ class CheckCommandTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
 
-            for failure_step in range(1, 5):
+            for failure_step in range(1, 6):
                 with self.subTest(failure_step=failure_step):
                     calls = []
 
@@ -35,7 +35,7 @@ class CheckCommandTests(unittest.TestCase):
                     self.assertEqual(len(calls), failure_step)
                     self.assertIn("check output", output.getvalue())
             runs = list((root / "build" / "checks").iterdir())
-            self.assertEqual(sorted(len(list(run.glob("*.log"))) for run in runs), [1, 2, 3, 4])
+            self.assertEqual(sorted(len(list(run.glob("*.log"))) for run in runs), [1, 2, 3, 4, 5])
             self.assertTrue(all(log.read_bytes() == b"check output\n" for run in runs for log in run.glob("*.log")))
 
     def test_success_uses_current_python_and_checkout_with_isolated_qt_environment(self):
@@ -55,14 +55,14 @@ class CheckCommandTests(unittest.TestCase):
                 self.assertEqual(check.main(), 0)
                 self.assertEqual(check.os.environ["QT_QPA_PLATFORM"], "windows")
 
-            self.assertEqual(len(calls), 4)
+            self.assertEqual(len(calls), 5)
             for command, cwd, environment in calls:
                 self.assertEqual(command[0], sys.executable)
                 self.assertEqual(cwd, root.resolve())
                 self.assertEqual(environment["QT_QPA_PLATFORM"], "offscreen")
                 self.assertEqual(environment["PYTHONIOENCODING"], "utf-8")
             logs = list((root / "build" / "checks").rglob("*.log"))
-            self.assertEqual(len(logs), 4)
+            self.assertEqual(len(logs), 5)
             self.assertTrue(all("check passed — 测试" in p.read_text(encoding="utf-8") for p in logs))
 
     def test_cli_failure_has_nonzero_exit_and_does_not_launch_later_steps(self):

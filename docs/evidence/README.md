@@ -62,9 +62,40 @@ temporary directories or a copy of the same test log for every minor change.
 Use a bounded screenshot set only where visual state adds evidence beyond
 measured data. Store reusable test logic in tests/scripts, not copied per run.
 
-[issue13-artifacts.json](./issue13-artifacts.json) is the sole current #13
-inventory: repository-relative paths, byte counts and SHA256 of canonical Git
-file bytes, with attributes preserving those bytes on checkout. It
-excludes itself to avoid recursive hashes. Rebuild/check it whenever retained
-evidence changes, and verify both exact file-set equality and all digests.
-Never leave a current Markdown link pointing to a removed raw file.
+[issue13-artifacts.json](./issue13-artifacts.json) is the single retained-evidence
+inventory. Its historical filename is kept for existing links; its scope now
+covers all files under `docs/evidence/`, including #12 and future records.
+It lists repository-relative paths, byte counts and SHA256 of canonical Git
+file bytes, and excludes itself to avoid recursive hashes. Refresh reviewed
+entries whenever retained evidence changes; temporary output belongs in ignored
+`build/`, not in this directory.
+
+## Automated checks
+
+The [shared check entry point](../../scripts/check.py) runs
+[check_evidence.py](../../scripts/check_evidence.py) before types/compilation/tests.
+It rejects missing/unlisted files, invalid or repeated manifest paths, incorrect
+byte counts/SHA256 and byte-identical evidence copies. Git's own clean conversion
+supplies canonical bytes, including its text/binary detection and attributes;
+temporary objects are isolated from the repository's object store and index.
+This checks content consistency, not whether a claimed hardware result is true.
+Whether each retained file is necessary remains a review decision.
+
+Git-tracked Markdown and all evidence Markdown are checked for local inline
+links/images and reference-link destinations, including inbound links from
+outside this directory. Fenced/inline code examples are excluded. Heading
+fragments and remote URLs are not checked; captured JSON paths remain historical
+provenance, not live links. These checks never rewrite evidence or its manifest.
+
+Each run reports current evidence file/byte totals, added and removed files/bytes,
+and net byte change. Local runs compare with `HEAD` by default; use
+`python scripts/check_evidence.py --base master` to compare against a branch or
+commit. Windows CI supplies `EVIDENCE_BASE`: the PR base SHA, the previous push
+SHA, or the current SHA for manual runs. An initial push's all-zero SHA means
+an empty baseline. Invalid/unavailable baselines fail instead of reporting zero
+growth. CI fetches history so those comparisons are available.
+
+The shared runner saves the report in ignored `build/checks/run-*/evidence.log`;
+CI keeps that directory as a temporary seven-day artifact. No report is committed
+automatically and no arbitrary growth limit is imposed. Reviewers use the totals
+alongside the retention rules above.

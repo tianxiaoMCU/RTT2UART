@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scope": "Current #13 retained evidence and common retention policy; issue12 excluded; manifest excludes itself. Acceptance/deployment entry documents are link-checked separately.",
+  "scope": "All retained files under docs/evidence, including historical issue12 and future records; manifest excludes itself. Local Markdown destinations are checked separately.",
   "historical_source_revision": "06e2c1911a79d1b2eab85842e7bd7f99277acce3",
   "artifacts": [
     {
@@ -10,8 +10,28 @@
     },
     {
       "path": "docs/evidence/README.md",
-      "bytes": 4376,
-      "sha256": "09355ce9a956b90efa7d09d58732be3208c8331fc6d625793f64122fbc7d54cd"
+      "bytes": 6270,
+      "sha256": "fb07b884291ddc600ec0f3cedd32b4d74196f388782b8666d702d777d05e1da3"
+    },
+    {
+      "path": "docs/evidence/issue12-2026-10-30/existing-session.png",
+      "bytes": 12133,
+      "sha256": "fc33d62ff8f7546292b152514b2e8579ab646fed51afb27f3a75941bc3e0f26c"
+    },
+    {
+      "path": "docs/evidence/issue12-2026-10-30/reopened.png",
+      "bytes": 12346,
+      "sha256": "7758771f6de8be68cd5f07e0d25293f579fed80323b716c3b3bf7fb283660000"
+    },
+    {
+      "path": "docs/evidence/issue12-2026-10-30/result.json",
+      "bytes": 7912,
+      "sha256": "4ab1aabd6d27cef71189ca5b281180588852795fe998f542f0bf96a03e482544"
+    },
+    {
+      "path": "docs/evidence/issue12-2026-10-30/target-selector.png",
+      "bytes": 20584,
+      "sha256": "13d7faaba901cdf14777ac2fb2f81460dae9b97fc3ee56e7e921bd0401a90e0c"
     },
     {
       "path": "docs/evidence/issue13-2026-10-31/README.md",

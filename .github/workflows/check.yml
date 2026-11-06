@@ -16,6 +16,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
           python-version: "3.12"
@@ -23,6 +24,8 @@ jobs:
       - name: Install development dependencies
         run: python -m pip install -r requirements-dev.txt
       - name: Run shared checks
+        env:
+          EVIDENCE_BASE: ${{ github.event.pull_request.base.sha || github.event.before || github.sha }}
         run: python scripts/check.py
       - name: Save temporary check logs
         if: always()

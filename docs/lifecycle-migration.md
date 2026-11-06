@@ -210,13 +210,19 @@ py -3.12 -m venv .venv
 ```
 
 The [shared entry point](../scripts/check.py) runs dependency consistency,
-strict typechecking, Python compilation and the complete unittest suite in order.
+retained-evidence checks, strict typechecking, Python compilation and the complete
+unittest suite in order.
 It uses the calling Python environment and the checkout root even when invoked
 from another directory. The first failed step returns its nonzero exit code,
 prints its captured output and prevents all subsequent checks from running.
 Strict types cover the bridge, USB adapter, packaging/check scripts and the two
 fixture Python tools. The legacy GUI is covered by compilation and Qt integration,
 not repository-wide strict typing.
+
+Evidence checks verify the file inventory, byte counts/hashes, duplicate content
+and local Markdown destinations, and report evidence file/byte growth. See the
+[retention rules and baseline options](./evidence/README.md#automated-checks).
+They do not determine whether evidence is necessary or prove hardware behavior.
 
 Each invocation saves separate step logs under ignored `build/checks/run-*/`.
 Success prints a short status and log location; failure also prints the failing
