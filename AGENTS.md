@@ -24,6 +24,11 @@ ALWAYS prefer MCP graph tools over grep/glob/file-search for code discovery.
 
 ## Agent skills
 
+### Windows GUI acceptance
+
+Before launching or automating the packaged Windows GUI, read
+[the background GUI workflow](docs/packaging-smoke.md#background-gui-automation).
+
 ### Issue tracker
 
 Use GitHub Issues in `tianxiaoMCU/RTT2UART`.

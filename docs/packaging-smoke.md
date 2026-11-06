@@ -47,6 +47,113 @@ GUI-thread label delivery, per-mode defaults, and legacy settings/history.
 The fixtures explicitly destroy closed Qt windows between tests/reopens.
 These checks do not validate a real COM driver, probe, or frozen executable.
 
+## Background GUI automation
+
+Use **agent-desktop in headless mode** as the default for automated Windows EXE
+acceptance. Read its installed skill and platform guide before operating the app.
+The owned launcher below manages process lifetime and cleanup; agent-desktop
+observes and operates the native GUI. Keep both scoped to the isolated test run.
+
+1. Identify the test window with `list-windows --app rtt2uart.exe`. Match its PID
+   to the copied test EXE at `<run>/program/rtt2uart.exe` using read-only process
+   metadata. An app-name match alone is insufficient when another instance exists.
+   Bind observations to the returned window ID with `--window-id`; never pick a
+   user's unrelated window just because it has focus or the same title.
+2. Use background semantic actions on qualified refs from that window's current
+   snapshot or scoped `find` result. Default headless operation requires no focus
+   request, cursor movement, keyboard synthesis or clipboard use. Leave the user's
+   foreground app, window placement and work surfaces alone. The application may
+   still present its own dialogs; headless delivery is not a guarantee that it
+   never activates itself.
+3. After opening a selector/dialog, refresh the window inventory, verify the same
+   test process and bind its new window ID before continuing. For a large device
+   table, prefer scoped `find` by exact name/native ID over a full accessibility
+   dump. Use application-window screenshots when visual state adds evidence.
+4. Reobserve after each UI change and use `wait` for asynchronous completion.
+   Read the action disposition: an unverified delivery requires state inspection,
+   not a repeated click. Retry only when the reported disposition says it is safe.
+   Count a GUI check as passed only after the expected value/state is observed.
+5. Foreground activation or physical mouse/keyboard input requires explicit user
+   authorization covering that interaction. If it is missing, explain which check
+   needs the foreground and ask before proceeding. A headless failure does not
+   authorize automatic escalation to `--headed`, focus/coordinate input or a
+   different tool's physical-input fallback. Keep unavailable checks recorded as
+   unverified until they can be completed within the authorized scope.
+
+For example, replace the placeholder below with the verified inventory result:
+
+```powershell
+agent-desktop list-windows --app rtt2uart.exe
+agent-desktop snapshot --app rtt2uart.exe --window-id '<returned-window-id>' -i --compact
+```
+
+PowerShell ref arguments must be quoted, such as `'@<snapshot-id>:e1'`. Closing
+the test app must remain scoped to its verified window/process; do not close
+every same-named app. Retain the observed results and any foreground/tool limits
+with the candidate identity. Historical UIA/keyboard procedures later in this
+document describe earlier evidence; this workflow is the current automation entry.
+
+## Owned acceptance launcher
+
+For a new Windows EXE run, use the tracked launcher instead of a one-off
+`Popen.wait()` wrapper. It requires Python 3.12 and PowerShell 7 (`pwsh` on PATH),
+already available in the documented development/Windows CI setup.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/accept_windows.py --package dist/windows --output build/acceptance/run-01 --timeout 1800
+```
+
+The output directory must be new: previous results are never overwritten. The
+launcher copies only the five named package files into `program/`, keeps settings
+in `work/` and redirects LOCALAPPDATA to `user/`. It saves the program directory's
+original ACL in `program-acl.sddl`, then applies a current-user write-deny ACL to
+that disposable copy. It never changes the source package/installation ACL or
+copies an operator's settings. The retained run directory includes the package
+copy and can be large; keep it under ignored `build/` during acceptance.
+
+After launch, follow [background GUI automation](#background-gui-automation) for
+the applicable GUI checks and close the test window normally. The
+launcher itself supplies no mouse/keyboard input and does not perform any bridge
+Start or hardware operation. Application startup retains its existing serial Scan
+behavior. A zero launcher exit code means only normal process exit, successful
+cleanup and unchanged package files; it does not certify the GUI or release gate.
+The run is one application lifetime; a fresh output directory starts with fresh
+settings/cache rather than claiming a persistence/restart test.
+
+`result.json` records the outcome, exit code when available, file hashes, process
+cleanup, ACL restoration and cleanup errors. `process.log` captures child output.
+Timeout returns 124, Ctrl+C interruption returns 130, and other failures return 1;
+cleanup failure can never become a passed result. The result is written before
+setup and atomically replaced after cleanup, including failed setup/launch runs.
+The timeout starts when the owned supervisor is released to launch the EXE; ACL
+helper calls have separate 30-second deadlines. After normal launcher exit, a
+five-second grace period allows its job accounting/children to settle. Remaining
+descendants are forcibly cleaned up and the run fails.
+
+A [Windows Job Object](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects)
+contains the supervisor and its children, including the two-process one-file EXE.
+The supervisor uses the base interpreter directly, avoiding the virtual-environment
+redirector, and waits for its command until job assignment succeeds. Cleanup acts
+on that job rather than terminating every process named `rtt2uart.exe`; unrelated
+instances remain untouched. Normal exit, timeout, exceptions and Ctrl+C share the
+same cleanup path. ACL readback compares the original owner/group, protection
+and ACEs, ignoring only Windows' automatically stamped DACL `AI` flag.
+
+Force-killing the launcher or losing power cannot execute Python's ACL-restoration
+code. The job is configured to terminate its owned children on handle closure, but
+the copied program directory may retain its write-deny ACL. Restore that isolated
+copy from its saved `program-acl.sddl` with `Set-Acl` before reusing/removing it; a
+failed restoration/readback is recorded as a cleanup failure. Original
+installations and operator settings are outside this cleanup scope.
+
+The shared checks run hardware-free regressions at `run_acceptance()` using real
+controlled parent/child processes and temporary directories. They cover timeout,
+normal exit, interruption, failed launch, orphaned descendants, unrelated-process
+exclusion, ACL restoration/failure and prior-result preservation. These tests do
+not open the RTT2UART GUI or require J-Link hardware. The old local
+`build/issue14/launch_package.py` entry point delegates to this tracked launcher;
+historical evidence remains unchanged.
+
 ## Packaged interactive checklist
 
 Use a disposable writable deployment directory and launch with that directory
@@ -61,6 +168,9 @@ its saved index can refer to a different port after enumeration changes.
 Push-Location .\dist\windows
 try { .\rtt2uart.exe } finally { Pop-Location }
 ```
+
+This direct-launch example is for manual checks. Automated runs use the owned
+launcher and background GUI workflow above.
 
 | Check | Expected result |
 | --- | --- |
