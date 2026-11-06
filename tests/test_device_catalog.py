@@ -6,7 +6,7 @@ import threading
 import os
 import subprocess
 import sys
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 
 from device_catalog import DeviceCatalog, CatalogSource
 from tests.fakes import wait_until
@@ -151,6 +151,27 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual(self.wait_result(catalog).state, 'cached')
         self.assertEqual(len(self.calls), 4)
 
+    @unittest.skipUnless(sys.platform == 'win32', 'Windows source resolution contract')
+    def test_default_discovery_uses_original_library_not_random_temporary_copies(self):
+        catalog = self.controlled()
+        del self.options['resolve_source']
+        instances = []
+        def library():
+            instance = Mock()
+            instance._path = str(self.library)
+            instance._temp.name = str(self.root / f'random-{len(instances)}.dll')
+            instances.append(instance)
+            return instance
+        with patch('pylink.library.Library', side_effect=library):
+            for state in ('fresh', 'cached'):
+                other = DeviceCatalog(**self.options)
+                self.addCleanup(other.close)
+                self.assertEqual(self.resolved(other).state, state)
+        self.assertEqual(len(self.calls), 1)
+        self.assertGreater(len(instances), 1)
+        for instance in instances:
+            instance.unload.assert_called_once()
+
     def test_retry_forces_export_even_when_known_inputs_still_match(self):
         catalog = self.controlled()
         self.resolved(catalog)
@@ -219,6 +240,17 @@ class CatalogTests(unittest.TestCase):
         catalog = self.controlled()
         (self.root / 'cache').write_bytes(b'not a directory')
         self.assertEqual(self.resolved(catalog).state, 'fallback')
+
+    def test_cache_io_cause_survives_a_simultaneous_source_discovery_failure(self):
+        blocked = self.root / 'cache'
+        blocked.write_bytes(b'not a directory')
+        catalog = DeviceCatalog(cache_dir=blocked, baseline=FIXTURE,
+            resolve_source=lambda: (_ for _ in ()).throw(OSError('source unavailable')))
+        self.addCleanup(catalog.close)
+        result = self.resolved(catalog)
+        self.assertEqual(result.state, 'fallback')
+        self.assertIn('source unavailable', result.reason)
+        self.assertIn('Cache unavailable', result.reason)
 
     def test_source_change_during_export_never_publishes_old_completion(self):
         def change(source, directory, cancelled):

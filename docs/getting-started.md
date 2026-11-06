@@ -12,7 +12,7 @@ Prepare the following:
 
 | Item | What you need |
 | --- | --- |
-| Windows host | A writable application directory and permission to install the required probe and virtual serial port drivers |
+| Windows host | A writable settings/user-data directory and permission to install the required probe and virtual serial port drivers |
 | RTT2UART | The extracted release package, or a source checkout prepared using the [development guide](./development.md#run-from-source) |
 | J-Link software | A discoverable J-Link runtime library and J-Link Commander (`JLink.exe`); installing Python dependencies alone does not provide them |
 | Probe and target | A USB J-Link connection to the correct target debug interface, with target power and wiring already checked |
@@ -35,11 +35,11 @@ Download the Windows ZIP from
 to a writable directory. The published `v2.0.0` asset is named
 `rtt2uart_v2.0.0.zip`. Keep all files from the package together.
 
-For the current source workflow, the working directory must contain:
+For current source/builds, keep these resources beside the source entry point or EXE:
 
 - `JLinkCommandFile.jlink`, used to export the device list through Commander.
-- `JLinkDevicesBuildIn.xml`, used by the device selector. A successful export can
-  refresh it; an existing copy is needed when export fails.
+- `JLinkDevicesBuildIn.xml`, the read-only fallback baseline. Successful exports
+  go to the user cache.
 
 If your package is missing these files, use the matching source version to
 prepare a complete directory as described in [Packaging](./development.md#package-for-windows).
@@ -163,8 +163,8 @@ probe connection and provides the RTT endpoint.
 
 1. Start and configure the external J-Link session. Confirm that it provides
    the intended target's RTT data at `localhost:19021`.
-2. Start RTT2UART. A discoverable J-Link runtime is still required because the
-   GUI creates a J-Link object during startup, even in this mode.
+2. Start RTT2UART. Catalog discovery/export failures do not block this mode.
+   The external application remains responsible for its own J-Link runtime.
 3. Select **Existing Session**. The target device, debug interface, debug
    speed, and reset controls are disabled; the external session owns those
    choices.

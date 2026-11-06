@@ -20,7 +20,7 @@ reproducible packaging procedure. Hardware setup is covered in
 | [`icons.qrc`](../icons.qrc), [`rc_icons.py`](../rc_icons.py) | Qt resource source and generated Python resource module |
 | [`requirements.txt`](../requirements.txt) | Pinned Python runtime dependencies |
 | [`JLinkCommandFile.jlink`](../JLinkCommandFile.jlink) | Commander script that exports the device database and exits |
-| [`JLinkDevicesBuildIn.xml`](../JLinkDevicesBuildIn.xml) | Device database read by the selector and refreshed through Commander |
+| [`JLinkDevicesBuildIn.xml`](../JLinkDevicesBuildIn.xml) | Read-only fallback baseline; generated catalogs use the user cache |
 
 ## Run from source
 
@@ -74,8 +74,8 @@ backend has been removed.
 
 ### Working directory and settings
 
-Launch from the repository root so that relative paths resolve to the tracked
-command file and XML database. The current code also reads and writes a binary
+Catalog resources resolve beside the source entry point or packaged EXE,
+independently of launch CWD. The code still reads and writes a binary
 `settings` file in the current working directory. It stores device history and
 selection indices; see [Settings and startup files](./architecture.md#settings-and-startup-files).
 
@@ -83,11 +83,10 @@ If saved settings prevent startup, close the program and rename that file before
 retrying. This resets the saved selections for that working directory. Reselect
 the target, interface, speed, serial port, and baud rate after restarting.
 
-The Windows export path currently replaces the process `PATH` with the directory
-of the discovered J-Link library before running `JLink.exe`. This is process
-behavior, not a persistent system environment change. It explains why Commander
-must be available beside the library and why shell lookup assumptions can differ
-inside the program.
+The catalog worker invokes the Commander beside the selected original J-Link DLL.
+It copies the environment for that child and prepends its directory there; global
+PATH/CWD are unchanged. The private temporary directory receives export output,
+and the validated generation is atomically stored in the current user's cache.
 
 ## Regenerate the UI and resources
 

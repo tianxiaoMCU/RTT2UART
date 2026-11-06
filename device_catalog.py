@@ -151,6 +151,7 @@ class DeviceCatalog:
 
     def _prepare(self, retry: bool) -> CatalogSnapshot:
         previous = None
+        cache_error = ''
         try:
             previous = json.loads(self._cache.read_text(encoding='utf-8'))
             if not isinstance(previous['source'], dict):
@@ -159,8 +160,10 @@ class DeviceCatalog:
             if hashlib.sha256(xml.encode('utf-8')).hexdigest() != previous['xml_sha256']:
                 raise ValueError('Cache data/provenance mismatch')
             _parse(xml)
-        except Exception:
+        except Exception as error:
             previous = None
+            if not isinstance(error, FileNotFoundError) or self._cache.parent.is_file():
+                cache_error = f'Cache unavailable: {error}; '
         fingerprint = ''
         try:
             source = self._resolve_source()
@@ -199,9 +202,9 @@ class DeviceCatalog:
             try:
                 records = _parse(previous['xml'] if previous is not None else
                                  self._baseline.read_text(encoding='utf-8'))
-                return CatalogSnapshot('fallback', records, str(error))
+                return CatalogSnapshot('fallback', records, cache_error + str(error))
             except Exception as baseline_error:
-                return CatalogSnapshot('error', reason=f'{error}; {baseline_error}')
+                return CatalogSnapshot('error', reason=f'{cache_error}{error}; {baseline_error}')
 
     def close(self, *, wait: bool = True) -> None:
         with self._lock:

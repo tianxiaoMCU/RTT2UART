@@ -14,8 +14,11 @@ and bridge lifecycle coverage and adds loading, same-dialog completion, fallback
 Retry, event-loop delivery and closed-dialog safety checks.
 
 Targeted run: `.venv\Scripts\python.exe -m unittest tests.test_device_catalog tests.test_main_window -v`
-passed 28 tests. Strict mypy passed for the new module and changed check/build scripts.
-Full shared checks and independent review will be recorded after final changes.
+passed 31 tests. Strict mypy passed for the new module and changed check/build scripts.
+Independent Standards review found no hard rule violations or actionable smells;
+it found stale resource/PATH documentation, now corrected. Spec review found one
+P2 diagnostic gap (cache-read cause lost when discovery also fails), fixed with a
+failing-then-passing regression test. Full shared checks remain to be recorded.
 
 ## Real installed Commander and source GUI
 

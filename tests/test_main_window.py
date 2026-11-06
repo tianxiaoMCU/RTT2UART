@@ -451,6 +451,30 @@ class WindowTests(unittest.TestCase):
         self.pump_until(lambda: not self.window.isVisible())
         self.assertFalse(catalog.busy)
 
+    def test_window_close_cancels_pending_catalog_without_blocking_event_loop(self):
+        entered, release = threading.Event(), threading.Event()
+        def source():
+            entered.set()
+            release.wait(2)
+            raise OSError('no tools')
+        catalog = DeviceCatalog(cache_dir=Path(self.directory.name) / 'cache',
+                                baseline=FIXTURE, resolve_source=source)
+        self.addCleanup(catalog.close)
+        self.addCleanup(release.set)
+        self.window._catalog = catalog
+        catalog.prepare()
+        self.assertTrue(entered.wait(1))
+        self.window.close()
+        self.assertTrue(self.window.isVisible())
+        self.assertEqual(catalog.snapshot.state, 'closed')
+        heartbeat = []
+        QTimer.singleShot(0, lambda: heartbeat.append(True))
+        self.pump_until(lambda: heartbeat)
+        release.set()
+        self.pump_until(lambda: not self.window.isVisible())
+        self.assertFalse(catalog.busy)
+        self.assertEqual(catalog.snapshot.state, 'closed')
+
     def test_background_lifecycle_and_discard_text_are_delivered_on_gui_thread(self):
         calls = []
         set_text = QLabel.setText
