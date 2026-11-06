@@ -24,6 +24,11 @@ ALWAYS prefer MCP graph tools over grep/glob/file-search for code discovery.
 
 ## Agent skills
 
+### Tool and document output
+
+Before discovering tools or reading reference documents, read
+[the output guidance](docs/agents/tool-output.md).
+
 ### Windows GUI acceptance
 
 Before launching or automating the packaged Windows GUI, read

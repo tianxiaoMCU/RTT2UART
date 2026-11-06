@@ -47,6 +47,14 @@ GUI-thread label delivery, per-mode defaults, and legacy settings/history.
 The fixtures explicitly destroy closed Qt windows between tests/reopens.
 These checks do not validate a real COM driver, probe, or frozen executable.
 
+The #15 window regressions also minimize/restore during idle, Starting, both
+connected modes, Reconnecting, Stopping and Stop incomplete. Controlled I/O
+verifies continued two-way bytes, unchanged connection/reset activity and
+settings, recovery counts and terminal loss with Auto Reconnect off. Closing
+while minimized and Escape during cleanup still wait for resource release.
+Offscreen Qt checks do not establish Windows title-bar/taskbar behavior; test
+that separately on the packaged candidate below.
+
 ## Background GUI automation
 
 Use **agent-desktop in headless mode** as the default for automated Windows EXE
@@ -179,7 +187,10 @@ launcher and background GUI workflow above.
 | Target selection | New selection enters history; selecting an existing history item updates the combo; Cancel or empty OK leaves the choice unchanged |
 | USB idle | USB selected initially; Auto Reconnect off; Target/interface/speed/reset controls available |
 | Existing Session idle | Auto Reconnect on; Target/interface/speed/reset controls disabled; serial choices still available |
-| Unsupported controls | Remote-probe TCP/IP disabled; no selectable RTT channel or minimization feature added |
+| Taskbar minimize/restore | Title-bar minimize button works; taskbar entry remains and restores the same window; repeated cycles create no extra instance; no maximize or tray feature |
+| Minimized bridge | In both modes, two-way traffic and existing recovery policy continue; restoring shows current state and cumulative observed discards; window actions cause no Stop/Start, extra connection or Target reset |
+| Safe exit | X, Alt+F4 and Escape request cleanup and exit; a pending exit, including one requested while minimized, waits through Stopping / Stop incomplete with restart disabled |
+| Unsupported controls | Remote-probe TCP/IP disabled; no selectable RTT channel added |
 | Second instance | Launch the same EXE again while the first is open; the second exits without another window |
 | Save and reopen | Change supported saved selections, close normally, reopen; choices/history remain; USB recovery defaults off again |
 | First-start failure | Use an unavailable test port/endpoint; no false ready state or infinite retry; clear failure and manual restart after cleanup |
@@ -195,6 +206,16 @@ the recorded separate Windows11/J-Link7.54d deployment/dependency-isolation run
 satisfies that ticket's remaining deployment gate. CubeIDE/NI remain installed;
 this exception does not claim a development-software-free Windows pass or
 generalize to another candidate/host/runtime.
+
+## Taskbar window acceptance — #15, 2026-11-07
+
+The [#15 candidate record](./evidence/issue15-2026-11-07/README.md) identifies the
+new EXE and its source hashes. Native title-bar minimize and taskbar restore
+passed three cycles on the same window, followed by normal X exit. Separate
+isolated lifetimes passed actual Alt+F4 and Escape exit checks. All three runs
+returned 0 with owned processes cleaned up, ACL restored and package files
+unchanged. Controlled Qt regressions cover active/minimized forwarding,
+recovery and delayed cleanup; no new hardware or clean-host gate is claimed.
 
 ## Recorded result — #12, 2026-10-25
 

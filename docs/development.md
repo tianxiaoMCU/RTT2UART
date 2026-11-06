@@ -167,8 +167,8 @@ The first failure stops the run. Temporary logs are written under ignored
 `build/checks/`; CI retains them as artifacts for seven days. See
 [Lifecycle migration](./lifecycle-migration.md#reproducible-checks) for the check
 scope and [Windows CI](../.github/workflows/check.yml) for the workflow.
-Retained-evidence integrity, local file links and duplicate content are checked
-automatically; file/byte growth is reported for review. See
+Git diff whitespace, retained-evidence integrity, local file links and duplicate
+content are checked automatically; file/byte growth is reported for review. See
 [evidence retention](./evidence/README.md#automated-checks) before changing evidence.
 Use a recorded manual check for behavior that needs real drivers, probe, Target,
 or the packaged application.

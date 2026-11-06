@@ -1,0 +1,723 @@
+{
+  "issue": "https://github.com/tianxiaoMCU/RTT2UART/issues/15",
+  "agent_brief": "https://github.com/tianxiaoMCU/RTT2UART/issues/15#issuecomment-6688876894",
+  "run_dates_local": [
+    "2026-11-06",
+    "2026-11-07"
+  ],
+  "timezone": "Asia/Shanghai",
+  "build_environment": {
+    "revision": "53617e93fded87bd7ec670bfc664564ee0994658",
+    "working_tree_changes": "?? docs/harness-engineering-assessment-2026-10-31.md",
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "windows": "Windows-10-10.0.19045-SP0",
+    "architecture": "AMD64",
+    "packages": {
+      "pylink-square": "1.2.0",
+      "pyserial": "3.5",
+      "PySide6": "6.6.1",
+      "PySide6-Addons": "6.6.1",
+      "PySide6-Essentials": "6.6.1",
+      "shiboken6": "6.6.1",
+      "PyInstaller": "6.22.3",
+      "pyinstaller-hooks-contrib": "2026.9",
+      "altgraph": "0.17.5",
+      "packaging": "26.3",
+      "pefile": "2024.8.26",
+      "pywin32-ctypes": "0.2.3",
+      "setuptools": "84.2.1"
+    },
+    "source_sha256": {
+      "main_window.py": "1d2d946f88ea06ac905c445aba05f3851a8dbc16a66425ecf496b4ff5b58117c",
+      "rtt2uart.py": "c9b27c03a4e5de01b6a50d71fd3bb8c248ce98747dff2a0b65017d2ae50c87ea",
+      "usb_transport.py": "5946537cd873d288a04391b49b21d0f01d43bc7daf4452bac6020eeef0d609b1",
+      "device_catalog.py": "071437be4f9a8c04bf3602ad885fdd1cc621aabfeb272e2c3780a2f42e7412eb",
+      "ui_rtt2uart.py": "bd71a4a5cbc10b6da45f647595e9fdfe43977a5cf5bf767517a89de63d0c7a8a",
+      "ui_sel_device.py": "2b5ca0f37c32b9b4d23dedb1a84ce2099fddcd4b90d08d21712c4e641855773a",
+      "rc_icons.py": "36a44fd2f084b7fc7247725691388b557eafa2043dee7bf2fe456d4f53b52b90",
+      "rtt2uart.ui": "706545b670774472cbba465a60739ba0257b76c6734c8e59ff1e2b5ac7d168a6",
+      "sel_device.ui": "98227a81bc1672774eafa6426ab65fe1aa6ed286fc7dff586cc891f581768b86",
+      "icons.qrc": "a9ef58a8a03851a55fa6857e02c5b85e6458297a07d60c7020df57d0858d7adb",
+      "swap_horiz_16px.ico": "3e6cd43b4d56bc308c5c0ca65094d9ac9575b2aac8749540a12a7a991e21fc01",
+      "requirements.txt": "97069e369e65e8eb6e8fa2080dc8af30c7f07538a0eb9ab3ea935fc4c25a251d",
+      "requirements-build.txt": "1d3eb3a308db816570b793a0f621399c1d32ab9b72dc0701bddc2563680f072f",
+      "scripts/package_windows.py": "f792fdabb963745caee9b23bfa8f6f7cf5bc767755d8bc20d24492d307d5cbdb",
+      "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+      "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+      "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153"
+    },
+    "exe_sha256": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+    "external_prerequisites": [
+      "J-Link runtime and Commander",
+      "Virtual COM port pair for transfer"
+    ],
+    "smoke_result": "Not established by building; record the manual checklist separately."
+  },
+  "source_checks": {
+    "command": ".\\.venv\\Scripts\\python.exe scripts/check.py",
+    "logs": "build/checks/run-04y7dqrg",
+    "tests": 102,
+    "test_result": "OK",
+    "main_window_tests": 20,
+    "strict_mypy_files": 9,
+    "strict_mypy_result": "Success: no issues found in 9 source files",
+    "dependencies": "No broken requirements found.",
+    "compile": "passed",
+    "evidence_integrity": "passed"
+  },
+  "gui_method": {
+    "tool": "agent-desktop 1.2.0",
+    "minimize_restore_and_x": "headless UI Automation InvokePattern with independent window readback",
+    "altf4_escape": "User explicitly authorized headed keyboard input on two verified isolated EXE copies",
+    "action_readback": "Actions reported delivered_unverified/retry unsafe; no blind retries. Subsequent window observations and launcher exits establish effects.",
+    "projection": "Only tested app/titlebar controls, exact matching taskbar entry and window/process observations retained. Unrelated shell/app metadata and repeated full UI trees omitted."
+  },
+  "titlebar_initial": {
+    "available_actions": [
+      "SetValue",
+      "SetFocus"
+    ],
+    "children": [
+      {
+        "available_actions": [
+          "SetFocus"
+        ],
+        "children": [
+          {
+            "available_actions": [
+              "Click",
+              "Expand",
+              "Collapse",
+              "SetFocus"
+            ],
+            "name": "系统",
+            "ref_id": "@s30y4cpyg6o67a:e3",
+            "role": "menuitem",
+            "role_description": "菜单项目",
+            "states": [
+              "haspopup"
+            ]
+          }
+        ],
+        "name": "系统",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "SystemMenuBar"
+        },
+        "role": "menu",
+        "role_description": "菜单栏"
+      },
+      {
+        "available_actions": [
+          "Click"
+        ],
+        "name": "最小化",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "Minimize-Restore"
+        },
+        "ref_id": "@s30y4cpyg6o67a:e4",
+        "role": "button",
+        "role_description": "按钮"
+      },
+      {
+        "available_actions": [
+          "Click"
+        ],
+        "name": "最大化",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "Maximize-Restore"
+        },
+        "ref_id": "@s30y4cpyg6o67a:e5",
+        "role": "button",
+        "role_description": "按钮",
+        "states": [
+          "disabled"
+        ]
+      },
+      {
+        "available_actions": [
+          "Click"
+        ],
+        "name": "关闭",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "Close"
+        },
+        "ref_id": "@s30y4cpyg6o67a:e6",
+        "role": "button",
+        "role_description": "按钮"
+      }
+    ],
+    "native_id": {
+      "kind": "automation_id",
+      "value": "TitleBar"
+    },
+    "ref_id": "@s30y4cpyg6o67a:e2",
+    "role": "group",
+    "role_description": "标题栏",
+    "value": "RTT2UART Control Panel V2.0.0"
+  },
+  "controls_initial": [
+    {
+      "name": "Target Interface And Speed",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox.comboBox_Interface"
+      },
+      "value": "SWD"
+    },
+    {
+      "name": "Target Interface And Speed",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox.comboBox_Speed"
+      },
+      "value": "4000 kHz"
+    },
+    {
+      "name": "UART Config",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_UART.comboBox_Port"
+      },
+      "value": "COM1"
+    },
+    {
+      "name": "UART Config",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_UART.comboBox_baudrate"
+      },
+      "value": "115200"
+    },
+    {
+      "name": "USB",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.radioButton_usb"
+      },
+      "states": [
+        "checked",
+        "selected"
+      ]
+    },
+    {
+      "name": "Existing Session",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.radioButton_existing"
+      }
+    },
+    {
+      "name": "Auto Reconnect",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.checkBox__auto"
+      }
+    }
+  ],
+  "controls_restored": [
+    {
+      "name": "Target Interface And Speed",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox.comboBox_Interface"
+      },
+      "states": [
+        "disabled"
+      ],
+      "value": "SWD"
+    },
+    {
+      "name": "Target Interface And Speed",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox.comboBox_Speed"
+      },
+      "states": [
+        "disabled"
+      ],
+      "value": "4000 kHz"
+    },
+    {
+      "name": "UART Config",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_UART.comboBox_Port"
+      },
+      "value": "COM1"
+    },
+    {
+      "name": "UART Config",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_UART.comboBox_baudrate"
+      },
+      "value": "115200"
+    },
+    {
+      "name": "USB",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.radioButton_usb"
+      }
+    },
+    {
+      "name": "Existing Session",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.radioButton_existing"
+      },
+      "states": [
+        "focused",
+        "checked",
+        "selected"
+      ]
+    },
+    {
+      "name": "Auto Reconnect",
+      "native_id": {
+        "kind": "automation_id",
+        "value": "dialog.groupBox_3.checkBox__auto"
+      },
+      "states": [
+        "checked"
+      ]
+    }
+  ],
+  "cycles": [
+    {
+      "cycle": 1,
+      "mode": "USB",
+      "minimize_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "minimized_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 28.0,
+            "width": 160.0,
+            "x": -32000.0,
+            "y": -32000.0
+          },
+          "id": "w-30150268",
+          "is_focused": false,
+          "minimized": true,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ],
+      "taskbar_entry": {
+        "available_actions": [
+          "Click",
+          "SetFocus"
+        ],
+        "name": "RTT2UART Control Panel V2.0.0 - 1 个运行窗口",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-01\\program\\rtt2uart.exe"
+        },
+        "ref_id": "@s2icm2lgzktabh:e16",
+        "role": "button",
+        "role_description": "按钮",
+        "states": [
+          "haspopup"
+        ]
+      },
+      "taskbar_restore_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "restored_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 484.0,
+            "width": 418.0,
+            "x": 741.0,
+            "y": 258.0
+          },
+          "id": "w-30150268",
+          "is_focused": true,
+          "minimized": false,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "cycle": 2,
+      "mode": "Existing Session",
+      "minimize_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "minimized_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 28.0,
+            "width": 160.0,
+            "x": -32000.0,
+            "y": -32000.0
+          },
+          "id": "w-30150268",
+          "is_focused": false,
+          "minimized": true,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ],
+      "taskbar_entry": {
+        "available_actions": [
+          "Click",
+          "SetFocus"
+        ],
+        "name": "RTT2UART Control Panel V2.0.0 - 1 个运行窗口",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-01\\program\\rtt2uart.exe"
+        },
+        "ref_id": "@s39xy14egja8i:e16",
+        "role": "button",
+        "role_description": "按钮",
+        "states": [
+          "haspopup"
+        ]
+      },
+      "taskbar_restore_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "restored_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 484.0,
+            "width": 418.0,
+            "x": 741.0,
+            "y": 258.0
+          },
+          "id": "w-30150268",
+          "is_focused": true,
+          "minimized": false,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "cycle": 3,
+      "mode": "Existing Session",
+      "minimize_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "minimized_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 28.0,
+            "width": 160.0,
+            "x": -32000.0,
+            "y": -32000.0
+          },
+          "id": "w-30150268",
+          "is_focused": false,
+          "minimized": true,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ],
+      "taskbar_entry": {
+        "available_actions": [
+          "Click",
+          "SetFocus"
+        ],
+        "name": "RTT2UART Control Panel V2.0.0 - 1 个运行窗口",
+        "native_id": {
+          "kind": "automation_id",
+          "value": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-01\\program\\rtt2uart.exe"
+        },
+        "ref_id": "@s183c2ppxmg85q:e16",
+        "role": "button",
+        "role_description": "按钮",
+        "states": [
+          "haspopup"
+        ]
+      },
+      "taskbar_restore_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "restored_windows": [
+        {
+          "accessible": true,
+          "app_name": "rtt2uart.exe",
+          "bounds": {
+            "height": 484.0,
+            "width": 418.0,
+            "x": 741.0,
+            "y": 258.0
+          },
+          "id": "w-30150268",
+          "is_focused": true,
+          "minimized": false,
+          "pid": 41940,
+          "process_instance": "windows-proc-v1:13438454249:7487752",
+          "title": "RTT2UART Control Panel V2.0.0",
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "normal_exits": [
+    {
+      "run": "issue15-01",
+      "verified_executable": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-01\\program\\rtt2uart.exe",
+      "pid": 41940,
+      "window_id": "w-30150268",
+      "before_window": {
+        "id": "w-30150268",
+        "title": "RTT2UART Control Panel V2.0.0"
+      },
+      "exit_action": {
+        "action": "click",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        },
+        "steps": [
+          {
+            "label": "InvokePattern.Invoke",
+            "mechanism": "semantic_api",
+            "outcome": "succeeded",
+            "verified": false
+          }
+        ]
+      },
+      "windows_after": [],
+      "saved_settings_keys": [
+        "buadrate",
+        "device",
+        "device_index",
+        "interface",
+        "port",
+        "speed"
+      ],
+      "launcher_result": {
+        "status": "passed",
+        "timeout_seconds": 1800.0,
+        "process_tree_clean": true,
+        "acl_restored": true,
+        "cleanup_errors": [],
+        "files_before": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        },
+        "supervisor_pid": 48752,
+        "exit_code": 0,
+        "files_after": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        }
+      }
+    },
+    {
+      "run": "issue15-02-altf4",
+      "verified_executable": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-02-altf4\\program\\rtt2uart.exe",
+      "pid": 5304,
+      "window_id": "w-10684800",
+      "before_window": {
+        "id": "w-10684800",
+        "title": "RTT2UART Control Panel V2.0.0"
+      },
+      "exit_action": {
+        "action": "press_key",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        }
+      },
+      "windows_after": [],
+      "saved_settings_keys": [
+        "buadrate",
+        "device",
+        "device_index",
+        "interface",
+        "port",
+        "speed"
+      ],
+      "launcher_result": {
+        "status": "passed",
+        "timeout_seconds": 180.0,
+        "process_tree_clean": true,
+        "acl_restored": true,
+        "cleanup_errors": [],
+        "files_before": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        },
+        "supervisor_pid": 43740,
+        "exit_code": 0,
+        "files_after": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        }
+      }
+    },
+    {
+      "run": "issue15-03-escape",
+      "verified_executable": "D:\\codex\\RTT2UART\\build\\acceptance\\issue15-03-escape\\program\\rtt2uart.exe",
+      "pid": 54216,
+      "window_id": "w-58394454",
+      "before_window": {
+        "id": "w-58394454",
+        "title": "RTT2UART Control Panel V2.0.0"
+      },
+      "exit_action": {
+        "action": "press_key",
+        "disposition": {
+          "delivery": "delivered_unverified",
+          "retry": "unsafe"
+        }
+      },
+      "windows_after": [],
+      "saved_settings_keys": [
+        "buadrate",
+        "device",
+        "device_index",
+        "interface",
+        "port",
+        "speed"
+      ],
+      "launcher_result": {
+        "status": "passed",
+        "timeout_seconds": 180.0,
+        "process_tree_clean": true,
+        "acl_restored": true,
+        "cleanup_errors": [],
+        "files_before": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        },
+        "supervisor_pid": 35580,
+        "exit_code": 0,
+        "files_after": {
+          "rtt2uart.exe": "73329d34588a0772459ed001d49067679b3285710b74f6fd15f0002f0c5ef271",
+          "JLinkCommandFile.jlink": "5c9dc5862f477ee27700fe3bb0bca5ea49c75bd8ad08aa23830156e63b20c90f",
+          "JLinkDevicesBuildIn.xml": "15e02e5ff528f656c46d426ce4553aa0919625288773e3be856f5df004e8b464",
+          "LICENSE": "d0a798374cdc93c0d126324654edd08843f582a3e9a7caaf67a6d1251b19a153",
+          "build-environment.json": "f50c470022a691ec935d712f582b9654c0eea1b833b674e284a148bc11b0031f"
+        }
+      }
+    }
+  ],
+  "limits": [
+    "No bridge Start, probe/Target connection or hardware transfer requested in packaged runs; existing startup serial Scan can briefly open enumerated ports.",
+    "Minimized transfer/recovery/delayed cleanup verified with controlled fixtures, not new real hardware evidence.",
+    "Packaged exit-key checks are idle; active/delayed cleanup is covered by Qt/Bridge regressions.",
+    "Development Windows host only; no new clean-host or release qualification.",
+    "Only pre-existing untracked docs/harness-engineering-assessment-2026-10-31.md present during build; tracked product inputs were committed."
+  ]
+}

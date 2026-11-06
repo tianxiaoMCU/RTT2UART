@@ -15,11 +15,12 @@ def main() -> int:
     environment["QT_QPA_PLATFORM"] = "offscreen"
     environment["PYTHONIOENCODING"] = "utf-8"
     commands = (
+        ("whitespace", ["scripts/check_whitespace.py"]),
         ("dependencies", ["-m", "pip", "check"]),
         ("evidence", ["scripts/check_evidence.py"]),
         ("types", ["-m", "mypy", "--strict", "rtt2uart.py", "usb_transport.py", "device_catalog.py",
                    "scripts/package_windows.py", "scripts/check.py", "scripts/check_evidence.py",
-                   "scripts/accept_windows.py",
+                   "scripts/accept_windows.py", "scripts/check_whitespace.py",
                    "tests/fixtures/stm32h750_rtt/build.py",
                    "tests/fixtures/stm32h750_rtt/smoke_usb.py"]),
         ("compile", ["-m", "compileall", "-q", "rtt2uart.py", "usb_transport.py",

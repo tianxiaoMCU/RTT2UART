@@ -209,15 +209,22 @@ py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe scripts/check.py
 ```
 
-The [shared entry point](../scripts/check.py) runs dependency consistency,
-retained-evidence checks, strict typechecking, Python compilation and the complete
-unittest suite in order.
+The [shared entry point](../scripts/check.py) runs Git whitespace checks,
+dependency consistency, retained-evidence checks, strict typechecking, Python
+compilation and the complete unittest suite in order.
 It uses the calling Python environment and the checkout root even when invoked
 from another directory. The first failed step returns its nonzero exit code,
 prints its captured output and prevents all subsequent checks from running.
 Strict types cover the bridge, USB adapter, packaging/check scripts and the two
 fixture Python tools. The legacy GUI is covered by compilation and Qt integration,
 not repository-wide strict typing.
+
+The [whitespace check](../scripts/check_whitespace.py) uses Git's own whitespace
+rules and attributes. It checks both the working tree and index against
+`EVIDENCE_BASE`, defaulting to `HEAD` locally; new files must be staged to be
+included. CI supplies the existing PR/push baseline. An initial push's all-zero
+baseline means the empty tree. Invalid or unavailable baselines fail. Errors
+are retained in `whitespace.log` and stop later checks; files are never rewritten.
 
 Evidence checks verify the file inventory, byte counts/hashes, duplicate content
 and local Markdown destinations, and report evidence file/byte growth. See the

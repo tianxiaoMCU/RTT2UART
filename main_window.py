@@ -129,6 +129,7 @@ class MainWindow(QDialog):
         super(MainWindow, self).__init__()
         self.ui = Ui_dialog()
         self.ui.setupUi(self)
+        self.setWindowFlag(QtCore.Qt.WindowMinimizeButtonHint, True)
 
         self.setWindowIcon(QIcon(":/swap_horiz_16px.ico"))
 

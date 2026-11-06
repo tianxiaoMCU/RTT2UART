@@ -56,6 +56,11 @@ package. For a build named `rtt2uart.exe`, for example:
 Only one application instance is intended to run at a time. If no window
 appears, check whether RTT2UART is already running.
 
+The title-bar minimize button keeps RTT2UART on the Windows taskbar. Click its
+taskbar entry to restore the window. Bridging and the selected recovery policy
+continue while minimized. X, Alt+F4 and Escape request exit after owned resources
+finish cleanup; they do not hide the application in a system tray.
+
 ## 2. Create a virtual COM port pair
 
 Install a virtual serial port tool, such as the

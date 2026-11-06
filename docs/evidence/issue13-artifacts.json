@@ -212,6 +212,21 @@
       "path": "docs/evidence/issue14-2026-11-06/selector-ready.png",
       "bytes": 20195,
       "sha256": "8ac9dafdf3703e27ffcf856ab160859842b142eaa6f409a4f4a5931777b3887f"
+    },
+    {
+      "path": "docs/evidence/issue15-2026-11-07/README.md",
+      "bytes": 4231,
+      "sha256": "bf75cd0cb4c7fb23af696a3444a99fa54c45e5706d467df32854e8c4b8a1a180"
+    },
+    {
+      "path": "docs/evidence/issue15-2026-11-07/evidence.json",
+      "bytes": 22786,
+      "sha256": "7c1d950e0ded13de77d1b9c04582cc1376a670ce3b1acc2840ac0ad3e1b854ea"
+    },
+    {
+      "path": "docs/evidence/issue15-2026-11-07/restored.png",
+      "bytes": 15261,
+      "sha256": "ec8bdec2df7918f433be7416ffa6cf7a5d128bb2f3aedd776e6699603675693b"
     }
   ]
 }
