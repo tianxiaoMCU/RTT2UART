@@ -128,10 +128,11 @@ For a diagnostic build, remove `--noconsole` from the recipe to keep logging vis
 executable does not make the entire deployment self-contained:
 
 - The J-Link runtime and Commander remain external prerequisites.
-- `JLinkCommandFile.jlink` and `JLinkDevicesBuildIn.xml` must be available in the
-  working directory. Copying them beside the executable works when launched
-  from that directory; embedding them into a one-file archive alone does not
-  change the current code's relative file access.
+- `JLinkCommandFile.jlink` and `JLinkDevicesBuildIn.xml` must stay beside the
+  executable. Acquisition uses that deployment directory regardless of launch CWD;
+  generated lists/provenance go to `%LOCALAPPDATA%\RTT2UART\catalog.json`.
+  The installation directory need not be writable. Legacy settings still use CWD,
+  so launch from a writable working directory if the install is read-only.
 - The Qt runtime, generated UI modules, and compiled resources must be included
   by the packaging process. Verify their presence by running the result.
 - The virtual COM port driver and pair must be configured on the destination
@@ -178,7 +179,7 @@ or the packaged application.
 | Documentation | Check links, paths, code references, and Markdown whitespace | Source revision and check result |
 | Source environment | Install the pinned dependencies in a clean environment and launch `main_window.py` | Python/Windows/J-Link versions and any dependency errors |
 | GUI and resources | Open the main window and device selector; check labels, icon, controls, and selection | Screenshots and selected device |
-| Device list | Confirm automatic export, and separately check use of the existing XML when export is unavailable | Working directory, Commander version, export output, and database used |
+| Device list | Check first export, matching-cache restart, changed input, failed-refresh fallback/Retry, loading completion and source/EXE from another CWD/read-only resources | Resolved DLL/Commander hashes, cache state, invocation counts and unchanged shipped hashes; see [catalog acceptance](./device-catalog-acceptance.md) |
 | USB receive | Emit a known target RTT message and observe it through the paired COM endpoint | Probe/target/firmware, interface, speed, COM pair, and observed message |
 | USB send | Send a known firmware-supported RTT command and observe the expected target result | Command bytes/line endings and target response |
 | Existing Session | Repeat both directions through an externally owned local RTT endpoint | Owning application, endpoint, target, and transfer results |
@@ -195,3 +196,8 @@ hardware test.
 Current automated and package results are recorded in
 [Lifecycle migration](./lifecycle-migration.md) and [Package smoke](./packaging-smoke.md).
 Hardware acceptance remains separate.
+
+The catalog worker has strict typing in the shared checks. Controlled tests use
+the window-facing preparation/snapshot seam plus real temporary files/processes;
+real J-Link and packaged checks are recorded separately. The 30-second Commander
+deadline is an engineering limit, not a throughput or installation-wide guarantee.

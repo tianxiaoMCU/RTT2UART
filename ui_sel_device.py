@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QFrame, QHeaderView, QLabel, QSizePolicy,
-    QTableView, QWidget)
+    QFrame, QHeaderView, QLabel, QPushButton,
+    QSizePolicy, QTableView, QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -39,7 +39,14 @@ class Ui_Dialog(object):
         self.label_sel_dev.setGeometry(QRect(110, 10, 161, 16))
         self.tableView = QTableView(Dialog)
         self.tableView.setObjectName(u"tableView")
-        self.tableView.setGeometry(QRect(10, 30, 761, 311))
+        self.tableView.setGeometry(QRect(10, 90, 761, 251))
+        self.label_catalog_status = QLabel(Dialog)
+        self.label_catalog_status.setObjectName(u"label_catalog_status")
+        self.label_catalog_status.setGeometry(QRect(10, 30, 761, 54))
+        self.label_catalog_status.setWordWrap(True)
+        self.pushButton_retry = QPushButton(Dialog)
+        self.pushButton_retry.setObjectName(u"pushButton_retry")
+        self.pushButton_retry.setGeometry(QRect(690, 3, 81, 25))
         self.line = QFrame(Dialog)
         self.line.setObjectName(u"line")
         self.line.setGeometry(QRect(10, 340, 761, 16))
@@ -57,5 +64,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Target Device Settings", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"Seleted Device:", None))
         self.label_sel_dev.setText("")
+        self.label_catalog_status.setText(QCoreApplication.translate("Dialog", u"Loading Target device list...", None))
+        self.pushButton_retry.setText(QCoreApplication.translate("Dialog", u"Retry", None))
     # retranslateUi
 

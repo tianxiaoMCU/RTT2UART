@@ -28,7 +28,7 @@ def main() -> None:
     companions = ["JLinkCommandFile.jlink", "JLinkDevicesBuildIn.xml", "LICENSE"]
     for name in companions:
         shutil.copyfile(root / name, destination / name)
-    sources = ["main_window.py", "rtt2uart.py", "usb_transport.py",
+    sources = ["main_window.py", "rtt2uart.py", "usb_transport.py", "device_catalog.py",
                "ui_rtt2uart.py", "ui_sel_device.py", "rc_icons.py",
                "rtt2uart.ui", "sel_device.ui", "icons.qrc", "swap_horiz_16px.ico",
                "requirements.txt", "requirements-build.txt", "scripts/package_windows.py",

@@ -1,0 +1,8 @@
+<DeviceDatabase>
+  <VendorInfo Name="Test">
+    <DeviceInfo Name="STM32F407VG" Core="Cortex-M4" WorkRAMSize="0x20000">
+      <FlashBankInfo Size="0x80000"/><FlashBankInfo Size="0x80000"/>
+    </DeviceInfo>
+    <DeviceInfo Name="STM32F103C8" Core="Cortex-M3"><FlashBankInfo Size="0x10000"/></DeviceInfo>
+  </VendorInfo>
+</DeviceDatabase>

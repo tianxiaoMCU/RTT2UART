@@ -203,39 +203,39 @@ Session leaves the externally owned J-Link session untouched. See
 
 ## Refresh the target device list
 
-On Windows, application startup attempts to run J-Link Commander with
-`JLinkCommandFile.jlink` to export `JLinkDevicesBuildIn.xml` into the working
-directory. A successful export is the normal refresh path.
+On Windows, startup checks the selected J-Link installation in the background.
+An unchanged Commander executable, original installed DLL and export script reuse
+a validated cache; first use, changed inputs or damaged cache trigger an export.
+The main window and bridge remain usable while this happens.
 
-If a target is missing:
+Open the Target selector to see **Loading**. The same dialog fills when preparation
+finishes. A failed refresh shows **Unverified fallback device list** with the cause,
+or **Device list unavailable** if neither the previous generated list nor shipped
+baseline is valid. Choose **Retry** after repairing the cause. Reopening the selector
+does not repeatedly export after a failure; a later application launch tries again.
+Retry also forces an export when the known inputs are unchanged.
 
-1. Check that the installed J-Link software knows the exact target model.
-2. Check that `JLink.exe` is present alongside the discovered J-Link library and
-   that the command file and working directory are writable/available.
-3. Close RTT2UART. From its working directory, run Commander from your J-Link
-   installation to repeat the export. Replace the example path below with the
-   path to your installed `JLink.exe`:
+Generated XML and provenance are stored together in
+`%LOCALAPPDATA%\RTT2UART\catalog.json`. The distributed
+`JLinkDevicesBuildIn.xml` is a read-only fallback and is never refreshed in place.
+Keep it and `JLinkCommandFile.jlink` beside the EXE (or source entry point).
+The launch working directory does not control catalog acquisition. Settings
+continue to use the working directory, so launch from a writable settings folder
+when the program directory is read-only.
 
-   ```powershell
-   & 'C:\path\to\JLink.exe' -CommandFile .\JLinkCommandFile.jlink
-   ```
-
-4. Confirm that the XML was created, then restart RTT2UART and reopen the
-   device selector.
-
-If automatic export fails, the program logs the error and the selector uses
-the XML already in the working directory. It does not search other locations
-for a replacement. Exporting manually is a fallback, not a requirement after
-every successful startup.
-
-![Historical device-list export example](../picture/exportdevicelist.png)
+If a Target is missing, check that the selected J-Link installation supports it,
+that `JLink.exe` exists beside its DLL, and that the user-data directory is writable;
+then choose Retry. Fingerprints cover the known binary/script inputs, not every
+external database Commander might consult. Catalog membership does not establish
+Target connectivity or firmware/RTT readiness. Refresh and Cancel never change the
+current Target/history; only confirming a valid user selection does.
 
 ## Troubleshooting
 
 | Symptom | Check or next action |
 | --- | --- |
-| `Find jlink dll failed !` | Install or repair the J-Link runtime and check its discoverability and architecture compatibility with the program. Existing Session has the same startup requirement. |
-| `Can not find device database !` | Check the working directory and `JLinkDevicesBuildIn.xml`; follow the refresh steps above. |
+| Device-list discovery/export failure | Read the selector warning, repair J-Link/runtime discoverability and choose Retry. Existing Session remains available; USB validates its own runtime when connecting. |
+| Device list unavailable | Restore the shipped XML beside the program or repair the export source/cache permissions, then choose Retry. Saved USB Target names remain available. |
 | `Select a Target device` | Select an actual device row and confirm it before starting USB mode. |
 | Expected COM port is missing from Scan | Confirm that the driver created the port and that another program has not opened that endpoint. Retry Scan while stopped. |
 | Serial port cannot be opened | Check the selected endpoint, permissions, and other programs using it. RTT2UART and the serial application must use different endpoints of the pair. |

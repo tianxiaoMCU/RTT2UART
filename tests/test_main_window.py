@@ -3,6 +3,7 @@ import os
 import pickle
 from pathlib import Path
 import tempfile
+import threading
 import unittest
 from unittest.mock import Mock, patch
 
@@ -11,7 +12,9 @@ os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
 from PySide6.QtCore import QCoreApplication, QEvent, QThread, QTimer
 from PySide6.QtWidgets import QApplication, QDialogButtonBox, QLabel
 
-from main_window import MainWindow
+from main_window import MainWindow, DeviceSeleteDialog
+from device_catalog import CatalogSnapshot, DeviceCatalog
+from tests.test_device_catalog import FIXTURE
 from rtt2uart import Bridge, BridgeState
 from tests.fakes import Channel, Clock, Probe, wait_until
 
@@ -35,7 +38,13 @@ class WindowTests(unittest.TestCase):
                              cleanup_timeout=0.05, clock=self.clock)
         self.probe = Mock()
         self.probe._library._path = None
-        for target, value in (("main_window.pylink.JLink", Mock(return_value=self.probe)),
+        self.catalog = Mock()
+        self.catalog.snapshot = CatalogSnapshot('fallback', (
+            ('Test', 'STM32F407VG', 'Cortex-M4', '1', '1 MB', '128 KB'),
+            ('Test', 'STM32F103C8', 'Cortex-M3', '1', '64 KB', '0 KB')), 'Controlled missing tools')
+        self.catalog.busy = False
+        for target, value in (("main_window.DeviceCatalog", Mock(return_value=self.catalog)),
+                              ("main_window.pylink.JLink", Mock(return_value=self.probe)),
                               ("main_window.serial.tools.list_ports.comports", Mock(return_value=[])),
                               ("main_window.Bridge", Mock(return_value=self.bridge))):
             context = patch(target, value)
@@ -318,10 +327,6 @@ class WindowTests(unittest.TestCase):
         self.assertTrue(self.serial.closed.is_set())
 
     def choose_catalog_target(self, row=0, accept=True):
-        Path("JLinkDevicesBuildIn.xml").write_text(
-            '<Database><VendorInfo Name="Test"><DeviceInfo Name="STM32F407VG" '
-            'Core="Cortex-M4"/><DeviceInfo Name="STM32F103C8" '
-            'Core="Cortex-M3"/></VendorInfo></Database>', encoding="utf-8")
         def choose():
             dialog = self.app.activeModalWidget()
             if row is not None:
@@ -372,6 +377,79 @@ class WindowTests(unittest.TestCase):
                 self.window.show()
                 self.assertEqual(self.window.ui.comboBox_Device.currentText(), 'STM32F407VG')
                 self.assertEqual(self.window.ui.comboBox_Device.count(), 1)
+
+    def test_catalog_loading_same_dialog_completion_retry_and_gui_thread(self):
+        self.catalog.snapshot = CatalogSnapshot()
+        dialog = DeviceSeleteDialog(self.catalog, self.window)
+        dialog.show()
+        self.assertIn('Loading', dialog.ui.label_catalog_status.text())
+        self.assertFalse(dialog.ui.tableView.isEnabled())
+        self.assertFalse(dialog.ui.pushButton_retry.isEnabled())
+        self.assertIsNone(dialog.get_target_device())
+        saved = self.window.settings.copy()
+        calls = []
+        original = QLabel.setText
+        def observe(label, text):
+            if label is dialog.ui.label_catalog_status:
+                calls.append(QThread.currentThread())
+            return original(label, text)
+        with patch.object(QLabel, 'setText', observe):
+            self.catalog.snapshot = CatalogSnapshot('fallback', (
+                ('Test', 'NEW', 'Core', '1', '0 KB', '0 KB'),), 'Commander timeout')
+            self.pump_until(lambda: dialog.ui.tableView.isEnabled())
+        self.assertEqual(dialog.ui.tableView.model().rowCount(None), 1)
+        self.assertIn('Unverified', dialog.ui.label_catalog_status.text())
+        self.assertIn('Commander timeout', dialog.ui.label_catalog_status.text())
+        self.assertTrue(all(thread == self.app.thread() for thread in calls))
+        self.assertEqual(self.window.settings, saved)
+        dialog.ui.pushButton_retry.click()
+        self.catalog.prepare.assert_called_with(retry=True)
+        dialog.close()
+        dialog.deleteLater()
+        QCoreApplication.sendPostedEvents(None, QEvent.DeferredDelete)
+        self.catalog.snapshot = CatalogSnapshot('error', reason='No usable list')
+        other = DeviceSeleteDialog(self.catalog, self.window)
+        self.addCleanup(other.close)
+        self.assertFalse(other.ui.tableView.isEnabled())
+        self.assertIn('No usable list', other.ui.label_catalog_status.text())
+        self.assertTrue(other.ui.pushButton_retry.isEnabled())
+
+    def test_real_catalog_task_shared_across_dialogs_does_not_block_bridge_or_close(self):
+        entered, release = threading.Event(), threading.Event()
+        calls = []
+        def missing():
+            calls.append(True)
+            entered.set()
+            release.wait(2)
+            raise OSError('Controlled missing library')
+        catalog = DeviceCatalog(cache_dir=Path(self.directory.name) / 'cache',
+                                baseline=FIXTURE, resolve_source=missing)
+        self.addCleanup(catalog.close)
+        self.addCleanup(release.set)
+        self.window._catalog = catalog
+        catalog.prepare()
+        self.assertTrue(entered.wait(1))
+        first = DeviceSeleteDialog(catalog, self.window)
+        first.show()
+        first.close()
+        first.deleteLater()
+        QCoreApplication.sendPostedEvents(None, QEvent.DeferredDelete)
+        second = DeviceSeleteDialog(catalog, self.window)
+        second.show()
+        self.assertIn('Loading', second.ui.label_catalog_status.text())
+        self.click_start()
+        self.pump_until(lambda: 'Target state unverified' in self.window.status_label.text())
+        release.set()
+        self.pump_until(lambda: second.ui.tableView.isEnabled())
+        self.assertIn('Controlled missing library', second.ui.label_catalog_status.text())
+        self.assertEqual(second.ui.tableView.model().rowCount(None), 2)
+        self.assertEqual(len(calls), 1)
+        second.close()
+        self.click_start()
+        self.pump_until(lambda: self.bridge.snapshot.can_start)
+        self.window.close()
+        self.pump_until(lambda: not self.window.isVisible())
+        self.assertFalse(catalog.busy)
 
     def test_background_lifecycle_and_discard_text_are_delivered_on_gui_thread(self):
         calls = []

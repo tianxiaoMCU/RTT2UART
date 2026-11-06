@@ -9,13 +9,12 @@ import rc_icons
 
 import serial.tools.list_ports
 import serial
-import xml.etree.ElementTree as ET
 import pylink
 from rtt2uart import Bridge, BridgeConfig, BridgeState, USBConfig
 import logging
 import pickle
 import os
-import subprocess
+from device_catalog import DeviceCatalog
 
 logging.basicConfig(level=logging.NOTSET,
                     format='%(asctime)s - [%(levelname)s] (%(filename)s:%(lineno)d) - %(message)s')
@@ -60,103 +59,66 @@ class DeviceTableModel(QtCore.QAbstractTableModel):
 
 
 class DeviceSeleteDialog(QDialog):
-    def __init__(self):
-        super(DeviceSeleteDialog, self).__init__()
+    def __init__(self, catalog, parent=None):
+        super(DeviceSeleteDialog, self).__init__(parent)
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-
         self.setWindowIcon(QIcon(":/swap_horiz_16px.ico"))
-
+        self._catalog = catalog
         self._target = None
+        self._last_catalog = None
+        self.devices_list = ()
+        self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
+        self.ui.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.ui.tableView.clicked.connect(self.reflash_selete_device)
+        self.ui.pushButton_retry.clicked.connect(self._retry_catalog)
+        self._catalog_timer = QtCore.QTimer(self)
+        self._catalog_timer.setInterval(20)
+        self._catalog_timer.timeout.connect(self._render_catalog)
+        self._catalog_timer.start()
+        self._render_catalog()
 
-        filepath = self.get_jlink_devices_list_file()
-        if filepath != '':
-            self.devices_list = self.parse_jlink_devices_list_file(filepath)
+    def _retry_catalog(self):
+        self._catalog.prepare(retry=True)
+        self._render_catalog()
 
-        if len(self.devices_list):
-            # Pass the header data to the model.
-            headdata = ["Manufacturer", "Device", "Core",
-                        "NumCores", "Flash Size", "RAM Size"]
-
-            # Create a model for the table view.
-            model = DeviceTableModel(self.devices_list, headdata)
-
-            self.ui.tableView.setModel(model)
-            # set font
-            # font = QFont("Courier New", 9)
-            # self.ui.tableView.setFont(font)
-            # set column width to fit contents (set font first!)
-            # Disable auto-resizing
-            self.ui.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Fixed)
-            self.ui.tableView.verticalHeader().setSectionResizeMode(QHeaderView.Fixed)
-
-            # Set fixed column widths (adjust the values based on your needs)
-            self.ui.tableView.setColumnWidth(0, 100)  # Manufacturer
-            self.ui.tableView.setColumnWidth(1, 280)  # Device
-            self.ui.tableView.setColumnWidth(2, 140)  # Core
-            self.ui.tableView.setColumnWidth(3, 70)  # NumCores
-            self.ui.tableView.setColumnWidth(4, 70)  # Flash Size
-            self.ui.tableView.setColumnWidth(5, 70)  # RAM Size
-            self.ui.tableView.setSelectionBehavior(
-                QAbstractItemView.SelectRows)
-
-            self.ui.tableView.clicked.connect(self.reflash_selete_device)
-
-    def get_jlink_devices_list_file(self):
-        if os.path.exists(r'JLinkDevicesBuildIn.xml') == True:
-            return os.path.abspath('JLinkDevicesBuildIn.xml')
+    def _render_catalog(self):
+        result = self._catalog.snapshot
+        if result is self._last_catalog:
+            return
+        self._last_catalog = result
+        self._target = None
+        self.ui.label_sel_dev.clear()
+        self.devices_list = result.records
+        self._model = DeviceTableModel(self.devices_list, [
+            "Manufacturer", "Device", "Core", "NumCores", "Flash Size", "RAM Size"])
+        self.ui.tableView.setModel(self._model)
+        for column, width in enumerate((100, 280, 140, 70, 70, 70)):
+            self.ui.tableView.setColumnWidth(column, width)
+        loading = result.state == 'loading'
+        self.ui.tableView.setEnabled(bool(result.records) and not loading)
+        self.ui.pushButton_retry.setEnabled(not loading)
+        if loading:
+            message = 'Loading Target device list...'
+        elif result.state == 'fallback':
+            message = 'Unverified fallback device list. ' + result.reason
+        elif result.state == 'error':
+            message = 'Device list unavailable. ' + result.reason
         else:
-            raise Exception("Can not find device database !")
+            message = 'Device list ready (source matched). Target support is checked on connection.'
+        self.ui.label_catalog_status.setText(message)
+        self.ui.label_catalog_status.setToolTip(message)
 
-    def parse_jlink_devices_list_file(self, path):
-        parsefile = open(path, 'r')
-
-        tree = ET.ElementTree(file=parsefile)
-
-        jlink_devices_list = []
-
-        for VendorInfo in tree.findall('VendorInfo'):
-            for DeviceInfo in VendorInfo.findall('DeviceInfo'):
-                device_item = []
-
-                # get Manufacturer
-                device_item.append(VendorInfo.attrib['Name'])
-                # get Device
-                device_item.append(DeviceInfo.attrib['Name'])
-                # get Core
-                device_item.append(DeviceInfo.attrib['Core'])
-                # get NumCores
-                # now fix 1
-                device_item.append('1')
-                # get Flash Size
-                flash_size = 0
-                for FlashBankInfo in DeviceInfo.findall('FlashBankInfo'):
-                    flash_size += int(FlashBankInfo.attrib['Size'], 16)
-
-                flash_size = flash_size // 1024
-                if flash_size < 1024:
-                    device_item.append(str(flash_size)+' KB')
-                else:
-                    flash_size = flash_size // 1024
-                    device_item.append(str(flash_size)+' MB')
-                # get RAM Size
-                ram_size = 0
-                if 'WorkRAMSize' in DeviceInfo.attrib.keys():
-                    ram_size += int(DeviceInfo.attrib['WorkRAMSize'], 16)
-
-                device_item.append(str(ram_size//1024)+' KB')
-
-                # add item to list
-                jlink_devices_list.append(device_item)
-
-        parsefile.close()
-
-        return jlink_devices_list
+    def done(self, result):
+        self._catalog_timer.stop()
+        super().done(result)
 
     def reflash_selete_device(self):
         index = self.ui.tableView.currentIndex()
-        self._target = self.devices_list[index.row()][1]
-        self.ui.label_sel_dev.setText(self._target)
+        if index.isValid() and self.ui.tableView.isEnabled():
+            self._target = self.devices_list[index.row()][1]
+            self.ui.label_sel_dev.setText(self._target)
 
     def get_target_device(self):
         return self._target
@@ -254,45 +216,16 @@ class MainWindow(QDialog):
         self.ui.radioButton_existing.clicked.connect(
             self.existing_session_selete_slot)
 
-        try:
-            catalog_link = pylink.JLink()
-        except:
-            logger.error('Find jlink dll failed', exc_info=True)
-            raise Exception("Find jlink dll failed !")
-
-        try:
-            # Export the device catalog.
-            if catalog_link._library._path is not None:
-                path_env = os.path.dirname(catalog_link._library._path)
-                env = os.environ
-
-                if catalog_link._library._windows or catalog_link._library._cygwin:
-                    jlink_env = {'PATH': path_env}
-                    env.update(jlink_env)
-
-                    cmd = 'JLink.exe -CommandFile JLinkCommandFile.jlink'
-
-                    startupinfo = subprocess.STARTUPINFO()
-                    startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-                    startupinfo.wShowWindow = subprocess.SW_HIDE
-
-                    subprocess.run(cmd, check=True, startupinfo=startupinfo, creationflags=subprocess.CREATE_NEW_CONSOLE)
-                elif sys.platform.startswith('linux'):
-                    jlink_env = {}
-                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
-                elif sys.platform.startswith('darwin'):
-                    jlink_env = {}
-                    cmd = 'JLinkExe -CommandFile JLinkCommandFile.jlink'
-
-        except Exception as e:
-            logging.error(f'can not export devices xml file, error info: {e}')
+        self._catalog = DeviceCatalog()
+        self._catalog.prepare()
 
     def reject(self):
         # QDialog's Escape key must obey the same cleanup contract as window close.
         self.close()
 
     def closeEvent(self, e):
-        if not self._bridge.snapshot.can_start:
+        self._catalog.close(wait=False)
+        if not self._bridge.snapshot.can_start or self._catalog.busy:
             self._close_pending = True
             self._bridge.stop()
             self._render_bridge(self._bridge.snapshot)
@@ -305,6 +238,7 @@ class MainWindow(QDialog):
 
         f.close()
 
+        self._status_timer.stop()
         e.accept()
 
     def port_scan(self):
@@ -352,7 +286,7 @@ class MainWindow(QDialog):
         snapshot = self._bridge.snapshot
         if snapshot != self._last_snapshot:
             self._render_bridge(snapshot)
-        if self._close_pending and snapshot.can_start:
+        if self._close_pending and snapshot.can_start and not self._catalog.busy:
             self.close()
 
     def _render_bridge(self, snapshot):
@@ -382,10 +316,10 @@ class MainWindow(QDialog):
             control.setEnabled(target_enabled)
 
     def target_device_selete(self):
-        device_ui = DeviceSeleteDialog()
-        if device_ui.exec() != QDialog.Accepted:
-            return
-        target = device_ui.get_target_device()
+        device_ui = DeviceSeleteDialog(self._catalog, self)
+        accepted = device_ui.exec() == QDialog.Accepted
+        target = device_ui.get_target_device() if accepted else None
+        device_ui.deleteLater()
         if not target:
             return
         self.target_device = target

@@ -26,7 +26,8 @@ implements neither the external endpoint server nor the Target firmware.
 | Component | Responsibility | Source |
 | --- | --- | --- |
 | `MainWindow` | Freeze run configuration, request start/stop, render snapshots, save selection history | [`main_window.py`](../main_window.py) |
-| `DeviceSeleteDialog` / `DeviceTableModel` | Load the XML device list and expose Target selection | [`main_window.py`](../main_window.py) |
+| `DeviceSeleteDialog` / `DeviceTableModel` | Present catalog snapshots and expose Target selection | [`main_window.py`](../main_window.py) |
+| `DeviceCatalog` | Resolve/fingerprint inputs, share background acquisition, validate/cache/publish records and expose fallback/retry | [`device_catalog.py`](../device_catalog.py) |
 | `Bridge` | Own startup, forwarding, recovery in both modes, serial draining, cancellation, and cleanup | [`rtt2uart.py`](../rtt2uart.py) |
 | `USBChannel` / `USBConfig` | Own a fresh probe session, enforce identity, prepare Target/RTT, serialize native I/O and release | [`usb_transport.py`](../usb_transport.py) |
 | Generated UI/resource modules | Construct widgets and provide the icon | [`ui_rtt2uart.py`](../ui_rtt2uart.py), [`ui_sel_device.py`](../ui_sel_device.py), [`rc_icons.py`](../rc_icons.py) |
@@ -44,11 +45,11 @@ implements neither the external endpoint server nor the Target firmware.
 | Auto Reconnect | Off by default; optional, frozen per run | On by default; optional, frozen per run |
 | Cleanup | Stop owned RTT processing and release probe and serial | Release owned TCP/serial resources only |
 
-The GUI still constructs a separate J-Link library object for device-catalog
-export at startup; it does not supply this object to the bridge. Existing Session
-therefore still needs a discoverable J-Link library at GUI startup. The generated
-UI keeps remote-probe TCP/IP disabled. cJTAG is explicitly rejected because the
-pinned pylink interface enum does not provide it.
+Catalog acquisition owns a separate library-discovery object and an export-only
+Commander process, with no probe or Target connection. Failures become selector
+fallback/error snapshots and do not prevent GUI or Existing Session use. The
+bridge acquires its own USB dependencies. Remote-probe TCP/IP remains disabled;
+cJTAG is rejected because the pinned pylink enum does not provide it.
 
 ## Startup and readiness
 
@@ -115,8 +116,9 @@ partial-open/failed-close refcounts and explicit probe-lock release; see the
 | File | Location | Behavior |
 | --- | --- | --- |
 | `settings` | Current working directory | Binary pickle loaded on startup and saved on window close |
-| `JLinkCommandFile.jlink` | Current working directory | Passed to Commander during the Windows export attempt |
-| `JLinkDevicesBuildIn.xml` | Current working directory | Read by the device selector; exported/refreshed by Commander |
+| `JLinkCommandFile.jlink` | Beside source/EXE | Copied unchanged to the private export directory |
+| `JLinkDevicesBuildIn.xml` | Beside source/EXE | Validated read-only fallback baseline |
+| `catalog.json` | `%LOCALAPPDATA%\RTT2UART` | Atomic generated XML, checksum and successful known-input provenance |
 
 Saved settings include target history, target index, interface index, speed
 index, serial-port index, and baud-rate index. They do not save connection mode,
@@ -126,14 +128,35 @@ sets Auto Reconnect on. Because the COM
 selection is an index, a changed port list can change the port selected after a
 restart; verify it before starting.
 
-On Windows, the export path finds the loaded J-Link library's directory,
-replaces the process `PATH` with that directory, and runs
-`JLink.exe -CommandFile JLinkCommandFile.jlink`. The script exports the XML and
-exits. Export errors are logged, allowing an existing XML file to remain the
-selector's input. There is no fallback search for another database location.
+`DeviceCatalog.prepare()` coalesces in-flight requests. The Qt-independent worker
+resolves the same original library selected by pylink, uses its adjacent Commander,
+and hashes normalized paths, binary contents and exact script bytes. Random native
+DLL-copy paths and unused installations do not affect identity. No watcher or
+periodic source polling is used. Startup checks automatically; explicit Retry forces
+refresh; `prepare(recheck=True)` allows a caller to request a later source check.
 
-The Linux/macOS branches construct a Commander command string without executing
-it. Their presence does not demonstrate a working cross-platform startup path.
+Export uses a private temporary directory, copied child environment and a **30-second**
+deadline. The owned child is killed/reaped on timeout or cancellation. It never
+changes global PATH/CWD or uses a bridge-owned object. Output must parse into usable
+records with required fields before publication; inputs are checked again after
+export. Stale results and cancelled work cannot publish. A single JSON generation
+embeds XML, its checksum and source metadata; flushed staging plus atomic replacement
+prevents mixed XML/provenance. Failed replacement preserves the previous generation.
+
+A validated matching cache takes priority. After failure, a valid generated list
+(including another source) precedes the shipped baseline, explicitly unverified;
+without either, the selector shows a retryable error. A failed automatic attempt
+is suppressed for that fingerprint during the run, but is never persisted as
+successful provenance. Retry, a later launch, or a newly checked source permits
+another attempt. Explicit Retry bypasses a matching cache because external inputs
+outside the known fingerprint may have changed.
+
+The main window starts acquisition without waiting. A selector polls immutable
+snapshots on its GUI timer, disables selection during Loading and updates the same
+dialog when resolved. Closing it stops its timer without cancelling shared work.
+Normal application closure cancels acquisition and waits responsively for owned
+cleanup before accepting close. No Target/history changes occur on list replacement.
+See [catalog acceptance](./device-catalog-acceptance.md) for recorded check scope.
 
 ## Verification boundary
 

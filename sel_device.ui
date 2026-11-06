@@ -71,11 +71,20 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>30</y>
+     <y>90</y>
      <width>761</width>
-     <height>311</height>
+     <height>251</height>
     </rect>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_catalog_status">
+   <property name="geometry"><rect><x>10</x><y>30</y><width>761</width><height>54</height></rect></property>
+   <property name="wordWrap"><bool>true</bool></property>
+   <property name="text"><string>Loading Target device list...</string></property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_retry">
+   <property name="geometry"><rect><x>690</x><y>3</y><width>81</width><height>25</height></rect></property>
+   <property name="text"><string>Retry</string></property>
   </widget>
   <widget class="Line" name="line">
    <property name="geometry">

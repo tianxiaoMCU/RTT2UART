@@ -36,9 +36,9 @@ from the application version you run.
 3. Follow [Getting started](./docs/getting-started.md) to connect over USB and
    verify each direction of data transfer.
 
-Keep the extracted package together and launch it from its directory. The
-current source uses files in the working directory for the device database,
-J-Link command file, and saved settings. See the guide for prerequisites and
+Keep the extracted package together and launch it from its directory. The device database baseline and Commander script are resolved beside the
+source/EXE; generated catalogs go to the current user's application-data area.
+Saved settings still use the launch working directory. See the guide for prerequisites and
 package verification limits.
 
 ## Documentation
@@ -59,8 +59,8 @@ package verification limits.
 | TCP/IP | Disabled in the current GUI |
 
 Only Existing Session connects to `localhost:19021`. USB never falls back to that
-listener. The application has no GUI setting for another RTT host, port, or channel. Existing Session still requires
-a discoverable J-Link runtime when the application starts.
+listener. The application has no GUI setting for another RTT host, port, or channel. Catalog discovery failures do not prevent Existing Session startup; USB still
+requires its own working J-Link runtime.
 
 The [lifecycle migration](./docs/lifecycle-migration.md) records current source
 behavior and automated evidence; published packages may predate it. The
